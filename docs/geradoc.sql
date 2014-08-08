@@ -232,9 +232,3 @@ CREATE TABLE `usuario` (
   `email` varchar(100) COLLATE latin1_general_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=114 ;
-
---
--- Extraindo dados da tabela `usuario`
---
-
-INSERT INTO `usuario` VALUES(114, '11111111111', 'Usuário', 'Administrador', '21232f297a57a5a743894a0e4a801fc3', '21232f297a57a5a743894a0e4a801fc3', 1, NULL, 1, 'tarsodecastro@gmail.com');
