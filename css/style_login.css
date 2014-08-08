@@ -1,0 +1,238 @@
+@CHARSET "UTF-8";
+
+body { 	
+	font-family: Arial, Helvetica, sans-serif;
+	color:#000;
+	text-align:center; /* hack para o IE */	
+	margin-top: 0;
+}
+
+p {
+	 margin:0;	
+}
+
+/*-------GERAL---------*/
+#geral { 
+	width:995px;
+	margin:0 auto;
+	padding: 0px;		
+	font-size: 12px;		
+	text-align:left; /* "fix" para o hack do IE */  
+}
+
+/*-------TOPO---------*/
+#topo{
+	height:45px;	
+	background-image: url(../images/bg_top.jpg); 
+	background-repeat:repeat-x;
+}
+
+#topo #topo_left{	
+	float:left;
+	height:45px;
+	width:8px;
+	background-image: url(../images/bg_top_left.jpg); 
+}
+
+#campo_data{
+	margin: 15px 0 15px 20px;
+	font-size: 11px;
+        font-weight: bold;
+	color:#FFFFFF;
+	float:left;	
+}
+
+#topo #topo_right{	
+	float:right;
+	height:45px;
+	width:146px;
+	background-image: url(../images/bg_top_right.jpg); 	
+}
+
+/*-------CORPO---------*/
+#geral #corpo{
+	margin-top:10px;
+	height: 391px;		
+} 
+
+/*-------AREA LIVRE---------*/
+#corpo #area_livre{	
+	width:651px;
+	height: 391px;	
+	float:left;
+}
+
+#corpo #caixa_login{
+	float:left;	
+	background-color: #ffffff;
+	height: 387px; /* exibi 391px = 387px + 4px da borda  */
+	width:330px; /* exibi 334px = 330px + 4px da borda  */
+	margin-left:10px;
+	border: 2px solid #E4E4E4;	
+}
+
+#caixa_login #content_login{
+	margin:8px;
+	height: 371px;
+	background-color:#E4E4E4;
+}
+
+.titulo_login{
+	font-size:28px;
+	color: #999;
+	text-align:center;
+	padding-top: 70px;
+	margin-bottom:5px;
+	font-weight: bold;
+}
+
+#login {
+	width:235px;	
+	margin:0 auto;	
+	border:1px solid #ccc;
+	background-color:#f8f8f8;
+        
+}
+
+
+#login form{	
+	padding-bottom:10px;
+	padding-left:10px;
+	padding-right:10px;
+	padding-top:2px;
+	margin:5px;	
+}
+
+#login .txt_login {	
+	width:140px;		
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:12px;
+        text-align: left;
+	font-weight:bold;
+	border:1px solid #c7c7c7;
+	color:#121212;	
+	background-color:#f9fcff;	
+	padding: 3px;
+}
+
+#login label {
+	float:left;
+	width:47px;
+	text-align:right;
+	margin-top:5px;
+	margin-right:10px;	
+	margin-left:0px;	
+	font-family: Arial, Verdana, Helvetica, sans-serif;
+	font-size:13px;			
+}
+
+#login div {
+	margin:0.3em 0;			
+}
+
+
+/*-------RODAPÉ---------*/
+#geral #rodape {
+	font-family: Arial, Verdana, Helvetica, sans-serif;
+	font-size: 11px;
+	text-align:center;
+	height: 76px;
+	background-image: url(../images/bg_rodape.gif); 
+	background-repeat:repeat-x;
+	padding-top: 30px;
+	margin-top:10px;
+}
+
+
+
+/*-----Classes CSS------*/
+.titulo_aplicacao{
+	font-family: 'Times New Roman',Times,serif;
+	font-size:37px;
+	padding-top:200px;
+	padding-left:100px;
+	color:#2d2d2d;
+	text-align: center;
+}
+
+.button{
+	background-repeat-x: repeat;
+	background-repeat-y: no-repeat;
+	background-attachment: initial;
+	background-position-x: 0%;
+	background-position-y: 0%;
+	background-origin: initial;
+	background-clip: initial;
+	background-color: #E9E9E9;
+	border: 1px solid #A8A8A8;
+	color: #424242;
+	cursor: pointer;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:11pt;
+	font-weight:bold;
+	padding-left:5px;
+	padding-right:5px;
+	padding-top:2px;
+	padding-bottom:2px;	
+}
+
+.button:hover{	
+	color: #ff6700;	
+}
+
+.error_field{
+	color:#bb0202;
+	font-style:italic;
+}
+
+.img_align{
+	vertical-align:text-top;
+}
+
+
+.conteiner_erro{
+	margin:0 auto;
+	width:220px;
+	padding-top:10px;
+}
+
+.conteiner_erro ul{
+	padding:0;
+	margin:0;
+	list-style: none;	
+}
+
+.conteiner_erro ul li {
+	padding-top: 4px;
+	color: #303030;
+}
+
+.titulo_erro{
+	font-size: 18px;	
+	color: #d21c1c;	
+}
+
+
+
+a.link1{
+	font-size: 11pt;
+	color: #037E45;
+	font-wight: bold;
+	text-decoration: none;
+}
+
+a.link1:hover{
+	text-decoration: underline;
+}  
+
+
+.img_align{
+	vertical-align:text-top;
+}
+
+.img_align2{
+	vertical-align:middle;
+}
+
+
+

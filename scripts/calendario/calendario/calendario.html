@@ -1,0 +1,183 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-br">
+	<head>
+		<title>Jquery Calendário</title>
+    	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
+        <meta name="description" content="jquery"/>
+        <meta name="keywords" content="jquery" />
+		<meta name="robots" content="all, index, follow" />
+		<link href="_style/default.css" rel="stylesheet" type="text/css"/>
+		<link href="_style/jquery.click-calendario-1.0.css" rel="stylesheet" type="text/css"/>
+		<script type="text/javascript" src="_scripts/jquery.js"></script>
+		<script type="text/javascript" src="_scripts/jquery.click-calendario-1.0-min.js"></script>		
+		<script type="text/javascript" src="_scripts/exemplo-calendario.js"></script>
+	</head>
+  	<body>
+		<div class="container">
+			<h1 class="titulo"> Click Calendário - Plugin de calendário para jQuery </h1>
+			
+			<p> Este, é um plugin de jQuery, para calendários, desenvolvido por Danilo Augusto. </p>
+			
+			
+			<div class="bloco">
+
+				<h2> Opções do Plugin </h2>
+				<div>
+					<table summary="Opções do calendário" class="opcoes" cellpadding="5" cellspacing="5" width="460" >
+						<thead>
+							<tr>
+								<th>Opção</th>
+								<th>O que é?</th>
+								<th>Padrão</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td><strong>target</strong></td>
+								<td>Objeto (input ou spam ou qualquer objeto) onde retornará a data escolhida no calendário</td>
+								<td>''</td>
+							</tr>							
+							<tr>
+								<td><strong>targetDay</strong></td>
+								<td>Objeto (input ou spam ou qualquer objeto) onde retornará o dia escolhido no calendário</td>
+								<td>''</td>
+							</tr>							
+							<tr>
+								<td><strong>targetMonth</strong></td>
+								<td>Objeto (input ou spam ou qualquer objeto) onde retornará o mês escolhido no calendário</td>
+								<td>''</td>
+							</tr>							
+							<tr>
+								<td><strong>targetYear</strong></td>
+								<td>Objeto (input ou spam ou qualquer objeto) onde retornará o ano escolhido no calendário</td>
+								<td>''</td>
+							</tr>							
+							<tr>
+								<td><strong>dateDefault</strong></td>
+								<td>Data selecionada ao abrir o calendário</td>
+								<td>Data Atual</td>
+							</tr>							
+							<tr>
+								<td><strong>referencePosition</strong></td>
+								<td>Objeto de referência para posicionamento relativo</td>
+								<td>this</td>
+							</tr>				
+							<tr>
+								<td><strong>top</strong></td>
+								<td>Nos calendários com posicao relativa / absoluta pode ser ajustado o top (em pixels)</td>
+								<td>0</td>
+							</tr>	
+							<tr>
+
+								<td><strong>left</strong></td>
+								<td>Nos calendários com posicao relativa / absoluta pode ser ajustado o left (em pixels)</td>
+								<td>0</td>
+							</tr>	
+							<tr>
+								<td><strong>closeClick</strong></td>
+								<td>O calendário é fechado quando clicado em alguma data</td>
+								<td>true</td>
+							</tr>
+							<tr>
+								<td><strong>minDate</strong></td>
+								<td>Data mínima em que o calendário deve permitir o usuário clicar</td>
+								<td>''</td>
+							</tr>
+							<tr>
+								<td><strong>maxDate</strong></td>
+								<td>Data máxima em que o calendário deve permitir o usuário clicar</td>
+								<td>''</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>			
+			
+			<div class="bloco">
+				<h2> Como Invocar </h2>
+				<p>	Primeiro chame o jQuery, o script do calendário e o css dele:</p>
+				<pre>&lt;script type="text/javascript" src="js/jquery-1.2.6.pack.js"&gt;&lt;/script&gt;<br/>&lt;script type="text/javascript" src="js/jquery-click-calendario-1.0.js"&gt;&lt;/script&gt;<br/>&lt;link href="_style/jquery.click-calendario-1.0.css" rel="stylesheet" type="text/css"/&gt;</pre>
+				
+				<p> 
+					<strong>Detalhe importante:</strong><br/>
+					Como o evento de calendário é atribuído ao elemento, a chamada do modal, deve estar ou depois do html, ou com onload. Para fazer com onLoad, coloque dentro o código do modal dentro do famoso ready do jQuery.<br/>
+				</p>
+			</div>
+	
+				
+			<div class="exemplo">	
+				<h2> Exemplo simples </h2>
+				<div>
+					<p> Esse é caso mais comum, o calendário é atribuído quando é clicado no input e o target (o próprio input), é onde vai apresentar o resultado do click do calendário. </p>
+					<pre>&lt;!-- HTML !--&gt;<br/>&lt;input type="text" name="data_1" id="data_1" size="10" maxlength="10"/&gt;<br/><br/>/* Javascript */<br/>$('#data_1').focus(function(){<br/>	$(this).calendario({<br/>		target:'#data_1'<br/>	});<br/>});</pre>
+					<p>
+						<input type="text" name="data_1" id="data_1" size="10" maxlength="10"/>
+					</p>
+				</div>
+			</div>
+
+				
+			<div class="exemplo">	
+				<h2> Exemplo com top e left </h2>
+				<p> Com top e left é possível alterar a posição do calendário. A base (top: 0 e left: 0) é o inicio do elemento que chama o calendário </p>
+				<pre>&lt;!-- HTML !--&gt;<br/>&lt;input type="text" name="data_2" id="data_2" size="10" maxlength="10"/&gt;<br/><br/>/* Javascript */<br/>$('#data_2').focus(function(){<br/>	$(this).calendario({<br/>		target:'data_2',<br/>		top:0,<br/>		left:130<br/>	});<br/>});</pre>				
+				<p>
+					<input type="text" name="data_2" id="data_2" size="10" maxlength="10"/>
+				</p>
+			</div>			
+			
+			
+				
+			<div class="exemplo">	
+				<h2> Exemplo sem closeClick </h2>
+				<p> O closeClick serve para fechar o calendário quando clicar em alguma data. O padrão dele é true, nesse exemplo vamos deixar false;</p>
+				<pre>&lt;!-- HTML !--&gt;<br/>&lt;input type="text" name="data_3" id="data_3" size="10" maxlength="10"/&gt;<br/><br/>/* Javascript */<br/>$('#data_3').focus(function(){<br/>	$(this).calendario({<br/>		target:'data_3',<br/>		closeClick:false<br/>	});<br/>});</pre>				
+				<p>
+					<input type="text" name="data_3" id="data_3" size="10" maxlength="10"/>
+				</p>
+			</div>	
+			
+			
+				
+			<div class="exemplo">	
+				<h2> Exemplo com dateDefault </h2>
+				<p> dateDefault é a data que vem selecionada no calendário, o default desse parâmetro é a data atual. No exemplo vamos colocar uma data qualquer.</p>
+				<pre>&lt;!-- HTML !--&gt;<br/>&lt;input type="text" name="data_4" id="data_4" size="10" maxlength="10" value="13/12/2005" /&gt;<br/><br/>/* Javascript */<br/>$('#data_4').focus(function(){<br/>	$(this).calendario({<br/>		target :'#data_4',<br/>		dateDefault:$(this).val()<br/>	});<br/>});</pre>				
+				<p>
+					<input type="text" name="data_4" id="data_4" size="10" maxlength="10" value="13/12/2005" />
+				</p>
+			</div>				
+			
+			
+			
+				
+			<div class="exemplo">	
+				<h2> Exemplo com dia / mês / ano </h2>
+				<p> É possível também dividir a data entre dia / mes e ano.</p>
+				<pre>&lt;!-- HTML !--&gt;<br/>	&lt;input type="text" name="data_5" id="data_5_dia" size="2" maxlength="2" value="28"/&gt;<br/>	&lt;input type="text" name="data_5" id="data_5_mes" size="2" maxlength="2" value="06"/&gt;<br/>	&lt;input type="text" name="data_5" id="data_5_ano" size="4" maxlength="4" value="1983"/&gt;<br/><br/>/* Javascript */<br/>$('#data_5_dia, #data_5_mes, #data_5_ano').focus(function(){<br/>	$(this).calendario({<br/>		targetDay :'#data_5_dia',<br/>		targetMonth :'#data_5_mes',<br/>		targetYear :'#data_5_ano',<br/>		dateDefault: $('#data_5_dia').val()+"/"+$('#data_5_mes').val()+"/"+$('#data_5_ano').val(),<br/>		referencePosition : '#data_5_dia'<br/>	});<br/>});</pre>
+				<p>
+					<input type="text" name="data_5" id="data_5_dia" size="2" maxlength="2" value="28"/>
+					<input type="text" name="data_5" id="data_5_mes" size="2" maxlength="2" value="06"/>
+					<input type="text" name="data_5" id="data_5_ano" size="4" maxlength="4" value="1983"/>
+				</p>
+			</div>			
+			
+			
+			
+				
+			<div class="exemplo">	
+				<h2> Exemplo com range de Data </h2>
+				<p> Nos parâmetros minDate e maxDate é possível definir uma range para a navegação do calendário</p>
+				<pre>&lt;!-- HTML !--&gt;<br/>&lt;input type="text" name="data_6" id="data_6" size="10" maxlength="10" value="13/12/2008" /&gt;<br/><br/>/* Javascript */<br/>$('#data_6').focus(function(){<br/>	$(this).calendario({<br/>		target :'#data_6',<br/>		dateDefault:$(this).val(),<br/>		minDate:'10/11/2008',<br/>		maxDate:'25/01/2009'<br/>	});<br/>});</pre>				
+				<p>
+					<input type="text" name="data_6" id="data_6" size="10" maxlength="10" value="13/12/2008" />
+				</p>
+			</div>			
+
+			
+		</div>
+	</body>
+</html>
+
+

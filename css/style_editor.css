@@ -1,0 +1,27 @@
+@CHARSET "UTF-8";
+
+body,p {
+	font-family: \'Times New Roman\', Times, serif;
+	color: #000;
+	height: 150%;
+	margin-left: 10px;
+	margin-right: 15px;
+	font-size: 15pt;
+	text-align: justify;
+}
+
+.mce-item-table{
+	border-width: 1px;
+	border-spacing: 0px !important;
+	border-collapse:collapse;
+	border-style: solid;
+	border-color: #000;
+}
+
+.mce-item-table td,.mce-item-table th {
+	margin: 0;
+	padding: 4px;
+	border-width: 1px;
+	border-style: solid;
+	border-color: #000;
+}
