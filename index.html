@@ -1,0 +1,116 @@
+<!doctype html>
+<!-- The Time Machine GitHub pages theme was designed and developed by Jon Rohan, on Feb 7, 2012. -->
+<!-- Follow him for fun. http://twitter.com/jonrohan. Tail his code on http://github.com/jonrohan -->
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <link rel="stylesheet" href="stylesheets/stylesheet.css" media="screen">
+  <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script type="text/javascript" src="javascripts/script.js"></script>
+
+  <title>GeraDoc</title>
+  <meta name="description" content="Sistema Gerenciador de Documentos">
+
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+</head>
+
+<body>
+
+  <div class="wrapper">
+    <header>
+      <h1 class="title">GeraDoc</h1>
+    </header>
+    <div id="container">
+      <p class="tagline">Sistema Gerenciador de Documentos</p>
+      <div id="main" role="main">
+        <div class="download-bar">
+        <div class="inner">
+          <a href="https://github.com/tarsodecastro/geradoc/tarball/master" class="download-button tar"><span>Download</span></a>
+          <a href="https://github.com/tarsodecastro/geradoc/zipball/master" class="download-button zip"><span>Download</span></a>
+          <a href="https://github.com/tarsodecastro/geradoc" class="code">View GeraDoc on GitHub</a>
+        </div>
+        <span class="blc"></span><span class="trc"></span>
+        </div>
+        <article class="markdown-body">
+          <h1>
+<a name="geradoc---sistema-gerenciador-de-documentos" class="anchor" href="#geradoc---sistema-gerenciador-de-documentos"><span class="octicon octicon-link"></span></a>GeraDoc - Sistema Gerenciador de Documentos</h1>
+
+<p><img src="/screenshots/login.png?raw=true" alt="Alt text" title="Login"></p>
+
+<h1>
+<a name="instala%C3%A7%C3%A3o" class="anchor" href="#instala%C3%A7%C3%A3o"><span class="octicon octicon-link"></span></a>Instalação:</h1>
+
+<p>Requisitos:</p>
+
+<ol>
+<li>Apache 2.0.63</li>
+<li>PHP 5.3.2</li>
+<li>MySQL Server 5.1.44</li>
+</ol><h1>
+<a name="mysql" class="anchor" href="#mysql"><span class="octicon octicon-link"></span></a>MySQL:</h1>
+
+<ol>
+<li>Crie o banco de Dados "geradoc" e importe os dados do arquivo: geradoc/docs/geradoc.sql</li>
+<li>Crie um usuário "geradoc" com permissões para criar e ler dados no banco criado.</li>
+</ol><h1>
+<a name="aplica%C3%A7%C3%A3o" class="anchor" href="#aplica%C3%A7%C3%A3o"><span class="octicon octicon-link"></span></a>Aplicação:</h1>
+
+<ol>
+<li><p>Copie a pasta "geradoc" para a pasta "htdocs" do APACHE</p></li>
+<li>
+<p>Altere os dados dos seguintes arquivos:</p>
+
+<p>a. geradoc/system/application/config/config.php</p>
+
+<pre><code>$config['base_url'] = "http://localhost/geradoc/"; // colocar a url de seu servidor.
+</code></pre>
+
+<p>b. geradoc/system/application/config/database.php</p>
+
+<pre><code>$db['default']['hostname'] = "host";        // substituir pelo seu servidor
+$db['default']['username'] = "usuario";     // substituir pelo usuário do servidor
+$db['default']['password'] = "senha";       // substituir pela senha do usuário do servidor
+</code></pre>
+</li>
+<li><p>Dê permissões de leitura e escrita para o servidor web na pasta "userfiles" encontrada em geradoc/scripts/ckfinder/userfiles</p></li>
+</ol><h1>
+<a name="acesso-ao-sistema" class="anchor" href="#acesso-ao-sistema"><span class="octicon octicon-link"></span></a>Acesso ao sistema:</h1>
+
+<ul>
+<li>Login: 11111111111<br>
+</li>
+<li>Senha: admin<br>
+</li>
+</ul><h1>
+<a name="observa%C3%A7%C3%A3o" class="anchor" href="#observa%C3%A7%C3%A3o"><span class="octicon octicon-link"></span></a>Observação:</h1>
+
+<p>Favor manter os créditos nos programas que compõem o sistema.</p>
+
+<p>Em caso de dúvidas, envie e-mail para <a href="mailto:tarsodecastro@gmail.com">tarsodecastro@gmail.com</a></p>
+        </article>
+      </div>
+    </div>
+    <footer>
+      <div class="owner">
+      <p><a href="https://github.com/tarsodecastro" class="avatar"><img src="https://avatars2.githubusercontent.com/u/8379500?v=2&amp;s=60" width="48" height="48"></a> <a href="https://github.com/tarsodecastro">tarsodecastro</a> maintains <a href="https://github.com/tarsodecastro/geradoc">GeraDoc</a></p>
+
+
+      </div>
+      <div class="creds">
+        <small>This page generated using <a href="http://pages.github.com/">GitHub Pages</a><br>theme by <a href="https://twitter.com/jonrohan/">Jon Rohan</a></small>
+      </div>
+    </footer>
+  </div>
+  <div class="current-section">
+    <a href="#top">Scroll to top</a>
+    <a href="https://github.com/tarsodecastro/geradoc/tarball/master" class="tar">tar</a><a href="https://github.com/tarsodecastro/geradoc/zipball/master" class="zip">zip</a><a href="" class="code">source code</a>
+    <p class="name"></p>
+  </div>
+
+  
+</body>
+</html>
