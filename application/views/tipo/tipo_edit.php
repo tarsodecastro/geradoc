@@ -24,7 +24,25 @@
 
 		  	plugins: "preview image jbimages spellchecker textcolor table lists code",
 		  	
-		  	toolbar: "bold italic underline strikethrough | fontsizeselect alignleft aligncenter alignright alignjustify | forecolor backcolor |subscript superscript removeformat | jbimages ",
+		  	toolbar: "bold italic underline strikethrough | alignleft aligncenter alignright alignjustify | forecolor backcolor |subscript superscript removeformat | preview code | fontsizeselect jbimages ",
+		  	statusbar : false,
+		   });
+
+    	 $("textarea#campoConteudo").tinymce({
+		      script_url : '<?php echo base_url(); ?>js/tinymce/tinymce.min.js',
+		      language : 'pt_BR',
+		  	  menubar : false,
+		  	  browser_spellcheck : true,
+		  	  forced_root_block : false, // <br />, para <p> deve ser comentado
+		  	  setup : function(ed){
+		  		ed.on('init', function() {
+		  			   this.getDoc().body.style.fontSize = '10.5pt';
+		  			});
+		  	},
+
+		  	plugins: "preview image jbimages spellchecker textcolor table lists code",
+		  	
+		  	toolbar: "bold italic underline strikethrough | alignleft aligncenter alignright alignjustify | forecolor backcolor |subscript superscript removeformat |  preview code | fontsizeselect jbimages | table  ",
 		  	statusbar : false,
 		   });
 
@@ -40,9 +58,9 @@
 		  			});
 		  	},
 
-		  	plugins: "preview image spellchecker textcolor table lists",
+		  	plugins: "preview image jbimages spellchecker textcolor table lists code",
 		  	
-		  	toolbar: "bold italic underline strikethrough | fontsizeselect alignleft aligncenter alignright alignjustify | forecolor backcolor |subscript superscript removeformat | jbimages ",
+		  	toolbar: "bold italic underline strikethrough | alignleft aligncenter alignright alignjustify | forecolor backcolor |subscript superscript removeformat | preview code | fontsizeselect jbimages ",
 		  	statusbar : false,
 		   });
     });
@@ -57,7 +75,7 @@
 
     <?php
     echo $link_back;
-    echo $message;
+    echo $mensagem;
     echo form_open($form_action);
     ?>
 	
@@ -86,6 +104,16 @@
 			        	<td class="gray">Cabeçalho:
 			        	</td>
 			        	<td class="green" style="width: 1000px;"><?php echo form_textarea($campoCabecalho) .form_error('campoCabecalho'); ?> 
+			        	</td>
+		        	</tr>
+		        	<tr>
+			        	<td class="gray">Conteúdo:
+			        	</td>
+			        	<td class="green" style="width: 1000px;">
+			        		<strong> Variáveis: </strong> 
+			        		[tipo_doc], [numero], [ano_doc], [setor_doc], [data], [destinatario], [referencia], [assunto], [redacao], [remetente_assinatura], [remetente_nome], [remetente_cargo]
+			        		[objetivo], [documentacao], [analise], [conclusao] <br /><br />
+			        		<?php echo form_textarea($campoConteudo) .form_error('campoConteudo'); ?> 
 			        	</td>
 		        	</tr>
 		        	<tr>

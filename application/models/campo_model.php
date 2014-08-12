@@ -135,6 +135,12 @@ function orgao($indice) {
     					'value' => $this->input->post('campoCabecalho'),
     					'rows'  => '11',
     			),
+    			'campoConteudo' => array(
+    					'name' => 'campoConteudo',
+    					'id' => 'campoConteudo',
+    					'value' => $this->input->post('campoConteudo'),
+    					'rows'  => '11',
+    			),
     			'campoRodape' => array(
     					'name' => 'campoRodape',
     					'id' => 'campoRodape',

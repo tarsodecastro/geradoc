@@ -113,7 +113,7 @@ class Tipo extends CI_Controller {
 		$data['titulo'] = 'Novo Tipo';
 		$data['link_back']  = anchor($this->area.'/index/','Voltar',array('class'=>'back'));
 		$data['form_action'] = site_url($this->area.'/add/');
-		$data['message'] = '';
+		$data['mensagem'] = '';
 	
 		//constroe os campos que serao mostrados no formulario
 		$this->load->model('Campo_model','',TRUE);
@@ -121,6 +121,7 @@ class Tipo extends CI_Controller {
 		$data['campoNome'] = $this->Campo_model->tipo('campoNome');
 		$data['campoAbreviacao'] = $this->Campo_model->tipo('campoAbreviacao');
 		$data['campoCabecalho'] = $this->Campo_model->tipo('campoCabecalho');
+		$data['campoConteudo'] = $this->Campo_model->tipo('campoConteudo');
 		$data['campoRodape'] = $this->Campo_model->tipo('campoRodape');
 		
 	
@@ -132,17 +133,23 @@ class Tipo extends CI_Controller {
 					
 					'nome' => mb_convert_case($this->input->post('campoNome'), MB_CASE_UPPER, "UTF-8"),
 					'abreviacao' => mb_convert_case($this->input->post('campoAbreviacao'), MB_CASE_UPPER, "UTF-8"),
+					'layout' => $this->input->post('campoConteudo'),
 					'cabecalho' => $this->input->post('campoCabecalho'),
 					'rodape' => $this->input->post('campoRodape')
 					
 			);
+			
+			// corrige o caminho do local das imagens enviadas
+			$objeto_do_form['layout'] = str_replace('../../', '../../../', $objeto_do_form['layout']);
+			$objeto_do_form['cabecalho'] = str_replace('../../', '../../../', $objeto_do_form['cabecalho']);
+			$objeto_do_form['rodape'] = str_replace('../../', '../../../', $objeto_do_form['rodape']);
 	
 			//checa a existencia de registro com o mesmo nome para evitar duplicatas
 			$checa_duplicata = $this->Tipo_model->get_by_nome($objeto_do_form['nome'])->num_rows();
 	
 			if ($checa_duplicata > 0){
 	
-				$data['mensagem'] = '<div class="error_field"> <img class="img_align" src="{TPL_images}/error.png" alt="! " /> O registro já existe </div>';
+				$data['mensagem'] = '<div class="error_field" style="text-align: center;"> <img class="img_align" src="{TPL_images}/error.png" alt="! " /> O registro já existe </div>';
 	
 				$this->load->view($this->area . "/" . $this->area.'_edit', $data);
 	
@@ -204,7 +211,7 @@ public function update($id) {
 			
 		// define as variaveis comuns
 		$data['titulo'] = "Alteração de  órgão";
-		$data['message'] = '';
+		$data['mensagem'] = '';
 		$data['link_back'] = anchor($this->area.'/'.$_SESSION['novoinicio'],'Voltar',array('class'=>'back'));
 		$data['form_action'] = site_url($this->area.'/update/'.$id);
 
@@ -214,6 +221,7 @@ public function update($id) {
 		$data['campoNome'] = $this->Campo_model->tipo('campoNome');
 		$data['campoAbreviacao'] = $this->Campo_model->tipo('campoAbreviacao');
 		$data['campoCabecalho'] = $this->Campo_model->tipo('campoCabecalho');
+		$data['campoConteudo'] = $this->Campo_model->tipo('campoConteudo');
 		$data['campoRodape'] = $this->Campo_model->tipo('campoRodape');
 		
 		
@@ -224,6 +232,7 @@ public function update($id) {
 		//Popula os campos com os dados do objeto
 		$data['campoNome']['value'] = $obj->nome;
 		$data['campoAbreviacao']['value'] = $obj->abreviacao;
+		$data['campoConteudo']['value'] = $obj->layout;
 		$data['campoCabecalho']['value'] = $obj->cabecalho;
 		$data['campoRodape']['value'] = $obj->rodape;
 		
@@ -239,6 +248,7 @@ public function update($id) {
 					
                		'nome' => mb_convert_case($this->input->post('campoNome'), MB_CASE_UPPER, "UTF-8"),
 					'abreviacao' => mb_convert_case($this->input->post('campoAbreviacao'), MB_CASE_UPPER, "UTF-8"),
+					'layout' => $this->input->post('campoConteudo'),
 					'cabecalho' => $this->input->post('campoCabecalho'),
 					'rodape' => $this->input->post('campoRodape')
 					
