@@ -114,8 +114,8 @@ class Setor extends CI_Controller {
 		$data['artigoSelecionado']  = 'A';
 		
 		$data['campoRestricao'] = $this->Campo_model->setor('campoRestricao');
-		$data['restricaoesDisponiveis'] = $this->Campo_model->setor('arrayRestricoes');
-		$data['restricaoSelecionado']  = 'N';
+		$data['restricoesDisponiveis'] = $this->Campo_model->setor('arrayRestricoes');
+		$data['restricaoSelecionada']  = 'N';
 		
 			
 		//carrega os responsaveis
