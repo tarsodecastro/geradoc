@@ -1,46 +1,41 @@
 -- phpMyAdmin SQL Dump
--- version 3.2.5
+-- version 4.0.10deb1
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tempo de Geração: Ago 07, 2014 as 09:04 PM
--- Versão do Servidor: 5.1.44
--- Versão do PHP: 5.3.2
+-- Tempo de Geração: 12/08/2014 às 17:16
+-- Versão do servidor: 5.5.38-0ubuntu0.14.04.1
+-- Versão do PHP: 5.5.9-1ubuntu4.3
 
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
 
 --
--- Banco de Dados: `geradoc`
+-- Banco de dados: `geradoc`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `auditoria`
+-- Estrutura para tabela `auditoria`
 --
 
-CREATE TABLE `auditoria` (
+CREATE TABLE IF NOT EXISTS `auditoria` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `usuario` int(11) NOT NULL,
   `usuario_nome` varchar(60) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
   `data` datetime NOT NULL,
   `url` tinytext NOT NULL,
   KEY `id` (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1853 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1925 ;
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `cargo`
+-- Estrutura para tabela `cargo`
 --
 
-CREATE TABLE `cargo` (
+CREATE TABLE IF NOT EXISTS `cargo` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nome` varchar(45) COLLATE latin1_general_ci NOT NULL,
   PRIMARY KEY (`id`)
@@ -49,10 +44,10 @@ CREATE TABLE `cargo` (
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `ci_sessions`
+-- Estrutura para tabela `ci_sessions`
 --
 
-CREATE TABLE `ci_sessions` (
+CREATE TABLE IF NOT EXISTS `ci_sessions` (
   `session_id` varchar(45) COLLATE latin1_general_ci NOT NULL DEFAULT '0',
   `ip_address` varchar(16) COLLATE latin1_general_ci NOT NULL DEFAULT '0',
   `user_agent` varchar(50) COLLATE latin1_general_ci NOT NULL,
@@ -64,10 +59,10 @@ CREATE TABLE `ci_sessions` (
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `contato`
+-- Estrutura para tabela `contato`
 --
 
-CREATE TABLE `contato` (
+CREATE TABLE IF NOT EXISTS `contato` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nome` varchar(80) COLLATE latin1_general_ci NOT NULL,
   `sexo` varchar(10) COLLATE latin1_general_ci NOT NULL DEFAULT 'M',
@@ -86,10 +81,10 @@ CREATE TABLE `contato` (
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `despacho_head`
+-- Estrutura para tabela `despacho_head`
 --
 
-CREATE TABLE `despacho_head` (
+CREATE TABLE IF NOT EXISTS `despacho_head` (
   `despacho_id` int(11) NOT NULL,
   `num_processo` varchar(100) NOT NULL,
   `interessado` varchar(100) NOT NULL,
@@ -102,10 +97,10 @@ CREATE TABLE `despacho_head` (
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `documento`
+-- Estrutura para tabela `documento`
 --
 
-CREATE TABLE `documento` (
+CREATE TABLE IF NOT EXISTS `documento` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `tipo` int(11) DEFAULT NULL,
   `numero` int(11) DEFAULT '1',
@@ -130,15 +125,15 @@ CREATE TABLE `documento` (
   `analise` text COLLATE latin1_general_ci,
   `conclusao` text COLLATE latin1_general_ci,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=13813 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=13817 ;
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `orgao`
+-- Estrutura para tabela `orgao`
 --
 
-CREATE TABLE `orgao` (
+CREATE TABLE IF NOT EXISTS `orgao` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nome` varchar(80) COLLATE latin1_general_ci NOT NULL,
   `sigla` varchar(20) COLLATE latin1_general_ci NOT NULL,
@@ -149,10 +144,10 @@ CREATE TABLE `orgao` (
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `setor`
+-- Estrutura para tabela `setor`
 --
 
-CREATE TABLE `setor` (
+CREATE TABLE IF NOT EXISTS `setor` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nome` varchar(80) COLLATE latin1_general_ci NOT NULL,
   `orgao` int(11) DEFAULT '1',
@@ -169,10 +164,10 @@ CREATE TABLE `setor` (
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `setor_func_per`
+-- Estrutura para tabela `setor_func_per`
 --
 
-CREATE TABLE `setor_func_per` (
+CREATE TABLE IF NOT EXISTS `setor_func_per` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `setor` int(11) NOT NULL,
   `usuario` int(11) NOT NULL,
@@ -183,10 +178,10 @@ CREATE TABLE `setor_func_per` (
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `tipo`
+-- Estrutura para tabela `tipo`
 --
 
-CREATE TABLE `tipo` (
+CREATE TABLE IF NOT EXISTS `tipo` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nome` varchar(45) COLLATE latin1_general_ci NOT NULL,
   `abreviacao` varchar(45) COLLATE latin1_general_ci DEFAULT NULL,
@@ -196,16 +191,17 @@ CREATE TABLE `tipo` (
   `tem_para` char(1) COLLATE latin1_general_ci DEFAULT 'S',
   `cabecalho` text COLLATE latin1_general_ci,
   `rodape` text COLLATE latin1_general_ci,
+  `layout` text COLLATE latin1_general_ci,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=17 ;
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `tipo_ano`
+-- Estrutura para tabela `tipo_ano`
 --
 
-CREATE TABLE `tipo_ano` (
+CREATE TABLE IF NOT EXISTS `tipo_ano` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `tipo` int(11) NOT NULL,
   `ano` int(4) NOT NULL,
@@ -216,10 +212,10 @@ CREATE TABLE `tipo_ano` (
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `usuario`
+-- Estrutura para tabela `usuario`
 --
 
-CREATE TABLE `usuario` (
+CREATE TABLE IF NOT EXISTS `usuario` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `cpf` varchar(11) COLLATE latin1_general_ci DEFAULT NULL,
   `nome` varchar(100) COLLATE latin1_general_ci DEFAULT NULL,
@@ -232,6 +228,7 @@ CREATE TABLE `usuario` (
   `email` varchar(100) COLLATE latin1_general_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=114 ;
+
 
 --
 -- Extraindo dados da tabela `usuario`
