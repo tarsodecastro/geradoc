@@ -227,7 +227,7 @@ public function update($id) {
 				// Atualiza o cadastro
 				$this->Orgao_model->update($id, $objeto_do_form);
 
-				$this->js_custom = 'var sSecs = 6;
+				$this->js_custom = 'var sSecs = 4;
                                 function getSecs(){
                                     sSecs--;
                                     if(sSecs<0){ sSecs=59; sMins--; }				
