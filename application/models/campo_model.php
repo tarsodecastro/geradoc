@@ -161,7 +161,7 @@ function orgao($indice) {
 						'id'   => 'campoData',
     					'value' => $this->input->post('campoData'),
     					'maxlength' => '10',
-    					'size' => '10',
+    					'size' => '12',
     					'class' => 'textboxUpper',
     			),
     			 

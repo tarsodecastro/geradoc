@@ -129,20 +129,20 @@ class Orgao extends CI_Controller {
 				// Salva o registro
 				$this->Orgao_model->save($objeto_do_form);
 	
-				$this->js_custom = 'var sSecs = 6;
+				$this->js_custom = 'var sSecs = 4;
                                 function getSecs(){
                                     sSecs--;
                                     if(sSecs<0){ sSecs=59; sMins--; }
-                                    $("#clock1").html(sSecs+" segundos...");
+                                    $("#clock1").html(sSecs+" segundos.");
                                     setTimeout("getSecs()",1000);
                                     var s =  $("#clock1").html();
-                                    if (s == "1 segundos..."){
+                                    if (s == "1 segundos."){
                                         window.location.href = "' . site_url('/'.$this->area) . '";
                                     }
                                 }
                                 ';
 	
-				$data['mensagem'] = "<br /> Cadastro efetuado. <br /> Redirecionando em <br />";
+				$data['mensagem'] = "<br /> Redirecionando em ";
 				$data['mensagem'] .= '<span id="clock1"> ' . "<script>setTimeout('getSecs()',1000);</script> </span>";
 				$data['link1'] = '';
 				$data['link2'] = '';
@@ -227,7 +227,7 @@ public function update($id) {
 				// Atualiza o cadastro
 				$this->Orgao_model->update($id, $objeto_do_form);
 
-				$this->js_custom = 'var sSecs = 6;
+				$this->js_custom = 'var sSecs = 4;
                                 function getSecs(){
                                     sSecs--;
                                     if(sSecs<0){ sSecs=59; sMins--; }				
