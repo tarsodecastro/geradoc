@@ -133,10 +133,10 @@ class Orgao extends CI_Controller {
                                 function getSecs(){
                                     sSecs--;
                                     if(sSecs<0){ sSecs=59; sMins--; }
-                                    $("#clock1").html(sSecs+" segundos.");
+                                    $("#clock1").html(sSecs+" segundos...");
                                     setTimeout("getSecs()",1000);
                                     var s =  $("#clock1").html();
-                                    if (s == "1 segundos."){
+                                    if (s == "1 segundos..."){
                                         window.location.href = "' . site_url('/'.$this->area) . '";
                                     }
                                 }

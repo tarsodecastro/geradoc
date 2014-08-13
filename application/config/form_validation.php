@@ -69,6 +69,11 @@ $config = array(
 						'rules' => 'required|trim'
 				),
 				array(
+						'field' => 'campoConteudo',
+						'label' => 'conteudo',
+						'rules' => 'trim'
+				),
+				array(
 						'field' => 'campoCabecalho',
 						'label' => 'cabeçalho',
 						'rules' => 'trim'

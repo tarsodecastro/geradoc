@@ -21,7 +21,7 @@
 	font-family: "Times New Roman", Times, serif;
 	font-size: 15px;
 	text-align: justify;
-	line-height: 100%;
+	line-height: 150%;
 	font-weight: normal;
 }
 
@@ -74,7 +74,7 @@
 	width: 50%;
 }
 
-.redacao table {
+.conteudo table {
 	border-width: 1px;
 	border-spacing: 0px !important;
 	border-collapse: collapse;
@@ -82,7 +82,7 @@
 	border-color: #000;
 }
 
-.redacao table td,.redacao table th {
+.conteudo table td,.redacao table th {
 	margin: 0;
 	padding: 4px;
 	border-width: 1px;
