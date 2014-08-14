@@ -138,7 +138,7 @@ class Cargo extends CI_Controller {
                                 }
                                 ';
 	
-				$data['mensagem'] = "<br /><br />Redirecionando em... ";
+				$data['mensagem'] = "<br /> Redirecionando em ";
 				$data['mensagem'] .= '<span id="clock1"> ' . "<script>setTimeout('getSecs()',1000);</script> </span>";
 				$data['link1'] = '';
 				$data['link2'] = '';

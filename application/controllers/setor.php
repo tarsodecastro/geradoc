@@ -211,7 +211,7 @@ class Setor extends CI_Controller {
 				$this->Setor_model->save($objeto_do_form);
 	
 				
-				$this->js_custom = 'var sSecs = 6;
+				$this->js_custom = 'var sSecs = 4;
                                 function getSecs(){
                                     sSecs--;
                                     if(sSecs<0){ sSecs=59; sMins--; }
@@ -223,9 +223,8 @@ class Setor extends CI_Controller {
                                     }
                                 }
                                 ';
-                                
 	
-				$data['mensagem'] = "<br /> Cadastro efetuado. <br /> Redirecionando em <br />";
+				$data['mensagem'] = "<br /> Redirecionando em ";
 				$data['mensagem'] .= '<span id="clock1"> ' . "<script>setTimeout('getSecs()',1000);</script> </span>";
 				$data['link1'] = '';
 				$data['link2'] = '';
