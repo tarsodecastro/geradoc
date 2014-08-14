@@ -139,13 +139,63 @@ function orgao($indice) {
     					'name' => 'campoConteudo',
     					'id' => 'campoConteudo',
     					'value' => $this->input->post('campoConteudo'),
-    					'rows'  => '11',
+    					'rows'  => '13',
     			),
     			'campoRodape' => array(
     					'name' => 'campoRodape',
     					'id' => 'campoRodape',
     					'value' => $this->input->post('campoRodape'),
-    					'rows'  => '5',
+    					'rows'  => '4',
+    			),
+    			
+    			'campoFlagRedacao' => array(
+    					'name' => 'campoFlagRedacao',
+    					'id' => 'campoFlagRedacao',
+    					'value' => mb_convert_case($this->input->post('campoFlagRedacao'), MB_CASE_UPPER, "ISO-8859-1"),
+    					'maxlength' => '2',
+    					'size' => '2',
+    					'class' => 'textboxUpper',
+    			),
+    			
+    			'campoFlagObjetivo' => array(
+    					'name' => 'campoFlagObjetivo',
+    					'id' => 'campoFlagObjetivo',
+    					'value' => mb_convert_case($this->input->post('campoFlagObjetivo'), MB_CASE_UPPER, "ISO-8859-1"),
+    					'maxlength' => '2',
+    					'size' => '2',
+    					'class' => 'textboxUpper',
+    			),
+    			
+    			'campoFlagDocumentacao' => array(
+    					'name' => 'campoFlagDocumentacao',
+    					'id' => 'campoFlagDocumentacao',
+    					'value' => mb_convert_case($this->input->post('campoFlagDocumentacao'), MB_CASE_UPPER, "ISO-8859-1"),
+    					'maxlength' => '2',
+    					'size' => '2',
+    					'class' => 'textboxUpper',
+    			),
+    			
+    			'campoFlagAnalise' => array(
+    					'name' => 'campoFlagAnalise',
+    					'id' => 'campoFlagAnalise',
+    					'value' => mb_convert_case($this->input->post('campoFlagAnalise'), MB_CASE_UPPER, "ISO-8859-1"),
+    					'maxlength' => '2',
+    					'size' => '2',
+    					'class' => 'textboxUpper',
+    			),
+    			
+    			'campoFlagConclusao' => array(
+    					'name' => 'campoFlagConclusao',
+    					'id' => 'campoFlagConclusao',
+    					'value' => mb_convert_case($this->input->post('campoFlagConclusao'), MB_CASE_UPPER, "ISO-8859-1"),
+    					'maxlength' => '2',
+    					'size' => '2',
+    					'class' => 'textboxUpper',
+    			),
+    			 
+    			'arrayFlags' => array(
+    					'S'  => 'SIM',
+    					'N'  => 'NÃO',
     			),
     	);
     

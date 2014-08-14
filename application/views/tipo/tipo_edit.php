@@ -83,13 +83,13 @@
 	
 	    <fieldset class="conteiner2"> 
 	    
-	        <legend class="subTitulo6">Tipo</legend> 
+	        <legend class="subTitulo6">Identificação</legend> 
 	        
 	        <table class="table_form">
 	        	<tbody>
 	        		
 		        	<tr>
-			        	<td class="gray"><span class="text-red">*</span> Nome:
+			        	<td class="gray" style="width: 150px;"><span class="text-red">*</span> Nome:
 			        	</td>
 			        	<td class="green"><?php echo form_input($campoNome) .form_error('campoNome'); ?> 
 			        	</td>
@@ -100,6 +100,73 @@
 			        	<td class="green"><?php echo form_input($campoAbreviacao) .form_error('campoAbreviacao'); ?> 
 			        	</td>
 		        	</tr>
+		        	
+	        	</tbody>
+	        </table>
+	        
+	    </fieldset>
+	    
+	    
+	    <fieldset class="conteiner2" style="margin-top: 20px;"> 
+	    
+	        <legend class="subTitulo6">Itens presentes no formulário</legend> 
+	        
+	        <table class="table_form">
+	        	<tbody>
+	        	
+	        		<tr>
+			        	<td class="gray" style="width: 150px;">
+			        		Redação:
+			        	</td> 
+			        	<td class="green">
+			        		<?php echo form_dropdown('campoFlagRedacao', $flagsDisponiveis, $flagRedacaoSelecionada) .form_error('campoFlagRedacao'); ?>
+			        	</td>
+		        	</tr>
+	        		
+		        	<tr>
+			        	<td class="gray" style="width: 150px;">
+			        		Objetivo:
+			        	</td> 
+			        	<td class="green">
+			        		<?php echo form_dropdown('campoFlagObjetivo', $flagsDisponiveis, $flagObjetivoSelecionada) .form_error('campoFlagObjetivo'); ?>
+			        	</td>
+			        	<td class="gray" style="width: 150px;">
+			        		Documentação:
+			        	</td>
+			        	<td class="green">
+			        		<?php echo form_dropdown('campoFlagDocumentacao', $flagsDisponiveis, $flagDocumentacaoSelecionada) .form_error('campoFlagDocumentacao'); ?>
+			        	</td>
+		        	</tr>
+
+		        	<tr>
+			        	<td class="gray">
+			        		Análise:
+			        	</td>
+			        	<td class="green">
+			        		<?php echo form_dropdown('campoFlagAnalise', $flagsDisponiveis, $flagAnaliseSelecionada) .form_error('campoFlagAnalise'); ?>
+			        	</td>
+			        	<td class="gray">
+			        		Conclusão:
+			        	</td>
+			        	<td class="green">
+			        		<?php echo form_dropdown('campoFlagConclusao', $flagsDisponiveis, $flagConclusaoSelecionada) .form_error('campoFlagConclusao'); ?>
+			        	</td>
+		        	</tr>
+		        	
+	        	</tbody>
+	        </table>
+	        
+	       
+	        
+	    </fieldset>
+	    
+	    
+	     <fieldset class="conteiner2" style="margin-top: 20px;"> 
+	    
+	        <legend class="subTitulo6">Itens presentes na exportação</legend> 
+	        
+	         <table class="table_form">
+	        	<tbody>
 		        	<tr>
 			        	<td class="gray">Cabeçalho:
 			        	</td>
@@ -107,7 +174,7 @@
 			        	</td>
 		        	</tr>
 		        	<tr>
-			        	<td class="gray">Conteúdo:
+			        	<td class="gray"><span class="text-red">*</span> Organização do Conteúdo:
 			        	</td>
 			        	<td class="green" style="width: 1000px;">
 			        		<strong> Variáveis: </strong> 
@@ -125,9 +192,13 @@
 		        	
 	        	</tbody>
 	        </table>
+	        
 	    </fieldset>
+	    
+	    
+	    
 
-		<input type="button" class="button" value="&nbsp; CANCELAR &nbsp;" title=" CANCELAR " onclick="javascript:window.history.back();" /> &nbsp;  <input type="submit" class="button" value="Salvar" title="Salvar"/>							
+		<input type="button" class="button" value="&nbsp; Cancelar &nbsp;" title=" Cancelar " onclick="javascript:window.history.back();" /> &nbsp;  <input type="submit" class="button" value=" Salvar " title="Salvar"/>							
     	
     </div>
 

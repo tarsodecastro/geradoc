@@ -124,6 +124,23 @@ class Tipo extends CI_Controller {
 		$data['campoConteudo'] = $this->Campo_model->tipo('campoConteudo');
 		$data['campoRodape'] = $this->Campo_model->tipo('campoRodape');
 		
+		$data['flagsDisponiveis'] = $this->Campo_model->tipo('arrayFlags');
+		
+		$data['campoFlagRedacao'] = $this->Campo_model->tipo('campoFlagRedacao');
+		$data['flagRedacaoSelecionada']  = 'S';
+		
+		$data['campoFlagObjetivo'] = $this->Campo_model->tipo('campoFlagObjetivo');
+		$data['flagObjetivoSelecionada']  = 'N';
+		
+		$data['campoFlagDocumentacao'] = $this->Campo_model->tipo('campoFlagDocumentacao');
+		$data['flagDocumentacaoSelecionada']  = 'N';
+		
+		$data['campoFlagAnalise'] = $this->Campo_model->tipo('campoFlagAnalise');
+		$data['flagAnaliseSelecionada']  = 'N';
+		
+		$data['campoFlagConclusao'] = $this->Campo_model->tipo('campoFlagConclusao');
+		$data['flagConclusaoSelecionada']  = 'N';
+		
 	
 		if ($this->form_validation->run($this->area."/add") == FALSE) {
 			$this->load->view($this->area . "/" . $this->area.'_edit', $data);
@@ -135,7 +152,13 @@ class Tipo extends CI_Controller {
 					'abreviacao' => mb_convert_case($this->input->post('campoAbreviacao'), MB_CASE_UPPER, "UTF-8"),
 					'layout' => $this->input->post('campoConteudo'),
 					'cabecalho' => $this->input->post('campoCabecalho'),
-					'rodape' => $this->input->post('campoRodape')
+					'rodape' => $this->input->post('campoRodape'),
+					
+					'redacao' => $this->input->post('campoFlagRedacao'),
+					'objetivo' => $this->input->post('campoFlagObjetivo'),
+					'documentacao' => $this->input->post('campoFlagDocumentacao'),
+					'analise' => $this->input->post('campoFlagAnalise'),
+					'conclusao' => $this->input->post('campoFlagConclusao')
 					
 			);
 			
@@ -210,7 +233,7 @@ public function update($id) {
 		$this->form_validation->set_error_delimiters('<div class="error_field"> <img class="img_align" src="{TPL_images}/error.png" alt="! " /> ', '</div>');
 			
 		// define as variaveis comuns
-		$data['titulo'] = "Alteração de  órgão";
+		$data['titulo'] = "Alteração de tipo";
 		$data['mensagem'] = '';
 		$data['link_back'] = anchor($this->area.'/'.$_SESSION['novoinicio'],'Voltar',array('class'=>'back'));
 		$data['form_action'] = site_url($this->area.'/update/'.$id);
@@ -224,6 +247,19 @@ public function update($id) {
 		$data['campoConteudo'] = $this->Campo_model->tipo('campoConteudo');
 		$data['campoRodape'] = $this->Campo_model->tipo('campoRodape');
 		
+		$data['flagsDisponiveis'] = $this->Campo_model->tipo('arrayFlags');
+		
+		$data['campoFlagRedacao'] = $this->Campo_model->tipo('campoFlagRedacao');
+		
+		$data['campoFlagObjetivo'] = $this->Campo_model->tipo('campoFlagObjetivo');
+
+		$data['campoFlagDocumentacao'] = $this->Campo_model->tipo('campoFlagDocumentacao');
+
+		$data['campoFlagAnalise'] = $this->Campo_model->tipo('campoFlagAnalise');
+
+		$data['campoFlagConclusao'] = $this->Campo_model->tipo('campoFlagConclusao');
+
+		
 		
 			
 		// Instancia um objeto com o resultado da consulta
@@ -235,6 +271,12 @@ public function update($id) {
 		$data['campoConteudo']['value'] = $obj->layout;
 		$data['campoCabecalho']['value'] = $obj->cabecalho;
 		$data['campoRodape']['value'] = $obj->rodape;
+		
+		$data['flagRedacaoSelecionada']  = $obj->redacao;
+		$data['flagObjetivoSelecionada']  = $obj->objetivo;
+		$data['flagDocumentacaoSelecionada']  = $obj->documentacao;
+		$data['flagAnaliseSelecionada']  = $obj->analise;
+		$data['flagConclusaoSelecionada']  = $obj->conclusao;
 		
 
 		if ($this->form_validation->run($this->area."/add") == FALSE) {
@@ -250,7 +292,13 @@ public function update($id) {
 					'abreviacao' => mb_convert_case($this->input->post('campoAbreviacao'), MB_CASE_UPPER, "UTF-8"),
 					'layout' => $this->input->post('campoConteudo'),
 					'cabecalho' => $this->input->post('campoCabecalho'),
-					'rodape' => $this->input->post('campoRodape')
+					'rodape' => $this->input->post('campoRodape'),
+					
+					'redacao' => $this->input->post('campoFlagRedacao'),
+					'objetivo' => $this->input->post('campoFlagObjetivo'),
+					'documentacao' => $this->input->post('campoFlagDocumentacao'),
+					'analise' => $this->input->post('campoFlagAnalise'),
+					'conclusao' => $this->input->post('campoFlagConclusao')
 					
 			);
 

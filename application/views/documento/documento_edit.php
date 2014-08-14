@@ -246,28 +246,208 @@ $(function() {
 							</table>
 						</div>
 						
-						<?php if($tipoSelecionado and $tipoSelecionado != 0){ // 7 = ATO ADMINISTRATIVO, 8 = NOTA DE INTRUCAO E 9 = NOTA DE ELOGIO?>
+
+						
+						<?php if($tipoSelecionado and $tipoSelecionado != 0){ // $tipoSelecionado = 7 = ATO ADMINISTRATIVO, 8 = NOTA DE INTRUCAO E 9 = NOTA DE ELOGIO (LEGADO DA AESP, pode e deve ser retirado em uma nova instalacao.?>
 						<div style="width: 320px; margin-top: 3px; margin-left: auto; margin-right: auto;display:block; display: table; background-color: #eee;">
 							<div style="float: left; color: #333; height:30px; border: 1px solid #ccc; line-height: 200%;"> &nbsp;Esta sessão expira em:&nbsp;</div>
 							<div id="defaultCountdown" style="width: 160px; height:30px; float: right; color: #C00000;"></div>
 						</div>
 						<div class="error_field" id="monitor" style="background-color: #fff; position:relative; float: right; top: -23px; padding-right: 20px;"></div>
-							
+						<?php } ?>
+						
+						<!-- Campo Redacao -->
+						<?php if($obj_tipo->redacao == 'S'){?>
 						<div style="padding-left: 5px; padding-bottom: 5px;">
 							<span style="color: red;">*</span> <strong>Redação:</strong>
 							<span class="error_field" id="redacao_error" style="display: none;"></span>
 							<br>
 						</div>
+						<script type="text/javascript">
+							$().ready(function() {
+
+								 $("textarea#campoRedacao").tinymce({
+								      script_url : '<?php echo base_url(); ?>js/tinymce/tinymce.min.js',
+								      language : 'pt_BR',
+								  	  menubar : false,
+								  	  browser_spellcheck : true,
+								  	  content_css : "<?php echo base_url(); ?>css/style_editor.css" ,
+								  	  width : 800,
+								  	  relative_urls: false,
+								  	  setup : function(ed){
+								  		ed.on('init', function() {
+								  			   this.getDoc().body.style.fontSize = '10.5pt';
+								  			});
+								  	},
+								
+								  	plugins: "preview image jbimages spellchecker textcolor table lists code",
+								  	
+								  	toolbar: "undo redo | bold italic underline strikethrough | subscript superscript removeformat | alignleft aligncenter alignright alignjustify | forecolor backcolor | bullist numlist outdent indent | preview code | fontsizeselect table | jbimages ",
+								  	statusbar : false,
+								  	relative_urls: false
+								  	
+								   });
+
+							});
+					   </script>
 						<p style="padding-left: 15px;">
-						<?php echo form_textarea($campoRedacao) .form_error('campoRedacao'); ?>
-						</p>
+						<?php echo form_textarea($campoRedacao) .form_error('campoRedacao') . "</p>";}?>
+						<!--  Fim do campo Redacao -->
+						
+						
+						<!--  Campo Objetivo -->
+						<?php if($obj_tipo->objetivo == 'S'){?>
+						<div style="padding-left: 5px; padding-top: 15px; padding-bottom: 5px;">
+							<span style="color: red;">*</span> <strong>Objetivo:</strong>
+							<?php echo form_error('campoObjetivo'); ?>
+							<br>
+						</div>
+						<script type="text/javascript">
+							$().ready(function() {
+								$("textarea#campoObjetivo").tinymce({
+								      script_url : '<?php echo base_url(); ?>js/tinymce/tinymce.min.js',
+								      language : 'pt_BR',
+								  	  menubar : false,
+								  	  browser_spellcheck : true,
+								  	  content_css : '<?php echo base_url(); ?>css/style_editor.css',
+								  	  width : 800,
+								  	  relative_urls: false,
+								  	  setup : function(ed){
+								  		ed.on('init', function() {
+								  			   this.getDoc().body.style.fontSize = '10.5pt';
+								  			});
+								  	},
+							
+								  	plugins: "preview image jbimages spellchecker textcolor table lists code",
+								  	
+								  	toolbar: "undo redo | bold italic underline strikethrough | subscript superscript removeformat | alignleft aligncenter alignright alignjustify | forecolor backcolor | preview code | fontsizeselect  ",
+								  	statusbar : false,
+								  	relative_urls: false
+								  	
+								});
+							});
+					   </script>
+						<p style="padding-left: 15px;">
+						<?php echo form_textarea($campoObjetivo) . "</p>";}?>
+						<!--  Fim do campo Objetivo -->
+						
+						
+						<!--  Campo Documentacao -->
+						<?php if($obj_tipo->documentacao== 'S'){?>
+						<div style="padding-left: 5px;  padding-top: 25px; padding-bottom: 5px;">
+							<span style="color: red;">*</span> <strong>Documentação:</strong> 
+							<?php echo form_error('campoDocumentacao'); ?>
+							<br>
+						</div>
+						<script type="text/javascript">
+							$().ready(function() {
+								$("textarea#campoDocumentacao").tinymce({
+								      script_url : '<?php echo base_url(); ?>js/tinymce/tinymce.min.js',
+								      language : 'pt_BR',
+								  	  menubar : false,
+								  	  browser_spellcheck : true,
+								  	  content_css : '<?php echo base_url(); ?>css/style_editor.css',
+								  	  width : 800,
+								  	  relative_urls: false,
+								  	  setup : function(ed){
+								  		ed.on('init', function() {
+								  			   this.getDoc().body.style.fontSize = '10.5pt';
+								  			});
+								  	},
+							
+								  	plugins: "preview image jbimages spellchecker textcolor table lists code",
+								  	
+								  	toolbar: "undo redo | bold italic underline strikethrough | subscript superscript removeformat | alignleft aligncenter alignright alignjustify | forecolor backcolor | preview code | fontsizeselect  ",
+								  	statusbar : false,
+								  	relative_urls: false
+								  	
+								});
+							});
+					   </script>
+						<p style="padding-left: 15px;">
+						<?php echo form_textarea($campoDocumentacao). "</p>";}?>
+						<!--  Fim do campo Documentacao -->
+						
+						
+						<!--  Campo Analise -->
+						<?php if($obj_tipo->analise == 'S'){?>
+						<div style="padding-left: 5px;  padding-top: 25px; padding-bottom: 5px;">
+							<span style="color: red;">*</span> <strong>Análise:</strong> 
+							<?php echo form_error('campoAnalise'); ?>
+							<br>
+						</div>
+						<script type="text/javascript">
+							$().ready(function() {
+								$("textarea#campoAnalise").tinymce({
+								      script_url : '<?php echo base_url(); ?>js/tinymce/tinymce.min.js',
+								      language : 'pt_BR',
+								  	  menubar : false,
+								  	  browser_spellcheck : true,
+								  	  content_css : '<?php echo base_url(); ?>css/style_editor.css',
+								  	  width : 800,
+								  	  relative_urls: false,
+								  	  setup : function(ed){
+								  		ed.on('init', function() {
+								  			   this.getDoc().body.style.fontSize = '10.5pt';
+								  			});
+								  	},
+							
+								  	plugins: "preview image jbimages spellchecker textcolor table lists code",
+								  	
+								  	toolbar: "undo redo | bold italic underline strikethrough | subscript superscript removeformat | alignleft aligncenter alignright alignjustify | forecolor backcolor | preview code | fontsizeselect  ",
+								  	statusbar : false,
+								  	relative_urls: false
+								  	
+								});
+							});
+					   </script>
+						<p style="padding-left: 15px;">
+						<?php echo form_textarea($campoAnalise) . "</p>";}?>
+						<!--  Fim do campo Analise -->
+						
+						
+						<!--  Campo Conclusao -->
+						<?php if($obj_tipo->conclusao == 'S'){?>
+						<div style="padding-left: 5px;  padding-top: 25px; padding-bottom: 5px;">
+							<span style="color: red;">*</span> <strong>Conclusão e Parecer:</strong> 
+							<?php echo form_error('campoConclusao'); ?>
+							<br>
+						</div>
+						<script type="text/javascript">
+							$().ready(function() {
+								$("textarea#campoConclusao").tinymce({
+								      script_url : '<?php echo base_url(); ?>js/tinymce/tinymce.min.js',
+								      language : 'pt_BR',
+								  	  menubar : false,
+								  	  browser_spellcheck : true,
+								  	  content_css : '<?php echo base_url(); ?>css/style_editor.css',
+								  	  width : 800,
+								  	  relative_urls: false,
+								  	  setup : function(ed){
+								  		ed.on('init', function() {
+								  			   this.getDoc().body.style.fontSize = '10.5pt';
+								  			});
+								  	},
+							
+								  	plugins: "preview image jbimages spellchecker textcolor table lists code",
+								  	
+								  	toolbar: "undo redo | bold italic underline strikethrough | subscript superscript removeformat | alignleft aligncenter alignright alignjustify | forecolor backcolor | preview code | fontsizeselect  ",
+								  	statusbar : false,
+								  	relative_urls: false
+								  	
+								});
+							});
+					   </script>
+						<p style="padding-left: 15px;">
+						<?php echo form_textarea($campoConclusao) . "</p>"; }?>
+						<!--  Fim do campo Conclusao -->
 						
 						<p style="text-align: center;">
 						<br>
 							<input type="submit" class="button" value="Salvar" title="Salvar"/>&nbsp;&nbsp;	
 						</p>
 						<br>
-						<?php  } ?>
+					
 					</form>
 				</div>
 			</div>
@@ -299,28 +479,6 @@ $().ready(function() {
 	       
 	    });
 
-   $("textarea#campoRedacao").tinymce({
-	      script_url : '<?php echo base_url(); ?>js/tinymce/tinymce.min.js',
-	      language : 'pt_BR',
-	  	  menubar : false,
-	  	  browser_spellcheck : true,
-	  	  content_css : "<?php echo base_url(); ?>css/style_editor.css" ,
-	  	  width : 800,
-	  	  relative_urls: false,
-	  	  setup : function(ed){
-	  		ed.on('init', function() {
-	  			   this.getDoc().body.style.fontSize = '10.5pt';
-	  			});
-	  	},
-	
-	  	plugins: "preview image jbimages spellchecker textcolor table lists code",
-	  	
-	  	toolbar: "undo redo | bold italic underline strikethrough | subscript superscript removeformat | alignleft aligncenter alignright alignjustify | forecolor backcolor | bullist numlist outdent indent | preview code | fontsizeselect table | jbimages ",
-	  	statusbar : false,
-	  	relative_urls: false
-	  	
-	   });
-	
 	 $("textarea#campoPara").tinymce({
 	      script_url : '<?php echo base_url(); ?>js/tinymce/tinymce.min.js',
 	  		language : 'pt_BR',

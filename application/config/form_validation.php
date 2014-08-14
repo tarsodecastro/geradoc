@@ -71,7 +71,7 @@ $config = array(
 				array(
 						'field' => 'campoConteudo',
 						'label' => 'conteudo',
-						'rules' => 'trim'
+						'rules' => 'required|trim'
 				),
 				array(
 						'field' => 'campoCabecalho',
