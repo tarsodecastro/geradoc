@@ -122,7 +122,7 @@ class Cargo extends CI_Controller {
 	
 			}else{
 	
-				// Salva o registro bla bla 
+				// Salva o registro
 				$this->Cargo_model->save($objeto_do_form);
 	
 				$this->js_custom = 'var sSecs = 4;
