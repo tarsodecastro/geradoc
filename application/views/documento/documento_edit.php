@@ -156,7 +156,7 @@ $(function() {
 													$jsCarimbo = '';
 
 												}else{
-													$jsCarimbo = 'onChange="window.location.href=(\''.site_url('documento').'/'.$acao.'/r/\' + document.form.campoRemetente.value + \'/t/\' + options[selectedIndex].value + \'/c/\' + document.form.campoCarimbo.value)"';
+													$jsCarimbo = 'onChange="window.location.href=(\''.site_url('documento').'/'.$acao.'/r/\' + document.form.campoRemetente.value + \'/t/\' + document.form.campoTipo.value + \'/c/\' + document.form.campoCarimbo.value)"';
 												}
 												
 												echo form_dropdown('campoCarimbo', $carimbosDisponiveis, $carimboSelecionado, $jsCarimbo);
