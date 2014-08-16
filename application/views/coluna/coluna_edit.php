@@ -20,7 +20,7 @@
 
     <?php
     echo $link_back;
-    echo $message;
+    echo "<center>".$mensagem."</center>";
     echo form_open($form_action);
     ?>
 	
@@ -28,7 +28,7 @@
 	
 	    <fieldset class="conteiner2"> 
 	    
-	        <legend class="subTitulo6">Cargo</legend> 
+	        <legend class="subTitulo6">Campo</legend> 
 	        
 	        <table class="table_form">
 	        	<tbody>
@@ -36,6 +36,16 @@
 			        	<td class=gray><span class="text-red">*</span> Nome:
 			        	</td>
 			        	<td class="green"><?php echo form_input($campoNome) .form_error('campoNome'); ?> 
+			        	</td>
+		        	</tr>
+		        	<tr>
+			        	<td class=gray><span class="text-red">*</span> Tamanho:
+			        	</td>
+			        	<td class="green"><?php
+			        					 	echo form_input($campoTamanho) .form_error('campoTamanho');
+			        					 	if(isset($tamanho_atual)){
+												echo " &nbsp; Consumo atual: <strong>" . $tamanho_atual . "</strong> caracteres"; 
+											}?>
 			        	</td>
 		        	</tr>
 	        	</tbody>

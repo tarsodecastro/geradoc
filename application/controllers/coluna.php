@@ -86,8 +86,8 @@ class Coluna extends CI_Controller {
 	 	foreach ($objetos as $key => $value){
             $this->table->add_row($key, $value,
                 anchor($this->area.'/view/'.$value,'visualizar',array('class'=>'view')).' '.
-                anchor($this->area.'/update/'.$value,'alterar',array('class'=>'update'))
-              //  anchor($this->area.'/delete/'.$objeto->id,'deletar',array('class'=>'delete','onclick'=>"return confirm('Deseja REALMENTE deletar esse orgao?')"))
+                anchor($this->area.'/update/'.$value,'alterar',array('class'=>'update')).' '.
+               anchor($this->area.'/delete/'.$value,'deletar',array('class'=>'delete','onclick'=>"return confirm('Deseja REALMENTE deletar esse campo?')"))
             );
         }
 
@@ -112,27 +112,28 @@ class Coluna extends CI_Controller {
 		$this->load->library(array('form_validation'));
 		$this->form_validation->set_error_delimiters('<div class="error_field"> <img class="img_align" src="{TPL_images}/error.png" alt="! " /> ', '</div>');
 	
-		$data['titulo'] = 'Novo Coluna';
+		$data['titulo'] = 'Novo Campo';
 		$data['link_back']  = anchor($this->area.'/index/','Voltar',array('class'=>'back'));
 		$data['form_action'] = site_url($this->area.'/add/');
-		$data['message'] = '';
+		$data['mensagem'] = '';
 	
 		//constroe os campos que serao mostrados no formulario
 		$this->load->model('Campo_model','',TRUE);
 		$data['campoNome'] = $this->Campo_model->coluna('campoNome');
+		$data['campoTamanho'] = $this->Campo_model->coluna('campoTamanho');
 	
 		if ($this->form_validation->run($this->area."/add") == FALSE) {
 			$this->load->view($this->area . "/" . $this->area.'_edit', $data);
 		} else {
 			//cria o objeto com os dados passados via post
 			$objeto_do_form = array(
-					'nome' => mb_convert_case($this->input->post('campoNome'), MB_CASE_UPPER, "UTF-8"),
+					'nome' => mb_convert_case($this->input->post('campoNome'), MB_CASE_LOWER, "UTF-8"),
+					'tamanho' => mb_convert_case($this->input->post('campoTamanho'), MB_CASE_LOWER, "UTF-8"),
 			);
 	
 			//checa a existencia de registro com o mesmo nome para evitar duplicatas
-			$checa_duplicata = $this->Coluna_model->get_by_nome($objeto_do_form['nome'])->num_rows();
 	
-			if ($checa_duplicata > 0){
+			if ($this->db->field_exists($objeto_do_form['nome'], 'documento')){
 	
 				$data['mensagem'] = '<div class="error_field"> <img class="img_align" src="{TPL_images}/error.png" alt="! " /> O registro já existe </div>';
 	
@@ -141,6 +142,7 @@ class Coluna extends CI_Controller {
 			}else{
 	
 				// Salva o registro
+		
 				$this->Coluna_model->save($objeto_do_form);
 	
 				$this->js_custom = 'var sSecs = 4;
@@ -183,27 +185,30 @@ class Coluna extends CI_Controller {
 
 	}
 	
-public function update($id) {
+public function update($nome) {
 
 		$this->load->library('form_validation');
 		$this->form_validation->set_error_delimiters('<div class="error_field"> <img class="img_align" src="{TPL_images}/error.png" alt="! " /> ', '</div>');
 			
 		// define as variaveis comuns
 		$data['titulo'] = "Alteração de  órgão";
-		$data['message'] = '';
+		$data['mensagem'] = '';
 		$data['link_back'] = anchor($this->area.'/'.$_SESSION['novoinicio'],'Voltar',array('class'=>'back'));
-		$data['form_action'] = site_url($this->area.'/update/'.$id);
+		$data['form_action'] = site_url($this->area.'/update/'.$nome);
 
 		//Constroe os campos do formulario
 		$this->load->model('Campo_model','',TRUE);
 		$data['campoNome'] = $this->Campo_model->coluna('campoNome');
+		$data['campoTamanho'] = $this->Campo_model->coluna('campoTamanho');
 			
 		// Instancia um objeto com o resultado da consulta
-		$obj = $this->Coluna_model->get_by_id($id)->row();
+		$obj = $this->Coluna_model->get_by_nome($nome);
 
 		//Popula os campos com os dados do objeto
-		$data['campoNome']['value'] = $obj->nome;
-
+		$data['campoNome']['value'] = $obj['nome'];
+		
+		$data['tamanho_atual'] = $this->Coluna_model->tamanho_maximo($obj['nome']);
+		
 		if ($this->form_validation->run($this->area."/add") == FALSE) {
 
 			$this->load->view($this->area.'/'.$this->area.'_edit', $data);
@@ -212,36 +217,28 @@ public function update($id) {
 
 			//cria um objeto com os dados passados via post
 			$objeto_do_form = array(
-               		'nome' => mb_convert_case($this->input->post('campoNome'), MB_CASE_UPPER, "UTF-8"),
+               		'nome' => mb_convert_case($this->input->post('campoNome'), MB_CASE_LOWER, "UTF-8"),
+					'tamanho' => mb_convert_case($this->input->post('campoTamanho'), MB_CASE_LOWER, "UTF-8"),
 			);
-
-			//trata os campos necessarios
-
-			// $objeto_do_form['data_nascimento'] = $this->_trata_dataDoFormParaBanco($objeto_do_form['data_nascimento']);
-			// $objeto_do_form['cpf'] = $this->_trata_CPFdoFormParaBanco($objeto_do_form['cpf']);
-
-			// Checa duplicata
-			$checa_duplicata = $this->Coluna_model->get_by_nome($objeto_do_form['nome'])->num_rows();
-
-			if ($checa_duplicata > 1){
-
-				$data['mensagem'] = '<div class="error_field"> <img class="img_align" src="{TPL_images}/error.png" alt="! " /> O registro já existe </div>';
-
-				$this->load->view($this->area.'/'.$this->area.'_edit', $data);
-
+			
+			if($objeto_do_form['tamanho'] < $data['tamanho_atual']){
+				
+				$data['mensagem'] = '<div class="error_field"> <img class="img_align" src="{TPL_images}/error.png" alt="! " /> O tamanho deve ser maior do que o já utilizado </div>';
+				
+				$this->load->view($this->area . "/" . $this->area.'_edit', $data);
+				
 			}else{
-
-				// Atualiza o cadastro
-				$this->Coluna_model->update($id, $objeto_do_form);
+			
+				$this->Coluna_model->update($objeto_do_form);
 
 				$this->js_custom = 'var sSecs = 4;
                                 function getSecs(){
                                     sSecs--;
                                     if(sSecs<0){ sSecs=59; sMins--; }				
-                                    $("#clock1").html(sSecs+" segundos...");		
+                                    $("#clock1").html(sSecs+" segundos.");		
                                     setTimeout("getSecs()",1000);		
                                     var s =  $("#clock1").html();
-                                    if (s == "1 segundos..."){			
+                                    if (s == "1 segundos."){			
                                         window.location.href = "' . site_url($this->area.'/'.$_SESSION['novoinicio']) . '";
                                     }
                                 }     		
@@ -253,18 +250,24 @@ public function update($id) {
 				$data['link2'] = '';
 
 				$this->load->view('success', $data);
-					
+				
 			}
+					
 
 		}
 	}
 	
-	function delete($id){
-		// delete orgao
-		$this->Coluna_model->delete($id);
+	function delete($campo){
 		
-		// redirect to orgao list page
-		redirect('orgao/index/'.$_SESSION['novoinicio']);
+		$obj = $this->Coluna_model->get_by_nome($campo);
+		
+		//checa se o campo existe e se esta vazio
+		if ($this->db->field_exists($campo, 'documento') and $obj['max_length'] == 0)
+		{
+			$this->Coluna_model->delete($campo);
+		}
+	
+		redirect($this->area.'/index/'.$_SESSION['novoinicio']);
 	}
 
 

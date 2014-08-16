@@ -92,6 +92,29 @@ function orgao($indice) {
     	return $campo[$indice];
     }
     
+    function coluna($indice) {
+    	$campo = array(
+    			'campoNome' => array(
+    					'name' => 'campoNome',
+    					'id' => 'campoNome',
+    					'value' => mb_convert_case($this->input->post('campoNome'), MB_CASE_LOWER, "ISO-8859-1"),
+    					'maxlength' => '20',
+    					'size' => '21',
+    					'class' => 'textboxLower',
+    			),
+    			'campoTamanho' => array(
+    					'name' => 'campoTamanho',
+    					'id' => 'campoTamanho',
+    					'value' => mb_convert_case($this->input->post('campoTamanho'), MB_CASE_LOWER, "ISO-8859-1"),
+    					'maxlength' => '4',
+    					'size' => '5',
+    					'class' => 'textboxLower',
+    			),
+    	);
+    
+    	return $campo[$indice];
+    }
+    
     function tipo($indice) {
     	$campo = array(
     			'campoAno' => array(

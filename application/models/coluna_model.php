@@ -34,7 +34,12 @@ class Coluna_model extends CI_Model {
 	function get_by_nome($nome){
 		
 		$fields = $this->db->field_data('documento');
-
+/*
+		echo "<pre>";
+		print_r($fields);
+		echo "</pre>";
+		exit();
+		*/
 		
 		$campo = array();
 		foreach ($fields as $field)
@@ -56,18 +61,51 @@ class Coluna_model extends CI_Model {
         }
 
 	function save($objeto){
-		$this->db->insert($this->tabela, $objeto);
-		return $this->db->insert_id();
+		
+		if($objeto['tamanho'] <= 200){
+					$fields = array(
+							$objeto['nome'] => array('type' => 'VARCHAR', 'constraint' => $objeto['tamanho'])
+					);
+				}else{
+					$fields = array(
+							$objeto['nome'] => array('type' => 'TEXT')
+					);
+				}
+				
+		$this->load->dbforge();
+				
+		return $this->dbforge->add_column('documento', $fields);
 	}
 	
-	function update($id, $objeto){
-		$this->db->where('id', $id);
-		$this->db->update($this->tabela, $objeto);
+	function tamanho_maximo($campo){
+			
+		$this->db->select_max($campo);
+		$query = $this->db->get('documento')->row();
+		
+		return strlen($query->$campo);
 	}
 	
-	function delete($id){
-		$this->db->where('id', $id);
-		$this->db->delete($this->tabela);
+	function update($objeto){
+		
+		
+		if($objeto['tamanho'] <= 200){
+					$fields = array(
+							$objeto['nome'] => array('type' => 'VARCHAR', 'constraint' => $objeto['tamanho'])
+					);
+				}else{
+					$fields = array(
+							$objeto['nome'] => array('type' => 'TEXT')
+					);
+				}
+				
+		$this->load->dbforge();
+				
+		return $this->dbforge->modify_column('documento', $fields);
+	}
+	
+	function delete($campo){
+		$this->load->dbforge();
+		$this->dbforge->drop_column('documento', $campo);
 	}
 
 	/* -- BUSCA -- 

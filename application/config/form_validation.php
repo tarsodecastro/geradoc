@@ -55,6 +55,20 @@ $config = array(
 				),
 					
 		),
+		
+		'coluna/add' => array(
+				array(
+						'field' => 'campoNome',
+						'label' => 'nome',
+						'rules' => 'required|trim'
+				),
+				array(
+						'field' => 'campoTamanho',
+						'label' => 'tamanho',
+						'rules' => 'required|trim'
+				),
+					
+		),
 
 		'tipo/add' => array(
 				
