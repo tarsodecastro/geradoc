@@ -257,7 +257,7 @@ $(function() {
 						<?php } ?>
 						
 						<!-- Campo Redacao -->
-						<?php if($obj_tipo->redacao == 'S'){?>
+						<?php if($flag_redacao == 'S'){?>
 						<div style="padding-left: 5px; padding-bottom: 5px;">
 							<span style="color: red;">*</span> <strong>Redação:</strong>
 							<span class="error_field" id="redacao_error" style="display: none;"></span>
@@ -296,7 +296,7 @@ $(function() {
 						
 						
 						<!--  Campo Objetivo -->
-						<?php if($obj_tipo->objetivo == 'S'){?>
+						<?php if($flag_objetivo == 'S'){?>
 						<div style="padding-left: 5px; padding-top: 15px; padding-bottom: 5px;">
 							<span style="color: red;">*</span> <strong>Objetivo:</strong>
 							<?php echo form_error('campoObjetivo'); ?>
@@ -333,7 +333,7 @@ $(function() {
 						
 						
 						<!--  Campo Documentacao -->
-						<?php if($obj_tipo->documentacao== 'S'){?>
+						<?php if($flag_documentacao == 'S'){?>
 						<div style="padding-left: 5px;  padding-top: 25px; padding-bottom: 5px;">
 							<span style="color: red;">*</span> <strong>Documentação:</strong> 
 							<?php echo form_error('campoDocumentacao'); ?>
@@ -370,7 +370,7 @@ $(function() {
 						
 						
 						<!--  Campo Analise -->
-						<?php if($obj_tipo->analise == 'S'){?>
+						<?php if($flag_analise == 'S'){?>
 						<div style="padding-left: 5px;  padding-top: 25px; padding-bottom: 5px;">
 							<span style="color: red;">*</span> <strong>Análise:</strong> 
 							<?php echo form_error('campoAnalise'); ?>
@@ -407,7 +407,7 @@ $(function() {
 						
 						
 						<!--  Campo Conclusao -->
-						<?php if($obj_tipo->conclusao == 'S'){?>
+						<?php if($flag_conclusao == 'S'){?>
 						<div style="padding-left: 5px;  padding-top: 25px; padding-bottom: 5px;">
 							<span style="color: red;">*</span> <strong>Conclusão e Parecer:</strong> 
 							<?php echo form_error('campoConclusao'); ?>

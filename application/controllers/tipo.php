@@ -115,6 +115,19 @@ class Tipo extends CI_Controller {
 		$data['form_action'] = site_url($this->area.'/add/');
 		$data['mensagem'] = '';
 	
+		
+		$fields = $this->db->list_fields('documento');
+		$fields = array_diff($fields, array('id', 'tipo', 'numero', 'setor', 'cidade', 'data', 'data_criacao', 'destinatario', 
+											'assunto', 'referencia', 'remetente', 'para', 'dono', 'dono_cpf', 
+											'cadeado', 'oculto', 'cancelado', 'carimbo'));
+		
+		foreach ($fields as $field)
+		{
+			echo $field . "</br>";
+		}
+		
+		
+		
 		//constroe os campos que serao mostrados no formulario
 		$this->load->model('Campo_model','',TRUE);
 		

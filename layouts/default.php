@@ -102,6 +102,8 @@ $_SESSION['rodape_documento'] = $CI->config->item('rodape_documento');
                 	<a href="<?php echo site_url('/documento/index'); ?>" title="Documentos">Documentos</a>
                 	<span>|</span>
                 	<?php if ($nivel_id == 1){ //apenas para administradores?>
+                	<a href="<?php echo site_url('/coluna/index'); ?>" title="Campos">Campos</a>
+                	<span>|</span>
                 	<a href="<?php echo site_url('/tipo/index'); ?>" title="Tipos">Tipos de Documentos</a>
                 	<span>|</span>
                 	<a href="<?php echo site_url('/orgao/index'); ?>" title="Órgãos">Órgãos</a>
