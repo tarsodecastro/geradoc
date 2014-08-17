@@ -142,6 +142,7 @@ class Tipo extends CI_Controller {
 		$data['campoFlagConclusao'] = $this->Campo_model->tipo('campoFlagConclusao');
 		$data['flagConclusaoSelecionada']  = 'N';
 		
+		$data['variaveis_disponiveis'] = $this->get_variaveis_disponiveis();
 		
 		$this->load->model('Coluna_model','',TRUE);
 		$campos_especiais = $this->Coluna_model->list_all();
@@ -253,6 +254,22 @@ class Tipo extends CI_Controller {
 
 	}
 	
+	function get_variaveis_disponiveis(){
+		$this->load->model('Coluna_model','',TRUE);
+		$campos = $this->Coluna_model->list_all();
+		
+		$variaveis = '';
+		foreach ($campos as $value){
+			
+			$variaveis .= "[$value], ";
+			
+		}
+		
+		$variaveis = substr($variaveis, 0, -2);
+		
+		return $variaveis;
+		
+	}
 	function get_tipo($id){
 	
 		$tipo = $this->Tipo_model->get_by_id($id)->row();

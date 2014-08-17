@@ -146,8 +146,11 @@
 			        	<td class="green" style="width: 1000px;">
 			        		<strong> Variáveis: </strong> 
 			        		[tipo_doc], [numero], [ano_doc], [setor_doc], [data], [destinatario], [referencia], [assunto], [redacao], [remetente_assinatura], [remetente_nome], [remetente_cargo]
-			        		[objetivo], [documentacao], [analise], [conclusao] <br /><br />
-			        		<?php echo form_textarea($campoConteudo) .form_error('campoConteudo'); ?> 
+			        		<?php
+				        		echo $variaveis_disponiveis;
+								echo "<br /><br />";
+								echo form_textarea($campoConteudo) .form_error('campoConteudo');
+			        		?>
 			        	</td>
 		        	</tr>
 		        	<tr>
