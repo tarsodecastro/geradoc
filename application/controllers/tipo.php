@@ -69,8 +69,7 @@ class Tipo extends CI_Controller {
         $this->table->set_heading('Item', 'Nome', 'Ações');
         foreach ($objetos as $objeto){
         	
-        	if($objeto->publicado == 'N'){
-        		
+        	if($objeto->publicado == 'N'){		
         	
             $this->table->add_row($objeto->id, $objeto->nome,
                 anchor($this->area.'/view/'.$objeto->id,'visualizar',array('class'=>'view')).' '.
@@ -115,7 +114,6 @@ class Tipo extends CI_Controller {
 		$data['form_action'] = site_url($this->area.'/add/');
 		$data['mensagem'] = '';
 		
-
 		//constroe os campos que serao mostrados no formulario
 		$this->load->model('Campo_model','',TRUE);
 		
@@ -123,25 +121,8 @@ class Tipo extends CI_Controller {
 		$data['campoAbreviacao'] = $this->Campo_model->tipo('campoAbreviacao');
 		$data['campoCabecalho'] = $this->Campo_model->tipo('campoCabecalho');
 		$data['campoConteudo'] = $this->Campo_model->tipo('campoConteudo');
-		$data['campoRodape'] = $this->Campo_model->tipo('campoRodape');
-		
+		$data['campoRodape'] = $this->Campo_model->tipo('campoRodape');	
 		$data['flagsDisponiveis'] = $this->Campo_model->tipo('arrayFlags');
-		
-		$data['campoFlagRedacao'] = $this->Campo_model->tipo('campoFlagRedacao');
-		$data['flagRedacaoSelecionada']  = 'S';
-		
-		$data['campoFlagObjetivo'] = $this->Campo_model->tipo('campoFlagObjetivo');
-		$data['flagObjetivoSelecionada']  = 'N';
-		
-		$data['campoFlagDocumentacao'] = $this->Campo_model->tipo('campoFlagDocumentacao');
-		$data['flagDocumentacaoSelecionada']  = 'N';
-		
-		$data['campoFlagAnalise'] = $this->Campo_model->tipo('campoFlagAnalise');
-		$data['flagAnaliseSelecionada']  = 'N';
-		
-		$data['campoFlagConclusao'] = $this->Campo_model->tipo('campoFlagConclusao');
-		$data['flagConclusaoSelecionada']  = 'N';
-		
 		$data['variaveis_disponiveis'] = $this->get_variaveis_disponiveis();
 		
 		$this->load->model('Coluna_model','',TRUE);
@@ -176,12 +157,6 @@ class Tipo extends CI_Controller {
 					'cabecalho' => $this->input->post('campoCabecalho'),
 					'rodape' => $this->input->post('campoRodape'),
 					
-					//'redacao' => $this->input->post('campoFlagRedacao'),
-					//'objetivo' => $this->input->post('campoFlagObjetivo'),
-					//'documentacao' => $this->input->post('campoFlagDocumentacao'),
-					//'analise' => $this->input->post('campoFlagAnalise'),
-					//'conclusao' => $this->input->post('campoFlagConclusao')
-					
 			);
 					
 			foreach ($campos_especiais as $key => $value){
@@ -193,8 +168,7 @@ class Tipo extends CI_Controller {
 				}
 			
 			}
-			
-			
+				
 			// corrige o caminho do local das imagens enviadas
 			$objeto_do_form['layout'] = str_replace('../../', '../../../', $objeto_do_form['layout']);
 			$objeto_do_form['cabecalho'] = str_replace('../../', '../../../', $objeto_do_form['cabecalho']);
@@ -308,7 +282,6 @@ public function update($id) {
 		$data['campoCabecalho']['value'] = $obj->cabecalho;
 		$data['campoRodape']['value'] = $obj->rodape;
 
-		
 		$this->load->model('Coluna_model','',TRUE);
 		$campos_especiais = $this->Coluna_model->list_all();
 		
@@ -325,14 +298,11 @@ public function update($id) {
 			$flag_selecionada  = $this->input->post('campoFlag_'.$nome_campo) ? $this->input->post('campoFlag_'.$nome_campo) : $campo[0];
 		
 			$linhas .= '<tr>
-						<td class="gray" style="width: 150px;">
-							'. $nome_campo . '
-						</td>
-						<td class="green">
-				        		'. form_dropdown('campoFlag_'.$nome_campo, $data['flagsDisponiveis'], $flag_selecionada) .form_error('campoFlag_'.$nome_campo) .'
-				        				
-				        		&nbsp; Rótulo: '. form_input('campoLabel_'.$nome_campo, $campo[1]) .form_error('campoLabel_'.$nome_campo).'
-				        	</td>
+							<td class="gray" style="width: 150px;">'. $nome_campo . '</td>
+							<td class="green">
+					        		'. form_dropdown('campoFlag_'.$nome_campo, $data['flagsDisponiveis'], $flag_selecionada) .form_error('campoFlag_'.$nome_campo) .'				
+					        		&nbsp; Rótulo: '. form_input('campoLabel_'.$nome_campo, $campo[1]) .form_error('campoLabel_'.$nome_campo).'
+					        </td>
 			        	</tr>';
 		}
 		$data['linhas'] = $linhas;
@@ -362,14 +332,6 @@ public function update($id) {
 				}
 		
 			}
-
-			//exit;
-			
-			
-			//trata os campos necessarios
-
-			// $objeto_do_form['data_nascimento'] = $this->_trata_dataDoFormParaBanco($objeto_do_form['data_nascimento']);
-			// $objeto_do_form['cpf'] = $this->_trata_CPFdoFormParaBanco($objeto_do_form['cpf']);
 
 			// Checa duplicata
 			$checa_duplicata = $this->Tipo_model->get_by_nome($objeto_do_form['nome'])->num_rows();

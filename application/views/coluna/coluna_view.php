@@ -26,21 +26,21 @@
 	        <table class="table_form">
 	        	<tbody>
 		        	<tr>
-			        	<td class=gray> Nome:
+			        	<td class="gray" style="width: 150px;"> Nome:
 			        	</td>
 			        	<td class="green"><?php echo $objeto['nome']; ?> 
 			        	</td>
 		        	</tr>
 		        	<tr>
-			        	<td class=gray> Tipo:
+			        	<td class="gray"> Tipo:
 			        	</td>
 			        	<td class="green"><?php echo $objeto['tipo']; ?> 
 			        	</td>
 		        	</tr>
 		        	<tr>
-			        	<td class=gray> Tamanho máximo:
+			        	<td class="gray">Tamanho atual:
 			        	</td>
-			        	<td class="green"><?php echo $objeto['max_length']; ?> 
+			        	<td class="green"><?php echo $tamanho_atual; ?> 
 			        	</td>
 		        	</tr>
 	        	</tbody>

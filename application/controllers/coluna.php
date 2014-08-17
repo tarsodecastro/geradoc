@@ -174,7 +174,8 @@ class Coluna extends CI_Controller {
 		$data['link_back'] = anchor($this->area.'/'.$_SESSION['novoinicio'],'Voltar',array('class'=>'back'));
 		
 		$data['objeto'] = $this->Coluna_model->get_by_nome($value);
-
+		$data['tamanho_atual'] = $this->Coluna_model->tamanho_maximo($value);
+		
 		$this->load->view($this->area.'/'.$this->area.'_view', $data);
 
 	}
