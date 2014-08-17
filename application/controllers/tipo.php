@@ -157,6 +157,7 @@ class Tipo extends CI_Controller {
 						</td>
 						<td class="green">
 				        		'. form_dropdown('campoFlag_'.$value, $data['flagsDisponiveis'], $flag_selecionada) .form_error('campoFlag_'.$value) .'
+				        		&nbsp; Rótulo: '. form_input('campoLabel_'.$value) .form_error('campoLabel_'.$value).'
 				        	</td>
 			        	</tr>';
 		}	
@@ -184,7 +185,11 @@ class Tipo extends CI_Controller {
 					
 			foreach ($campos_especiais as $key => $value){
 				
-				$objeto_do_form[$value] = $this->input->post('campoFlag_'.$value);
+				if($this->input->post('campoLabel_'.$value) != ''){
+					$objeto_do_form[$value] = $this->input->post('campoFlag_'.$value) . ';' . $this->input->post('campoLabel_'.$value);
+				}else{
+					$objeto_do_form[$value] = $this->input->post('campoFlag_'.$value);
+				}
 			
 			}
 			
@@ -293,7 +298,14 @@ public function update($id) {
 		$linhas = '';
 		foreach ($campos_especiais as $key => $nome_campo){
 		
-			$flag_selecionada  = $this->input->post('campoFlag_'.$nome_campo) ? $this->input->post('campoFlag_'.$nome_campo) : $obj->$nome_campo;
+			if(strpos($obj->$nome_campo, ';') != FALSE){
+				$campo = explode(';' , $obj->$nome_campo);
+			}else{
+				$campo[0] = $obj->$nome_campo;
+				$campo[1] = '';
+			}
+			
+			$flag_selecionada  = $this->input->post('campoFlag_'.$nome_campo) ? $this->input->post('campoFlag_'.$nome_campo) : $campo[0];
 		
 			$linhas .= '<tr>
 						<td class="gray" style="width: 150px;">
@@ -301,6 +313,8 @@ public function update($id) {
 						</td>
 						<td class="green">
 				        		'. form_dropdown('campoFlag_'.$nome_campo, $data['flagsDisponiveis'], $flag_selecionada) .form_error('campoFlag_'.$nome_campo) .'
+				        				
+				        		&nbsp; Rótulo: '. form_input('campoLabel_'.$nome_campo, $campo[1]) .form_error('campoLabel_'.$nome_campo).'
 				        	</td>
 			        	</tr>';
 		}
@@ -324,7 +338,11 @@ public function update($id) {
 			
 			foreach ($campos_especiais as $key => $nome_campo){
 			
-				$objeto_do_form[$nome_campo] = $this->input->post('campoFlag_'.$nome_campo);
+				if($this->input->post('campoLabel_'.$nome_campo) != ''){
+					$objeto_do_form[$nome_campo] = $this->input->post('campoFlag_'.$nome_campo) . ';' . $this->input->post('campoLabel_'.$nome_campo);
+				}else{
+					$objeto_do_form[$nome_campo] = $this->input->post('campoFlag_'.$nome_campo);
+				}
 		
 			}
 

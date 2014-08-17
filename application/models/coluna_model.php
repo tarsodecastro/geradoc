@@ -73,7 +73,7 @@ class Coluna_model extends CI_Model {
 				}
 				
 				$campo_tipo  = array(
-							$objeto['nome'] => array('type' => 'VARCHAR', 'constraint' => 1, 'null' => FALSE, 'default' => 'N')
+							$objeto['nome'] => array('type' => 'VARCHAR', 'constraint' => 50, 'null' => FALSE, 'default' => 'N')
 					);
 				
 		$this->load->dbforge();
