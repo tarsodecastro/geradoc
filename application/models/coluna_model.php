@@ -62,19 +62,26 @@ class Coluna_model extends CI_Model {
 
 	function save($objeto){
 		
-		if($objeto['tamanho'] <= 200){
-					$fields = array(
+			if($objeto['tamanho'] <= 200){
+					$campo = array(
 							$objeto['nome'] => array('type' => 'VARCHAR', 'constraint' => $objeto['tamanho'])
 					);
 				}else{
-					$fields = array(
+					$campo = array(
 							$objeto['nome'] => array('type' => 'TEXT')
 					);
 				}
 				
-		$this->load->dbforge();
+				$campo_tipo  = array(
+							$objeto['nome'] => array('type' => 'VARCHAR', 'constraint' => 1, 'null' => FALSE, 'default' => 'N')
+					);
 				
-		return $this->dbforge->add_column('documento', $fields);
+		$this->load->dbforge();
+		
+		$this->dbforge->add_column('documento', $campo);
+		$this->dbforge->add_column('tipo', $campo_tipo);
+				
+		//return $this->dbforge->add_column('documento', $fields);
 	}
 	
 	function tamanho_maximo($campo){
@@ -86,8 +93,7 @@ class Coluna_model extends CI_Model {
 	}
 	
 	function update($objeto){
-		
-		
+			
 		if($objeto['tamanho'] <= 200){
 					$fields = array(
 							$objeto['nome'] => array('type' => 'VARCHAR', 'constraint' => $objeto['tamanho'])
@@ -106,6 +112,7 @@ class Coluna_model extends CI_Model {
 	function delete($campo){
 		$this->load->dbforge();
 		$this->dbforge->drop_column('documento', $campo);
+		$this->dbforge->drop_column('tipo', $campo);
 	}
 
 	/* -- BUSCA -- 

@@ -114,44 +114,11 @@
 	        <table class="table_form">
 	        	<tbody>
 	        	
-	        		<tr>
-			        	<td class="gray" style="width: 150px;">
-			        		Redação:
-			        	</td> 
-			        	<td class="green">
-			        		<?php echo form_dropdown('campoFlagRedacao', $flagsDisponiveis, $flagRedacaoSelecionada) .form_error('campoFlagRedacao'); ?>
-			        	</td>
-		        	</tr>
+	        		<?php 
+	        		echo $linhas;
+	        		?>
+	        	
 	        		
-		        	<tr>
-			        	<td class="gray" style="width: 150px;">
-			        		Objetivo:
-			        	</td> 
-			        	<td class="green">
-			        		<?php echo form_dropdown('campoFlagObjetivo', $flagsDisponiveis, $flagObjetivoSelecionada) .form_error('campoFlagObjetivo'); ?>
-			        	</td>
-			        	<td class="gray" style="width: 150px;">
-			        		Documentação:
-			        	</td>
-			        	<td class="green">
-			        		<?php echo form_dropdown('campoFlagDocumentacao', $flagsDisponiveis, $flagDocumentacaoSelecionada) .form_error('campoFlagDocumentacao'); ?>
-			        	</td>
-		        	</tr>
-
-		        	<tr>
-			        	<td class="gray">
-			        		Análise:
-			        	</td>
-			        	<td class="green">
-			        		<?php echo form_dropdown('campoFlagAnalise', $flagsDisponiveis, $flagAnaliseSelecionada) .form_error('campoFlagAnalise'); ?>
-			        	</td>
-			        	<td class="gray">
-			        		Conclusão:
-			        	</td>
-			        	<td class="green">
-			        		<?php echo form_dropdown('campoFlagConclusao', $flagsDisponiveis, $flagConclusaoSelecionada) .form_error('campoFlagConclusao'); ?>
-			        	</td>
-		        	</tr>
 		        	
 	        	</tbody>
 	        </table>

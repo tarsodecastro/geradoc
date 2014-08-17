@@ -31,16 +31,12 @@ class Coluna extends CI_Controller {
 
 	public function index($offset = 0){
 		
-
 		$this->js[] = 'coluna';
 		
 		$data['titulo']     = 'Campos';
 		$data['link_add']   = anchor($this->area.'/add/','Adicionar',array('class'=>'add'));
 		$data['link_back']  = anchor('documento/index/','Lista de Documentos',array('class'=>'back'));
 		$data['form_action'] = site_url($this->area.'/search');
-		
-		
-		
 		
 		// BUSCA
 		$data['keyword_'.$this->area] = '';
@@ -63,8 +59,6 @@ class Coluna extends CI_Controller {
         $config['base_url'] = site_url($this->area.'/index/');
         $config['total_rows'] = $this->Coluna_model->count_all();
         
-       
-  
         $config['per_page'] = $maximo;
 
         $this->pagination->initialize($config);
