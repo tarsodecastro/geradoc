@@ -269,6 +269,7 @@ public function update($id) {
 		$data['campoCabecalho'] = $this->Campo_model->tipo('campoCabecalho');
 		$data['campoConteudo'] = $this->Campo_model->tipo('campoConteudo');
 		$data['campoRodape'] = $this->Campo_model->tipo('campoRodape');
+		$data['variaveis_disponiveis'] = $this->get_variaveis_disponiveis();
 		
 		$data['flagsDisponiveis'] = $this->Campo_model->tipo('arrayFlags');
 		

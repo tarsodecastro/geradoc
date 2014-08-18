@@ -104,9 +104,14 @@ class Coluna_model extends CI_Model {
 					);
 				}
 				
+				$campo_tipo  = array(
+						$objeto['nome'] => array('type' => 'VARCHAR', 'constraint' => 50, 'null' => FALSE, 'default' => 'N')
+				);// Garante que o campo vai ter espaco suficiente para receber o rotulo do campo (flag concatenada com o rotulo)
+				
 		$this->load->dbforge();
 				
-		return $this->dbforge->modify_column('documento', $fields);
+		$this->dbforge->modify_column('documento', $fields);
+		$this->dbforge->modify_column('tipo', $campo_tipo);
 	}
 	
 	function delete($campo){
