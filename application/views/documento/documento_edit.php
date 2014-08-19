@@ -59,9 +59,8 @@ $(function () {
 	$('#year').text(austDay.getFullYear());
 })
 
-
         $(document).ready(function(){
-
+            
         	if ($("#campoRemetente").val() == "0") {
 					$("#tr_tipo").hide();
 				}
@@ -75,16 +74,13 @@ $(function () {
 				}
 			});
 
-               $('#campoData').focus(function(){
-                    $(this).calendario({
+            $('#campoData').focus(function(){
+                  $(this).calendario({
                         target:'#campoData',
                          top:0,
                         left:80
                     });
-                });
-        
-        //var urlList = '<?php echo base_url(); ?>index.php/documento/loadDestinatario/teste' + campoAssunto;
-
+               });
         });
 
 $(function() {
@@ -111,13 +107,7 @@ $(function() {
 			<div class="documento">
 
 				<div class="content">
-					<?php 
-					
-					echo $message; 
-					
-				//	echo validation_errors();
-					
-					?>
+					<?php echo $message; ?>
 					
 					<form action="<?php echo $form_action; ?>" method="post" id="form" name="form">
 
@@ -140,7 +130,8 @@ $(function() {
 								<tr>
 									<td class="gray"><strong>Setor:</strong>
 									</td>
-									<td valign="top" class="green"><input type="hidden" name="setorId" id="setorId" value="<?php echo $setorId; ?>" /> <?php echo form_input($campoSetor) . form_error('campoSetor'); ?>
+									<td valign="top" class="green">
+											<input type="hidden" name="setorId" id="setorId" value="<?php echo $setorId; ?>" /> <?php echo form_input($campoSetor) . form_error('campoSetor'); ?>
 									</td>
 								</tr>
 								
@@ -176,11 +167,11 @@ $(function() {
 									<td class="gray"><span style="color: red;">*</span> <strong>Tipo:</strong>
 									</td>
 									<td valign="top" class="green">
-									<?php
-										$jsTipo = 'onChange="window.location.href=(\''.site_url('documento').'/'.$acao.'/r/\' + document.form.campoRemetente.value + \'/t/\' + options[selectedIndex].value + \'/c/\' + document.form.campoCarimbo.value)"';
-										echo form_dropdown('campoTipo', $tiposDisponiveis, $tipoSelecionado, $jsTipo);
-										echo form_error('campoTipo');
-									?>
+										<?php
+											$jsTipo = 'onChange="window.location.href=(\''.site_url('documento').'/'.$acao.'/r/\' + document.form.campoRemetente.value + \'/t/\' + options[selectedIndex].value + \'/c/\' + document.form.campoCarimbo.value)"';
+											echo form_dropdown('campoTipo', $tiposDisponiveis, $tipoSelecionado, $jsTipo);
+											echo form_error('campoTipo');
+										?>
 									</td>
 								</tr>
 								<tr>
@@ -190,49 +181,50 @@ $(function() {
 									</td>
 								</tr>
 
-								<?php
-								if($tipoSelecionado == 3 or $tipoSelecionado == 5){
-
-									$tr_td = '<tr><td class="gray">';
-									
-									echo $tr_td;
-									
-										echo form_label('<span style="color: red;">*</span> <strong>Número do processo</strong>:', 'desp_num_processo').'</td><td valign="top" class="green">';
-									
-										echo form_input($desp_num_processo);
-										
-										if(isset($this->validation->desp_num_processo_error))
-											if($this->validation->desp_num_processo_error !== "")
-											echo $this->validation->desp_num_processo_error;
-										
-									echo '</td></tr>';
-							
-									echo $tr_td;
-									
-										echo form_label('<span style="color: red;">*</span> <strong>Interessado</strong>:', 'desp_interessado').'</strong></td><td valign="top" class="green">';
-									
-										echo form_input($desp_interessado);
-										
-										if(isset($this->validation->desp_interessado_error))
-											if($this->validation->desp_interessado_error !== "")
-											echo '</br>'.$this->validation->desp_interessado_error;
-										
-									echo '</td></tr>';
+								<?php 
 						
-								}
+								$campos_dinamicos_pequenos = '';
+								
+								if($tipoSelecionado != null){
+										
+										$obj_tipo = $this->Tipo_model->get_by_id($tipoSelecionado)->row();
+										
+										$this->load->model('Coluna_model','',TRUE);
+										$campos_especiais = $this->Coluna_model->list_all();
+							
+										foreach ($campos_especiais as $key => $nome_campo){
+							
+											if(strpos($obj_tipo->$nome_campo, ';') != FALSE){
+												$campo = explode(';' , $obj_tipo->$nome_campo);
+											}else{
+												$campo[0] = $obj_tipo->$nome_campo;
+												$campo[1] = $nome_campo;
+											}
+											
+											$coluna = $this->Coluna_model->get_by_nome($nome_campo);
+											
+											if($campo[0] == 'S' and $coluna['tipo'] == 'string'){
+											
+												$campos_dinamicos_pequenos .= '				
+													<!--  Campo '.$nome_campo.' -->
+													<tr>
+														
+														<td class="gray"><span style="color: red;">*</span> <strong>'.$campo[1].'</strong></td>
+														<td valign="top" class="green">'.$input_campo[$nome_campo] . form_error('campo_'.$nome_campo).'</td>
+													</tr>
+													<!--  Fim do campo '.$nome_campo.' -->
+												';	
+		
+											}	
+								
+										}	
+							
+									}
+									
+									echo $campos_dinamicos_pequenos;
+								
 								?>
-								
-								<?php if($tipoSelecionado != 0 and $tipoSelecionado != 3 and $tipoSelecionado != 4 and $tipoSelecionado != 5 and $tipoSelecionado != 6 and $tipoSelecionado != 7 and $tipoSelecionado != 8 and $tipoSelecionado != 9){ // 3 = DESPACHO, 7 = PARECER TECNICO, 7 = ATO ADMINISTRATIVO, 8 = NOTA DE INTRUCAO E 9 = NOTA DE ELOGIO?>
-								<tr>
-									<td class="gray"><strong>Referência:</strong>
-									</td>
-									<td valign="top" class="green">
-										<?php echo form_input($campoReferencia) . form_error('campoReferencia'); ?>
-									</td>
-								</tr>
-								<?php } ?>
-								
-								<?php if($tipoSelecionado and $tipoSelecionado != 0 and $tipoSelecionado != 4 and $tipoSelecionado != 6 and $tipoSelecionado != 7 and $tipoSelecionado != 8 and $tipoSelecionado != 9){ // 7 = ATO ADMINISTRATIVO, 8 = NOTA DE INTRUCAO E 9 = NOTA DE ELOGIO?>
+					
 								<tr>
 									<td class="gray"><strong><span style="color: red;">*</span> Destinatário:</strong>
 									</td>
@@ -245,23 +237,22 @@ $(function() {
 
 									</td>
 								</tr>
-								<?php } ?>
-										
+								
 							</table>
 						</div>
 						
 
 						<?php if($tipoSelecionado and $tipoSelecionado != 0){ // $tipoSelecionado = 7 = ATO ADMINISTRATIVO, 8 = NOTA DE INTRUCAO E 9 = NOTA DE ELOGIO (LEGADO DA AESP, pode e deve ser retirado em uma nova instalacao.?>
-						<div style="width: 320px; margin-top: 3px; margin-left: auto; margin-right: auto;display:block; display: table; background-color: #eee;">
-							<div style="float: left; color: #333; height:30px; border: 1px solid #ccc; line-height: 200%;"> &nbsp;Esta sessão expira em:&nbsp;</div>
-							<div id="defaultCountdown" style="width: 160px; height:30px; float: right; color: #C00000;"></div>
-						</div>
-						<div class="error_field" id="monitor" style="background-color: #fff; position:relative; float: right; top: -23px; padding-right: 20px;"></div>
+							<div style="width: 320px; margin-top: 3px; margin-left: auto; margin-right: auto;display:block; display: table; background-color: #eee;">
+								<div style="float: left; color: #333; height:30px; border: 1px solid #ccc; line-height: 200%;"> &nbsp;Esta sessão expira em:&nbsp;</div>
+								<div id="defaultCountdown" style="width: 160px; height:30px; float: right; color: #C00000;"></div>
+							</div>
+							<div class="error_field" id="monitor" style="background-color: #fff; position:relative; float: right; top: -23px; padding-right: 20px;"></div>
 						<?php } ?>
 						
 						<?php 
 						
-						$campos_dinamicos = '';
+						$campos_dinamicos_grandes = '';
 						
 						if($tipoSelecionado != null){
 								
@@ -276,12 +267,14 @@ $(function() {
 										$campo = explode(';' , $obj_tipo->$nome_campo);
 									}else{
 										$campo[0] = $obj_tipo->$nome_campo;
-										$campo[1] = 'Sem rótulo';
+										$campo[1] = $nome_campo;
 									}
 									
-									if($campo[0] == 'S'){
+									$coluna = $this->Coluna_model->get_by_nome($nome_campo);
 									
-										$campos_dinamicos .= '				
+									if($campo[0] == 'S' and $coluna['tipo'] == 'blob'){
+									
+										$campos_dinamicos_grandes .= '				
 											<!--  Campo '.$nome_campo.' -->
 											<div style="padding-left: 5px; padding-top: 15px; padding-bottom: 5px;">
 												<span style="color: red;">*</span> <strong>'.$campo[1].'</strong> '.form_error('campo_'.$nome_campo).'
@@ -323,7 +316,7 @@ $(function() {
 					
 							}
 							
-							echo $campos_dinamicos;
+							echo $campos_dinamicos_grandes;
 						
 						?>
 
@@ -344,8 +337,7 @@ $(function() {
 </div>
 <!-- fim da div  view_content -->
 
-<?php if($tipoSelecionado != 0 and $tipoSelecionado != 4 and $tipoSelecionado != 6 and $tipoSelecionado != 7 and $tipoSelecionado != 8 and $tipoSelecionado != 9){ // SE NAO FOR: 7 = ATO ADMINISTRATIVO, 8 = NOTA DE INTRUCAO E 9 = NOTA DE ELOGIO ?>
-				
+
 <script type="text/javascript">
 //Initializes all textareas with the tinymce class
 $().ready(function() {
@@ -455,73 +447,3 @@ $().ready(function() {
         });
 								
 </script>
-
-
-<?php } else {?>
-
-<script type="text/javascript">
-
-
-$().ready(function() {
-
-   $("textarea#campoRedacao").tinymce({
-	      script_url : '<?php echo base_url(); ?>js/tinymce/tinymce.min.js',
-	      language : 'pt_BR',
-	  	  menubar : false,
-	  	  browser_spellcheck : true,
-	  	  content_css : '<?php echo base_url(); ?>css/style_editor.css',
-	  	  width : 800,
-	  	  relative_urls: false,
-	  	  setup : function(ed){
-	  		ed.on('init', function() {
-	  			   this.getDoc().body.style.fontSize = '10.5pt';
-	  			});
-	  	},
-
-	  	table_default_attributes: {
-	        title: 'My table',
-		    border: '1'
-	    },
-
-	  	plugins: "preview image jbimages spellchecker textcolor table lists code",
-	  	
-	  	toolbar: "undo redo | bold italic underline strikethrough | subscript superscript removeformat | alignleft aligncenter alignright alignjustify | forecolor backcolor | bullist numlist outdent indent | preview code | fontsizeselect table | jbimages ",
-	  	statusbar : false,
-	  	relative_urls: false
-	  	
-	   });
-
-});
-
-        $("#form").submit(function() {
-
-            var campoRedacao = $('#campoRedacao').val();
-
-            var testeRedacao = false;
-        
-            if (campoRedacao == '') {
-               // alert(campoRedacao);
-                $("#redacao_error").html("<img class='img_align' src='{TPL_images}error.png' alt='!' /> * requerido").show();
-                testeRedacao = false;
-            }else{
-                // alert(campoRedacao);
-                $("#redacao_error").hide();
-                testeRedacao = true;
-            }
-
-            if(testeRedacao == true){
-                return true;
-            }else{
-                return false;
-            }
-
-        });
-
-        //--- Fim da tela de Aguarde... (Loading) ---/
-       	$.unblockUI({ });
-        //--- Fim ---//
-        
-								
-</script>
-
-<?php } ?>
