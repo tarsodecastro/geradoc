@@ -78,10 +78,22 @@ class Coluna_model extends CI_Model {
 				
 		$this->load->dbforge();
 		
-		$this->dbforge->add_column('documento', $campo);
-		$this->dbforge->add_column('tipo', $campo_tipo);
-				
-		//return $this->dbforge->add_column('documento', $fields);
+		$this->db->trans_begin();
+		
+			$this->dbforge->add_column('documento', $campo);
+			$this->dbforge->add_column('tipo', $campo_tipo);
+			
+		if ($this->db->trans_status() === FALSE){
+			
+			echo "Operação não realizada. Erro no banco.";
+			
+			$this->db->trans_rollback();
+		    
+		}else{
+			
+		    $this->db->trans_commit();
+		}
+
 	}
 	
 	function tamanho_maximo($campo){
@@ -110,14 +122,42 @@ class Coluna_model extends CI_Model {
 				
 		$this->load->dbforge();
 				
+		$this->db->trans_begin();
+		
 		$this->dbforge->modify_column('documento', $fields);
 		$this->dbforge->modify_column('tipo', $campo_tipo);
+
+		if ($this->db->trans_status() === FALSE){
+			
+			echo "Operação não realizada. Erro no banco.";
+			
+			$this->db->trans_rollback();
+		    
+		}else{
+			
+		    $this->db->trans_commit();
+		}
 	}
 	
 	function delete($campo){
+		
 		$this->load->dbforge();
+		
+		$this->db->trans_begin();
+		
 		$this->dbforge->drop_column('documento', $campo);
 		$this->dbforge->drop_column('tipo', $campo);
+
+		if ($this->db->trans_status() === FALSE){
+				
+			echo "Operação não realizada. Erro no banco.";
+				
+			$this->db->trans_rollback();
+		
+		}else{
+				
+			$this->db->trans_commit();
+		}
 	}
 
 	/* -- BUSCA -- 

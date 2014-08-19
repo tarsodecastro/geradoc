@@ -60,12 +60,12 @@ $config = array(
 				array(
 						'field' => 'campoNome',
 						'label' => 'nome',
-						'rules' => 'required|trim'
+						'rules' => 'required|trim|callback_valida_palavra'
 				),
 				array(
 						'field' => 'campoTamanho',
 						'label' => 'tamanho',
-						'rules' => 'required|trim'
+						'rules' => 'required|trim|numeric'
 				),
 					
 		),

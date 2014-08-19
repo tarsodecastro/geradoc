@@ -332,10 +332,10 @@ public function update($nome) {
     }
 	
 	// date_validation callback
-	function valid_date($str){
-		if(!preg_match('^(0[1-9]|1[0-9]|2[0-9]|3[01])-(0[1-9]|1[012])-([0-9]{4})$^', $str))
+	function valida_palavra($str){
+		if(str_word_count($str) > 1)
 		{
-			$this->validation->set_message('valid_date', 'date format is not valid. dd-mm-yyyy');
+			$this->form_validation->set_message('valida_palavra', 'Este campo deve conter apenas uma palavra, sem espaços');
 			return false;
 		}
 		else
