@@ -76,13 +76,29 @@ class Coluna extends CI_Controller {
         $this->table->set_empty("&nbsp;");
         $this->table->set_heading('Item', 'Nome', 'Ações');
         
-  
+  		$campos_padroes = $this->Coluna_model->campos_padroes();
+  		
+  		//print_r($campos_padroes);
+        
 	 	foreach ($objetos as $key => $value){
-            $this->table->add_row($key, $value,
-                anchor($this->area.'/view/'.$value,'visualizar',array('class'=>'view')).' '.
-                anchor($this->area.'/update/'.$value,'alterar',array('class'=>'update')).' '.
-               anchor($this->area.'/delete/'.$value,'deletar',array('class'=>'delete','onclick'=>"return confirm('Deseja REALMENTE deletar esse campo?')"))
-            );
+	 				
+	 		if(array_search($value, $campos_padroes) == NULL) {
+	 		
+	            $this->table->add_row($key, $value,
+		             anchor($this->area.'/view/'.$value,'visualizar',array('class'=>'view')).' '.
+		             anchor($this->area.'/update/'.$value,'alterar',array('class'=>'update')).' '.
+		             anchor($this->area.'/delete/'.$value,'deletar',array('class'=>'delete','onclick'=>"return confirm('Deseja REALMENTE deletar esse campo?')"))
+	            );
+            
+	 		}else{
+	 			
+	 			$this->table->add_row($key, $value,
+	 				anchor($this->area.'/view/'.$value,'visualizar',array('class'=>'view')).' '.
+	 				anchor($this->area.'/update/'.$value,'alterar',array('class'=>'update'))
+	 			);
+	 			
+	 		}
+   
         }
 
         //Monta a DataTable

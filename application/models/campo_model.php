@@ -243,7 +243,7 @@ function orgao($indice) {
     					'id' => 'campoAssunto',
     					'value' => $this->input->post('campoAssunto'),
     					'maxlength' => '80',
-    					'size' => '51',
+    					'size' => '71',
     					'class' => 'textbox',
     			),
     			 

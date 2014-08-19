@@ -12,12 +12,13 @@ class Coluna_model extends CI_Model {
 	function list_all(){
 		
 		$fields = $this->db->list_fields('documento');
+		
+		natsort($fields);
+		
 		$fields = array_diff($fields, array('id', 'tipo', 'numero', 'setor', 'cidade', 'data', 'data_criacao', 'destinatario',
-				'assunto', 'referencia', 'remetente', 'para', 'dono', 'dono_cpf',
-				'cadeado', 'oculto', 'cancelado', 'carimbo'));
-
+											'assunto', 'remetente', 'dono', 'dono_cpf',
+											'cadeado', 'oculto', 'cancelado', 'carimbo'));
 		return $fields;
-	
 	}
 	
 	function count_all(){
@@ -34,12 +35,6 @@ class Coluna_model extends CI_Model {
 	function get_by_nome($nome){
 		
 		$fields = $this->db->field_data('documento');
-/*
-		echo "<pre>";
-		print_r($fields);
-		echo "</pre>";
-		exit();
-		*/
 		
 		$campo = array();
 		foreach ($fields as $field)
@@ -141,39 +136,40 @@ class Coluna_model extends CI_Model {
 	
 	function delete($campo){
 		
-		$this->load->dbforge();
+		$campos_padroes = self::campos_padroes();
 		
-		$this->db->trans_begin();
+		if(array_search($campo, $campos_padroes) == NULL) { // protege os campos padroes
 		
-		$this->dbforge->drop_column('documento', $campo);
-		$this->dbforge->drop_column('tipo', $campo);
-
-		if ($this->db->trans_status() === FALSE){
-				
-			echo "Operação não realizada. Erro no banco.";
-				
-			$this->db->trans_rollback();
+			$this->load->dbforge();
+			
+			$this->db->trans_begin();
 		
-		}else{
-				
-			$this->db->trans_commit();
+			$this->dbforge->drop_column('documento', $campo);
+			$this->dbforge->drop_column('tipo', $campo);
+			
+			if ($this->db->trans_status() === FALSE){
+			
+				echo "Operação não realizada. Erro no banco.";
+			
+				$this->db->trans_rollback();
+			
+			}else{
+			
+				$this->db->trans_commit();
+			}
+			
 		}
+		
+	}
+	
+	public function campos_padroes(){ // Sao os campos indeletaveis
+		
+		$campos_padroes = array('', 'interessado', 'para', 'processo', 'redacao', 'referencia');
+		
+		return $campos_padroes;
 	}
 
-	/* -- BUSCA -- 
-
-
-			public function listAllSearchPag($keyword, $per_page, $offset){
-				
-			$keyword = $this->getDateSearch($keyword);	
-				
-			$this->db->select("u.*, s.nome AS setor");
-			$this->db->where("u.setor = s.id AND (LOCATE('$keyword', u.nome) > 0
-        	   				OR u.matricula = '$keyword' OR u.cpf = '$keyword')");
-			$this->db->order_by('u.id','desc');			
-			$query = $this->db->get('tb_usuario u, tb_setor s', $per_page, $offset);
-	*/
-
+	
 	public function listAllSearchPag($keyword){
 				
 		$fields = self::list_all();
@@ -186,9 +182,6 @@ class Coluna_model extends CI_Model {
 		$this->db->order_by('c.nome','asc');	
 		$query = $this->db->get('coluna c', $per_page, $offset);
 
-		//debug
-		//echo $this->db->last_query();
-			
 		return $query->result();	
 	}
 

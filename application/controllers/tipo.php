@@ -137,10 +137,12 @@ class Tipo extends CI_Controller {
 						<td class="gray" style="width: 150px;">
 							'. $value . '
 						</td>
-						<td class="green">
+						<td class="green" style="text-align: center;">
 				        		'. form_dropdown('campoFlag_'.$value, $data['flagsDisponiveis'], $flag_selecionada) .form_error('campoFlag_'.$value) .'
-				        		&nbsp; Rótulo: '. form_input('campoLabel_'.$value) .form_error('campoLabel_'.$value).'
-				        	</td>
+				        </td>
+				        <td class="green" style="text-align: center;">
+				        		'. form_input('campoLabel_'.$value) .form_error('campoLabel_'.$value).'
+				        </td>
 			        	</tr>';
 		}	
 		$data['linhas'] = $linhas;
@@ -301,8 +303,10 @@ public function update($id) {
 			$linhas .= '<tr>
 							<td class="gray" style="width: 150px;">'. $nome_campo . '</td>
 							<td class="green">
-					        		'. form_dropdown('campoFlag_'.$nome_campo, $data['flagsDisponiveis'], $flag_selecionada) .form_error('campoFlag_'.$nome_campo) .'				
-					        		&nbsp; Rótulo: '. form_input('campoLabel_'.$nome_campo, $campo[1]) .form_error('campoLabel_'.$nome_campo).'
+					        		'. form_dropdown('campoFlag_'.$nome_campo, $data['flagsDisponiveis'], $flag_selecionada) .form_error('campoFlag_'.$nome_campo) .'
+					        </td>
+					        <td class="green">			
+					        		'. form_input('campoLabel_'.$nome_campo, $campo[1]) .form_error('campoLabel_'.$nome_campo).'
 					        </td>
 			        	</tr>';
 		}

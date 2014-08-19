@@ -111,20 +111,21 @@
 	    
 	        <legend class="subTitulo6">Itens presentes no formulário</legend> 
 	        
-	        <table class="table_form">
+	        <table class="table_form" style="border-collapse: collapse;">
 	        	<tbody>
-	        	
-	        		<?php 
-	        		echo $linhas;
-	        		?>
-	        	
-	        		
-		        	
+	        	<tr>
+		        	<td class="gray" style="text-align: center; font-weight: bold;">Campo
+		        	</td>
+		        	<td class="gray" style="text-align: center; font-weight: bold;">Disponível
+		        	</td>
+		        	<td class="gray" style="text-align: center; font-weight: bold;">Rótulo
+		        	</td>
+	        	</tr>
+	        		<?php echo $linhas;?>
+	
 	        	</tbody>
 	        </table>
-	        
-	       
-	        
+
 	    </fieldset>
 	    
 	    
