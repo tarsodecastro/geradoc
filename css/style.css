@@ -140,9 +140,9 @@ label{
 /*-------MENU---------*/
 
 #geral #menu{
-	height: 50px;
+	height: 30px;
 	background-color:#EDEDED;
-	margin-bottom:10px;		
+	margin-bottom:20px;		
 	background-image: url(../images/fundo_topo.jpg);	
 	background-position:bottom;
 	background-repeat:repeat-x;
@@ -842,7 +842,7 @@ textarea{
 	color: red;
 }
 
-
+/*
 input#search {
 	background: #FFFFFF no-repeat url(../images/search.png);
 	background-position: 2px;
@@ -903,6 +903,7 @@ input#search {
 	background-color: #4876FF;
 	border: 1px solid #141414;
 }
+*/
 
 .button_cancel {
 	padding-left: 5px;

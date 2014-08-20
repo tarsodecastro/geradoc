@@ -57,6 +57,58 @@ $_SESSION['rodape_documento'] = $CI->config->item('rodape_documento');
 | -------------------------------------------------------------------
 */
 
+$area = $this->uri->segment(1);
+
+$menu_documento = '';
+$menu_modelos = '';
+$menu_organograma = '';
+$menu_pessoas = '';
+$menu_ferramentas = '';
+
+switch ($area){
+	
+	case 'documento':
+		$menu_documento =  'active';
+	break;
+	
+	case 'coluna':
+		$menu_modelos =  'active';
+	break;
+	
+	case 'tipo':
+		$menu_modelos =  'active';
+		break;
+		
+	case 'orgao':
+		$menu_organograma =  'active';
+	break;
+	
+	case 'setor':
+		$menu_organograma = 'active';
+	break;
+	
+	case 'cargo':
+		$menu_pessoas = 'active';
+	break;
+	
+	case 'contato':
+		$menu_pessoas = 'active';
+		break;
+		
+	case 'usuario':
+		$menu_pessoas = 'active';
+	break;
+	
+	case 'auditoria':
+		$menu_ferramentas = 'active';
+	break;
+	
+	case 'estatistica':
+		$menu_ferramentas = 'active';
+	break;
+	
+}
+  
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -76,7 +128,8 @@ $_SESSION['rodape_documento'] = $CI->config->item('rodape_documento');
     <title><?php echo $CI->config->item('title');?></title>
 	{TPL_css}
 	<link href="<?php echo base_url();?>bootstrap/css/bootstrap.min.css" rel="stylesheet"> 
-	<link href="<?php echo base_url();?>bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+	<link href="<?php echo base_url();?>bootstrap/css/bootstrap-theme.css" rel="stylesheet">
+
 	<script type="text/javascript">
 		var CI_ROOT = '<?php echo site_url(); ?>';    	 
     </script>
@@ -117,11 +170,11 @@ $_SESSION['rodape_documento'] = $CI->config->item('rodape_documento');
 			    <!-- Collect the nav links, forms, and other content for toggling -->
 			    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			      <ul class="nav navbar-nav">
-			        <li class="active"><a href="<?php echo site_url('/documento/index'); ?>" title="Documentos">Documentos</a></li>
+			        <li class="<?php echo $menu_documento;?>"><a href="<?php echo site_url('/documento/index'); ?>" title="Documentos">Documentos</a></li>
 			           
 			        <?php if ($nivel_id == 1){ //apenas para administradores?>
 			        
-				        <li class="dropdown">
+				        <li class="dropdown <?php echo $menu_modelos;?>">
 				          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Modelos <span class="caret"></span></a>
 				          <ul class="dropdown-menu" role="menu">
 				            <li><a href="<?php echo site_url('/coluna/index'); ?>" title="Campos">Campos</a></li>
@@ -129,7 +182,7 @@ $_SESSION['rodape_documento'] = $CI->config->item('rodape_documento');
 				          </ul>
 				        </li>
 				        
-				        <li class="dropdown">
+				        <li class="dropdown <?php echo $menu_organograma;?>">
 				          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Organograma <span class="caret"></span></a>
 				          <ul class="dropdown-menu" role="menu">
 				            <li><a href="<?php echo site_url('/orgao/index'); ?>" title="Órgãos">Órgãos</a></li>
@@ -137,16 +190,18 @@ $_SESSION['rodape_documento'] = $CI->config->item('rodape_documento');
 				          </ul>
 				        </li>
 				        
-				        <li class="dropdown">
+				        <li class="dropdown <?php echo $menu_pessoas;?>">
 				          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pessoas <span class="caret"></span></a>
 				          <ul class="dropdown-menu" role="menu">
 				            <li><a href="<?php echo site_url('/cargo/index'); ?>" title="Cargos">Cargos</a></li>
 				            <li><a href="<?php echo site_url('/contato/index'); ?>" title="Contatos">Remetentes</a></li>
 				            <li><a href="<?php echo site_url('/usuario/index'); ?>" title="Usuários">Usuários</a></li>
+				            <li><a href="<?php echo site_url('usuario/cadastro'); ?>" title="Meu cadastro">Meu cadastro</a></li>
+			       			<li><a href="<?php echo site_url('usuario/altsenha'); ?>" title="Alterar minha senha de acesso">Senha</a></li>
 				          </ul>
 				        </li>
 				        
-				        <li class="dropdown">
+				        <li class="dropdown <?php echo $menu_ferramentas;?>">
 				          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Ferramentas <span class="caret"></span></a>
 				          <ul class="dropdown-menu" role="menu">
 				            <li><a href="<?php echo site_url('/auditoria/index'); ?>" title="Auditoria">Auditoria</a></li>
@@ -156,22 +211,11 @@ $_SESSION['rodape_documento'] = $CI->config->item('rodape_documento');
 			        
 			        <?php } ?>
 			        
-			        <li><a href="<?php echo site_url('usuario/cadastro'); ?>" title="Meu cadastro">Meu cadastro</a></li>
-			        <li><a href="<?php echo site_url('usuario/altsenha'); ?>" title="Alterar minha senha de acesso">Senha</a></li>
+			        
 			        <li><a href="<?php echo site_url('login/logoff'); ?>" title="Sair do sistema" >Sair</a></li>
 			        
 			      </ul>
-			      
-			      
-			      <ul class="nav navbar-nav navbar-right">
-			        <form class="navbar-form navbar-left" role="search">
-			        <div class="form-group">
-			          <input type="text" class="form-control" placeholder="Search">
-			        </div>
-			        <button type="submit" class="btn btn-default">Submit</button>
-			      </form>
-			      </ul>
-			      
+
 			    </div><!-- /.navbar-collapse -->
 			  </div><!-- /.container-fluid -->
 			</nav>
