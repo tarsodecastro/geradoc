@@ -75,11 +75,14 @@ $_SESSION['rodape_documento'] = $CI->config->item('rodape_documento');
 	<link rel="icon" href="{TPL_images}<?php echo $CI->config->item('orgao');?>.ico" />
     <title><?php echo $CI->config->item('title');?></title>
 	{TPL_css}
+	<link href="<?php echo base_url();?>bootstrap/css/bootstrap.min.css" rel="stylesheet"> 
+	<link href="<?php echo base_url();?>bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
 	<script type="text/javascript">
 		var CI_ROOT = '<?php echo site_url(); ?>';    	 
     </script>
     {TPL_js}
     {TPL_js_custom}
+    <script src="<?php echo base_url();?>bootstrap/js/bootstrap.min.js"></script>
     </head>
     <body>
         <div id="geral"> 
@@ -98,10 +101,85 @@ $_SESSION['rodape_documento'] = $CI->config->item('rodape_documento');
             </div>
             
              <div id="menu">
+             
+             <nav class="navbar navbar-default" role="navigation">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Brand</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Link</a></li>
+        <li><a href="#">Link</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+            <li class="divider"></li>
+            <li><a href="#">One more separated link</a></li>
+          </ul>
+        </li>
+      </ul>
+      <form class="navbar-form navbar-left" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search">
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+      </form>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#">Link</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+             
+             
+             
+             
+             
+             
+             
+             
                 <div id="menu_itens">
                 	<a href="<?php echo site_url('/documento/index'); ?>" title="Documentos">Documentos</a>
                 	<span>|</span>
                 	<?php if ($nivel_id == 1){ //apenas para administradores?>
+                	
+                	<!-- Single button -->
+					<div class="btn-group">
+					  <button type="button" class="btn btn-xs btn-default dropdown-toggle" data-toggle="dropdown">
+					    Modelos <span class="caret"></span>
+					  </button>
+					  <ul class="dropdown-menu" role="menu">
+					    <li><a href="#">Campos</a></li>
+					    <li><a href="#">Tipos de documentos</a></li>
+					  </ul>
+					</div>
+					
+					
                 	<a href="<?php echo site_url('/coluna/index'); ?>" title="Campos">Campos</a>
                 	<span>|</span>
                 	<a href="<?php echo site_url('/tipo/index'); ?>" title="Tipos">Tipos de Documentos</a>

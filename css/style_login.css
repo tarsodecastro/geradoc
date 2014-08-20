@@ -81,17 +81,17 @@ p {
 	font-size:28px;
 	color: #999;
 	text-align:center;
-	padding-top: 70px;
+	padding-top: 40px;
 	margin-bottom:5px;
 	font-weight: bold;
 }
 
 #login {
-	width:235px;	
+	width:265px;	
 	margin:0 auto;	
 	border:1px solid #ccc;
 	background-color:#f8f8f8;
-        
+    padding: 5px;  
 }
 
 

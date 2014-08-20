@@ -14,6 +14,7 @@ body {
 	font-size: 13px;
 }
 
+/*
 img{ border:0; } 
 
 p { margin:0; }
@@ -115,29 +116,25 @@ label{
 /*-------LOGO---------*/
 
 #logo{
-	height:76px;
 	background-image: url(../images/bg_logo_right.jpg);	
 	background-position:right;
 	background-repeat:no-repeat;
 	background-color: white; 
+	display: block;
 }
 
 #logo #logo_left{	
-	float:left;
-	height:76px;
-	width:436px;
-	/*		
-	background-image: url(../images/bg_logo_left_aesp.png);
-	*/
+
+	height:80px;
+	width:400px;
 }
 
 #logo #logo_right{	
 	float:right;
-	height:76px;
-	margin: 25px 30px 20px 0px;
+	height:80px;
+	margin: -70px 30px 20px 0px;
 	font-size: 20pt;
 	font-family: 'Times New Roman',Times,serif;
-	
 }
 
 /*-------MENU---------*/
@@ -162,6 +159,7 @@ label{
 	background-position-x:left;
 }
 
+/*
 #menu a{
 	font-size: 10.5pt;
 	color: #FFF;
@@ -414,8 +412,6 @@ a.update:hover,a.delete:hover,a.add:hover,a.view:hover,a.back:hover,a.calendar:h
 	padding-top:31px;
 	
 }
-
-
 
 /*-----Classes CSS------*/
 .titulo1{	
