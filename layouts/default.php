@@ -103,110 +103,80 @@ $_SESSION['rodape_documento'] = $CI->config->item('rodape_documento');
              <div id="menu">
              
              <nav class="navbar navbar-default" role="navigation">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#">Brand</a>
-    </div>
-
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Link</a></li>
-        <li><a href="#">Link</a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li class="divider"></li>
-            <li><a href="#">Separated link</a></li>
-            <li class="divider"></li>
-            <li><a href="#">One more separated link</a></li>
-          </ul>
-        </li>
-      </ul>
-      <form class="navbar-form navbar-left" role="search">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search">
-        </div>
-        <button type="submit" class="btn btn-default">Submit</button>
-      </form>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">Link</a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li class="divider"></li>
-            <li><a href="#">Separated link</a></li>
-          </ul>
-        </li>
-      </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
-             
-             
-             
-             
-             
-             
-             
-             
-                <div id="menu_itens">
-                	<a href="<?php echo site_url('/documento/index'); ?>" title="Documentos">Documentos</a>
-                	<span>|</span>
-                	<?php if ($nivel_id == 1){ //apenas para administradores?>
-                	
-                	<!-- Single button -->
-					<div class="btn-group">
-					  <button type="button" class="btn btn-xs btn-default dropdown-toggle" data-toggle="dropdown">
-					    Modelos <span class="caret"></span>
-					  </button>
-					  <ul class="dropdown-menu" role="menu">
-					    <li><a href="#">Campos</a></li>
-					    <li><a href="#">Tipos de documentos</a></li>
-					  </ul>
-					</div>
-					
-					
-                	<a href="<?php echo site_url('/coluna/index'); ?>" title="Campos">Campos</a>
-                	<span>|</span>
-                	<a href="<?php echo site_url('/tipo/index'); ?>" title="Tipos">Tipos de Documentos</a>
-                	<span>|</span>
-                	<a href="<?php echo site_url('/orgao/index'); ?>" title="Órgãos">Órgãos</a>
-                	<span>|</span>
-                	<a href="<?php echo site_url('/setor/index'); ?>" title="Setores">Setores</a>
-                	<span>|</span>
-                	<a href="<?php echo site_url('/cargo/index'); ?>" title="Cargos">Cargos</a>
-                	<span>|</span>
-                	<a href="<?php echo site_url('/contato/index'); ?>" title="Contatos">Remetentes</a>
-                	<span>|</span>
-                	<a href="<?php echo site_url('/usuario/index'); ?>" title="Usuários">Usuários</a>
-                	<span>|</span>
-                	<a href="<?php echo site_url('/auditoria/index'); ?>" title="Auditoria">Auditoria</a>
-                	<span>|</span>
-                	<a href="<?php echo site_url('/estatistica/index'); ?>" title="Estatísticas">Estatísticas</a>
-                	<span>|</span>
-                	<?php } ?>
-                	<a href="<?php echo site_url('usuario/cadastro'); ?>" title="Alterar minha senha de acesso">Meu cadastro</a>
-                	<span>|</span>
-                	<a href="<?php echo site_url('usuario/altsenha'); ?>" title="Alterar minha senha de acesso">Senha</a>
-                	<span>|</span>
-                	<a href="#" id="about" title="Sobre este sistema">Sobre</a>
-                	<span>|</span>
-                	<a href="<?php echo site_url('login/logoff'); ?>" title="Sair do sistema" >Sair</a>		
-                </div> 
+			  <div class="container-fluid">
+			    <!-- Brand and toggle get grouped for better mobile display -->
+			    <div class="navbar-header">
+			      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+			        <span class="sr-only">Toggle navigation</span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+			      </button>
+			    </div>
+			
+			    <!-- Collect the nav links, forms, and other content for toggling -->
+			    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			      <ul class="nav navbar-nav">
+			        <li class="active"><a href="<?php echo site_url('/documento/index'); ?>" title="Documentos">Documentos</a></li>
+			           
+			        <?php if ($nivel_id == 1){ //apenas para administradores?>
+			        
+				        <li class="dropdown">
+				          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Modelos <span class="caret"></span></a>
+				          <ul class="dropdown-menu" role="menu">
+				            <li><a href="<?php echo site_url('/coluna/index'); ?>" title="Campos">Campos</a></li>
+				            <li><a href="<?php echo site_url('/tipo/index'); ?>" title="Tipos">Tipos de Documentos</a></li>
+				          </ul>
+				        </li>
+				        
+				        <li class="dropdown">
+				          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Organograma <span class="caret"></span></a>
+				          <ul class="dropdown-menu" role="menu">
+				            <li><a href="<?php echo site_url('/orgao/index'); ?>" title="Órgãos">Órgãos</a></li>
+				            <li><a href="<?php echo site_url('/setor/index'); ?>" title="Setores">Setores</a></li>
+				          </ul>
+				        </li>
+				        
+				        <li class="dropdown">
+				          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pessoas <span class="caret"></span></a>
+				          <ul class="dropdown-menu" role="menu">
+				            <li><a href="<?php echo site_url('/cargo/index'); ?>" title="Cargos">Cargos</a></li>
+				            <li><a href="<?php echo site_url('/contato/index'); ?>" title="Contatos">Remetentes</a></li>
+				            <li><a href="<?php echo site_url('/usuario/index'); ?>" title="Usuários">Usuários</a></li>
+				          </ul>
+				        </li>
+				        
+				        <li class="dropdown">
+				          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Ferramentas <span class="caret"></span></a>
+				          <ul class="dropdown-menu" role="menu">
+				            <li><a href="<?php echo site_url('/auditoria/index'); ?>" title="Auditoria">Auditoria</a></li>
+				            <li><a href="<?php echo site_url('/estatistica/index'); ?>" title="Estatísticas">Estatísticas</a></li>
+				          </ul>
+				        </li>
+			        
+			        <?php } ?>
+			        
+			        <li><a href="<?php echo site_url('usuario/cadastro'); ?>" title="Meu cadastro">Meu cadastro</a></li>
+			        <li><a href="<?php echo site_url('usuario/altsenha'); ?>" title="Alterar minha senha de acesso">Senha</a></li>
+			        <li><a href="<?php echo site_url('login/logoff'); ?>" title="Sair do sistema" >Sair</a></li>
+			        
+			      </ul>
+			      
+			      
+			      <ul class="nav navbar-nav navbar-right">
+			        <form class="navbar-form navbar-left" role="search">
+			        <div class="form-group">
+			          <input type="text" class="form-control" placeholder="Search">
+			        </div>
+			        <button type="submit" class="btn btn-default">Submit</button>
+			      </form>
+			      </ul>
+			      
+			    </div><!-- /.navbar-collapse -->
+			  </div><!-- /.container-fluid -->
+			</nav>
+       
+           
             </div>
 
             <div id="conteudo">	
