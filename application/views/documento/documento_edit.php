@@ -322,7 +322,7 @@ $(function() {
 
 						<p style="text-align: center;">
 						<br>
-							<input type="submit" class="button" value="Salvar" title="Salvar"/>&nbsp;&nbsp;	
+							<input type="submit" class="btn btn-success" value="Salvar" title="Salvar"/>&nbsp;&nbsp;	
 						</p>
 						<br>
 					

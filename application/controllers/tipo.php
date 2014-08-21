@@ -34,7 +34,7 @@ class Tipo extends CI_Controller {
 		$this->js[] = 'tipo';
 		
 		$data['titulo']     = 'Tipos';
-		$data['link_add']   = anchor($this->area.'/add/','Adicionar',array('class'=>'add'));
+		$data['link_add']   = anchor($this->area.'/add/','<span class="glyphicon glyphicon-plus"></span> Adicionar',array('class'=>'btn btn-primary btn-sm'));
 		$data['link_back']  = anchor('documento/index/','Lista de Documentos',array('class'=>'back'));
 		$data['form_action'] = site_url($this->area.'/search');
 		
@@ -110,7 +110,7 @@ class Tipo extends CI_Controller {
 		$this->form_validation->set_error_delimiters('<div class="error_field"> <img class="img_align" src="{TPL_images}/error.png" alt="! " /> ', '</div>');
 	
 		$data['titulo'] = 'Novo Tipo';
-		$data['link_back']  = anchor($this->area.'/index/','Voltar',array('class'=>'back'));
+		$data['link_back']  = anchor($this->area.'/index/','<span class="glyphicon glyphicon-arrow-left"></span> Voltar',array('class'=>'btn btn-warning btn-sm'));
 		$data['form_action'] = site_url($this->area.'/add/');
 		$data['mensagem'] = '';
 		
@@ -222,7 +222,7 @@ class Tipo extends CI_Controller {
 		
         $data['message'] = '';
         
-		$data['link_back'] = anchor($this->area.'/'.$_SESSION['novoinicio'],'Voltar',array('class'=>'back'));
+		$data['link_back'] = anchor($this->area.'/'.$_SESSION['novoinicio'],'<span class="glyphicon glyphicon-arrow-left"></span> Voltar',array('class'=>'btn btn-warning btn-sm'));
 		
 		$data['objeto'] = $this->Tipo_model->get_by_id($id)->row();
 
@@ -260,7 +260,7 @@ public function update($id) {
 		// define as variaveis comuns
 		$data['titulo'] = "Alteração de tipo";
 		$data['mensagem'] = '';
-		$data['link_back'] = anchor($this->area.'/'.$_SESSION['novoinicio'],'Voltar',array('class'=>'back'));
+		$data['link_back'] = anchor($this->area.'/'.$_SESSION['novoinicio'],'<span class="glyphicon glyphicon-arrow-left"></span> Voltar',array('class'=>'btn btn-warning btn-sm'));
 		$data['form_action'] = site_url($this->area.'/update/'.$id);
 
 		//Constroe os campos do formulario
@@ -396,7 +396,7 @@ public function update($id) {
 		$data['titulo'] = 'Vigência do tipo de documento';
 		$data['message'] = (isset($_SESSION['message']) and $_SESSION['message'] != null) ? $_SESSION['message'] : null;
 		$_SESSION['message'] = null;
-		$data['link_back'] = anchor($this->area.'/'.$_SESSION['novoinicio'],'Voltar',array('class'=>'back'));
+		$data['link_back'] = anchor($this->area.'/'.$_SESSION['novoinicio'],'<span class="glyphicon glyphicon-arrow-left"></span> Voltar',array('class'=>'btn btn-warning btn-sm'));
 		$data['form_action'] = site_url($this->area.'/year/'.$id);
 		$this->form_validation->set_error_delimiters('<span class="error_field"> <img class="img_align" src="{TPL_images}/error.png" alt="!" /> ', '</span>');
 	
@@ -518,7 +518,7 @@ public function update($id) {
 		
 		$data['titulo'] = 'Edição da vigência do tipo de documento';
 		$data['message'] = null;
-		$data['link_back'] = anchor($this->area.'/'.$_SESSION['novoinicio'],'Voltar',array('class'=>'back'));
+		$data['link_back'] = anchor($this->area.'/'.$_SESSION['novoinicio'],'<span class="glyphicon glyphicon-arrow-left"></span> Voltar',array('class'=>'btn btn-warning btn-sm'));
 		$data['form_action'] = site_url($this->area.'/update_year/'.$id);
 	
 		//Constroe os campos do formulario

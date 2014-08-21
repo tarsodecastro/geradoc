@@ -5,9 +5,11 @@
 
 </div>
 
-<div class="titulo1">
-	<?php echo $titulo;?>
-</div>
+
+<ol class="breadcrumb">
+  	<li class="active"><?php echo $titulo;?></li>
+</ol>
+
 
 <div id="msg" style="display: none;">
 	<img src="{TPL_images}loader.gif" class="img_aling2" alt="Carregando" />Aguarde

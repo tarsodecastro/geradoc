@@ -141,11 +141,13 @@ label{
 
 #geral #menu{
 	height: 30px;
-	background-color:#EDEDED;
+	/*background-color:#EDEDED;*/
 	margin-bottom:20px;		
+	/*
 	background-image: url(../images/fundo_topo.jpg);	
 	background-position:bottom;
 	background-repeat:repeat-x;
+	*/
 	
 }
 

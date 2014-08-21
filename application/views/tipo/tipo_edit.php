@@ -64,10 +64,12 @@
 		  	statusbar : false,
 		   });
     });
-</script> 
-<div id="titulo" class="titulo1"> 
-    <?php echo $titulo; ?>
-</div>		
+</script>
+ 
+<ol class="breadcrumb">
+	<li><a href="<?php echo site_url('/tipo/index'); ?>">Tipos</a></li>
+  	<li class="active"><?php echo $titulo;?></li>
+</ol>		
 
 <div id="msg" style="display:none;"><img src="{TPL_images}loader.gif" alt="Enviando" />Aguarde carregando...</div> 
 

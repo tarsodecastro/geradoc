@@ -34,7 +34,7 @@ class Coluna extends CI_Controller {
 		$this->js[] = 'coluna';
 		
 		$data['titulo']     = 'Campos';
-		$data['link_add']   = anchor($this->area.'/add/','Adicionar',array('class'=>'add'));
+		$data['link_add']   = anchor($this->area.'/add/','<span class="glyphicon glyphicon-plus"></span> Adicionar',array('class'=>'btn btn-primary btn-sm'));
 		$data['link_back']  = anchor('documento/index/','Lista de Documentos',array('class'=>'back'));
 		$data['form_action'] = site_url($this->area.'/search');
 		
@@ -123,7 +123,7 @@ class Coluna extends CI_Controller {
 		$this->form_validation->set_error_delimiters('<div class="error_field"> <img class="img_align" src="{TPL_images}/error.png" alt="! " /> ', '</div>');
 	
 		$data['titulo'] = 'Novo Campo';
-		$data['link_back']  = anchor($this->area.'/index/','Voltar',array('class'=>'back'));
+		$data['link_back']  = anchor($this->area.'/index/','<span class="glyphicon glyphicon-arrow-left"></span> Voltar',array('class'=>'btn btn-warning btn-sm'));
 		$data['form_action'] = site_url($this->area.'/add/');
 		$data['mensagem'] = '';
 	
@@ -187,7 +187,7 @@ class Coluna extends CI_Controller {
 		
         $data['message'] = '';
         
-		$data['link_back'] = anchor($this->area.'/'.$_SESSION['novoinicio'],'Voltar',array('class'=>'back'));
+		$data['link_back'] = anchor($this->area.'/'.$_SESSION['novoinicio'],'<span class="glyphicon glyphicon-arrow-left"></span> Voltar',array('class'=>'btn btn-warning btn-sm'));
 		
 		$data['objeto'] = $this->Coluna_model->get_by_nome($value);
 		$data['tamanho_atual'] = $this->Coluna_model->tamanho_maximo($value);
@@ -204,7 +204,7 @@ public function update($nome) {
 		// define as variaveis comuns
 		$data['titulo'] = "Alteração de  órgão";
 		$data['mensagem'] = '';
-		$data['link_back'] = anchor($this->area.'/'.$_SESSION['novoinicio'],'Voltar',array('class'=>'back'));
+		$data['link_back'] = anchor($this->area.'/'.$_SESSION['novoinicio'],'<span class="glyphicon glyphicon-arrow-left"></span> Voltar',array('class'=>'btn btn-warning btn-sm'));
 		$data['form_action'] = site_url($this->area.'/update/'.$nome);
 
 		//Constroe os campos do formulario

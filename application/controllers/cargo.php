@@ -34,7 +34,7 @@ class Cargo extends CI_Controller {
 		$this->js[] = 'cargo';
 		
 		$data['titulo']     = 'Cargos';
-		$data['link_add']   = anchor($this->area.'/add/','Adicionar',array('class'=>'add'));
+		$data['link_add']   = anchor($this->area.'/add/','<span class="glyphicon glyphicon-plus"></span> Adicionar',array('class'=>'btn btn-primary btn-sm'));
 		$data['link_back']  = anchor('documento/index/','Lista de Documentos',array('class'=>'back'));
 		$data['form_action'] = site_url($this->area.'/search');
 		
@@ -95,7 +95,7 @@ class Cargo extends CI_Controller {
 		$this->form_validation->set_error_delimiters('<div class="error_field"> <img class="img_align" src="{TPL_images}/error.png" alt="! " /> ', '</div>');
 	
 		$data['titulo'] = 'Novo Cargo';
-		$data['link_back']  = anchor($this->area.'/index/','Voltar',array('class'=>'back'));
+		$data['link_back']  = anchor($this->area.'/index/','<span class="glyphicon glyphicon-arrow-left"></span> Voltar',array('class'=>'btn btn-warning btn-sm'));
 		$data['form_action'] = site_url($this->area.'/add/');
 		$data['message'] = '';
 	
@@ -157,7 +157,7 @@ class Cargo extends CI_Controller {
 		
         $data['message'] = '';
         
-		$data['link_back'] = anchor($this->area.'/'.$_SESSION['novoinicio'],'Voltar',array('class'=>'back'));
+		$data['link_back'] = anchor($this->area.'/'.$_SESSION['novoinicio'],'<span class="glyphicon glyphicon-arrow-left"></span> Voltar',array('class'=>'btn btn-warning btn-sm'));
 		
 		$data['objeto'] = $this->Cargo_model->get_by_id($id)->row();
 
@@ -173,7 +173,7 @@ public function update($id) {
 		// define as variaveis comuns
 		$data['titulo'] = "Alteração de  órgão";
 		$data['message'] = '';
-		$data['link_back'] = anchor($this->area.'/'.$_SESSION['novoinicio'],'Voltar',array('class'=>'back'));
+		$data['link_back'] = anchor($this->area.'/'.$_SESSION['novoinicio'],'<span class="glyphicon glyphicon-arrow-left"></span> Voltar',array('class'=>'btn btn-warning btn-sm'));
 		$data['form_action'] = site_url($this->area.'/update/'.$id);
 
 		//Constroe os campos do formulario

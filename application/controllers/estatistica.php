@@ -207,7 +207,7 @@ class Estatistica extends CI_Controller {
 
 		$data['message'] = '';
 
-		$data['link_back'] = anchor($this->area.'/'.$_SESSION['novoinicio'],'Voltar',array('class'=>'back'));
+		$data['link_back'] = anchor($this->area.'/'.$_SESSION['novoinicio'],'<span class="glyphicon glyphicon-arrow-left"></span> Voltar',array('class'=>'btn btn-warning btn-sm'));
 
 		$this->load->view($this->area.'/'.$this->area.'_view', $data);
 

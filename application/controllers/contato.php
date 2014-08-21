@@ -38,7 +38,7 @@ class Contato extends CI_Controller {
 		$this->js[] = 'contato';
 	
 		$data['titulo']     = 'Remetentes';
-		$data['link_add']   = anchor($this->area.'/add/','Adicionar',array('class'=>'add'));
+		$data['link_add']   = anchor($this->area.'/add/','<span class="glyphicon glyphicon-plus"></span> Adicionar',array('class'=>'btn btn-primary btn-sm'));
 		$data['link_back']  = anchor('documento/index/','Lista de Documentos',array('class'=>'back'));
 		$data['form_action'] = site_url($this->area.'/search');
 	
@@ -101,7 +101,7 @@ class Contato extends CI_Controller {
 		$this->form_validation->set_error_delimiters('<span class="error_field"> <img class="img_align" src="{TPL_images}/error.png" alt="! " /> ', '</span');
 	
 		$data['titulo'] = 'Novo Remetente';
-		$data['link_back']  = anchor($this->area.'/index/','Voltar',array('class'=>'back'));
+		$data['link_back']  = anchor($this->area.'/index/','<span class="glyphicon glyphicon-arrow-left"></span> Voltar',array('class'=>'btn btn-warning btn-sm'));
 		$data['form_action'] = site_url($this->area.'/add/');
 		$data['mensagem'] = '';
 	
@@ -224,7 +224,7 @@ class Contato extends CI_Controller {
 	
 		$data['message'] = '';
 	
-		$data['link_back'] = anchor($this->area.'/index/'.$_SESSION['novoinicio'],'Voltar',array('class'=>'back'));
+		$data['link_back'] = anchor($this->area.'/index/'.$_SESSION['novoinicio'],'<span class="glyphicon glyphicon-arrow-left"></span> Voltar',array('class'=>'btn btn-warning btn-sm'));
 		 
 		$data['objeto'] = $this->Contato_model->get_by_id($id)->row();
 		
@@ -254,7 +254,7 @@ class Contato extends CI_Controller {
 		$this->form_validation->set_error_delimiters('<span class="error_field"> <img class="img_align" src="{TPL_images}/error.png" alt="! " /> ', '</span');
 	
 		$data['titulo'] = 'Edição de Remetente';
-		$data['link_back']  = anchor($this->area.'/index/','Voltar',array('class'=>'back'));
+		$data['link_back']  = anchor($this->area.'/index/','<span class="glyphicon glyphicon-arrow-left"></span> Voltar',array('class'=>'btn btn-warning btn-sm'));
 		$data['form_action'] = site_url($this->area.'/update/'.$id);
 		$data['mensagem'] = '';
 		

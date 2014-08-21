@@ -170,12 +170,12 @@ switch ($area){
 			    <!-- Collect the nav links, forms, and other content for toggling -->
 			    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			      <ul class="nav navbar-nav">
-			        <li class="<?php echo $menu_documento;?>"><a href="<?php echo site_url('/documento/index'); ?>" title="Documentos">Documentos</a></li>
+			        <li class="<?php echo $menu_documento;?>"><a href="<?php echo site_url('/documento/index'); ?>" title="Documentos"><span class="glyphicon glyphicon-file"></span> Documentos</a></li>
 			           
 			        <?php if ($nivel_id == 1){ //apenas para administradores?>
 			        
 				        <li class="dropdown <?php echo $menu_modelos;?>">
-				          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Modelos <span class="caret"></span></a>
+				          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-list-alt"></span> Modelos <span class="caret"></span></a>
 				          <ul class="dropdown-menu" role="menu">
 				            <li><a href="<?php echo site_url('/coluna/index'); ?>" title="Campos">Campos</a></li>
 				            <li><a href="<?php echo site_url('/tipo/index'); ?>" title="Tipos">Tipos de Documentos</a></li>
@@ -183,7 +183,7 @@ switch ($area){
 				        </li>
 				        
 				        <li class="dropdown <?php echo $menu_organograma;?>">
-				          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Organograma <span class="caret"></span></a>
+				          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-tree-conifer"></span> Organograma <span class="caret"></span></a>
 				          <ul class="dropdown-menu" role="menu">
 				            <li><a href="<?php echo site_url('/orgao/index'); ?>" title="Órgãos">Órgãos</a></li>
 				            <li><a href="<?php echo site_url('/setor/index'); ?>" title="Setores">Setores</a></li>
@@ -191,7 +191,7 @@ switch ($area){
 				        </li>
 				        
 				        <li class="dropdown <?php echo $menu_pessoas;?>">
-				          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pessoas <span class="caret"></span></a>
+				          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> Pessoas <span class="caret"></span></a>
 				          <ul class="dropdown-menu" role="menu">
 				            <li><a href="<?php echo site_url('/cargo/index'); ?>" title="Cargos">Cargos</a></li>
 				            <li><a href="<?php echo site_url('/contato/index'); ?>" title="Contatos">Remetentes</a></li>
@@ -202,7 +202,7 @@ switch ($area){
 				        </li>
 				        
 				        <li class="dropdown <?php echo $menu_ferramentas;?>">
-				          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Ferramentas <span class="caret"></span></a>
+				          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-wrench"></span> Ferramentas <span class="caret"></span></a>
 				          <ul class="dropdown-menu" role="menu">
 				            <li><a href="<?php echo site_url('/auditoria/index'); ?>" title="Auditoria">Auditoria</a></li>
 				            <li><a href="<?php echo site_url('/estatistica/index'); ?>" title="Estatísticas">Estatísticas</a></li>
@@ -212,7 +212,8 @@ switch ($area){
 			        <?php } ?>
 			        
 			        
-			        <li><a href="<?php echo site_url('login/logoff'); ?>" title="Sair do sistema" >Sair</a></li>
+			        <li><a href="#" id="about" title="Sobre este sistema"><span class="glyphicon glyphicon-thumbs-up"></span> Sobre</a></li>
+			        <li><a href="<?php echo site_url('login/logoff'); ?>" title="Sair do sistema" ><span class="glyphicon glyphicon-off"></span> Sair</a></li>
 			        
 			      </ul>
 

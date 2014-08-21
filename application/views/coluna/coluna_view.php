@@ -4,9 +4,10 @@
 	</center>
 </div>
 
-<div id="titulo" class="titulo1"> 
-    <?php echo $titulo; ?>
-</div>		
+<ol class="breadcrumb">
+	<li><a href="<?php echo site_url('/coluna/index'); ?>">Campos</a></li>
+  	<li class="active"><?php echo $titulo;?></li>
+</ol>	
 
 <div id="msg" style="display:none;"><img src="{TPL_images}loader.gif" alt="Enviando" />Aguarde carregando...</div> 
 
