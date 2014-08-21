@@ -223,12 +223,14 @@
   border-radius: 4px;
   -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, .15), 0 1px 5px rgba(0, 0, 0, .075);
           box-shadow: inset 0 1px 0 rgba(255, 255, 255, .15), 0 1px 5px rgba(0, 0, 0, .075);
+          border-width: 0px;
 }
 
 
 
 .navbar-nav > li > a {padding-top:7px !important; padding-bottom:7px !important;}
-.navbar {min-height:30px !important}
+.navbar {min-height:30px !important; }
+
 
 /*
 .navbar-default {

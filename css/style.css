@@ -73,8 +73,10 @@ label{
 	min-height: 100%;
 	width:100%;	
 	position: relative;	
-	padding: 0px;		
+	padding: 0px;	
+	/*	
 	font-size: 13px;
+	*/
         
 }
 
@@ -141,14 +143,14 @@ label{
 
 #geral #menu{
 	height: 30px;
-	/*background-color:#EDEDED;*/
-	margin-bottom:20px;		
-	/*
+	background-color:#EDEDED;
+	margin-bottom:20px;	
+	padding-top: 2px;	
+	
 	background-image: url(../images/fundo_topo.jpg);	
 	background-position:bottom;
 	background-repeat:repeat-x;
-	*/
-	
+	vertical-align: bottom;	
 }
 
 #menu_itens{
