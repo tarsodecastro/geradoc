@@ -235,7 +235,7 @@ public function update($id) {
                                     setTimeout("getSecs()",1000);		
                                     var s =  $("#clock1").html();
                                     if (s == "1 segundos..."){			
-                                        window.location.href = "' . site_url($this->area.'/'.$_SESSION['novoinicio']) . '";
+                                        window.location.href = "' . site_url($this->area) . '";
                                     }
                                 }     		
                                 ';

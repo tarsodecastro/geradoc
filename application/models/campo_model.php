@@ -92,7 +92,6 @@ function orgao($indice) {
 	                'class' => 'form-control text-uppercase',
 	            ),
         		
-        		
         		'campoSigla' => array(
         				'name' => 'campoSigla',
         				'id' => 'campoSigla',
@@ -104,7 +103,6 @@ function orgao($indice) {
         				'class' => 'form-control text-uppercase',
         		),
         		
-        		
         		'campoEndereco' => array(
         				'name' => 'campoEndereco',
         				'id' => 'campoEndereco',
@@ -115,10 +113,7 @@ function orgao($indice) {
                         'rows'  =>  '2',
         				'class' => 'form-control text-uppercase',
         		),
-        		
-        		
-        		
-        		
+        			
         );
 
         return $campo[$indice];
@@ -127,13 +122,15 @@ function orgao($indice) {
     
     function cargo($indice) {
     	$campo = array(
+
     			'campoNome' => array(
     					'name' => 'campoNome',
     					'id' => 'campoNome',
+    					'type'=>'text',
     					'value' => mb_convert_case($this->input->post('campoNome'), MB_CASE_UPPER, "ISO-8859-1"),
     					'maxlength' => '90',
     					'size' => '71',
-    					'class' => 'textboxUpper',
+    					'class' => 'form-control text-uppercase',
     			),
     	);
     

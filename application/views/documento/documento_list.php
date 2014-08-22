@@ -4,9 +4,7 @@
 	</cente>
 </div>
 
-<ol class="breadcrumb">
-  	<li class="active"><?php echo $titulo;?></li>
-</ol>
+<p class="bg-success lead text-center"><?php echo $titulo;?></p>
 
 <div id="msg" style="display: none;">
 	<img src="{TPL_images}loader.gif" class="img_aling2" alt="Carregando" />Aguarde
