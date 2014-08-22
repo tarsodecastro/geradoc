@@ -125,9 +125,12 @@ switch ($area){
 	<meta name="abstract" content="GeraDoc - AESP-CE">
 	<meta name="keywords" content="aluno on-line, fale conosco, aesp, geradoc, documento, oficio, comunicacao interna, memorando, despacho, portaria, php, software livre, corpo de bombeiros">
 	<meta name="ROBOT" content="Index,Follow">
+	
 	<link rel="shortcut icon" href="{TPL_images}<?php echo $CI->config->item('orgao');?>.ico" type="image/x-icon" />
 	<link rel="icon" href="{TPL_images}<?php echo $CI->config->item('orgao');?>.ico" />
+    
     <title><?php echo $CI->config->item('title');?></title>
+    
 	{TPL_css}
 	<link href="<?php echo base_url();?>bootstrap/css/bootstrap.min.css" rel="stylesheet"> 
 	<link href="<?php echo base_url();?>bootstrap/css/bootstrap-theme.css" rel="stylesheet">
@@ -139,6 +142,9 @@ switch ($area){
     </script>
     {TPL_js}
     {TPL_js_custom}
+    
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="<?php echo base_url();?>bootstrap/js/ie10-viewport-bug-workaround.js"></script>
     
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -253,7 +259,21 @@ switch ($area){
              	</div>		
             </div> 
             <!--  Fim do Rodape  -->
-            
+           
+           <div id="modalDialog" style="display:none; min-height: 300px;">
+				<div class="title">
+					<?php 
+						$pos = strpos($CI->config->item('title_short'), "<");
+						$titulo_modal = substr($CI->config->item('title_short'), 0, $pos);
+						echo $titulo_modal;
+					?>
+				</div>
+				<div class="close"><a href="#"  id="bt_cancelar"> X </a></div>
+				<div class="text">
+					{TPL_modal}
+				</div>
+				<div class="foot"></div>
+			</div> 
             
          <script src="<?php echo base_url();?>bootstrap/js/bootstrap.min.js"></script>
          

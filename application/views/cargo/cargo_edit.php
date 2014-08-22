@@ -13,7 +13,7 @@
 
 <div id="msg" style="display:none;"><img src="{TPL_images}loader.gif" alt="Enviando" />Aguarde carregando...</div> 
 
-<p class="bg-success lead text-center">Cargos</p>
+<p class="bg-success lead text-center">Cargo</p>
 
 <div id="view_content">	
 

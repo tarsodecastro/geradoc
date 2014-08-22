@@ -4,9 +4,7 @@
 	</center>
 </div>
 
-<div id="titulo" class="titulo1"> 
-    <?php echo $titulo; ?>
-</div>		
+<p class="bg-success lead text-center">Cargo</p>	
 
 <div id="msg" style="display:none;"><img src="{TPL_images}loader.gif" alt="Enviando" />Aguarde carregando...</div> 
 
@@ -19,25 +17,41 @@
 	
 	<div class="formulario">	
 	
-	    <fieldset class="conteiner2"> 
-	    
-	        <legend class="subTitulo6">Cargo</legend> 
-	          
-	        <table class="table_form">
-	        	<tbody>
-		        	<tr>
-			        	<td class=gray><span class="text-red">*</span> Nome:
-			        	</td>
-			        	<td class="green"><?php echo $objeto->nome; ?> 
-			        	</td>
-		        	</tr>
-	        	</tbody>
-	        </table>
-	    </fieldset>
-	    
-	    <input type="button" class="button" value="&nbsp; OK &nbsp;" title=" OK " onclick="javascript:window.history.back();" /><br><br>
+		<div class="panel panel-default">
+			
+			<div class="panel-heading">
+				<h3 class="panel-title">
+					<?php echo $titulo; ?>
+				</h3>
+			</div>
+			<div class="panel-body">
+				
+				<form class="form-horizontal" role="form" id="frm1" name="frm1"  method="post">
+					<fieldset disabled>
+					
+							  <div class="form-group">
+							    <label for="campoNome" class="col-sm-3 control-label">Nome</label>
+							    <div class="col-md-6">
+							    <input type="text" class="form-control" name="campoNome" id="campoNome"  value="<?php echo $objeto->nome; ?>" > 	
+							     </div>
+							  </div>
+					</fieldset>
+				</form>
+	 
+			</div>
+			<!-- fim: div panel-body --> 
+		</div>
+		<!-- fim: div panel panel-default --> 
+	
+	   	<div class="btn-group">
+	   		<?php
+		    	echo $link_cancelar;
+		    	echo $link_alterar;
+		    ?>
+		</div>
 				
     </div>
+    <!-- fim: div formulario --> 
 
 </form> 
 
