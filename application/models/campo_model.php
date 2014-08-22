@@ -53,7 +53,7 @@ class Campo_model extends CI_Model {
 				$link = anchor($area.'/update/'.$id,'<span class="glyphicon glyphicon-pencil"></span> Alterar', array('class'=>'btn btn-warning btn-sm'));
 				break;
 			case 'salvar':
-				$link = '<button type="submit" class="btn btn-success"><span class="glyphicon glyphicon glyphicon-ok"></span> Salvar</button>';
+				$link = '<button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon glyphicon-ok"></span> Salvar</button>';
 				break;
 			case 'search_cancel':
 				$link = anchor($area.'/search_cancel/','Cancelar pesquisa',array('class'=>'btn btn-warning'));

@@ -13,6 +13,8 @@
 	
 <div id="msg" style="display:none;"><img src="{TPL_images}loader.gif" alt="Enviando" />Aguarde carregando...</div> 
 
+<p class="bg-success lead text-center">Órgão</p>
+
 <div id="view_content">	
 
     <?php
@@ -24,7 +26,7 @@
 	
 	<form class="form-horizontal" role="form" id="frm1" name="frm1" action="<?php echo $form_action; ?>" method="post">
 			
-		<div class="panel panel-info">
+		<div class="panel panel-primary">
 	
 			  <div class="panel-heading">
 			    <h3 class="panel-title"><?php echo $titulo; ?></h3>

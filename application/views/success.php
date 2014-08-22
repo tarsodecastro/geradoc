@@ -1,3 +1,4 @@
+<p class="bg-success lead text-center">Sucesso</p>
 
 <button type="button" class="btn btn-default btn-sm" disabled="disabled"><span class="glyphicon glyphicon-arrow-left"></span> Voltar</button>
 

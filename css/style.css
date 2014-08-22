@@ -1,73 +1,5 @@
 @CHARSET "UTF-8";
 
-html {
-	height: 100%;
-	margin:0;
-	}
-
-body { 	
-	font-family: Arial, Helvetica, sans-serif;
-	color:#000;
-	height: 100%;
-	margin:0; 
-	padding:0;
-	font-size: 13px;
-}
-
-/*
-img{ border:0; } 
-
-p { margin:0; }
-
-ul {
-	list-style: none;
-	padding:0;
-	margin:0;
-}
-
-ul.disc {
-	list-style-type: disc;
-}
-
-
-form ul li{	padding:4px; }
-
-input{
-	color:#232323;
-	font-size: 11pt;
-	border: 1px solid #C7C7C7;
-	background-color: #F9FCFF;
-	padding: 5px;
-}
-
-select{
-	color:#232323;
-	font-size: 10pt;
-	border: 1px solid #C7C7C7;
-	background-color: #F9FCFF;
-	padding: 3px;
-}
-
-input[readonly="readonly"], input.readonly {
-    color:#777;
-	border: 1px solid #C7C7C7;
-	background-color: #F5F5F5;
-	padding: 5px;
-}
-
-fieldset{	
-	margin-bottom: 15px;
-	margin-top: 10px;
-	border:1px solid #ccc;	
-}
-
-label{
-	font-size:13px;
-	color:#2D2D2D;
-	font-weight:bold;
-}
-
-
 /*-------GERAL---------*/
 #geral { 	
 	min-height: 100%;
@@ -79,10 +11,6 @@ label{
 	*/
         
 }
-
-*html #geral {
-	height: 100%; /* hack para IE6 que trata height como min-height */
-	}	
 
 /*-------TOPO---------*/
 #topo{
@@ -141,8 +69,8 @@ label{
 
 /*-------MENU---------*/
 
-#geral #menu{
-	height: 30px;
+#menu{
+	height: 25px;
 	background-color:#EDEDED;
 	margin-bottom:20px;	
 	padding-top: 2px;	
@@ -163,27 +91,6 @@ label{
 	background-position-x:left;
 }
 
-/*
-#menu a{
-	font-size: 10.5pt;
-	color: #FFF;
-	padding-left: 1px;
-	text-decoration: underline;
-	font-weight: bold;	
-}
-
-#menu span{
-	font-size: 10.5pt;
-	color: #008000;
-	padding-left: 5px;	
-} 
-
-#menu a:hover{
-	text-decoration: none;
-	color: #FFFFA0;
-	}
-
-
 /*-------MENU VERTICAL---------*/
 .menu_vertical{
         position: absolute; /*-------corrige a incompatibilidade do menu com o Datatables (ficava empurrando pra baixo)---------*/
@@ -203,166 +110,6 @@ label{
 	z-index: 1;
 }
 
-
-div.view {
-	background: url(../images/Search-icon_24.png) center top no-repeat;
-}
-
-div.pdf {
-	background: url(../images/pdf-icon_24.png) center top no-repeat;
-}
-
-div.edit {
-	background: url(../images/edit-icon_24.png) center top no-repeat;
-}
-
-div.hide {
-	background: url(../images/show.png) center top no-repeat;
-}
-
-div.show {
-	background: url(../images/hide.png) center top no-repeat;
-}
-
-div.delete {
-	background: url(../images/Button-Delete-icon_24.png) center top no-repeat;
-}
-
-div.cancelado {
-	background: url(../images/Delete-icon_24.png) center top no-repeat;
-}
-
-div.view, div.pdf, div.edit, div.hide, div.show, div.delete {
-	background-size: 19px;
-	background-color: #F0F0F0;
-	background-position: 23px 5px;
-	padding-top: 23px;
-	width: 67px;
-	height: 22px;
-	margin: 4px;
-	margin-top: 1px;
-	margin-bottom: 1px;
-	/*border: solid 1px purple;*/
-	box-shadow: 0px 0px 3px 1px #888;
-	border-radius: 10px;
-	float: left;
-	font-size: 10pt;
-	color: #090;
-	text-decoration: underline;
-}
-
-div.cancelado {
-	background-position: 22px 5px;
-	background-color: #FFE4C4;
-	padding-top: 23px;
-	width: 67px;
-	height: 22px;
-	margin: 4px;
-	margin-top: 1px;
-	margin-bottom: 1px;
-	/*border: solid 1px purple;*/
-	box-shadow: 0px 0px 3px 1px #888;
-	border-radius: 10px;
-	float: left;
-	
-	font-size: 7pt;
-	color: #000;
-	line-height: 90%
-}
-
-div.view:hover, div.pdf:hover, div.edit:hover, div.hide:hover, div.show:hover, div.delete:hover {
-	background-color: #FFF;
-	box-shadow: 0px 0px 5px 2px #4F8A75;cursor: pointer;
-	color: #36F;
-	font-weight:bold;
-}
-
-a.update,a.delete,a.add,a.back,a.calendar,a.pdf, a.pdf_2,a.menu,a.lock,a.unlock,a.hide,a.show,a.new_doc,a.view,a.funcionarios,a.ok,a.no_ok{
-	font-size: 11pt;
-	color: #090;
-	padding-left: 19px;
-	padding-right: 7px;
-	text-decoration: underline;
-}
-
-a.funcionarios{
-	background: url(../images/Administrator-icon.png) left center no-repeat;
-	background-size: 16px;
-}
-
-a.view {
-	background: url(../images/view.png) left center no-repeat;
-}
-
-a.add {
-	padding-left: 25px;
-	padding-top: 2px;
-	padding-bottom: 2px;
-	font-size: 12pt;
-	background: url(../images/add_3.png) left center no-repeat;
-	background-size: 21px;
-	height: 22px;
-}
-
-a.back {
-	font-size: 12pt;
-}
-
-a.update {
-	background: url(../images/edit-icon.png) left center no-repeat;
-}
-
-a.delete {
-	background: url(../images/delete.png) left center no-repeat;
-}
-
-a.new_doc {
-	background: url(../images/new_doc.png) left center no-repeat;
-}
-
-
-
-a.pdf {
-	background: url(../images/pdf.png) left center no-repeat;
-}
-
-a.back {
-	background: url(../images/prev.gif) left center no-repeat;
-}
-
-a.calendar {
-	background: url(../images/calendar.png) left center no-repeat;
-}
-
-a.lock {
-	background: url(../images/unlock.png) left center no-repeat;
-}
-
-a.unlock {
-	background: url(../images/lock.png) left center no-repeat;
-}
-
-a.hide {
-	background: url(../images/show.png) left center no-repeat;
-}
-
-a.show {
-	background: url(../images/hide.png) left center no-repeat;
-}
-
-a.ok {
-	background: url(../images/ok.png) left center no-repeat;
-}
-
-a.no_ok {
-	background: url(../images/no_ok.png) left center no-repeat;
-}
-
-a.update:hover,a.delete:hover,a.add:hover,a.view:hover,a.back:hover,a.calendar:hover,a.pdf:hover,a.menu:hover,a.show:hover,a.hide:hover,a.lock:hover,a.unlock:hover,a.funcionarios:hover,a.ok:hover,a.no_ok:hover
-	{
-	color: #36F;
-	text-decoration: none;
-}
 
 
 /*-------CONTEUDO---------*/
@@ -399,23 +146,6 @@ a.update:hover,a.delete:hover,a.add:hover,a.view:hover,a.back:hover,a.calendar:h
 }
 
 
-/*-------RODAPÃ‰---------*/
-#geral #rodape {	
-	text-align:center;
-	background-image: url(../images/bg_rodape.gif); 
-	background-repeat:repeat-x;	
-	width: 100%;
-	position: absolute;
-	bottom: 0;	
-	height:76px;
-}
-
-#rodape p{
-	font-size: 12px;
-	margin:0;
-	padding-top:31px;
-	
-}
 
 /*-----Classes CSS------*/
 .titulo1{	
@@ -619,17 +349,6 @@ a.update:hover,a.delete:hover,a.add:hover,a.view:hover,a.back:hover,a.calendar:h
 .img_center{
 	vertical-align:text-top;
 }
-
-a.link1{
-	font-size: 11pt;
-	color: #037E45;
-	font-wight: bold;
-	text-decoration: none;
-}
-
-a.link1:hover{
-	text-decoration: underline;
-}  
 
 
 .subTitulo1{	
@@ -838,98 +557,11 @@ a.link1:hover{
 	text-transform: lowercase;
 }
 
-textarea{
-	font-size: 13px;
-}
 
 .text-red{
 	color: red;
 }
 
-/*
-input#search {
-	background: #FFFFFF no-repeat url(../images/search.png);
-	background-position: 2px;
-	width: 170px;
-	height: 16px;
-	padding-left: 22px;
-	padding-top: 2px;
-	padding-bottom: 2px;
-	border: 1px solid #C7C7C7;
-	float: left;
-	text-transform: none;
-}
-
-.campo_busca {
-	background: #FFFFFF no-repeat url(../images/search.png);
-	background-position: 2px;
-	padding-left: 22px;
-	padding-top: 2px;
-	padding-bottom: 2px;
-	color: #7e7e7e;
-	text-transform: lowercase;
-}
-
-.campo_busca_hover {
-	background: #FFFFFF no-repeat url(../images/search.png);
-	background-position: 2px;
-	padding-left: 22px;
-	padding-top: 2px;
-	padding-bottom: 2px;
-	text-transform: uppercase;
-	color: #000;
-}
-
-.search_text {
-	color: #7e7e7e;
-	font-style: italic;
-	font-size: 12px;
-	text-transform: lowercase;
-}
-
-.button_search {
-	padding-left: 5px;
-	padding-right: 5px;
-	padding-top: 2px;
-	padding-bottom: 2px;
-	border: 1px solid #027202;
-	background-color: #2E8B57;
-	color: white;
-	cursor: pointer;
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 12px;
-	text-decoration: none;
-	height: 22px;
-	margin-left: 0px;
-}
-
-.button_search:hover {
-	background-color: #4876FF;
-	border: 1px solid #141414;
-}
-*/
-
-.button_cancel {
-	padding-left: 5px;
-	padding-right: 5px;
-	padding-top: 2px;
-	padding-bottom: 2px;
-	border: 1px solid #8B4500;
-	background-color: #FF7F00;
-	color: white;
-	cursor: pointer;
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 12px;
-	text-decoration: none;
-	height: 22px;
-	margin-left: 0px;
-}
-
-.button_cancel:hover {
-	background-color: #4876FF;
-	color: white;
-	border: 1px solid #141414;
-}
 
 /*** MODAL ***/
 
@@ -963,7 +595,6 @@ input#search {
 	padding-right: 7px;
 	text-align: left;
 }
-
 
 #modalDialog .foot {
 	background-image: url(../images/bg_rodape.gif);

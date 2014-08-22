@@ -113,9 +113,11 @@ switch ($area){
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="content-language" content="pt-br" />
     <meta http-equiv="refresh" content="<?php echo $CI->config->item('sess_expiration');?>" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="Tarso de Castro">
 	<meta name="reply-to" content="tarsodecastro@gmail.com">
 	<meta name="revised" content="Tarso de Castro, 12/09/2013" />
@@ -129,16 +131,25 @@ switch ($area){
 	{TPL_css}
 	<link href="<?php echo base_url();?>bootstrap/css/bootstrap.min.css" rel="stylesheet"> 
 	<link href="<?php echo base_url();?>bootstrap/css/bootstrap-theme.css" rel="stylesheet">
+	<link href="<?php echo base_url();?>bootstrap/css/bootstrap_custom.css" rel="stylesheet">
+	<link href="<?php echo base_url();?>bootstrap/css/sticky-footer-navbar.css" rel="stylesheet">
 
 	<script type="text/javascript">
 		var CI_ROOT = '<?php echo site_url(); ?>';    	 
     </script>
     {TPL_js}
     {TPL_js_custom}
-    <script src="<?php echo base_url();?>bootstrap/js/bootstrap.min.js"></script>
+    
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
     </head>
     <body>
-        <div id="geral"> 
+            
+            <div class="container">
+        	<!--  Topo -->
             <div id="topo">			
                 <div id="topo_left"></div>				
                 <div id="topo_center"> 
@@ -148,103 +159,103 @@ switch ($area){
                 </div>					
                 <div id="topo_right"></div> 
             </div> 
+            <!--  Fim do Topo -->
+            
+            <!--  Logo -->
             <div id="logo"> 
                 <div id="logo_left" style="background-image: url(<?php echo $CI->config->item('base_url');?>images/bg_logo_left_<?php echo $CI->config->item('orgao');?>.png);"></div>			
                 <div id="logo_right"><?php echo $CI->config->item('title_short');?></div>		
             </div>
+            <!-- Fim do Logo -->
             
+            <!--  Menu -->
              <div id="menu">
              
-             <nav class="navbar navbar-default" role="navigation">
-			  <div class="container-fluid">
-			    <!-- Brand and toggle get grouped for better mobile display -->
-			    <div class="navbar-header">
-			      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-			        <span class="sr-only">Toggle navigation</span>
-			        <span class="icon-bar"></span>
-			        <span class="icon-bar"></span>
-			        <span class="icon-bar"></span>
-			      </button>
-			    </div>
-			
-			    <!-- Collect the nav links, forms, and other content for toggling -->
-			    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-			      <ul class="nav navbar-nav">
-			        <li class="<?php echo $menu_documento;?>"><a href="<?php echo site_url('/documento/index'); ?>" title="Documentos"><span class="glyphicon glyphicon-file"></span> Documentos</a></li>
-			           
-			        <?php if ($nivel_id == 1){ //apenas para administradores?>
-			        
-				        <li class="dropdown <?php echo $menu_modelos;?>">
-				          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-list-alt"></span> Modelos <span class="caret"></span></a>
-				          <ul class="dropdown-menu" role="menu">
-				            <li><a href="<?php echo site_url('/coluna/index'); ?>" title="Campos">Campos</a></li>
-				            <li><a href="<?php echo site_url('/tipo/index'); ?>" title="Tipos">Tipos de Documentos</a></li>
-				          </ul>
-				        </li>
+	             <nav class="navbar navbar-default" role="navigation">
+				  <div class="container-fluid">
+				    <!-- Brand and toggle get grouped for better mobile display -->
+				    <div class="navbar-header">
+				      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+				        <span class="sr-only">Toggle navigation</span>
+				        <span class="icon-bar"></span>
+				        <span class="icon-bar"></span>
+				        <span class="icon-bar"></span>
+				      </button>
+				    </div>
+				
+				    <!-- Collect the nav links, forms, and other content for toggling -->
+				    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				      <ul class="nav navbar-nav">
+				        <li class="<?php echo $menu_documento;?>"><a href="<?php echo site_url('/documento/index'); ?>" title="Documentos"><span class="glyphicon glyphicon-file"></span> Documentos</a></li>
+				           
+				        <?php if ($nivel_id == 1){ //apenas para administradores?>
 				        
-				        <li class="dropdown <?php echo $menu_organograma;?>">
-				          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-tree-conifer"></span> Organograma <span class="caret"></span></a>
-				          <ul class="dropdown-menu" role="menu">
-				            <li><a href="<?php echo site_url('/orgao/index'); ?>" title="Órgãos">Órgãos</a></li>
-				            <li><a href="<?php echo site_url('/setor/index'); ?>" title="Setores">Setores</a></li>
-				          </ul>
-				        </li>
+					        <li class="dropdown <?php echo $menu_modelos;?>">
+					          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-list-alt"></span> Modelos <span class="caret"></span></a>
+					          <ul class="dropdown-menu" role="menu">
+					            <li><a href="<?php echo site_url('/coluna/index'); ?>" title="Campos">Campos</a></li>
+					            <li><a href="<?php echo site_url('/tipo/index'); ?>" title="Tipos">Tipos de Documentos</a></li>
+					          </ul>
+					        </li>
+					        
+					        <li class="dropdown <?php echo $menu_organograma;?>">
+					          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-tree-conifer"></span> Organograma <span class="caret"></span></a>
+					          <ul class="dropdown-menu" role="menu">
+					            <li><a href="<?php echo site_url('/orgao/index'); ?>" title="Órgãos">Órgãos</a></li>
+					            <li><a href="<?php echo site_url('/setor/index'); ?>" title="Setores">Setores</a></li>
+					          </ul>
+					        </li>
+					        
+					        <li class="dropdown <?php echo $menu_pessoas;?>">
+					          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> Pessoas <span class="caret"></span></a>
+					          <ul class="dropdown-menu" role="menu">
+					            <li><a href="<?php echo site_url('/cargo/index'); ?>" title="Cargos">Cargos</a></li>
+					            <li><a href="<?php echo site_url('/contato/index'); ?>" title="Contatos">Remetentes</a></li>
+					            <li><a href="<?php echo site_url('/usuario/index'); ?>" title="Usuários">Usuários</a></li>
+					            <li><a href="<?php echo site_url('usuario/cadastro'); ?>" title="Meu cadastro">Meu cadastro</a></li>
+				       			<li><a href="<?php echo site_url('usuario/altsenha'); ?>" title="Alterar minha senha de acesso">Alterar minha senha</a></li>
+					          </ul>
+					        </li>
+					        
+					        <li class="dropdown <?php echo $menu_ferramentas;?>">
+					          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-wrench"></span> Ferramentas <span class="caret"></span></a>
+					          <ul class="dropdown-menu" role="menu">
+					            <li><a href="<?php echo site_url('/auditoria/index'); ?>" title="Auditoria">Auditoria</a></li>
+					            <li><a href="<?php echo site_url('/estatistica/index'); ?>" title="Estatísticas">Estatísticas</a></li>
+					          </ul>
+					        </li>
 				        
-				        <li class="dropdown <?php echo $menu_pessoas;?>">
-				          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> Pessoas <span class="caret"></span></a>
-				          <ul class="dropdown-menu" role="menu">
-				            <li><a href="<?php echo site_url('/cargo/index'); ?>" title="Cargos">Cargos</a></li>
-				            <li><a href="<?php echo site_url('/contato/index'); ?>" title="Contatos">Remetentes</a></li>
-				            <li><a href="<?php echo site_url('/usuario/index'); ?>" title="Usuários">Usuários</a></li>
-				            <li><a href="<?php echo site_url('usuario/cadastro'); ?>" title="Meu cadastro">Meu cadastro</a></li>
-			       			<li><a href="<?php echo site_url('usuario/altsenha'); ?>" title="Alterar minha senha de acesso">Alterar minha senha</a></li>
-				          </ul>
-				        </li>
+				        <?php } ?>
 				        
-				        <li class="dropdown <?php echo $menu_ferramentas;?>">
-				          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-wrench"></span> Ferramentas <span class="caret"></span></a>
-				          <ul class="dropdown-menu" role="menu">
-				            <li><a href="<?php echo site_url('/auditoria/index'); ?>" title="Auditoria">Auditoria</a></li>
-				            <li><a href="<?php echo site_url('/estatistica/index'); ?>" title="Estatísticas">Estatísticas</a></li>
-				          </ul>
-				        </li>
-			        
-			        <?php } ?>
-			        
-			        
-			        <li><a href="#" id="about" title="Sobre este sistema"><span class="glyphicon glyphicon-thumbs-up"></span> Sobre</a></li>
-			        <li><a href="<?php echo site_url('login/logoff'); ?>" title="Sair do sistema" ><span class="glyphicon glyphicon-off"></span> Sair</a></li>
-			        
-			      </ul>
+				        
+				        <li><a href="#" id="about" title="Sobre este sistema"><span class="glyphicon glyphicon-thumbs-up"></span> Sobre</a></li>
+				        <li><a href="<?php echo site_url('login/logoff'); ?>" title="Sair do sistema" ><span class="glyphicon glyphicon-off"></span> Sair</a></li>
+				        
+				      </ul>
+	
+				    </div><!-- /.navbar-collapse -->
+				  </div><!-- /.container-fluid -->
+				</nav>
 
-			    </div><!-- /.navbar-collapse -->
-			  </div><!-- /.container-fluid -->
-			</nav>
-       
-           
             </div>
-
-            <div id="conteudo">	
-			{TPL_content}		 
+            <!--  Fim do Menu -->
+            
+            {TPL_content}	
+            
             </div>
+            <!--  Fim do container-->
 
-            <div id="rodape">		
-              <?php echo $CI->config->item('rodape_sistema');?>			
+  
+            <!--  Rodape -->
+            <div id="rodape" class="footer">
+            	<div class="container">	
+              		<?php echo $CI->config->item('rodape_sistema');?>	
+             	</div>		
             </div> 
-        </div>
-        
-		<div id="modalDialog" style="display:none; min-height: 300px;">
-			<div class="title">
-			<?php 
-			$pos = strpos($CI->config->item('title_short'), "<");
-			$titulo_modal = substr($CI->config->item('title_short'), 0, $pos);
-			echo $titulo_modal;
-			?></div>
-			<div class="close"><a href="#"  id="bt_cancelar"> X </a></div>
-			<div class="text">
-				{TPL_modal}
-			</div>
-			<div class="foot"></div>
-		</div> 
+            <!--  Fim do Rodape  -->
+            
+            
+         <script src="<?php echo base_url();?>bootstrap/js/bootstrap.min.js"></script>
+         
     </body>
 </html>

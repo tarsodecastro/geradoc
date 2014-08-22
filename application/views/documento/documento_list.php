@@ -1,15 +1,12 @@
 <div class="areaimage">
 	<center>
 		<img src="{TPL_images}cabinet-icon.png" height="72px" />
-		</cente>
-
+	</cente>
 </div>
-
 
 <ol class="breadcrumb">
   	<li class="active"><?php echo $titulo;?></li>
 </ol>
-
 
 <div id="msg" style="display: none;">
 	<img src="{TPL_images}loader.gif" class="img_aling2" alt="Carregando" />Aguarde
@@ -17,7 +14,6 @@
 </div>
 
 
-<div id="view_content">
 
 	<div class="row">
 
@@ -79,7 +75,7 @@
 	<div class="conteiner_tabela">
 		<?php echo $table; ?>
 	</div>
-
+	
 	<div class="subTitulo2">
 		Total de registros:
 		<?php echo $total_rows; ?>
@@ -89,6 +85,5 @@
 		<?php echo $pagination; ?>
 	</div>
 
-</div>
 
 

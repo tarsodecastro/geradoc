@@ -73,9 +73,11 @@ class Setor extends CI_Controller {
         $this->table->set_heading('Item', 'Sigla', 'Nome', 'Ações');
         foreach ($objetos as $objeto){
             $this->table->add_row($objeto->id, $objeto->sigla, $objeto->nome,
-                $this->Campo_model->make_link($this->area, 'visualizar', $objeto->id).' '.
-                $this->Campo_model->make_link($this->area, 'alterar', $objeto->id).' '.
-            	$this->Campo_model->make_link($this->area, 'funcionarios', $objeto->id)
+            	'<div class="btn-group">'.
+                $this->Campo_model->make_link($this->area, 'visualizar', $objeto->id).
+                $this->Campo_model->make_link($this->area, 'alterar_sm', $objeto->id).
+            	$this->Campo_model->make_link($this->area, 'funcionarios', $objeto->id).
+            	'</div>'
               //  anchor($this->area.'/delete/'.$objeto->id,'deletar',array('class'=>'delete','onclick'=>"return confirm('Deseja REALMENTE deletar esse setor?')"))
             );
         }
@@ -587,9 +589,11 @@ public function update($id) {
         foreach ($rows as $o){
 
             $this->table->add_row($o->id, $o->sigla, $o->nome,
+            	'<div class="btn-group">'.
                 $this->Campo_model->make_link($this->area, 'visualizar', $o->id).
-                $this->Campo_model->make_link($this->area, 'alterar', $o->id).
-            	$this->Campo_model->make_link($this->area, 'funcionarios', $o->id)
+                $this->Campo_model->make_link($this->area, 'alterar_sm', $o->id).
+            	$this->Campo_model->make_link($this->area, 'funcionarios', $o->id).
+            	'</div>'
               //  anchor($this->area.'/delete/'.$objeto->id,'deletar',array('class'=>'delete','onclick'=>"return confirm('Deseja REALMENTE deletar esse setor?')"))
             );
 

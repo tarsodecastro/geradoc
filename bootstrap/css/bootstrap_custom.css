@@ -3,3 +3,24 @@
 	text-align: center;
 }
 
+.bg-success{
+	background-color: #CAE1D7;
+	color: #006400;
+	padding: 5px;
+	margin-bottom: 7px;
+}
+
+.panel-primary {
+  border-color: #658b6f;
+}
+.panel-primary > .panel-heading {
+  color: #ffffff;
+  background-color: #658b6f;
+  border-color: #658b6f;
+}
+.panel-primary > .panel-heading + .panel-collapse .panel-body {
+  border-top-color: #658b6f;
+}
+.panel-primary > .panel-footer + .panel-collapse .panel-body {
+  border-bottom-color: #658b6f;
+}

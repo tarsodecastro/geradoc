@@ -25,6 +25,7 @@ class Cargo extends CI_Controller {
 		$this->load->helper('url');
 		$this->load->model('Cargo_model','',TRUE);
         $this->load->model('Grid_model','',TRUE);
+        $this->load->model('Campo_model','',TRUE);
         $this->modal = $this->load->view('about_modal', '', TRUE);
         session_start();
 	}
@@ -34,8 +35,7 @@ class Cargo extends CI_Controller {
 		$this->js[] = 'cargo';
 		
 		$data['titulo']     = 'Cargos';
-		$data['link_add']   = anchor($this->area.'/add/','<span class="glyphicon glyphicon-plus"></span> Adicionar',array('class'=>'btn btn-primary btn-sm'));
-		$data['link_back']  = anchor('documento/index/','Lista de Documentos',array('class'=>'back'));
+		$data['link_add']   = $this->Campo_model->make_link($this->area, 'add');
 		$data['form_action'] = site_url($this->area.'/search');
 		
 		// BUSCA
@@ -54,7 +54,9 @@ class Cargo extends CI_Controller {
         $maximo = 10;
         $uri_segment = 3;
         $inicio = (!$this->uri->segment($uri_segment, 0)) ? 0 : ($this->uri->segment($uri_segment, 0) - 1) * $maximo;
-        $_SESSION['novoinicio'] = $this->uri->segment($uri_segment - 1, 'index').'/'.$this->uri->segment($uri_segment, 0);  //cria uma variavel de sessao para retornar a pagina correta apos visualizacao, delecao ou alteracao
+       // $_SESSION['novoinicio'] = $this->uri->segment($uri_segment - 1, 'index').'/'.$this->uri->segment($uri_segment, 0);  //cria uma variavel de sessao para retornar a pagina correta apos visualizacao, delecao ou alteracao
+        $_SESSION['novoinicio'] = $this->uri->segment($uri_segment, 0);  //cria uma variavel de sessao para retornar a pagina correta apos visualizacao, delecao ou alteracao
+            
         $config['base_url'] = site_url($this->area.'/index/');
         $config['total_rows'] = $this->Cargo_model->count_all();
         $config['per_page'] = $maximo;
@@ -70,9 +72,10 @@ class Cargo extends CI_Controller {
         $this->table->set_heading('Item', 'Nome', 'Ações');
         foreach ($objetos as $objeto){
             $this->table->add_row($objeto->id, $objeto->nome,
-                anchor($this->area.'/view/'.$objeto->id,'visualizar',array('class'=>'view')).' '.
-                anchor($this->area.'/update/'.$objeto->id,'alterar',array('class'=>'update'))
-              //  anchor($this->area.'/delete/'.$objeto->id,'deletar',array('class'=>'delete','onclick'=>"return confirm('Deseja REALMENTE deletar esse orgao?')"))
+            	'<div class="btn-group">'.
+                $this->Campo_model->make_link($this->area, 'visualizar', $objeto->id).
+               	$this->Campo_model->make_link($this->area, 'alterar_sm', $objeto->id).
+              	'</div>'
             );
         }
 
@@ -94,8 +97,10 @@ class Cargo extends CI_Controller {
 		$this->load->library(array('form_validation'));
 		$this->form_validation->set_error_delimiters('<div class="error_field"> <img class="img_align" src="{TPL_images}/error.png" alt="! " /> ', '</div>');
 	
-		$data['titulo'] = 'Novo Cargo';
-		$data['link_back']  = anchor($this->area.'/index/','<span class="glyphicon glyphicon-arrow-left"></span> Voltar',array('class'=>'btn btn-warning btn-sm'));
+		$data['titulo'] = 'Novo';
+		$data['link_back'] = $this->Campo_model->make_link($this->area, 'voltar');
+		$data['link_cancelar'] = $this->Campo_model->make_link($this->area, 'cancelar');
+		$data['link_salvar'] = $this->Campo_model->make_link($this->area, 'salvar');
 		$data['form_action'] = site_url($this->area.'/add/');
 		$data['message'] = '';
 	
@@ -153,12 +158,16 @@ class Cargo extends CI_Controller {
 	
 	function view($id){
 
-		$data['titulo'] = 'Detalhes do cargo';
+		$data['titulo'] = 'Detalhes';
 		
         $data['message'] = '';
         
-		$data['link_back'] = anchor($this->area.'/'.$_SESSION['novoinicio'],'<span class="glyphicon glyphicon-arrow-left"></span> Voltar',array('class'=>'btn btn-warning btn-sm'));
-		
+        $data['link_back'] = $this->Campo_model->make_link($this->area, 'voltar');
+        
+        $data['link_cancelar'] = $this->Campo_model->make_link($this->area, 'cancelar');
+        
+        $data['link_alterar'] = $this->Campo_model->make_link($this->area, 'alterar', $id);
+
 		$data['objeto'] = $this->Cargo_model->get_by_id($id)->row();
 
 		$this->load->view($this->area.'/'.$this->area.'_view', $data);
@@ -171,9 +180,11 @@ public function update($id) {
 		$this->form_validation->set_error_delimiters('<div class="error_field"> <img class="img_align" src="{TPL_images}/error.png" alt="! " /> ', '</div>');
 			
 		// define as variaveis comuns
-		$data['titulo'] = "Alteração de  órgão";
+		$data['titulo'] = "Alteração";
 		$data['message'] = '';
-		$data['link_back'] = anchor($this->area.'/'.$_SESSION['novoinicio'],'<span class="glyphicon glyphicon-arrow-left"></span> Voltar',array('class'=>'btn btn-warning btn-sm'));
+		$data['link_back'] = $this->Campo_model->make_link($this->area, 'voltar');
+		$data['link_cancelar'] = $this->Campo_model->make_link($this->area, 'cancelar');
+		$data['link_salvar'] = $this->Campo_model->make_link($this->area, 'salvar');
 		$data['form_action'] = site_url($this->area.'/update/'.$id);
 
 		//Constroe os campos do formulario
@@ -251,10 +262,12 @@ public function update($id) {
 
 
     public function search($page = 1) { 
+    	
     	$this->js[] = 'cargo';
         $data['titulo'] = "Busca por cargos";
-        $data['link_add']   = anchor($this->area.'/add/','Adicionar',array('class'=>'add'));
-        $data['link_search_cancel'] = anchor($this->area.'/search_cancel/','CANCELAR PESQUISA',array('class'=>'button_cancel'));
+        $data['link_add']   = $this->Campo_model->make_link($this->area, 'add');
+        $data['link_search_cancel'] = $this->Campo_model->make_link($this->area, 'search_cancel');
+      
         $data['form_action'] = site_url($this->area.'/search');
 
         $this->load->library(array('pagination', 'table'));
@@ -287,9 +300,10 @@ public function update($id) {
         foreach ($rows as $o){
 
             $this->table->add_row($o->id, $o->nome,
-                anchor($this->area.'/view/'.$o->id,'visualizar',array('class'=>'view')).' '.
-                anchor($this->area.'/update/'.$o->id,'alterar',array('class'=>'update'))
-              //  anchor($this->area.'/delete/'.$objeto->id,'deletar',array('class'=>'delete','onclick'=>"return confirm('Deseja REALMENTE deletar esse orgao?')"))
+            	'<div class="btn-group">'.
+                $this->Campo_model->make_link($this->area, 'visualizar',$o->id).
+                $this->Campo_model->make_link($this->area, 'alterar',$o->id).
+              	'</div>'
             );
 
         }
