@@ -197,7 +197,7 @@ switch ($area){
 				            <li><a href="<?php echo site_url('/contato/index'); ?>" title="Contatos">Remetentes</a></li>
 				            <li><a href="<?php echo site_url('/usuario/index'); ?>" title="Usuários">Usuários</a></li>
 				            <li><a href="<?php echo site_url('usuario/cadastro'); ?>" title="Meu cadastro">Meu cadastro</a></li>
-			       			<li><a href="<?php echo site_url('usuario/altsenha'); ?>" title="Alterar minha senha de acesso">Senha</a></li>
+			       			<li><a href="<?php echo site_url('usuario/altsenha'); ?>" title="Alterar minha senha de acesso">Alterar minha senha</a></li>
 				          </ul>
 				        </li>
 				        

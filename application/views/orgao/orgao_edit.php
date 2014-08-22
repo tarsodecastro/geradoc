@@ -10,10 +10,7 @@
         window.document.body.onpaste = function() { return false; }
     });
 </script> 
-<div id="titulo" class="titulo1"> 
-    <?php echo $titulo; ?>
-</div>		
-
+	
 <div id="msg" style="display:none;"><img src="{TPL_images}loader.gif" alt="Enviando" />Aguarde carregando...</div> 
 
 <div id="view_content">	
@@ -21,40 +18,74 @@
     <?php
     echo $link_back;
     echo $message;
-    echo form_open($form_action);
     ?>
 	
 	<div class="formulario">	
 	
-	    <fieldset class="conteiner2"> 
-	    
-	        <legend class="subTitulo6">Órgão</legend> 
-	        
-	        <table class="table_form">
-	        	<tbody>
-		        	<tr>
-			        	<td class=gray><span class="text-red">*</span> Nome:
-			        	</td>
-			        	<td class="green"><?php echo form_input($campoNome) .form_error('campoNome'); ?> 
-			        	</td>
-		        	</tr>
-		        	<tr>
-			        	<td class="gray"><span class="text-red">*</span> Sigla:
-			        	</td>
-			        	<td class="green"><?php echo form_input($campoSigla) .form_error('campoSigla'); ?>
-			        	</td>
-		        	</tr>
-		        	<tr>
-			        	<td class="gray"><span class="text-red">*</span> Endereço:
-			        	</td>
-			        	<td class="green"><?php echo form_textarea($campoEndereco) . form_error('campoEndereco'); ?>
-			        	</td>
-		        	</tr>
-	        	</tbody>
-	        </table>
-	    </fieldset>
+	
+	<form class="form-horizontal" role="form" id="frm1" name="frm1" action="<?php echo $form_action; ?>" method="post">
+		
+		
+	<div class="panel panel-info">
 
-		<input type="submit" class="button" value="Salvar" title="Salvar"/>&nbsp;&nbsp;							
+		  <div class="panel-heading">
+		    <h3 class="panel-title"><?php echo $titulo; ?></h3>
+		  </div>
+		  
+		  
+		  <div class="panel-body">
+		  
+		  	
+				  <div class="form-group <?php echo (form_error('campoNome') != '')? 'has-error':''; ?>"">
+				    <label for="campoNome" class="col-sm-3 control-label">Nome</label>
+				    <div class="col-md-6">
+				      	<?php echo form_input($campoNome); ?> 
+				     </div>
+				  </div>
+				  
+				  
+				  <div class="form-group <?php echo (form_error('campoSigla') != '')? 'has-error':''; ?>">
+				    <label for="campoSigla" class="col-sm-3 control-label">Sigla</label>
+				    <div class="col-md-6">
+				   	 	<?php echo form_input($campoSigla); ?>
+				    </div>
+				  </div>
+				  
+				  
+				  <div class="form-group <?php echo (form_error('campoEndereco') != '')? 'has-error':''; ?>">
+				    <label for="campoEndereco" class="col-sm-3 control-label">Endereço</label>
+				    <div class="col-md-6">
+				    	<?php echo form_textarea($campoEndereco); ?>
+				    </div>
+				  </div>
+				  
+				  
+				    <?php 
+				    if(validation_errors() != ''){
+							echo '<div class="form-group">';
+							echo form_error('campoNome');
+							echo form_error('campoSigla'); 
+							echo form_error('campoEndereco'); 
+							echo '</div>';
+							}
+					?>
+				  
+
+			
+		    
+		  </div>
+	</div>
+	
+	
+	<div class="btn-group">
+	   		<?php
+		    	echo $link_cancelar;
+		    	echo $link_salvar;
+		    ?>
+	</div>
+	
+	</form>
+						
     	
     </div>
 

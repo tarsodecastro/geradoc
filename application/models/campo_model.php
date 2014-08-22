@@ -42,30 +42,36 @@ function orgao($indice) {
 	            'campoNome' => array(
 	                'name' => 'campoNome',
 	                'id' => 'campoNome',
+	            	'type'=>'text',
+	            	'placeholder'=> 'Nome',
 	                'value' => mb_convert_case($this->input->post('campoNome'), MB_CASE_UPPER, "ISO-8859-1"),
 	                'maxlength' => '90',
 	                'size' => '71',
-	                'class' => 'textboxUpper',
+	                'class' => 'form-control text-uppercase',
 	            ),
         		
         		
         		'campoSigla' => array(
         				'name' => 'campoSigla',
         				'id' => 'campoSigla',
+        				'type'=>'text',
+        				'placeholder'=> 'Sigla',
         				'value' => mb_convert_case($this->input->post('campoSigla'), MB_CASE_UPPER, "ISO-8859-1"),
         				'maxlength' => '20',
         				'size' => '21',
-        				'class' => 'textboxUpper',
+        				'class' => 'form-control text-uppercase',
         		),
         		
         		
         		'campoEndereco' => array(
         				'name' => 'campoEndereco',
         				'id' => 'campoEndereco',
+        				'type'=>'text',
+        				'placeholder'=> 'Endereço',
         				'value' => mb_convert_case($this->input->post('campoEndereco'), MB_CASE_UPPER, "ISO-8859-1"),
         				'cols'  => '70',
                         'rows'  =>  '2',
-        				'class' => 'textboxUpper',
+        				'class' => 'form-control text-uppercase',
         		),
         		
         		

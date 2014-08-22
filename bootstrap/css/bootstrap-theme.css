@@ -498,3 +498,9 @@
 	font-size:13pt;
 	padding: 5px 15px;
 }
+
+.vcenter {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+}
