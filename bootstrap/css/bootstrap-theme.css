@@ -438,6 +438,7 @@
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff5f5f5', endColorstr='#ffe8e8e8', GradientType=0);
   background-repeat: repeat-x;
 }
+/*
 .panel-primary > .panel-heading {
   background-image: -webkit-linear-gradient(top, #428bca 0%, #357ebd 100%);
   background-image:      -o-linear-gradient(top, #428bca 0%, #357ebd 100%);
@@ -446,6 +447,7 @@
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff428bca', endColorstr='#ff357ebd', GradientType=0);
   background-repeat: repeat-x;
 }
+*/
 .panel-success > .panel-heading {
   background-image: -webkit-linear-gradient(top, #dff0d8 0%, #d0e9c6 100%);
   background-image:      -o-linear-gradient(top, #dff0d8 0%, #d0e9c6 100%);
