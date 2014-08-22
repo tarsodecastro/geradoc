@@ -25,6 +25,7 @@ class Orgao extends CI_Controller {
 		$this->load->helper('url');
 		$this->load->model('Orgao_model','',TRUE);
         $this->load->model('Grid_model','',TRUE);
+        $this->load->model('Campo_model','',TRUE);
         $this->modal = $this->load->view('about_modal', '', TRUE);
         session_start();
 	}
@@ -34,7 +35,7 @@ class Orgao extends CI_Controller {
 		$this->js[] = 'orgao';
 		
 		$data['titulo']     = 'Órgãos';
-		$data['link_add']   = $this->make_link('add');
+		$data['link_add']   = $this->Campo_model->make_link($this->area, 'add');
 		$data['form_action'] = site_url($this->area.'/search');
 		
 		// BUSCA
@@ -70,8 +71,8 @@ class Orgao extends CI_Controller {
         foreach ($objetos as $objeto){
             $this->table->add_row($objeto->id, $objeto->sigla, $objeto->nome,
             	'<div class="btn-group">'.
-               $this->make_link('visualizar', $objeto->id).
-               $this->make_link('alterar_sm', $objeto->id).
+               $this->Campo_model->make_link($this->area, 'visualizar', $objeto->id).
+               $this->Campo_model->make_link($this->area, 'alterar_sm', $objeto->id).
               //  anchor($this->area.'/delete/'.$objeto->id,'deletar',array('class'=>'delete','onclick'=>"return confirm('Deseja REALMENTE deletar esse orgao?')"))
               	'</div>'
             );
@@ -96,9 +97,9 @@ class Orgao extends CI_Controller {
 		$this->form_validation->set_error_delimiters('<div class="error_field"> <img class="img_align" src="{TPL_images}/error.png" alt="! " /> ', '</div>');
 	
 		$data['titulo'] = 'Novo Órgão';
-		$data['link_back'] = $this->make_link('voltar');
-		$data['link_cancelar'] = $this->make_link('cancelar');
-		$data['link_salvar'] = $this->make_link('salvar');
+		$data['link_back'] = $this->Campo_model->make_link($this->area, 'voltar');
+		$data['link_cancelar'] = $this->Campo_model->make_link($this->area,'cancelar');
+		$data['link_salvar'] = $this->Campo_model->make_link($this->area,'salvar');
 		
 		$data['form_action'] = site_url($this->area.'/add/');
 		$data['message'] = '';
@@ -165,11 +166,11 @@ class Orgao extends CI_Controller {
 		
         $data['message'] = '';
         
-        $data['link_back'] = $this->make_link('voltar');
+        $data['link_back'] = $this->Campo_model->make_link($this->area, 'voltar');
         
-        $data['link_cancelar'] = $this->make_link('cancelar');
+        $data['link_cancelar'] = $this->Campo_model->make_link($this->area, 'cancelar');
         
-        $data['link_alterar'] = $this->make_link('alterar', $id);
+        $data['link_alterar'] = $this->Campo_model->make_link($this->area, 'alterar', $id);
 		
 		$data['objeto'] = $this->Orgao_model->get_by_id($id)->row();
 
@@ -188,9 +189,9 @@ public function update($id) {
 		
 		$data['form_action'] = site_url($this->area.'/update/'.$id);
 		
-		$data['link_back'] = $this->make_link('voltar');
-		$data['link_cancelar'] = $this->make_link('cancelar');
-		$data['link_salvar'] = $this->make_link('salvar');
+		$data['link_back'] = $this->Campo_model->make_link($this->area, 'voltar');
+		$data['link_cancelar'] = $this->Campo_model->make_link($this->area, 'cancelar');
+		$data['link_salvar'] = $this->Campo_model->make_link($this->area, 'salvar');
 
 		//Constroe os campos do formulario
 		$this->load->model('Campo_model','',TRUE);
@@ -276,8 +277,8 @@ public function update($id) {
     public function search($page = 1) { 
     	$this->js[] = 'orgao';
         $data['titulo'] = "Busca por órgãos";
-        $data['link_add']   = $this->make_link('add');
-        $data['link_search_cancel'] = $this->make_link('search_cancel');
+        $data['link_add']   = $this->Campo_model->make_link($this->area, 'add');
+        $data['link_search_cancel'] = $this->Campo_model->make_link($this->area, 'search_cancel');
         $data['form_action'] = site_url($this->area.'/search');
 
         $this->load->library(array('pagination', 'table'));
@@ -310,8 +311,8 @@ public function update($id) {
 
             $this->table->add_row($o->id, $o->sigla, $o->nome,
                '<div class="btn-group">'.
-	               $this->make_link('visualizar', $o->id).
-	               $this->make_link('alterar_sm', $o->id).
+	               $this->Campo_model->make_link($this->area, 'visualizar', $o->id).
+	               $this->Campo_model->make_link($this->area, 'alterar_sm', $o->id).
 	              //  anchor($this->area.'/delete/'.$objeto->id,'deletar',array('class'=>'delete','onclick'=>"return confirm('Deseja REALMENTE deletar esse orgao?')"))
               	'</div>'
             );
@@ -352,37 +353,5 @@ public function update($id) {
 		}
 	}
 	
-	function make_link($string, $id = null){
-
-		switch ($string){
-			case 'add':
-				$link =  anchor($this->area.'/add/','<span class="glyphicon glyphicon-plus"></span> Adicionar',array('class'=>'btn btn-primary btn-sm'));
-				break;
-			case 'visualizar':
-				$link =  anchor($this->area.'/view/'.$id,'<span class="glyphicon glyphicon-search"></span> Visualizar', array('class'=>'btn btn-default btn-sm'));
-				break;
-			case 'voltar':
-				$link = anchor($this->area.'/index/'.$_SESSION['novoinicio'],'<span class="glyphicon glyphicon-arrow-left"></span> Voltar',array('class'=>'btn btn-default btn-sm'));
-				break;
-			case 'cancelar':
-				$link = anchor($this->area.'/index/'.$_SESSION['novoinicio'],'<span class="glyphicon glyphicon-remove"></span> Cancelar',array('class'=>'btn btn-default'));
-				break;
-			case 'alterar':
-				$link = anchor($this->area.'/update/'.$id,'<span class="glyphicon glyphicon-pencil"></span> Alterar', array('class'=>'btn btn-warning'));
-				break;
-			case 'alterar_sm':
-				$link = anchor($this->area.'/update/'.$id,'<span class="glyphicon glyphicon-pencil"></span> Alterar', array('class'=>'btn btn-warning btn-sm'));
-				break;
-			case 'salvar':
-				$link = '<button type="submit" class="btn btn-success"><span class="glyphicon glyphicon glyphicon-ok"></span> Salvar</button>';
-				break;
-			case 'search_cancel':
-				$link = anchor($this->area.'/search_cancel/','Cancelar pesquisa',array('class'=>'btn btn-warning'));
-				break;
-		}
-
-		return $link;
-
-	}
 }
 ?>

@@ -9,6 +9,7 @@ class Campo_model extends CI_Model {
     /* 
      * Botoes dos links:
      */ 
+	/*
  	function linkBack($area, $texto) {
         $link = anchor('' . $area . '/index/', 'Voltar para a lista de ' . $texto, array('class' => 'back'));
         return $link;
@@ -28,6 +29,47 @@ class Campo_model extends CI_Model {
         $link = 'onClick="location.href=\'' . base_url() . 'index.php/' . $area . '/index\'"';
         return $link;
     }
+    */
+	
+	function make_link($area = null, $string, $id = null){
+	
+		switch ($string){
+			case 'add':
+				$link =  anchor($area.'/add/','<span class="glyphicon glyphicon-plus"></span> Adicionar',array('class'=>'btn btn-primary btn-sm'));
+				break;
+			case 'visualizar':
+				$link =  anchor($area.'/view/'.$id,'<span class="glyphicon glyphicon-search"></span> Visualizar', array('class'=>'btn btn-default btn-sm'));
+				break;
+			case 'voltar':
+				$link = anchor($area.'/index/'.$_SESSION['novoinicio'],'<span class="glyphicon glyphicon-arrow-left"></span> Voltar',array('class'=>'btn btn-default btn-sm'));
+				break;
+			case 'cancelar':
+				$link = anchor($area.'/index/'.$_SESSION['novoinicio'],'<span class="glyphicon glyphicon-remove"></span> Cancelar',array('class'=>'btn btn-default'));
+				break;
+			case 'alterar':
+				$link = anchor($area.'/update/'.$id,'<span class="glyphicon glyphicon-pencil"></span> Alterar', array('class'=>'btn btn-warning'));
+				break;
+			case 'alterar_sm':
+				$link = anchor($area.'/update/'.$id,'<span class="glyphicon glyphicon-pencil"></span> Alterar', array('class'=>'btn btn-warning btn-sm'));
+				break;
+			case 'salvar':
+				$link = '<button type="submit" class="btn btn-success"><span class="glyphicon glyphicon glyphicon-ok"></span> Salvar</button>';
+				break;
+			case 'search_cancel':
+				$link = anchor($area.'/search_cancel/','Cancelar pesquisa',array('class'=>'btn btn-warning'));
+				break;
+			case 'funcionarios':
+				$link = anchor($area.'/funcionarios/'.$id,'<span class="glyphicon glyphicon-pencil"></span> Funcionários', array('class'=>'btn btn-default btn-sm'));
+				break;
+				
+		}
+	
+		return $link;
+	
+	}
+    
+    
+    
     /*
      * Fim do botoes
      */

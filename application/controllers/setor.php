@@ -25,6 +25,7 @@ class Setor extends CI_Controller {
 		$this->load->helper('url');
 		$this->load->model('Setor_model','',TRUE);
         $this->load->model('Grid_model','',TRUE);
+        $this->load->model('Campo_model','',TRUE);
         $this->modal = $this->load->view('about_modal', '', TRUE);
         session_start();
 	}
@@ -36,8 +37,8 @@ class Setor extends CI_Controller {
 		$this->js[] = 'setor';
 		
 		$data['titulo']     = 'Setores';
-		$data['link_add']   = anchor($this->area.'/add/','<span class="glyphicon glyphicon-plus"></span> Adicionar',array('class'=>'btn btn-primary btn-sm'));
-		$data['link_back']  = anchor('documento/index/','Lista de Documentos',array('class'=>'back'));
+		$data['link_add']   = $this->Campo_model->make_link($this->area, 'add');
+		$data['link_back']  = $this->Campo_model->make_link($this->area, 'voltar');
 		$data['form_action'] = site_url($this->area.'/search');
 		
 		// BUSCA
@@ -72,9 +73,9 @@ class Setor extends CI_Controller {
         $this->table->set_heading('Item', 'Sigla', 'Nome', 'Ações');
         foreach ($objetos as $objeto){
             $this->table->add_row($objeto->id, $objeto->sigla, $objeto->nome,
-                anchor($this->area.'/view/'.$objeto->id,'visualizar',array('class'=>'view')).' '.
-                anchor($this->area.'/update/'.$objeto->id,'alterar',array('class'=>'update')).' '.
-            	anchor($this->area.'/funcionarios/'.$objeto->id,'funcionários',array('class'=>'funcionarios'))
+                $this->Campo_model->make_link($this->area, 'visualizar', $objeto->id).' '.
+                $this->Campo_model->make_link($this->area, 'alterar', $objeto->id).' '.
+            	$this->Campo_model->make_link($this->area, 'funcionarios', $objeto->id)
               //  anchor($this->area.'/delete/'.$objeto->id,'deletar',array('class'=>'delete','onclick'=>"return confirm('Deseja REALMENTE deletar esse setor?')"))
             );
         }
@@ -100,7 +101,9 @@ class Setor extends CI_Controller {
 		$this->form_validation->set_error_delimiters('<div class="error_field"> <img class="img_align" src="{TPL_images}/error.png" alt="! " /> ', '</div>');
 	
 		$data['titulo'] = 'Novo Setor';
-		$data['link_back']  = anchor($this->area.'/index/','<span class="glyphicon glyphicon-arrow-left"></span> Voltar',array('class'=>'btn btn-warning btn-sm'));
+		$data['link_back']  = $this->Campo_model->make_link($this->area, 'voltar');
+		$data['link_cancelar'] = $this->Campo_model->make_link($this->area,'cancelar');
+		$data['link_salvar'] = $this->Campo_model->make_link($this->area,'salvar');
 		$data['form_action'] = site_url($this->area.'/add/');
 		$data['mensagem'] = '';
 	
@@ -243,7 +246,7 @@ class Setor extends CI_Controller {
 		
         $data['message'] = '';
         
-		$data['link_back'] = anchor($this->area.'/index/'.$_SESSION['novoinicio'],'<span class="glyphicon glyphicon-arrow-left"></span> Voltar',array('class'=>'btn btn-warning btn-sm'));
+		$data['link_back'] = $this->Campo_model->make_link($this->area, 'voltar');
 		
 		$data['objeto'] = $this->Setor_model->get_by_id($id)->row();
 		
@@ -266,7 +269,7 @@ public function update($id) {
 		// define as variaveis comuns
 		$data['titulo'] = "Edição de setor";
 		$data['mensagem'] = '';
-		$data['link_back'] = anchor($this->area.'/index/'.$_SESSION['novoinicio'],'<span class="glyphicon glyphicon-arrow-left"></span> Voltar',array('class'=>'btn btn-warning btn-sm'));
+		$data['link_back'] = $this->Campo_model->make_link($this->area, 'voltar');
 		$data['form_action'] = site_url($this->area.'/update/'.$id);
 
 		//Constroe os campos do formulario
@@ -416,7 +419,7 @@ public function update($id) {
 		// define as variaveis comuns
 		$data['titulo'] = "Funcionários do setor";
 		$data['mensagem'] = '';
-		$data['link_back'] = anchor($this->area.'/index/'.$_SESSION['novoinicio'],'<span class="glyphicon glyphicon-arrow-left"></span> Voltar',array('class'=>'btn btn-warning btn-sm'));
+		$data['link_back'] = $this->Campo_model->make_link($this->area, 'voltar');
 		$data['form_action'] = site_url($this->area.'/funcionarios/'.$id);
 	
 		//Constroe os campos do formulario
@@ -551,8 +554,8 @@ public function update($id) {
     public function search($page = 1) { 
     	$this->js[] = 'setor';
         $data['titulo'] = "Busca por setores";
-        $data['link_add']   = anchor($this->area.'/add/','Adicionar',array('class'=>'add'));
-        $data['link_search_cancel'] = anchor($this->area.'/search_cancel/','CANCELAR PESQUISA',array('class'=>'button_cancel'));
+        $data['link_add']   = $this->Campo_model->make_link($this->area, 'add');
+        $data['link_search_cancel'] = $this->Campo_model->make_link($this->area, 'search_cancel');
         $data['form_action'] = site_url($this->area.'/search');
 
         $this->load->library(array('pagination', 'table'));
@@ -584,9 +587,9 @@ public function update($id) {
         foreach ($rows as $o){
 
             $this->table->add_row($o->id, $o->sigla, $o->nome,
-                anchor($this->area.'/view/'.$o->id,'visualizar',array('class'=>'view')).' '.
-                anchor($this->area.'/update/'.$o->id,'alterar',array('class'=>'update')).' '.
-            	anchor($this->area.'/funcionarios/'.$o->id,'funcionários',array('class'=>'funcionarios'))
+                $this->Campo_model->make_link($this->area, 'visualizar', $o->id).
+                $this->Campo_model->make_link($this->area, 'alterar', $o->id).
+            	$this->Campo_model->make_link($this->area, 'funcionarios', $o->id)
               //  anchor($this->area.'/delete/'.$objeto->id,'deletar',array('class'=>'delete','onclick'=>"return confirm('Deseja REALMENTE deletar esse setor?')"))
             );
 
