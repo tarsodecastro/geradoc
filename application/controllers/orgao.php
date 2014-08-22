@@ -162,7 +162,7 @@ class Orgao extends CI_Controller {
 	
 	function view($id){
 
-		$data['titulo'] = 'Detalhes do órgão';
+		$data['titulo'] = 'Detalhes';
 		
         $data['message'] = '';
         

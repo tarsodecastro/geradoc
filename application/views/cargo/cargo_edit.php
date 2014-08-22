@@ -37,7 +37,7 @@
 			  	
 					  <div class="form-group <?php echo (form_error('campoNome') != '')? 'has-error':''; ?>"">
 					    <label for="campoNome" class="col-sm-3 control-label">Nome</label>
-					    <div class="col-md-6">
+					    <div class="col-md-7">
 					      	<?php echo form_input($campoNome); ?> 
 					     </div>
 					  </div>

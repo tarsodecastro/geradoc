@@ -24,3 +24,19 @@
 .panel-primary > .panel-footer + .panel-collapse .panel-body {
   border-bottom-color: #658b6f;
 }
+
+
+.panel-default {
+  border-color: #658b6f;
+}
+.panel-default > .panel-heading {
+  color: #006400;
+  background-color: #CAE1D7;
+  border-color: #658b6f;
+}
+.panel-default > .panel-heading + .panel-collapse .panel-body {
+  border-top-color: #658b6f;
+}
+.panel-default > .panel-footer + .panel-collapse .panel-body {
+  border-bottom-color: #658b6f;
+}

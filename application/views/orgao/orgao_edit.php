@@ -36,7 +36,7 @@
 			  	
 					  <div class="form-group <?php echo (form_error('campoNome') != '')? 'has-error':''; ?>"">
 					    <label for="campoNome" class="col-sm-3 control-label">Nome</label>
-					    <div class="col-md-6">
+					    <div class="col-md-7">
 					      	<?php echo form_input($campoNome); ?> 
 					     </div>
 					  </div>
@@ -44,7 +44,7 @@
 					  
 					  <div class="form-group <?php echo (form_error('campoSigla') != '')? 'has-error':''; ?>">
 					    <label for="campoSigla" class="col-sm-3 control-label">Sigla</label>
-					    <div class="col-md-6">
+					    <div class="col-md-7">
 					   	 	<?php echo form_input($campoSigla); ?>
 					    </div>
 					  </div>
@@ -52,7 +52,7 @@
 					  
 					  <div class="form-group <?php echo (form_error('campoEndereco') != '')? 'has-error':''; ?>">
 					    <label for="campoEndereco" class="col-sm-3 control-label">Endereço</label>
-					    <div class="col-md-6">
+					    <div class="col-md-7">
 					    	<?php echo form_textarea($campoEndereco); ?>
 					    </div>
 					  </div>

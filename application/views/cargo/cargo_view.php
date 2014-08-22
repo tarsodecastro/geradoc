@@ -31,7 +31,7 @@
 					
 							  <div class="form-group">
 							    <label for="campoNome" class="col-sm-3 control-label">Nome</label>
-							    <div class="col-md-6">
+							    <div class="col-md-7">
 							    <input type="text" class="form-control" name="campoNome" id="campoNome"  value="<?php echo $objeto->nome; ?>" > 	
 							     </div>
 							  </div>
