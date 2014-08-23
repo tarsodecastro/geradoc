@@ -39,16 +39,27 @@
 	
 	<div style="clear:both;"></div> 
 	        
-	<div class="conteiner_tabela">
+	<div class="table-responsive">
 			<?php echo $table; ?>
 	</div>
 
-	<div class="subTitulo2">
-		Total de registros: <?php echo $total_rows; ?>
-	</div>
+	<div class="row"> 
 
-	<div class="paginacao">
-		<?php echo $pagination; ?>
+		<div class="col-md-6">
+			<div class="dataTables_info">
+				Total de registros: <?php echo $total_rows; ?>
+			</div>
+		</div>
+		
+		<div class="col-md-5">
+			<div class="dataTables_paginate paging_simple_numbers">
+				<?php echo $pagination; ?>
+			</div>
+		</div>
+		
+		<div class="col-md-1">
+		</div>
+	
 	</div>
 
 </div>

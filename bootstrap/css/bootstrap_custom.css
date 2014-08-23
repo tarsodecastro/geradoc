@@ -40,3 +40,23 @@
 .panel-default > .panel-footer + .panel-collapse .panel-body {
   border-bottom-color: #658b6f;
 }
+
+
+.pagination > .active > a{
+	background-color: #06ab5f;
+	border-color: #658b6f;
+}
+
+.pagination > .active > a:hover{
+	background-color: #06ab5f;
+	border-color: #658b6f;
+}
+
+
+.pagination>li>a, .pagination>li>span{
+	 color: #658b6f;
+}
+
+.pagination>li>a:hover, .pagination>li>span{
+	color: #658b6f;
+}

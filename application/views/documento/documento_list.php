@@ -70,7 +70,7 @@
 
 	<div style="clear: both;"></div>
 
-	<div class="conteiner_tabela">
+	<div id="example_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
 		<?php echo $table; ?>
 	</div>
 	

@@ -10,21 +10,12 @@
          "bLengthChange": false,
          "bInfo": false,
          "aoColumns": [
-       				{"sWidth":"30px", "sClass": "center"},
-       				{"sClass": "justify"},	
-       				{"sClass": "justify"}, 				
-       				{"sClass": "center"} 								 	
+       				{"sWidth":"30px", "sClass": "text-center"},
+       				{"sClass":"text-center"},	
+       				{"sClass":"text-justify"}, 				
+       				{"sClass":"text-center"} 								 	
        			],
      });
-	
-	$("#tabela tr").mouseover(function(){
-		$(this).addClass("tableRow_mouseover");
-	});
-	
-	$("#tabela tr").mouseout(function(){
-		$(this).removeClass("tableRow_mouseover");
-	});  
-  	 
  	
 	$('#busca').click(function() { 
         $.blockUI({ message: $('#buscaForm') }); 

@@ -133,9 +133,12 @@ switch ($area){
     
 	{TPL_css}
 	<link href="<?php echo base_url();?>bootstrap/css/bootstrap.min.css" rel="stylesheet"> 
+	<link href="<?php echo base_url();?>bootstrap/css/datatables.bootstrap.css" rel="stylesheet">
 	<link href="<?php echo base_url();?>bootstrap/css/bootstrap-theme.css" rel="stylesheet">
 	<link href="<?php echo base_url();?>bootstrap/css/bootstrap_custom.css" rel="stylesheet">
 	<link href="<?php echo base_url();?>bootstrap/css/sticky-footer-navbar.css" rel="stylesheet">
+	
+	
 
 	<script type="text/javascript">
 		var CI_ROOT = '<?php echo site_url(); ?>';    	 
@@ -276,6 +279,7 @@ switch ($area){
 			</div> 
             
          <script src="<?php echo base_url();?>bootstrap/js/bootstrap.min.js"></script>
+         <script src="<?php echo base_url();?>bootstrap/js/datatables.bootstrap.js"></script>
          
     </body>
 </html>

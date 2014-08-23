@@ -7,7 +7,7 @@ class Grid_model extends CI_Model {
 	
 	function monta_tabela_list(){
 		$tmpl = array (
-                       'table_open'          => '<table id="tabela" border="0" cellpadding="4" cellspacing="0" class="display tabela">',
+                       'table_open'          => '<div class="table-responsive"><table id="tabela" classcellspacing="0" class="table table-striped table-bordered dataTable no-footer table-hover table-condensed">',
 	
 				'heading_row_start'   => '<tr>',
 				'heading_row_end'     => '</tr>',
@@ -24,7 +24,7 @@ class Grid_model extends CI_Model {
 				'cell_alt_start'      => '<td>',
 				'cell_alt_end'        => '</td>',
 	
-				'table_close'         => '</table>'
+				'table_close'         => '</table></div>'
                 );
 		return $tmpl;
 	}

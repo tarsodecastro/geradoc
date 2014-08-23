@@ -91,43 +91,43 @@
 	float: left;
 }
 
-    
-#tabela tbody tr.even:hover, #tabela tbody tr.even td.highlighted {
+/* Tarso de Castro */ 
+table tbody tr.even:hover, #tabela tbody tr.even td.highlighted {
 	background-color: #FFF0BE; /*highlight da linha PAR das colunas nao selecionadas #ECFFB3 */
 }
 
-#tabela tbody tr.odd:hover, #tabela tbody tr.odd td.highlighted {
+table tbody tr.odd:hover, #tabela tbody tr.odd td.highlighted {
 	background-color: #FFF0BE; /*highlight da linha IMPAR das colunas nao selecionadas #E6FF99 */
 }
 
-#tabela tr.even:hover {
+table tr.even:hover {
 	background-color: #FFF0BE; /*highlight da linha PAR das colunas nao selecionadas #ECFFB3 */
 }
 
-#tabela tr.even:hover td.sorting_1 { 
+table tr.even:hover td.sorting_1 { 
 	background-color: #FFE27F; /*highlight da linha PAR das colunas selecionadas #DDFF75 */
 }
 
-#tabela tr.even:hover td.sorting_2 {
+table tr.even:hover td.sorting_2 {
 	background-color: #E7FF9E;
 }
 
-#tabela tr.even:hover td.sorting_3 {
+table tr.even:hover td.sorting_3 {
 	background-color: #E2FF89;
 }
 
-#tabela tr.odd:hover {
+table tr.odd:hover {
 	background-color: #FFF0BE; /*highlight da linha IMPAR das colunas nao selecionadas #E6FF99 */
 }
 
-#tabela tr.odd:hover td.sorting_1 {
+table tr.odd:hover td.sorting_1 {
 	background-color: #FFE27F; /*highlight da linha IMPAR da coluna selecionada #D6FF5C */
 }
 
-#tabela tr.odd:hover td.sorting_2 {
+table tr.odd:hover td.sorting_2 {
 	background-color: #E0FF84;
 }
 
-#tabela tr.odd:hover td.sorting_3 {
+table tr.odd:hover td.sorting_3 {
 	background-color: #DBFF70;
 }
