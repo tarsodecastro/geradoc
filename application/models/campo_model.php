@@ -61,6 +61,9 @@ class Campo_model extends CI_Model {
 			case 'funcionarios':
 				$link = anchor($area.'/funcionarios/'.$id,'<span class="glyphicon glyphicon-pencil"></span> Funcionários', array('class'=>'btn btn-default btn-sm'));
 				break;
+			case 'exportar':
+				$link = anchor($area.'/update/'.$id,'<span class="glyphicon glyphicon-print"></span> Exportar', array('target'=>'_blank', 'class'=>'btn btn-default btn-sm'));
+				break;
 				
 		}
 	

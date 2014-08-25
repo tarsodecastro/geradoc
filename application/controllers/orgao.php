@@ -167,9 +167,7 @@ class Orgao extends CI_Controller {
         $data['message'] = '';
         
         $data['link_back'] = $this->Campo_model->make_link($this->area, 'voltar');
-        
         $data['link_cancelar'] = $this->Campo_model->make_link($this->area, 'cancelar');
-        
         $data['link_alterar'] = $this->Campo_model->make_link($this->area, 'alterar', $id);
 		
 		$data['objeto'] = $this->Orgao_model->get_by_id($id)->row();
