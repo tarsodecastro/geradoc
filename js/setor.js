@@ -10,10 +10,10 @@
          "bLengthChange": false,
          "bInfo": false,
          "aoColumns": [
-       				{"sWidth":"30px", "sClass": "center"},
-       				{"sClass": "justify"},	
-       				{"sClass": "justify"}, 				
-       				{"sClass": "center"} 								 	
+       				{"sWidth":"30px", "sClass": "text-center"},
+       				{"sClass": "text-justify"},	
+       				{"sClass": "text-justify"}, 				
+       				{"sClass": "text-center"} 								 	
        			],
      });
 	

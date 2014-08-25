@@ -2,7 +2,7 @@
 <script type="text/javascript" src="<?php echo base_url(); ?>js/tinymce/tinymce.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/tinymce/jquery.tinymce.min.js"></script>
 
-<script type="text/javascript" src="<?php echo base_url(); ?>scripts/jquery.blockUI.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>js/jquery.blockUI.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>scripts/calendario/_scripts/jquery.click-calendario-1.0-min.js"></script>
 
 <link rel="stylesheet" href="<?php echo base_url(); ?>scripts/calendario/_style/jquery.click-calendario-1.0.css">
@@ -30,14 +30,14 @@
 }
 
 
-#geral { 	
+body { 	
 	background-color: #F7F7F7;    
 }
 </style>
 
 <script type="text/javascript">
 //--- Tela de Aguarde... (Loading) ---/
-$.blockUI();
+$.blockUI({ message: '<h1><img src="<?php echo base_url(); ?>scripts/images/ui-anim_basic_16x16.gif" /> Aguarde...</h1>' });
 //--- Fim ---//
 
 $(function () {
@@ -87,9 +87,7 @@ $(function() {
 	$('option[value=empty]').prop('disabled', true);
 });
 
-//--- Fim da tela de Aguarde... (Loading) ---/
-	$.unblockUI({ });
-//--- Fim ---//
+
 
 </script>
 
@@ -445,5 +443,9 @@ $().ready(function() {
             }
 
         });
-								
+
+        
+//--- Fim da tela de Aguarde... (Loading) ---/
+   	$.unblockUI({ });
+//--- Fim ---//							
 </script>

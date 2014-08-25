@@ -11,8 +11,6 @@
 	carregando...
 </div>
 
-
-
 	<div class="row">
 
 

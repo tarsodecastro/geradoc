@@ -16,10 +16,9 @@ body {
   height: 80px;
   background-color: #f5f5f5;
  
-  
-	text-align:center;
-	background-image: url(../../images/bg_rodape.gif); 
-	background-repeat:repeat-x;	
+  text-align:center;
+  background-image: url(../../images/bg_rodape.gif); 
+  background-repeat:repeat-x;	
 }
 
 

@@ -39,14 +39,14 @@
 							  <div class="form-group">
 							    <label for="campoNome" class="col-sm-3 control-label">Nome</label>
 							    <div class="col-md-7">
-							    <input type="text" class="form-control" name="campoNome" id="campoNome"  value="<?php echo $objeto->nome; ?>" > 	
+							    <input type="text" class="form-control input-sm" name="campoNome" id="campoNome"  value="<?php echo $objeto->nome; ?>" > 	
 							     </div>
 							  </div>
 							  
 							  <div class="form-group">
 							    <label for="campoSigla" class="col-sm-3 control-label">Sigla</label>
 							    <div class="col-md-7">
-							    <input type="text" class="form-control" name="campoSigla" id="campoSigla"  value="<?php echo $objeto->sigla; ?>" >
+							    <input type="text" class="form-control input-sm" name="campoSigla" id="campoSigla"  value="<?php echo $objeto->sigla; ?>" >
 							    </div>
 							  </div>
 							  
@@ -54,7 +54,7 @@
 							  <div class="form-group">
 							    <label for="campoEndereco" class="col-sm-3 control-label">Endereço</label>
 							    <div class="col-md-7">
-							    	<textarea class="form-control" name="campoEndereco" id="campoEndereco"><?php echo $objeto->endereco; ?></textarea>
+							    	<textarea class="form-control input-sm" name="campoEndereco" id="campoEndereco"><?php echo $objeto->endereco; ?></textarea>
 							    </div>
 							  </div>
 					</fieldset>

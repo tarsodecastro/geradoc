@@ -1,3 +1,7 @@
+body { 	
+	background-color: #F7F7F7;    
+}
+
 .breadcrumb{
 	background-color: #CAE1D7;
 	text-align: center;
@@ -59,4 +63,9 @@
 
 .pagination>li>a:hover, .pagination>li>span{
 	color: #658b6f;
+}
+
+
+.vcenter {
+    vertical-align: middle;
 }

@@ -271,7 +271,11 @@ public function update($id) {
 		// define as variaveis comuns
 		$data['titulo'] = "Edição de setor";
 		$data['mensagem'] = '';
+	
 		$data['link_back'] = $this->Campo_model->make_link($this->area, 'voltar');
+		$data['link_cancelar'] = $this->Campo_model->make_link($this->area, 'cancelar');
+		$data['link_salvar'] = $this->Campo_model->make_link($this->area, 'salvar');
+		
 		$data['form_action'] = site_url($this->area.'/update/'.$id);
 
 		//Constroe os campos do formulario
