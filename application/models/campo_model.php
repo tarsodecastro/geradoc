@@ -50,11 +50,14 @@ class Campo_model extends CI_Model {
 			case 'cancelar':
 				$link = anchor($area.'/index/'.$_SESSION['novoinicio'],'<span class="glyphicon glyphicon-remove"></span> Cancelar',array('class'=>'btn btn-default'));
 				break;
-			case 'alterar':
-				$link = anchor($area.'/update/'.$id,'<span class="glyphicon glyphicon-pencil"></span> Alterar', array('class'=>'btn btn-warning'));
+			case 'cancelar_doc':
+				$link = anchor($_SESSION['homepage'],'<span class="glyphicon glyphicon-remove"></span> Cancelar',array('class'=>'btn btn-default'));
 				break;
-			case 'alterar_sm':
+			case 'alterar':
 				$link = anchor($area.'/update/'.$id,'<span class="glyphicon glyphicon-pencil"></span> Alterar', array('class'=>'btn btn-warning btn-sm'));
+				break;
+			case 'alterar_doc':
+				$link = anchor($area.'/update/'.$id,'<span class="glyphicon glyphicon-pencil"></span> Alterar', array('class'=>'btn btn-warning'));
 				break;
 			case 'salvar':
 				$link = '<button type="submit" class="btn btn-success"><span class="glyphicon glyphicon glyphicon-ok"></span> Salvar</button>';
@@ -66,7 +69,10 @@ class Campo_model extends CI_Model {
 				$link = anchor($area.'/funcionarios/'.$id,'<span class="glyphicon glyphicon-pencil"></span> Funcionários', array('class'=>'btn btn-default btn-sm'));
 				break;
 			case 'exportar':
-				$link = anchor($area.'/update/'.$id,'<span class="glyphicon glyphicon-print"></span> Exportar', array('target'=>'_blank', 'class'=>'btn btn-default btn-sm'));
+				$link = anchor($area.'/export/'.$id,'<span class="glyphicon glyphicon-print"></span> Exportar', array('target'=>'_blank', 'class'=>'btn btn-default btn-sm'));
+				break;
+			case 'exportar_doc':
+				$link = anchor($area.'/export/'.$id,'<span class="glyphicon glyphicon-print"></span> Exportar', array('target'=>'_blank', 'class'=>'btn btn-primary'));
 				break;
 				
 		}
@@ -287,7 +293,7 @@ function orgao($indice) {
     					'value' => $this->input->post('campoData'),
     					'maxlength' => '10',
     					'size' => '12',
-    					'class' => 'textboxUpper',
+    					'class' => 'form-control',
     			),
     			 
     			'campoAssunto' => array(
@@ -296,7 +302,7 @@ function orgao($indice) {
     					'value' => $this->input->post('campoAssunto'),
     					'maxlength' => '80',
     					'size' => '71',
-    					'class' => 'textbox',
+    					'class' => 'form-control',
     			),
     			 
     			'campoReferencia' => array(
@@ -305,7 +311,7 @@ function orgao($indice) {
     					'value' => $this->input->post('campoReferencia'),
     					'maxlength' => '80',
     					'size' => '51',
-    					'class' => 'textbox',
+    					'class' => 'form-control',
     			),
     			
     			'campoPara' => array(
@@ -358,7 +364,7 @@ function orgao($indice) {
     					'value' => $this->input->post('campoSetor'),
     					'maxlength' => '80',
     					'size' => '51',
-    					'class' => 'textboxUpper',
+    					'class' => 'form-control text-upper',
     					'readonly'    => 'readonly',
     			),
     			
@@ -368,7 +374,7 @@ function orgao($indice) {
     					'value' => $this->input->post('desp_num_processo'),
     					'maxlength' => '80',
     					'size' => '51',
-    					'class' => 'textbox',
+    					'class' => 'form-control',
     			),
     			
     			'desp_interessado' => array(
@@ -377,7 +383,7 @@ function orgao($indice) {
     					'value' => $this->input->post('desp_interessado'),
     					'maxlength' => '80',
     					'size' => '51',
-    					'class' => 'textbox',
+    					'class' => 'form-control',
     			),
     			
     			'desp_de' => array(
@@ -386,7 +392,7 @@ function orgao($indice) {
     					'value' => $this->input->post('desp_de'),
     					'maxlength' => '80',
     					'size' => '81',
-    					'class' => 'textbox',
+    					'class' => 'form-control',
     			),
     			
     			
@@ -396,7 +402,7 @@ function orgao($indice) {
     					'value' => $this->input->post('desp_para'),
     					'maxlength' => '80',
     					'size' => '81',
-    					'class' => 'textbox',
+    					'class' => 'form-control',
     			),
     			
     			'campoCarimbo' => array(
@@ -405,7 +411,7 @@ function orgao($indice) {
     					'value' => mb_convert_case($this->input->post('campoCarimbo'), MB_CASE_UPPER, "ISO-8859-1"),
     					'maxlength' => '2',
     					'size' => '2',
-    					'class' => 'textboxUpper',
+    					'class' => 'form-control text-upper',
     			),
     			
     			'arrayCarimbos' => array(

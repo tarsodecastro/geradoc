@@ -67,8 +67,10 @@
 								}
 						?>
 			  </div>
+			  <!-- fim da div panel-body -->
 			  
 		</div>
+		<!-- fim da div panel -->	
 		
 		<div class="btn-group">
 		   		<?php
