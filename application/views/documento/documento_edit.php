@@ -220,7 +220,7 @@ $.blockUI({ message: '<h1><img src="<?php echo base_url(); ?>scripts/images/ui-a
 
 						<?php 
 						
-						if ($disabled == null){
+						if ($tipoSelecionado != null and $disabled == null){
 						
 						?>
 						
