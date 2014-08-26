@@ -25,6 +25,7 @@ class Coluna extends CI_Controller {
 		$this->load->helper('url');
 		$this->load->model('Coluna_model','',TRUE);
         $this->load->model('Grid_model','',TRUE);
+        $this->load->model('Campo_model','',TRUE);
         $this->modal = $this->load->view('about_modal', '', TRUE);
         session_start();
 	}
@@ -34,8 +35,7 @@ class Coluna extends CI_Controller {
 		$this->js[] = 'coluna';
 		
 		$data['titulo']     = 'Campos';
-		$data['link_add']   = anchor($this->area.'/add/','<span class="glyphicon glyphicon-plus"></span> Adicionar',array('class'=>'btn btn-primary btn-sm'));
-		$data['link_back']  = anchor('documento/index/','Lista de Documentos',array('class'=>'back'));
+		$data['link_add']   = $this->Campo_model->make_link($this->area, 'add');
 		$data['form_action'] = site_url($this->area.'/search');
 		
 		// BUSCA
@@ -85,16 +85,20 @@ class Coluna extends CI_Controller {
 	 		if(array_search($value, $campos_padroes) == NULL) {
 	 		
 	            $this->table->add_row($key, $value,
-		             anchor($this->area.'/view/'.$value,'visualizar',array('class'=>'view')).' '.
-		             anchor($this->area.'/update/'.$value,'alterar',array('class'=>'update')).' '.
-		             anchor($this->area.'/delete/'.$value,'deletar',array('class'=>'delete','onclick'=>"return confirm('Deseja REALMENTE deletar esse campo?')"))
+	            		'<div class="btn-group">'.
+			             anchor($this->area.'/view/'.$value,'<span class="glyphicon glyphicon-search"></span> Visualizar',array('class'=>'btn btn-default btn-sm')).' '.
+			             anchor($this->area.'/update/'.$value,'<span class="glyphicon glyphicon-pencil"></span> Alterar', array('class'=>'btn btn-default btn-sm')).' '.
+			             anchor($this->area.'/delete/'.$value,'<span class="glyphicon glyphicon-trash"></span> Deletar',array('class'=>'btn btn-danger btn-sm','onclick'=>"return confirm('Deseja REALMENTE deletar esse campo?')")).
+	            		'</div>'
 	            );
             
 	 		}else{
 	 			
 	 			$this->table->add_row($key, $value,
-	 				anchor($this->area.'/view/'.$value,'visualizar',array('class'=>'view')).' '.
-	 				anchor($this->area.'/update/'.$value,'alterar',array('class'=>'update'))
+	 					'<div class="btn-group">'.
+			 				anchor($this->area.'/view/'.$value,'<span class="glyphicon glyphicon-search"></span> Visualizar',array('class'=>'btn btn-default btn-sm')).' '.
+			 				anchor($this->area.'/update/'.$value,'<span class="glyphicon glyphicon-pencil"></span> Alterar', array('class'=>'btn btn-default btn-sm')).
+	 					'</div>'
 	 			);
 	 			
 	 		}
@@ -285,7 +289,7 @@ public function update($nome) {
     public function search($page = 1) { 
     	$this->js[] = 'coluna';
         $data['titulo'] = "Busca por colunas";
-        $data['link_add']   = anchor($this->area.'/add/','Adicionar',array('class'=>'add'));
+        $data['link_add']   = $this->Campo_model->make_link($this->area, 'add');
         $data['link_search_cancel'] = anchor($this->area.'/search_cancel/','CANCELAR PESQUISA',array('class'=>'button_cancel'));
         $data['form_action'] = site_url($this->area.'/search');
 

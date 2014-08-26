@@ -25,6 +25,7 @@ class Tipo extends CI_Controller {
 		$this->load->helper('url');
 		$this->load->model('Tipo_model','',TRUE);
         $this->load->model('Grid_model','',TRUE);
+        $this->load->model('Campo_model','',TRUE);
         $this->modal = $this->load->view('about_modal', '', TRUE);
         session_start();
 	}
@@ -72,19 +73,23 @@ class Tipo extends CI_Controller {
         	if($objeto->publicado == 'N'){		
         	
             $this->table->add_row($objeto->id, $objeto->nome,
-                anchor($this->area.'/view/'.$objeto->id,'visualizar',array('class'=>'view')).' '.
-                anchor($this->area.'/update/'.$objeto->id,'alterar',array('class'=>'update')).' '.
+            		'<div class="btn-group">'.
+                $this->Campo_model->make_link($this->area, 'visualizar', $objeto->id).
+                 $this->Campo_model->make_link($this->area, 'alterar', $objeto->id).
             	anchor($this->area.'/year/'.$objeto->id,'ano',array('class'=>'calendar')).' '.
-            	anchor($this->area.'/altera_publicacao/'.$objeto->id,'despublicado',array('class'=>'no_ok'))
+            	anchor($this->area.'/altera_publicacao/'.$objeto->id,'despublicado',array('class'=>'no_ok')).
+            		'</div>'
               //  anchor($this->area.'/delete/'.$objeto->id,'deletar',array('class'=>'delete','onclick'=>"return confirm('Deseja REALMENTE deletar esse orgao?')"))
             );
             
         	}else{
         		$this->table->add_row($objeto->id, $objeto->nome,
-        				anchor($this->area.'/view/'.$objeto->id,'visualizar',array('class'=>'view')).' '.
-        				anchor($this->area.'/update/'.$objeto->id,'alterar',array('class'=>'update')).' '.
+        				'<div class="btn-group">'.
+        				$this->Campo_model->make_link($this->area, 'visualizar', $objeto->id).
+        				 $this->Campo_model->make_link($this->area, 'alterar', $objeto->id).
         				anchor($this->area.'/year/'.$objeto->id,'ano',array('class'=>'calendar')).' '.
-        				anchor($this->area.'/altera_publicacao/'.$objeto->id,'publicado',array('class'=>'ok'))
+        				anchor($this->area.'/altera_publicacao/'.$objeto->id,'publicado',array('class'=>'ok')).
+        				'</div>'
         				//  anchor($this->area.'/delete/'.$objeto->id,'deletar',array('class'=>'delete','onclick'=>"return confirm('Deseja REALMENTE deletar esse orgao?')"))
         		);
         		

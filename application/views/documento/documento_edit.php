@@ -49,9 +49,9 @@ $.blockUI({ message: '<h1><img src="<?php echo base_url(); ?>scripts/images/ui-a
     <div class="row">
     
 	    <div class="col-md-12">
-	    
+	    	<div class="btn-group">
 		    <?php
-		    
+
 		    echo $link_back;
 		    echo $message;
 		    
@@ -64,7 +64,7 @@ $.blockUI({ message: '<h1><img src="<?php echo base_url(); ?>scripts/images/ui-a
 		    	echo $link_update_sm;
 		    }
 		    ?>
-		    
+		  	</div>  
 	    </div>
 
     </div>

@@ -53,10 +53,10 @@ class Campo_model extends CI_Model {
 			case 'cancelar_doc':
 				$link = anchor($_SESSION['homepage'],'<span class="glyphicon glyphicon-remove"></span> Cancelar',array('class'=>'btn btn-default'));
 				break;
-			case 'alterar':
-				$link = anchor($area.'/update/'.$id,'<span class="glyphicon glyphicon-pencil"></span> Alterar', array('class'=>'btn btn-warning btn-sm'));
+			case 'alterar_sm':
+				$link = anchor($area.'/update/'.$id,'<span class="glyphicon glyphicon-pencil"></span> Alterar', array('class'=>'btn btn-default btn-sm'));
 				break;
-			case 'alterar_doc':
+			case 'alterar':
 				$link = anchor($area.'/update/'.$id,'<span class="glyphicon glyphicon-pencil"></span> Alterar', array('class'=>'btn btn-warning'));
 				break;
 			case 'salvar':
