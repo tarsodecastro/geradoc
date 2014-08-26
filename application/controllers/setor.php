@@ -57,7 +57,8 @@ class Setor extends CI_Controller {
         $maximo = 10;
         $uri_segment = 3;
         $inicio = (!$this->uri->segment($uri_segment, 0)) ? 0 : ($this->uri->segment($uri_segment, 0) - 1) * $maximo;
-        $_SESSION['novoinicio'] = $this->uri->segment($uri_segment, 0);  //cria uma variavel de sessao para retornar a pagina correta apos visualizacao, delecao ou alteracao
+       // $_SESSION['novoinicio'] = $this->uri->segment($uri_segment, 0);  //cria uma variavel de sessao para retornar a pagina correta apos visualizacao, delecao ou alteracao
+        $_SESSION['novoinicio'] = current_url();
         $config['base_url'] = site_url($this->area.'/index/');
         $config['total_rows'] = $this->Setor_model->count_all();
         $config['per_page'] = $maximo;
@@ -226,7 +227,7 @@ class Setor extends CI_Controller {
                                     setTimeout("getSecs()",1000);
                                     var s =  $("#clock1").html();
                                     if (s == "1 segundos..."){
-                                        window.location.href = "' . site_url('/'.$this->area) . '";
+                                        window.location.href = "' .  $_SESSION['novoinicio'] . '";
                                     }
                                 }
                                 ';
@@ -398,7 +399,7 @@ public function update($id, $disabled = null) {
                                     setTimeout("getSecs()",1000);		
                                     var s =  $("#clock1").html();
                                     if (s == "1 segundos..."){			
-                                        window.location.href = "' . site_url($this->area) . '";
+                                        window.location.href = "' . $_SESSION['novoinicio']  . '";
                                     }
                                 }     		
                                 ';
@@ -572,6 +573,7 @@ public function update($id, $disabled = null) {
         $data['link_add']   = $this->Campo_model->make_link($this->area, 'add');
         $data['link_search_cancel'] = $this->Campo_model->make_link($this->area, 'search_cancel');
         $data['form_action'] = site_url($this->area.'/search');
+        $_SESSION['novoinicio'] = current_url();
 
         $this->load->library(array('pagination', 'table'));
         

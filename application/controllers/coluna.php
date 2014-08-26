@@ -55,7 +55,8 @@ class Coluna extends CI_Controller {
         $maximo = 10;
         $uri_segment = 3;
         $inicio = (!$this->uri->segment($uri_segment, 0)) ? 0 : ($this->uri->segment($uri_segment, 0) - 1) * $maximo;
-        $_SESSION['novoinicio'] = $this->uri->segment($uri_segment - 1, 'index').'/'.$this->uri->segment($uri_segment, 0);  //cria uma variavel de sessao para retornar a pagina correta apos visualizacao, delecao ou alteracao
+       // $_SESSION['novoinicio'] = $this->uri->segment($uri_segment - 1, 'index').'/'.$this->uri->segment($uri_segment, 0);  //cria uma variavel de sessao para retornar a pagina correta apos visualizacao, delecao ou alteracao
+        $_SESSION['novoinicio'] = current_url();
         $config['base_url'] = site_url($this->area.'/index/');
         $config['total_rows'] = $this->Coluna_model->count_all();
         
@@ -172,7 +173,7 @@ class Coluna extends CI_Controller {
                                     setTimeout("getSecs()",1000);
                                     var s =  $("#clock1").html();
                                     if (s == "1 segundos..."){
-                                        window.location.href = "' . site_url('/'.$this->area) . '";
+                                        window.location.href = "' . $_SESSION['novoinicio'] . '";
                                     }
                                 }
                                 ';
@@ -265,7 +266,7 @@ public function update($nome) {
                                     setTimeout("getSecs()",1000);		
                                     var s =  $("#clock1").html();
                                     if (s == "1 segundos."){			
-                                        window.location.href = "' . site_url($this->area.'/'.$_SESSION['novoinicio']) . '";
+                                        window.location.href = "' . $_SESSION['novoinicio'] . '";
                                     }
                                 }     		
                                 ';
@@ -293,7 +294,7 @@ public function update($nome) {
 			$this->Coluna_model->delete($campo);
 		}
 	
-		redirect($this->area.'/index/'.$_SESSION['novoinicio']);
+		redirect($_SESSION['novoinicio']);
 	}
 
 
@@ -317,7 +318,8 @@ public function update($nome) {
         
         $maximo = 10;  
         $uri_segment = 3;  
-        $_SESSION['novoinicio'] = $this->uri->segment($uri_segment - 1, 0).'/'.$this->uri->segment($uri_segment, 0); 
+        //$_SESSION['novoinicio'] = $this->uri->segment($uri_segment - 1, 0).'/'.$this->uri->segment($uri_segment, 0); 
+        $_SESSION['novoinicio'] = current_url();
         $config['per_page'] = $maximo;    
         $config['base_url'] = site_url($this->area.'/search');
        // $config['total_rows'] = $this->Coluna_model->count_all_search($keyword);           
