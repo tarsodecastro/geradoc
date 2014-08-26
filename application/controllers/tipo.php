@@ -74,22 +74,22 @@ class Tipo extends CI_Controller {
         	
             $this->table->add_row($objeto->id, $objeto->nome,
             		'<div class="btn-group">'.
-                $this->Campo_model->make_link($this->area, 'visualizar', $objeto->id).
-                 $this->Campo_model->make_link($this->area, 'alterar', $objeto->id).
-            	anchor($this->area.'/year/'.$objeto->id,'ano',array('class'=>'calendar')).' '.
-            	anchor($this->area.'/altera_publicacao/'.$objeto->id,'despublicado',array('class'=>'no_ok')).
+                		$this->Campo_model->make_link($this->area, 'visualizar', $objeto->id).
+                 		$this->Campo_model->make_link($this->area, 'alterar_sm', $objeto->id).
+            			$this->Campo_model->make_link($this->area, 'ano', $objeto->id).
+            			$this->Campo_model->make_link($this->area, 'despublicado', $objeto->id).
             		'</div>'
               //  anchor($this->area.'/delete/'.$objeto->id,'deletar',array('class'=>'delete','onclick'=>"return confirm('Deseja REALMENTE deletar esse orgao?')"))
             );
             
         	}else{
         		$this->table->add_row($objeto->id, $objeto->nome,
-        				'<div class="btn-group">'.
+        			'<div class="btn-group">'.
         				$this->Campo_model->make_link($this->area, 'visualizar', $objeto->id).
-        				 $this->Campo_model->make_link($this->area, 'alterar', $objeto->id).
-        				anchor($this->area.'/year/'.$objeto->id,'ano',array('class'=>'calendar')).' '.
-        				anchor($this->area.'/altera_publicacao/'.$objeto->id,'publicado',array('class'=>'ok')).
-        				'</div>'
+        				 $this->Campo_model->make_link($this->area, 'alterar_sm', $objeto->id).
+        				 $this->Campo_model->make_link($this->area, 'ano', $objeto->id).
+        				$this->Campo_model->make_link($this->area, 'publicado', $objeto->id).
+        			'</div>'
         				//  anchor($this->area.'/delete/'.$objeto->id,'deletar',array('class'=>'delete','onclick'=>"return confirm('Deseja REALMENTE deletar esse orgao?')"))
         		);
         		
@@ -626,8 +626,8 @@ public function update($id) {
     public function search($page = 1) { 
     	$this->js[] = 'tipo';
         $data['titulo'] = "Busca por tipos";
-        $data['link_add']   = anchor($this->area.'/add/','Adicionar',array('class'=>'add'));
-        $data['link_search_cancel'] = anchor($this->area.'/search_cancel/','CANCELAR PESQUISA',array('class'=>'button_cancel'));
+        $data['link_add']   = $this->Campo_model->make_link($this->area, 'add');
+        $data['link_search_cancel'] = $this->Campo_model->make_link($this->area, 'search_cancel');
         $data['form_action'] = site_url($this->area.'/search');
 
         $this->load->library(array('pagination', 'table'));
@@ -664,19 +664,34 @@ public function update($id) {
         	
         		 
         		$this->table->add_row($objeto->id, $objeto->nome,
-        				anchor($this->area.'/view/'.$objeto->id,'visualizar',array('class'=>'view')).' '.
-        				anchor($this->area.'/update/'.$objeto->id,'alterar',array('class'=>'update')).' '.
-        				anchor($this->area.'/year/'.$objeto->id,'ano',array('class'=>'calendar')).' '.
-        				anchor($this->area.'/altera_publicacao/'.$objeto->id,'despublicado',array('class'=>'no_ok'))
+        				
+        				'<div class="btn-group">'.
+	        				$this->Campo_model->make_link($this->area, 'visualizar', $objeto->id).
+	        				$this->Campo_model->make_link($this->area, 'alterar_sm', $objeto->id).
+	        				$this->Campo_model->make_link($this->area, 'ano', $objeto->id).
+	        				$this->Campo_model->make_link($this->area, 'despublicado', $objeto->id).
+        				'</div>'
+        				
+        				//anchor($this->area.'/view/'.$objeto->id,'visualizar',array('class'=>'view')).' '.
+        				//anchor($this->area.'/update/'.$objeto->id,'alterar',array('class'=>'update')).' '.
+        				//anchor($this->area.'/year/'.$objeto->id,'ano',array('class'=>'calendar')).' '.
+        				//anchor($this->area.'/altera_publicacao/'.$objeto->id,'despublicado',array('class'=>'no_ok'))
         				//  anchor($this->area.'/delete/'.$objeto->id,'deletar',array('class'=>'delete','onclick'=>"return confirm('Deseja REALMENTE deletar esse orgao?')"))
         		);
         	
         	}else{
         		$this->table->add_row($objeto->id, $objeto->nome,
-        				anchor($this->area.'/view/'.$objeto->id,'visualizar',array('class'=>'view')).' '.
-        				anchor($this->area.'/update/'.$objeto->id,'alterar',array('class'=>'update')).' '.
-        				anchor($this->area.'/year/'.$objeto->id,'ano',array('class'=>'calendar')).' '.
-        				anchor($this->area.'/altera_publicacao/'.$objeto->id,'publicado',array('class'=>'ok'))
+        				
+        				'<div class="btn-group">'.
+	        				$this->Campo_model->make_link($this->area, 'visualizar', $objeto->id).
+	        				$this->Campo_model->make_link($this->area, 'alterar_sm', $objeto->id).
+	        				$this->Campo_model->make_link($this->area, 'ano', $objeto->id).
+	        				$this->Campo_model->make_link($this->area, 'publicado', $objeto->id).
+        				'</div>'
+        				//anchor($this->area.'/view/'.$objeto->id,'visualizar',array('class'=>'view')).' '.
+        				//anchor($this->area.'/update/'.$objeto->id,'alterar',array('class'=>'update')).' '.
+        				//anchor($this->area.'/year/'.$objeto->id,'ano',array('class'=>'calendar')).' '.
+        				//anchor($this->area.'/altera_publicacao/'.$objeto->id,'publicado',array('class'=>'ok'))
         				//  anchor($this->area.'/delete/'.$objeto->id,'deletar',array('class'=>'delete','onclick'=>"return confirm('Deseja REALMENTE deletar esse orgao?')"))
         		);
         	

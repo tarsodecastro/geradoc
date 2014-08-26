@@ -4,54 +4,84 @@
 	</center>
 </div>
 
-<ol class="breadcrumb">
-	<li><a href="<?php echo site_url('/coluna/index'); ?>">Campos</a></li>
-  	<li class="active"><?php echo $titulo;?></li>
-</ol>	
+<script type="text/javascript"> 
+    $(document).ready(function(){		
+        window.document.body.oncopy  = function() { return false; };
+        window.document.body.onpaste = function() { return false; }
+    });
+</script> 
+
+<p class="bg-success lead text-center">Campo</p>	
 
 <div id="msg" style="display:none;"><img src="{TPL_images}loader.gif" alt="Enviando" />Aguarde carregando...</div> 
+
 
 <div id="view_content">	
 
     <?php
     echo $link_back;
-    echo $message;
+    echo $mensagem;
     ?>
 	
 	<div class="formulario">	
 	
-	    <fieldset class="conteiner2"> 
-	    
-	        <legend class="subTitulo6">Campo</legend> 
-	          
-	        <table class="table_form">
-	        	<tbody>
-		        	<tr>
-			        	<td class="gray" style="width: 150px;"> Nome:
-			        	</td>
-			        	<td class="green"><?php echo $objeto['nome']; ?> 
-			        	</td>
-		        	</tr>
-		        	<tr>
-			        	<td class="gray"> Tipo:
-			        	</td>
-			        	<td class="green"><?php echo $objeto['tipo']; ?> 
-			        	</td>
-		        	</tr>
-		        	<tr>
-			        	<td class="gray">Tamanho atual:
-			        	</td>
-			        	<td class="green"><?php echo $tamanho_atual; ?> 
-			        	</td>
-		        	</tr>
-	        	</tbody>
-	        </table>
-	    </fieldset>
-	    
-	    <input type="button" class="button" value="&nbsp; OK &nbsp;" title=" OK " onclick="javascript:window.history.back();" /><br><br>
-				
+	<form class="form-horizontal" role="form" id="frm1" name="frm1" method="post">
+	<fieldset disabled>
+			
+		<div class="panel panel-default">
+	
+			  <div class="panel-heading">
+			    <h3 class="panel-title"><?php echo $titulo; ?></h3>
+			  </div>
+			  	  
+			  <div class="panel-body">
+			  	
+					  <div class="form-group">
+					    <label for="campoNome" class="col-sm-5 control-label">Nome</label>
+					    <div class="col-md-3">
+					     <input type="text" class="form-control" name="campoNome" id="campoNome"  value="<?php echo $objeto['nome']; ?>" > 
+					     </div>
+					  </div>
+					   
+					  <div class="form-group">
+					    <label for="campoTamanho" class="col-sm-5 control-label">Tamanho</label>
+					    <div class="col-md-3">
+					    	<div class="input-group">
+					   	 	 <input type="text" class="form-control" name="campoNome" id="campoNome"  value="<?php echo $tamanho_atual; ?>">
+					   	 	 <span class="input-group-addon">caracteres</span>
+					   	 	 </div>
+					    </div>
+					  </div>
+					  
+					  <div class="form-group">
+					    <label for="campoTamanho" class="col-sm-5 control-label">Tipo</label>
+					    <div class="col-md-3">
+					   	 	 <input type="text" class="form-control" name="campoNome" id="campoNome"  value="<?php echo $objeto['tipo']; ?>" > 
+					    </div>
+					  </div>
+
+			  </div>
+			  <!-- fim da div panel-body -->
+			  
+		</div>
+		<!-- fim da div panel -->	
+		
+		
+		
+		</fieldset>
+		
+		<div class="btn-group">
+		   		<?php
+		    	echo $link_cancelar;
+		    	echo $link_alterar;
+		    ?>
+		</div>
+	
+	</form>
+						
+    	
     </div>
 
 </form> 
 
-</div><!-- fim: div view_content --> 
+</div><!-- fim: div view_content -->

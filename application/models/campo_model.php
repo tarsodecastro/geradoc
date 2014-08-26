@@ -34,46 +34,71 @@ class Campo_model extends CI_Model {
 	function make_link($area = null, $string, $id = null){
 	
 		switch ($string){
+			
 			case 'add':
 				$link =  anchor($area.'/add/','<span class="glyphicon glyphicon-plus"></span> Adicionar',array('class'=>'btn btn-primary btn-sm'));
-				break;
+			break;
+				
 			case 'visualizar':
 				$link =  anchor($area.'/view/'.$id,'<span class="glyphicon glyphicon-search"></span> Visualizar', array('class'=>'btn btn-default btn-sm'));
-				break;
+			break;
+				
 			case 'voltar':
 				$link = anchor($area.'/index/'.$_SESSION['novoinicio'],'<span class="glyphicon glyphicon-arrow-left"></span> Voltar',array('class'=>'btn btn-default btn-sm'));
-				break;
+			break;
+				
 			case 'voltar_doc':
 				//anchor($_SESSION['homepage'],'<span class="glyphicon glyphicon-arrow-left"></span> Voltar',array('class'=>'btn btn-warning btn-sm'));
 				$link = anchor($_SESSION['homepage'],'<span class="glyphicon glyphicon-arrow-left"></span> Voltar',array('class'=>'btn btn-default btn-sm'));
-				break;
+			break;
+				
 			case 'cancelar':
 				$link = anchor($area.'/index/'.$_SESSION['novoinicio'],'<span class="glyphicon glyphicon-remove"></span> Cancelar',array('class'=>'btn btn-default'));
-				break;
+			break;
+				
 			case 'cancelar_doc':
 				$link = anchor($_SESSION['homepage'],'<span class="glyphicon glyphicon-remove"></span> Cancelar',array('class'=>'btn btn-default'));
-				break;
+			break;
+				
 			case 'alterar_sm':
 				$link = anchor($area.'/update/'.$id,'<span class="glyphicon glyphicon-pencil"></span> Alterar', array('class'=>'btn btn-default btn-sm'));
-				break;
+			break;
+				
 			case 'alterar':
 				$link = anchor($area.'/update/'.$id,'<span class="glyphicon glyphicon-pencil"></span> Alterar', array('class'=>'btn btn-warning'));
-				break;
+			break;
+				
 			case 'salvar':
 				$link = '<button type="submit" class="btn btn-success"><span class="glyphicon glyphicon glyphicon-ok"></span> Salvar</button>';
-				break;
+			break;
+				
 			case 'search_cancel':
 				$link = anchor($area.'/search_cancel/','Cancelar pesquisa',array('class'=>'btn btn-warning'));
-				break;
+			break;
+				
 			case 'funcionarios':
 				$link = anchor($area.'/funcionarios/'.$id,'<span class="glyphicon glyphicon-pencil"></span> Funcionários', array('class'=>'btn btn-default btn-sm'));
-				break;
+			break;
+			
 			case 'exportar':
 				$link = anchor($area.'/export/'.$id,'<span class="glyphicon glyphicon-print"></span> Exportar', array('target'=>'_blank', 'class'=>'btn btn-default btn-sm'));
-				break;
+			break;
+			
 			case 'exportar_doc':
 				$link = anchor($area.'/export/'.$id,'<span class="glyphicon glyphicon-print"></span> Exportar', array('target'=>'_blank', 'class'=>'btn btn-primary'));
-				break;
+			break;
+			
+			case 'ano':
+				$link =  anchor($area.'/year/'.$id,'<span class="glyphicon glyphicon-calendar"></span> Ano', array('class'=>'btn btn-default btn-sm'));
+			break;
+			
+			case 'despublicado':
+				$link =  anchor($area.'/altera_publicacao/'.$id,'<span class="glyphicon glyphicon-remove"></span> Despublicado', array('class'=>'btn btn-danger btn-sm'));
+			break;
+			
+			case 'publicado':
+				$link =  anchor($area.'/altera_publicacao/'.$id,'<span class="glyphicon glyphicon-ok"></span> Publicado', array('class'=>'btn btn-success btn-sm'));
+			break;
 				
 		}
 	
@@ -102,7 +127,7 @@ function orgao($indice) {
 	                'value' => mb_convert_case($this->input->post('campoNome'), MB_CASE_UPPER, "ISO-8859-1"),
 	                'maxlength' => '90',
 	                'size' => '71',
-	                'class' => 'form-control input-sm text-uppercase',
+	                'class' => 'form-control  text-uppercase',
 	            ),
         		
         		'campoSigla' => array(
@@ -113,7 +138,7 @@ function orgao($indice) {
         				'value' => mb_convert_case($this->input->post('campoSigla'), MB_CASE_UPPER, "ISO-8859-1"),
         				'maxlength' => '20',
         				'size' => '21',
-        				'class' => 'form-control input-sm text-uppercase',
+        				'class' => 'form-control  text-uppercase',
         		),
         		
         		'campoEndereco' => array(
@@ -124,7 +149,7 @@ function orgao($indice) {
         				'value' => mb_convert_case($this->input->post('campoEndereco'), MB_CASE_UPPER, "ISO-8859-1"),
         				'cols'  => '70',
                         'rows'  =>  '2',
-        				'class' => 'form-control input-sm text-uppercase',
+        				'class' => 'form-control  text-uppercase',
         		),
         			
         );
@@ -143,7 +168,7 @@ function orgao($indice) {
     					'value' => mb_convert_case($this->input->post('campoNome'), MB_CASE_UPPER, "ISO-8859-1"),
     					'maxlength' => '90',
     					'size' => '71',
-    					'class' => 'form-control input-sm text-uppercase',
+    					'class' => 'form-control text-uppercase',
     			),
     	);
     
@@ -158,7 +183,7 @@ function orgao($indice) {
     					'value' => mb_convert_case($this->input->post('campoNome'), MB_CASE_LOWER, "ISO-8859-1"),
     					'maxlength' => '20',
     					'size' => '21',
-    					'class' => 'textboxLower',
+    					'class' => 'form-control text-lowercase',
     			),
     			'campoTamanho' => array(
     					'name' => 'campoTamanho',
@@ -166,7 +191,7 @@ function orgao($indice) {
     					'value' => mb_convert_case($this->input->post('campoTamanho'), MB_CASE_LOWER, "ISO-8859-1"),
     					'maxlength' => '4',
     					'size' => '5',
-    					'class' => 'textboxLower',
+    					'class' => 'form-control text-lowercase',
     			),
     	);
     
@@ -439,7 +464,7 @@ function orgao($indice) {
     					'value' => mb_convert_case($this->input->post('campoNome'), MB_CASE_UPPER, "ISO-8859-1"),
     					'cols'  => '70',
     					'rows'  =>  '2',
-    					'class' => 'form-control input-sm text-uppercase',
+    					'class' => 'form-control text-uppercase',
     			),
     			 
     			'campoSigla' => array(
@@ -449,7 +474,7 @@ function orgao($indice) {
     					'value' => mb_convert_case($this->input->post('campoSigla'), MB_CASE_UPPER, "ISO-8859-1"),
     					'maxlength' => '31',
     					'size' => '30',
-    					'class' => 'form-control input-sm text-uppercase',
+    					'class' => 'form-control text-uppercase',
     			),
     			 
         		'campoEndereco' => array(
@@ -458,7 +483,7 @@ function orgao($indice) {
         				'value' => mb_convert_case($this->input->post('campoEndereco'), MB_CASE_UPPER, "ISO-8859-1"),
         				'cols'  => '70',
                         'rows'  =>  '2',
-        				'class' => 'form-control input-sm text-uppercase',
+        				'class' => 'form-control  text-uppercase',
         		),
     			
     			'campoArtigo' => array(
@@ -467,7 +492,7 @@ function orgao($indice) {
     					'value' => mb_convert_case($this->input->post('campoArtigo'), MB_CASE_UPPER, "ISO-8859-1"),
     					'maxlength' => '2',
     					'size' => '2',
-    					'class' => 'form-control input-sm text-uppercase',
+    					'class' => 'form-control  text-uppercase',
     			),
     			
     			'arrayArtigos' => array(
@@ -483,7 +508,7 @@ function orgao($indice) {
     					'value' => mb_convert_case($this->input->post('campoRestricao'), MB_CASE_UPPER, "ISO-8859-1"),
     					'maxlength' => '2',
     					'size' => '2',
-    					'class' => 'form-control input-sm text-uppercase',
+    					'class' => 'form-control  text-uppercase',
     			),
     			
     			'arrayRestricoes' => array(
@@ -495,7 +520,7 @@ function orgao($indice) {
     					'name' => 'campoFuncionarios[]',
     					'id' => 'campoFuncionarios[]',
     					'value' => $this->input->post('campoFuncionarios'),
-    					'class' => 'form-control input-sm text-uppercase',
+    					'class' => 'form-control  text-uppercase',
     			),
     			
     			
@@ -503,7 +528,7 @@ function orgao($indice) {
     					'name' => 'campoFuncionariosSelecionados',
     					'id' => 'campoFuncionariosSelecionados',
     					'value' => $this->input->post('campoFuncionariosSelecionados[]'),
-    					'class' => 'form-control input-sm text-uppercase',
+    					'class' => 'form-control  text-uppercase',
     			),
     			
     			

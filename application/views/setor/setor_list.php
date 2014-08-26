@@ -4,9 +4,7 @@
 	</cente>
 </div>
 
-<div class="titulo1">
-	<?php echo $titulo;?>
-</div>
+<p class="bg-success lead text-center"><?php echo $titulo;?></p>
 
 <div id="msg" style="display: none;">
 	<img src="{TPL_images}loader.gif" class="img_aling2" alt="Carregando" />Aguarde
@@ -15,6 +13,7 @@
 
 <div id="view_content">
 
+	<!-- Formulario de pesquisa -->
 	<div class="row">
 
 		<div class="col-md-2">
@@ -36,11 +35,11 @@
 		</div>
 
 	</div>
-	<!-- /.row -->
+	<!-- Fim do formulario de pesquisa -->
 	
 	<div style="clear:both;"></div> 
 	        
-	<div class="conteiner_tabela">
+	<div class="table-responsive">
 			<?php echo $table; ?>
 	</div>
 

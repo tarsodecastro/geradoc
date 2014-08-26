@@ -69,3 +69,7 @@ body {
 .vcenter {
     vertical-align: middle;
 }
+
+.hil {
+    width:200px;   
+}

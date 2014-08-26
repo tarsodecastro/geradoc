@@ -126,10 +126,15 @@ class Coluna extends CI_Controller {
 		$this->load->library(array('form_validation'));
 		$this->form_validation->set_error_delimiters('<div class="error_field"> <img class="img_align" src="{TPL_images}/error.png" alt="! " /> ', '</div>');
 	
-		$data['titulo'] = 'Novo Campo';
-		$data['link_back']  = anchor($this->area.'/index/','<span class="glyphicon glyphicon-arrow-left"></span> Voltar',array('class'=>'btn btn-warning btn-sm'));
-		$data['form_action'] = site_url($this->area.'/add/');
+		$data['titulo'] = 'Novo';
+		
+		$data['link_back'] = $this->Campo_model->make_link($this->area, 'voltar');
+		$data['link_cancelar'] = $this->Campo_model->make_link($this->area,'cancelar');
+		$data['link_salvar'] = $this->Campo_model->make_link($this->area,'salvar');
 		$data['mensagem'] = '';
+		
+		$data['form_action'] = site_url($this->area.'/add/');
+		
 	
 		//constroe os campos que serao mostrados no formulario
 		$this->load->model('Campo_model','',TRUE);
@@ -189,10 +194,12 @@ class Coluna extends CI_Controller {
 
 		$data['titulo'] = 'Detalhes do campo';
 		
-        $data['message'] = '';
+        $data['mensagem'] = '';
         
-		$data['link_back'] = anchor($this->area.'/'.$_SESSION['novoinicio'],'<span class="glyphicon glyphicon-arrow-left"></span> Voltar',array('class'=>'btn btn-warning btn-sm'));
-		
+        $data['link_back'] = $this->Campo_model->make_link($this->area, 'voltar');
+        $data['link_cancelar'] = $this->Campo_model->make_link($this->area, 'cancelar');
+        $data['link_alterar'] = $this->Campo_model->make_link($this->area, 'alterar', $value);
+        
 		$data['objeto'] = $this->Coluna_model->get_by_nome($value);
 		$data['tamanho_atual'] = $this->Coluna_model->tamanho_maximo($value);
 		
@@ -206,9 +213,13 @@ public function update($nome) {
 		$this->form_validation->set_error_delimiters('<div class="error_field"> <img class="img_align" src="{TPL_images}/error.png" alt="! " /> ', '</div>');
 			
 		// define as variaveis comuns
-		$data['titulo'] = "Alteração de  órgão";
+		$data['titulo'] = "Alteração";
 		$data['mensagem'] = '';
-		$data['link_back'] = anchor($this->area.'/'.$_SESSION['novoinicio'],'<span class="glyphicon glyphicon-arrow-left"></span> Voltar',array('class'=>'btn btn-warning btn-sm'));
+		
+		$data['link_back'] = $this->Campo_model->make_link($this->area, 'voltar');
+		$data['link_cancelar'] = $this->Campo_model->make_link($this->area,'cancelar');
+		$data['link_salvar'] = $this->Campo_model->make_link($this->area,'salvar');
+		
 		$data['form_action'] = site_url($this->area.'/update/'.$nome);
 
 		//Constroe os campos do formulario

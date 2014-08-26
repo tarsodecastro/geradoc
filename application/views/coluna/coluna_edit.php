@@ -4,58 +4,90 @@
 	</center>
 </div>
 
-<script type="text/javascript"> 
-    $(document).ready(function(){		
-        window.document.body.oncopy  = function() { return false; };
-        window.document.body.onpaste = function() { return false; }
-    });
-</script> 
-<div id="titulo" class="titulo1"> 
-    <?php echo $titulo; ?>
-</div>		
+<p class="bg-success lead text-center">Campo</p>	
 
 <div id="msg" style="display:none;"><img src="{TPL_images}loader.gif" alt="Enviando" />Aguarde carregando...</div> 
+
 
 <div id="view_content">	
 
     <?php
     echo $link_back;
-    echo "<center>".$mensagem."</center>";
-    echo form_open($form_action);
+    echo $mensagem;
     ?>
 	
 	<div class="formulario">	
 	
-	    <fieldset class="conteiner2"> 
-	    
-	        <legend class="subTitulo6">Campo</legend> 
-	        
-	        <table class="table_form">
-	        	<tbody>
-		        	<tr>
-			        	<td class=gray><span class="text-red">*</span> Nome:
-			        	</td>
-			        	<td class="green"><?php echo form_input($campoNome) .form_error('campoNome'); ?> 
-			        	</td>
-		        	</tr>
-		        	<tr>
-			        	<td class=gray><span class="text-red">*</span> Tamanho:
-			        	</td>
-			        	<td class="green"><?php
-			        					 	echo form_input($campoTamanho) .form_error('campoTamanho');
-			        					 	if(isset($tamanho_atual)){
-												echo " &nbsp; Consumo atual: <strong>" . $tamanho_atual . "</strong> caracteres"; 
-											}?>
-			        	</td>
-		        	</tr>
-	        	</tbody>
-	        </table>
-	    </fieldset>
+	<form class="form-horizontal" role="form" id="frm1" name="frm1" action="<?php echo $form_action; ?>" method="post">
+			
+		<div class="panel panel-primary">
+	
+			  <div class="panel-heading">
+			    <h3 class="panel-title"><?php echo $titulo; ?></h3>
+			  </div>
+			  	  
+			  <div class="panel-body">
+			  	
+					  <div class="form-group <?php echo (form_error('campoNome') != '')? 'has-error':''; ?>"">
+					    <label for="campoNome" class="col-sm-5 control-label">Nome</label>
+					    <div class="col-md-3">
+					      	<?php echo form_input($campoNome); ?> 
+					     </div>
+					  </div>
+					  
+					  
+					  <div class="form-group <?php echo (form_error('campoTamanho') != '')? 'has-error':''; ?>">
+					    <label for="campoTamanho" class="col-sm-5 control-label">Tamanho</label>
+					    <div class="col-md-3">
+					    	<div class="input-group">
+					   	 	<?php 
+					   	 		echo form_input($campoTamanho); 
+					   	 	?>
+					   	 	<span class="input-group-addon">caracteres</span>
+					   	 	</div>
+					    </div>
+					   </div>
+					    
+					  <?php if(isset($tamanho_atual)){?>
+					  <div class="form-group">
+					   <label for="campoConsumo" class="col-sm-5 control-label">Consumo atual</label>
+					   <div class="col-md-3">
+					    	<div class="input-group">
+					   	 	 <input type="text" class="form-control" name="campoConsumo" id="campoConsumo"  value="<?php echo $tamanho_atual; ?>" disabled>
+					   	 	 <span class="input-group-addon">caracteres</span>
+					   	 	 </div>
+					    </div>
 
-		<input type="submit" class="button" value="Salvar" title="Salvar"/>&nbsp;&nbsp;							
+					  </div>
+
+					    <?php 
+					   	}
+					    if(validation_errors() != ''){
+								echo '<div class="form-group">';
+								echo form_error('campoNome');
+								echo form_error('campoTamanho');
+								echo '</div>';
+								}
+						?>
+			  </div>
+			  <!-- fim da div panel-body -->
+			  
+		</div>
+		<!-- fim da div panel -->	
+		
+		<div class="btn-group">
+		   		<?php
+			    	echo $link_cancelar;
+			    	echo $link_salvar;
+			    ?>
+		</div>
+	
+	</form>
+						
     	
     </div>
 
 </form> 
 
 </div><!-- fim: div view_content --> 
+

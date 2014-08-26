@@ -44,8 +44,6 @@ $.blockUI({ message: '<h1><img src="<?php echo base_url(); ?>scripts/images/ui-a
 
 <div id="view_content">
 
- 	
-    
     <div class="row">
     
 	    <div class="col-md-12">
