@@ -4,14 +4,152 @@
 	</center>
 </div>
 
+<div id="msg" style="display:none;"><img src="{TPL_images}loader.gif" alt="Enviando" />Aguarde carregando...</div> 
+
+
+<div id="view_content">	
+
+	<div class="row">
+		<div class="col-md-12">
+			<p class="bg-success lead text-center">Tipo</p>
+		</div>
+	</div>
+
+	<div class="row">
+    
+	    <div class="col-md-12">
+	    	<div class="btn-group">
+		    <?php
+
+		    echo $link_back;
+		    echo $mensagem;
+		    
+		    $readonly = '';
+		    $painel = 'panel-primary';
+		    if ($disabled != null){
+		    	$readonly  = 'readonly : 1,';
+		    	$painel = 'panel-default';
+		    	echo $link_update_sm;
+		    }
+		    ?>
+		  	</div>  
+	    </div>
+
+    </div>
+	
+	<div class="formulario">	
+	
+	<form class="form-horizontal" role="form" id="frm1" name="frm1" action="<?php echo $form_action; ?>" method="post">
+	
+		<fieldset <?php echo $disabled; ?>>
+	
+		<div class="panel <?php echo $painel; ?>">
+		
+			<div class="panel-heading">
+				  <h3 class="panel-title"><?php echo $titulo; ?></h3>
+			</div>
+			
+			<div class="panel-body">
+			
+			
+				<div class="form-group <?php echo (form_error('campoNome') != '')? 'has-error':''; ?>"">
+				    <label for="campoNome" class="col-sm-3 control-label">Nome</label>
+				    <div class="col-md-7">
+				      	<?php echo form_input($campoNome); ?> 
+				     </div>
+				</div>
+				
+				<div class="form-group <?php echo (form_error('campoAbreviacao') != '')? 'has-error':''; ?>"">
+				    <label for="campoAbreviacao" class="col-sm-3 control-label">Abreviação</label>
+				    <div class="col-md-3">
+				      	<?php echo form_input($campoAbreviacao); ?> 
+				     </div>
+				</div>
+
+				<table class="table table-bordered table-striped table-hover">
+				   	<thead>
+				   		<tr>
+				   			<th class="text-center">Campo</th>
+				   			<th class="text-center">Disponível</th>
+				   			<th class="text-center">Rótulo</th>
+				   		</tr>
+				   	</thead>
+				    <tbody>
+			        	<?php echo $linhas;?>
+			        </tbody>
+				</table>
+			    
+			    
+			    <div class="col-lg-12">							
+				    <div class="form-group text-left <?php echo (form_error('campoCabecalho') != '')? 'has-error':''; ?>"">
+					    <label for="campoCabecalho" class="control-label">Cabeçalho</label>
+					     <?php echo form_textarea($campoCabecalho); ?> 
+					</div>
+				</div>
+				
+				<div class="col-lg-12">	
+					<div class="form-group text-left <?php echo (form_error('campoConteudo') != '')? 'has-error':''; ?>"">
+					    <label for="campoConteudo" class="control-label"><span class="text-red">*</span> Distribuição do Conteúdo</label>
+					    <?php echo form_textarea($campoConteudo); ?>  
+					</div>
+				</div>
+			   
+			    
+			    <div class="col-lg-12">	
+			     	<div class="form-group text-left <?php echo (form_error('campoRodape') != '')? 'has-error':''; ?>"">
+				   		<label for="campoRodape" class="control-label">Rodapé</label>
+				      	<?php echo form_textarea($campoRodape); ?> 
+					</div>
+				</div>
+				
+					<?php 
+					    if(validation_errors() != ''){
+							echo '<div class="form-group">';
+							echo form_error('campoNome');
+							echo form_error('campoAbreviacao');
+							echo form_error('campoConteudo');
+							echo '</div>';
+						}
+					?>
+
+	    	 </div>
+    		<!-- fim: div panel-body --> 
+	    
+	    </div>
+    	<!-- fim: div panel --> 
+    
+   		</fieldset>
+
+		<div class="btn-group">
+		   		<?php
+			    	echo $link_cancelar;
+			    	
+					if ($disabled == null){
+				    	echo $link_salvar;
+				    }else{
+						echo $link_update;
+					}
+			    ?>
+		</div>
+		
+    </form> 
+    
+
+    </div>
+    <!-- fim: div formulario --> 
+
+</div>
+<!-- fim: div view_content --> 
+
 <script type="text/javascript" src="<?php echo base_url(); ?>js/tinymce/tinymce.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/tinymce/jquery.tinymce.min.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>scripts/jquery.blockUI.js"></script>
+
 
 <script type="text/javascript"> 
     $(document).ready(function(){		
     	 $("textarea#campoCabecalho").tinymce({
 		      script_url : '<?php echo base_url(); ?>js/tinymce/tinymce.min.js',
+		      <?php echo $readonly; ?>
 		      language : 'pt_BR',
 		  	  menubar : false,
 		  	  browser_spellcheck : true,
@@ -30,6 +168,7 @@
 
     	 $("textarea#campoConteudo").tinymce({
 		      script_url : '<?php echo base_url(); ?>js/tinymce/tinymce.min.js',
+		      <?php echo $readonly; ?>
 		      language : 'pt_BR',
 		  	  menubar : false,
 		  	  browser_spellcheck : true,
@@ -48,6 +187,7 @@
 
     	 $("textarea#campoRodape").tinymce({
 		      script_url : '<?php echo base_url(); ?>js/tinymce/tinymce.min.js',
+		      <?php echo $readonly; ?>
 		      language : 'pt_BR',
 		  	  menubar : false,
 		  	  browser_spellcheck : true,
@@ -65,116 +205,3 @@
 		   });
     });
 </script>
- 
-<ol class="breadcrumb">
-	<li><a href="<?php echo site_url('/tipo/index'); ?>">Tipos</a></li>
-  	<li class="active"><?php echo $titulo;?></li>
-</ol>		
-
-<div id="msg" style="display:none;"><img src="{TPL_images}loader.gif" alt="Enviando" />Aguarde carregando...</div> 
-
-<div id="view_content">	
-
-    <?php
-    echo $link_back;
-    echo $mensagem;
-    echo form_open($form_action);
-    ?>
-	
-	<div class="formulario">	
-	
-	    <fieldset class="conteiner2"> 
-	    
-	        <legend class="subTitulo6">Identificação</legend> 
-	        
-	        <table class="table_form">
-	        	<tbody>
-	        		
-		        	<tr>
-			        	<td class="gray" style="width: 150px;"><span class="text-red">*</span> Nome:
-			        	</td>
-			        	<td class="green"><?php echo form_input($campoNome) .form_error('campoNome'); ?> 
-			        	</td>
-		        	</tr>
-		        	<tr>
-			        	<td class="gray"><span class="text-red">*</span> Abreviação:
-			        	</td>
-			        	<td class="green"><?php echo form_input($campoAbreviacao) .form_error('campoAbreviacao'); ?> 
-			        	</td>
-		        	</tr>
-		        	
-	        	</tbody>
-	        </table>
-	        
-	    </fieldset>
-	    
-	    
-	    <fieldset class="conteiner2" style="margin-top: 20px;"> 
-	    
-	        <legend class="subTitulo6">Itens presentes no formulário</legend> 
-	        
-	        <table class="table_form" style="border-collapse: collapse;">
-	        	<tbody>
-	        	<tr>
-		        	<td class="gray" style="text-align: center; font-weight: bold;">Campo
-		        	</td>
-		        	<td class="gray" style="text-align: center; font-weight: bold;">Disponível
-		        	</td>
-		        	<td class="gray" style="text-align: center; font-weight: bold;">Rótulo
-		        	</td>
-	        	</tr>
-	        		<?php echo $linhas;?>
-	
-	        	</tbody>
-	        </table>
-
-	    </fieldset>
-	    
-	    
-	     <fieldset class="conteiner2" style="margin-top: 20px;"> 
-	    
-	        <legend class="subTitulo6">Itens presentes na exportação</legend> 
-	        
-	         <table class="table_form">
-	        	<tbody>
-		        	<tr>
-			        	<td class="gray">Cabeçalho:
-			        	</td>
-			        	<td class="green" style="width: 1000px;"><?php echo form_textarea($campoCabecalho) .form_error('campoCabecalho'); ?> 
-			        	</td>
-		        	</tr>
-		        	<tr>
-			        	<td class="gray"><span class="text-red">*</span> Organização do Conteúdo:
-			        	</td>
-			        	<td class="green" style="width: 1000px;">
-			        		<strong> Variáveis: </strong> 
-			        		[tipo_doc], [numero], [ano_doc], [setor_doc], [data], [destinatario], [referencia], [assunto], [redacao], [remetente_assinatura], [remetente_nome], [remetente_cargo]
-			        		<?php
-				        		echo $variaveis_disponiveis;
-								echo "<br /><br />";
-								echo form_textarea($campoConteudo) .form_error('campoConteudo');
-			        		?>
-			        	</td>
-		        	</tr>
-		        	<tr>
-			        	<td class="gray">Rodapé:
-			        	</td>
-			        	<td class="green"><?php echo form_textarea($campoRodape) .form_error('campoRodape'); ?> 
-			        	</td>
-		        	</tr>
-		        	
-	        	</tbody>
-	        </table>
-	        
-	    </fieldset>
-	    
-	    
-	    
-
-		<input type="button" class="button" value="&nbsp; Cancelar &nbsp;" title=" Cancelar " onclick="javascript:window.history.back();" /> &nbsp;  <input type="submit" class="button" value=" Salvar " title="Salvar"/>							
-    	
-    </div>
-
-</form> 
-
-</div><!-- fim: div view_content --> 

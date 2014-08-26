@@ -44,7 +44,7 @@ class Campo_model extends CI_Model {
 			break;
 				
 			case 'voltar':
-				$link = anchor($area.'/index/'.$_SESSION['novoinicio'],'<span class="glyphicon glyphicon-arrow-left"></span> Voltar',array('class'=>'btn btn-default btn-sm'));
+				$link = anchor($_SESSION['novoinicio'],'<span class="glyphicon glyphicon-arrow-left"></span> Voltar',array('class'=>'btn btn-default btn-sm'));
 			break;
 				
 			case 'voltar_doc':
@@ -206,7 +206,7 @@ function orgao($indice) {
     					'value' => $this->input->post('campoAno'),
     					'maxlength' => '4',
     					'size' => '5',
-    					'class' => 'textboxUpper',
+    					'class' => 'form-control text-uppercase',
     			),
     			
     			'campoNome' => array(
@@ -215,7 +215,7 @@ function orgao($indice) {
     					'value' => mb_convert_case($this->input->post('campoNome'), MB_CASE_UPPER, "ISO-8859-1"),
     					'maxlength' => '90',
     					'size' => '61',
-    					'class' => 'textboxUpper',
+    					'class' => 'form-control text-uppercase',
     			),
     			
     			'campoAbreviacao' => array(
@@ -224,7 +224,7 @@ function orgao($indice) {
     					'value' => mb_convert_case($this->input->post('campoAbreviacao'), MB_CASE_UPPER, "ISO-8859-1"),
     					'maxlength' => '15',
     					'size' => '15',
-    					'class' => 'textboxUpper',
+    					'class' => 'form-control text-uppercase',
     			),
     			
     			'campoInicio' => array(
@@ -233,7 +233,7 @@ function orgao($indice) {
     					'value' => $this->input->post('campoInicio'),
     					'maxlength' => '3',
     					'size' => '4',
-    					'class' => 'textboxUpper',
+    					'class' => 'form-control text-uppercase',
     			),
     			'campoCabecalho' => array(
     					'name' => 'campoCabecalho',
@@ -260,7 +260,7 @@ function orgao($indice) {
     					'value' => mb_convert_case($this->input->post('campoFlagRedacao'), MB_CASE_UPPER, "ISO-8859-1"),
     					'maxlength' => '2',
     					'size' => '2',
-    					'class' => 'textboxUpper',
+    					'class' => 'form-control text-uppercase',
     			),
     			
     			'campoFlagObjetivo' => array(
@@ -269,7 +269,7 @@ function orgao($indice) {
     					'value' => mb_convert_case($this->input->post('campoFlagObjetivo'), MB_CASE_UPPER, "ISO-8859-1"),
     					'maxlength' => '2',
     					'size' => '2',
-    					'class' => 'textboxUpper',
+    					'class' => 'form-control text-uppercase',
     			),
     			
     			'campoFlagDocumentacao' => array(
@@ -278,7 +278,7 @@ function orgao($indice) {
     					'value' => mb_convert_case($this->input->post('campoFlagDocumentacao'), MB_CASE_UPPER, "ISO-8859-1"),
     					'maxlength' => '2',
     					'size' => '2',
-    					'class' => 'textboxUpper',
+    					'class' => 'form-control text-uppercase',
     			),
     			
     			'campoFlagAnalise' => array(
@@ -287,7 +287,7 @@ function orgao($indice) {
     					'value' => mb_convert_case($this->input->post('campoFlagAnalise'), MB_CASE_UPPER, "ISO-8859-1"),
     					'maxlength' => '2',
     					'size' => '2',
-    					'class' => 'textboxUpper',
+    					'class' => 'form-control text-uppercase',
     			),
     			
     			'campoFlagConclusao' => array(
@@ -296,7 +296,7 @@ function orgao($indice) {
     					'value' => mb_convert_case($this->input->post('campoFlagConclusao'), MB_CASE_UPPER, "ISO-8859-1"),
     					'maxlength' => '2',
     					'size' => '2',
-    					'class' => 'textboxUpper',
+    					'class' => 'form-control text-uppercase',
     			),
     			 
     			'arrayFlags' => array(

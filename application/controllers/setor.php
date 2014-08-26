@@ -103,9 +103,11 @@ class Setor extends CI_Controller {
 		$this->form_validation->set_error_delimiters('<div class="error_field"> <img class="img_align" src="{TPL_images}/error.png" alt="! " /> ', '</div>');
 	
 		$data['titulo'] = 'Novo Setor';
+		
 		$data['link_back']  = $this->Campo_model->make_link($this->area, 'voltar');
 		$data['link_cancelar'] = $this->Campo_model->make_link($this->area,'cancelar');
 		$data['link_salvar'] = $this->Campo_model->make_link($this->area,'salvar');
+		
 		$data['form_action'] = site_url($this->area.'/add/');
 		$data['mensagem'] = '';
 	

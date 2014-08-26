@@ -55,7 +55,11 @@ class Tipo extends CI_Controller {
         $maximo = 10;
         $uri_segment = 3;
         $inicio = (!$this->uri->segment($uri_segment, 0)) ? 0 : ($this->uri->segment($uri_segment, 0) - 1) * $maximo;
-        $_SESSION['novoinicio'] = $this->uri->segment($uri_segment - 1, 'index').'/'.$this->uri->segment($uri_segment, 0);  //cria uma variavel de sessao para retornar a pagina correta apos visualizacao, delecao ou alteracao
+       // $_SESSION['novoinicio'] = $this->uri->segment($uri_segment - 1, 'index').'/'.$this->uri->segment($uri_segment, 0);  //cria uma variavel de sessao para retornar a pagina correta apos visualizacao, delecao ou alteracao
+       // $_SESSION['novoinicio'] = $this->uri->segment($uri_segment, 0);
+        
+        $_SESSION['novoinicio'] = current_url();
+        
         $config['base_url'] = site_url($this->area.'/index/');
         $config['total_rows'] = $this->Tipo_model->count_all();
         $config['per_page'] = $maximo;
@@ -110,12 +114,18 @@ class Tipo extends CI_Controller {
 	}
 	
 	public function add() {
+		
+		$data['disabled'] = '';
 	
 		$this->load->library(array('form_validation'));
 		$this->form_validation->set_error_delimiters('<div class="error_field"> <img class="img_align" src="{TPL_images}/error.png" alt="! " /> ', '</div>');
 	
-		$data['titulo'] = 'Novo Tipo';
-		$data['link_back']  = anchor($this->area.'/index/','<span class="glyphicon glyphicon-arrow-left"></span> Voltar',array('class'=>'btn btn-warning btn-sm'));
+		$data['titulo'] = 'Novo';
+		
+		$data['link_back']  = $this->Campo_model->make_link($this->area, 'voltar');
+		$data['link_cancelar'] = $this->Campo_model->make_link($this->area,'cancelar');
+		$data['link_salvar'] = $this->Campo_model->make_link($this->area,'salvar');
+		
 		$data['form_action'] = site_url($this->area.'/add/');
 		$data['mensagem'] = '';
 		
@@ -139,14 +149,14 @@ class Tipo extends CI_Controller {
 			$flag_selecionada  = $this->input->post('campoFlag_'.$value) ? $this->input->post('campoFlag_'.$value) : 'N';
 			
 						$linhas .= '<tr>
-						<td class="gray" style="width: 150px;">
+						<td style="width: 150px;">
 							'. $value . '
 						</td>
-						<td class="green" style="text-align: center;">
-				        		'. form_dropdown('campoFlag_'.$value, $data['flagsDisponiveis'], $flag_selecionada) .form_error('campoFlag_'.$value) .'
+						<td style="text-align: center;">
+				        		'. form_dropdown('campoFlag_'.$value, $data['flagsDisponiveis'], $flag_selecionada, 'class="form-control text-uppercase"') .form_error('campoFlag_'.$value) .'
 				        </td>
-				        <td class="green" style="text-align: center;">
-				        		'. form_input('campoLabel_'.$value) .form_error('campoLabel_'.$value).'
+				        <td style="text-align: center;">
+				        		'. form_input('campoLabel_'.$value, '', 'class="form-control"') .form_error('campoLabel_'.$value).'
 				        </td>
 			        	</tr>';
 		}	
@@ -222,7 +232,10 @@ class Tipo extends CI_Controller {
 	}
 	
 	function view($id){
+		
+		self::update($id, 'disabled');
 
+		/*
 		$data['titulo'] = 'Detalhes do tipo de documento';
 		
         $data['message'] = '';
@@ -232,6 +245,7 @@ class Tipo extends CI_Controller {
 		$data['objeto'] = $this->Tipo_model->get_by_id($id)->row();
 
 		$this->load->view($this->area.'/'.$this->area.'_view', $data);
+		*/
 
 	}
 	
@@ -257,15 +271,27 @@ class Tipo extends CI_Controller {
 	
 	}
 	
-public function update($id) {
+	
+public function update($id, $disabled = null) {
+	
+		$data['disabled'] = ($disabled != null) ? 'disabled' : '';
 
 		$this->load->library('form_validation');
 		$this->form_validation->set_error_delimiters('<div class="error_field"> <img class="img_align" src="{TPL_images}/error.png" alt="! " /> ', '</div>');
 			
 		// define as variaveis comuns
-		$data['titulo'] = "Alteração de tipo";
+		$data['titulo'] = "Alteração";
 		$data['mensagem'] = '';
-		$data['link_back'] = anchor($this->area.'/'.$_SESSION['novoinicio'],'<span class="glyphicon glyphicon-arrow-left"></span> Voltar',array('class'=>'btn btn-warning btn-sm'));
+		
+		
+		$data['link_back'] = $this->Campo_model->make_link($this->area, 'voltar');
+		$data['link_cancelar'] = $this->Campo_model->make_link($this->area, 'cancelar');
+		$data['link_salvar'] = $this->Campo_model->make_link($this->area, 'salvar');
+		$data['link_update'] = $this->Campo_model->make_link($this->area, 'alterar', $id);
+		$data['link_update_sm'] = $this->Campo_model->make_link($this->area, 'alterar_sm', $id);
+		
+		//$data['link_back'] = anchor($this->area.'/'.$_SESSION['novoinicio'],'<span class="glyphicon glyphicon-arrow-left"></span> Voltar',array('class'=>'btn btn-warning btn-sm'));
+
 		$data['form_action'] = site_url($this->area.'/update/'.$id);
 
 		//Constroe os campos do formulario
@@ -308,10 +334,10 @@ public function update($id) {
 			$linhas .= '<tr>
 							<td class="gray" style="width: 150px;">'. $nome_campo . '</td>
 							<td class="green">
-					        		'. form_dropdown('campoFlag_'.$nome_campo, $data['flagsDisponiveis'], $flag_selecionada) .form_error('campoFlag_'.$nome_campo) .'
+					        		'. form_dropdown('campoFlag_'.$nome_campo, $data['flagsDisponiveis'], $flag_selecionada, 'class="form-control text-uppercase"') .form_error('campoFlag_'.$nome_campo) .'
 					        </td>
 					        <td class="green">			
-					        		'. form_input('campoLabel_'.$nome_campo, $campo[1]) .form_error('campoLabel_'.$nome_campo).'
+					        		'. form_input('campoLabel_'.$nome_campo, $campo[1], 'class="form-control"') .form_error('campoLabel_'.$nome_campo).'
 					        </td>
 			        	</tr>';
 		}
@@ -365,7 +391,7 @@ public function update($id) {
                                     setTimeout("getSecs()",1000);		
                                     var s =  $("#clock1").html();
                                     if (s == "1 segundos"){			
-                                        window.location.href = "' . site_url($this->area.'/'.$_SESSION['novoinicio']) . '";
+                                        window.location.href = "' . $_SESSION['novoinicio'] . '";
                                     }
                                 }     		
                                 ';
@@ -643,7 +669,8 @@ public function update($id) {
         
         $maximo = 10;  
         $uri_segment = 3;  
-        $_SESSION['novoinicio'] = $this->uri->segment($uri_segment - 1, 0).'/'.$this->uri->segment($uri_segment, 0); 
+       // $_SESSION['novoinicio'] = $this->uri->segment($uri_segment - 1, 0).'/'.$this->uri->segment($uri_segment, 0); 
+        $_SESSION['novoinicio'] = $this->uri->segment($uri_segment, 0);
         $config['per_page'] = $maximo;    
         $config['base_url'] = site_url($this->area.'/search');
         $config['total_rows'] = $this->Tipo_model->count_all_search($keyword);           
@@ -766,7 +793,9 @@ public function update($id) {
 		}
 	
 		// redirect to curso list page
-		redirect($this->area.'/'.$_SESSION['novoinicio']);
+		//redirect($this->area.'/'.$_SESSION['novoinicio']);
+		
+		redirect($_SESSION['novoinicio']);
 	}
 	
 }

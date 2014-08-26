@@ -3,13 +3,6 @@
 		<img src="{TPL_images}companies-icon_2.png" height="72px"/>
 	</cente>
 </div>
-
-<script type="text/javascript"> 
-    $(document).ready(function(){		
-        window.document.body.oncopy  = function() { return false; };
-        window.document.body.onpaste = function() { return false; }
-    });
-</script> 
 	
 <div id="msg" style="display:none;"><img src="{TPL_images}loader.gif" alt="Enviando" />Aguarde carregando...</div> 
 
