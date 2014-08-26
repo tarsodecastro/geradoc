@@ -4,9 +4,7 @@
 	</cente>
 </div>
 
-<div id="titulo" class="titulo1"> 
-    <?php echo $titulo; ?>
-</div>		
+<p class="bg-success lead text-center">Funcionários do setor</p>		
 
 <div id="msg" style="display:none;"><img src="{TPL_images}loader.gif" alt="Enviando" />Aguarde carregando...</div> 
 
@@ -19,22 +17,24 @@
 	
 	<div class="formulario">	
 	
-	    <fieldset class="conteiner2"> 
 	    
-	        <legend class="subTitulo6">Setor</legend> 
-	        
-	        <table class="table_form">
-	        	<tbody>
-
+	   <div class="panel panel-primary">
+	
+			  <div class="panel-heading">
+			    <h3 class="panel-title"><?php echo $titulo; ?></h3>
+			  </div>
+			  	  
+			  <table class="table table-bordered table-striped table-hover">
+			    <tbody>
 		        	<tr>
-			        	<td class="gray">Nome:
+			        	<td>Nome:
 			        	</td>
-			        	<td class="green"><?php echo "$setorNome - $setorSigla"; ?> 
+			        	<td><?php echo "$setorNome - $setorSigla"; ?> 
 			        	</td>
 		        	</tr>
 		        	<tr>
-						<td class="gray">Chefe:</td>
-						<td class="green">
+						<td>Chefe:</td>
+						<td>
 	                         <?php
 	                            echo $dono;
 	                         ?>
@@ -42,16 +42,17 @@
 					</tr>
 		        	
 		        	<tr>
-						<td class="gray">Funcionários:</td>
-						<td class="green">
+						<td>Funcionários:</td>
+						<td>
 	                         <?php
 	                            echo $funcionarios;
 	                         ?>
 	                    </td>
 					</tr>
 	        	</tbody>
-	        </table>
-	    </fieldset>						
+			  </table>
+			  
+		</div>
     	
     </div>
 

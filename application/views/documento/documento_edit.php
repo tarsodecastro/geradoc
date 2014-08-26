@@ -72,8 +72,6 @@ $.blockUI({ message: '<h1><img src="<?php echo base_url(); ?>scripts/images/ui-a
 	
 	<form class="form-horizontal" role="form" id="form" name="form" action="<?php echo $form_action; ?>" method="post" >
 	
-		
-	
 		<fieldset <?php echo $disabled; ?>>
 	
 			<div class="panel <?php echo $painel; ?>">

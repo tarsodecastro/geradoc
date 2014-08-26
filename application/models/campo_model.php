@@ -40,7 +40,7 @@ class Campo_model extends CI_Model {
 			break;
 				
 			case 'visualizar':
-				$link =  anchor($area.'/view/'.$id,'<span class="glyphicon glyphicon-search"></span> Visualizar', array('class'=>'btn btn-default btn-sm'));
+				$link =  anchor($area.'/view/'.$id,'<span class="glyphicon glyphicon-search"></span> Visualizar', array('class'=>'btn btn-success btn-sm'));
 			break;
 				
 			case 'voltar':
@@ -61,7 +61,7 @@ class Campo_model extends CI_Model {
 			break;
 				
 			case 'alterar_sm':
-				$link = anchor($area.'/update/'.$id,'<span class="glyphicon glyphicon-pencil"></span> Alterar', array('class'=>'btn btn-default btn-sm'));
+				$link = anchor($area.'/update/'.$id,'<span class="glyphicon glyphicon-pencil"></span> Alterar', array('class'=>'btn btn-warning btn-sm'));
 			break;
 				
 			case 'alterar':
@@ -77,7 +77,7 @@ class Campo_model extends CI_Model {
 			break;
 				
 			case 'funcionarios':
-				$link = anchor($area.'/funcionarios/'.$id,'<span class="glyphicon glyphicon-pencil"></span> Funcionários', array('class'=>'btn btn-default btn-sm'));
+				$link = anchor($area.'/funcionarios/'.$id,'<span class="glyphicon glyphicon-pencil"></span> Funcionários', array('class'=>'btn btn-primary btn-sm'));
 			break;
 			
 			case 'exportar':
@@ -89,7 +89,7 @@ class Campo_model extends CI_Model {
 			break;
 			
 			case 'ano':
-				$link =  anchor($area.'/year/'.$id,'<span class="glyphicon glyphicon-calendar"></span> Ano', array('class'=>'btn btn-default btn-sm'));
+				$link =  anchor($area.'/year/'.$id,'<span class="glyphicon glyphicon-calendar"></span> Ano', array('class'=>'btn btn-info btn-sm'));
 			break;
 			
 			case 'despublicado':
@@ -97,7 +97,7 @@ class Campo_model extends CI_Model {
 			break;
 			
 			case 'publicado':
-				$link =  anchor($area.'/altera_publicacao/'.$id,'<span class="glyphicon glyphicon-ok"></span> Publicado', array('class'=>'btn btn-success btn-sm'));
+				$link =  anchor($area.'/altera_publicacao/'.$id,'<span class="glyphicon glyphicon-ok"></span> Publicado', array('class'=>'btn btn-primary btn-sm'));
 			break;
 				
 		}

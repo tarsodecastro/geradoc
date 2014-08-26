@@ -236,6 +236,7 @@ table.display td.center {
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * DataTables row classes
  */
+ /*
 table.display tr.odd.gradeA {
 	background-color: #ddffdd;
 }
@@ -245,12 +246,8 @@ table.display tr.even.gradeA {
 }
 
 
-
-
 table.display tr.odd.gradeA {
-    /*
-	background-color: #ddffdd;
-    */
+
     background-color: #d5e2dc;
 }
 
@@ -284,15 +281,15 @@ table.display tr.even.gradeU {
 
 
 tr.odd {
-	/* background-color: #E2E4FF; */
+
 	background-color: #D5E2DC;
 }
 
 tr.even {
-	/* background-color: white; */
+
 	background-color: #EFE;
 }
-
+/*
 
 
 

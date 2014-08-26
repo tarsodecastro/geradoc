@@ -13,13 +13,24 @@
     <?php
     echo $link_back;
     echo "<center>".$mensagem."</center>";
+    
+    
+    $readonly = '';
+    $painel = 'panel-primary';
+    if ($disabled != null){
+    	$readonly  = 'readonly : 1,';
+    	$painel = 'panel-default';
+    }
     ?>
+
 	
 	<div class="formulario">	
 	
 	<form class="form-horizontal" role="form" id="frm1" name="frm1" action="<?php echo $form_action; ?>" method="post">
+	
+	<fieldset <?php echo $disabled; ?>>
 			
-		<div class="panel panel-primary">
+		<div class="panel <?php echo $painel; ?>">
 	
 			  <div class="panel-heading">
 			    <h3 class="panel-title"><?php echo $titulo; ?></h3>
@@ -69,7 +80,7 @@
 					  
 					  <div class="form-group <?php echo (form_error('campoArtigo') != '')? 'has-error':''; ?>">
 					    <label for="campoArtigo" class="col-sm-3 control-label">Artigo</label>
-					    <div class="col-md-7">
+					    <div class="col-md-2">
 					    	<?php echo form_dropdown('campoArtigo', $artigosDisponiveis, $artigoSelecionado, 'class="form-control"'); ?>
 					    </div>
 					  </div>
@@ -90,13 +101,17 @@
 					    <div class="col-md-2">
 					    	<?php echo form_dropdown('campoRestricao', $restricoesDisponiveis, $restricaoSelecionada, 'class="form-control"'); ?>
 					    </div>
+					    
+						<?php if ($disabled == null){ ?>
 					    <div class="col-md-7">
 						   <p class="bg-warning text-justify" style="padding: 7px;">
 						  	Selecione SIM caso queira restringir o <b>universo de pesquisa</b>  e de <b>produção de documentos</b> de um usuário aos documentos deste setor, 
 							ou seja, usuários associados a este setor não encontrarão documentos de outros setores, apenas deste, da mesma forma que só poderão produzir documentos de remetentes deste setor.  
 							<br> O valor padrão é NÃO <br>
 						  </p>
-						 </div>
+						</div>
+						<?php }?>
+						 
 					  </div>
 					  
 					    <?php 
@@ -117,10 +132,17 @@
 			  
 		</div>
 		
+		</fieldset>
+		
 		<div class="btn-group">
 		   		<?php
 			    	echo $link_cancelar;
-			    	echo $link_salvar;
+			    	
+					if ($disabled == null){
+				    	echo $link_salvar;
+				    }else{
+						echo $link_update;
+					}
 			    ?>
 		</div>
 	

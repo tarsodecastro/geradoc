@@ -243,7 +243,10 @@ class Setor extends CI_Controller {
 	}
 	
 	function view($id){
+		
+		self::update($id, 'disabled');
 
+		/*
 		$data['titulo'] = 'Detalhes do setor';
 		
         $data['message'] = '';
@@ -255,10 +258,13 @@ class Setor extends CI_Controller {
 		//echo $this->db->last_query();
 
 		$this->load->view($this->area.'/'.$this->area.'_view', $data);
+		*/
 
 	}
 	
-public function update($id) {
+public function update($id, $disabled = null) {
+	
+		$data['disabled'] = ($disabled != null) ? 'disabled' : '';
 	
 		// Instancia um objeto com o resultado da consulta
 		$obj = $this->Setor_model->get_by_id($id)->row();
@@ -275,6 +281,7 @@ public function update($id) {
 		$data['link_back'] = $this->Campo_model->make_link($this->area, 'voltar');
 		$data['link_cancelar'] = $this->Campo_model->make_link($this->area, 'cancelar');
 		$data['link_salvar'] = $this->Campo_model->make_link($this->area, 'salvar');
+		$data['link_update'] = $this->Campo_model->make_link($this->area, 'alterar', $id);
 		
 		$data['form_action'] = site_url($this->area.'/update/'.$id);
 
@@ -381,7 +388,7 @@ public function update($id) {
 				// Atualiza o cadastro
 				$this->Setor_model->update($id, $objeto_do_form);
 
-				$this->js_custom = 'var sSecs = 6;
+				$this->js_custom = 'var sSecs = 3;
                                 function getSecs(){
                                     sSecs--;
                                     if(sSecs<0){ sSecs=59; sMins--; }				
