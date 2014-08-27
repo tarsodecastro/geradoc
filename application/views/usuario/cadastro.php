@@ -1,58 +1,91 @@
-<div class="titulo1">	 			
-	<?php echo $titulo; ?>
-</div>
-
 <div class="areaimage">
 	<center>
 		<img src="{TPL_images}secrecy-icon.png" height="72px"/>
 	</center>
 </div>
-			
-<div class="formulario">	
 
-<?php echo "<center>".$mensagem."</center>"; ?>
-    
-	<form id="frm1" name="frm1" action="<?php echo $form_action; ?>" method="post">
-	
-	<fieldset class="conteiner2"> 
-	    
-	        <legend class="subTitulo6">Cadastro</legend> 
-	        
-	        <table class="table_form">
-	        	<tbody>
-		        	<tr>
-			        	<td class=gray style="width: 170px;"><span class="text-red">*</span> CPF: </td>
-			        	<td class="green">
-			        	<?php echo form_input($campoCPF) .form_error('campoCPF'); ?> 
-			        	</td>
-		        	</tr>
-		        	<tr>
-			        	<td class="gray"><span class="text-red">*</span> Nome: </td>
-			        	<td class="green">
-			        	<?php echo form_textarea($campoNome) .form_error('campoNome'); ?> 
-			        	</td>
-		        	</tr>
-		        	<tr>
-			        	<td class=gray><span class="text-red">*</span> E-mail: </td>
-			        	<td class="green">
-			        	<?php echo form_input($campoMail1) .form_error('campoMail1'); ?> 
-			        	</td>
-		        	</tr>
-		        	
-		        	<tr>
-			        	<td class=gray><span class="text-red">*</span> Confirmação do e-mail: </td>
-			        	<td class="green">
-			        	<?php echo form_input($campoMail2) .form_error('campoMail2'); ?> 
-			        	</td>
-		        	</tr>
-	        	</tbody>
-	        </table>
-	    </fieldset>
+<div id="view_content">	
 
-		<br>
+		<div class="row">
+			<div class="col-md-12">
+				<p class="bg-success lead text-center">Usuário</p>
+			</div>
+		</div>
 		
-		<input type="button" class="button" value="Voltar" title="Voltar" onclick="javascript:window.history.back();"/> &nbsp; &nbsp;					
-		<input type="submit" class="button" value="Salvar" title="Salvar"/>&nbsp;&nbsp;		
+		<div class="formulario">
+		
+			<!-- Mensagens e alertas -->
+			<div class="row">
+		   		<div class="col-md-12">
+		    	
+				    	<?php 
+				    		echo "<center>".$mensagem."</center>"; 
+				    	
+					    	if(validation_errors() != ''){
+					    		echo '<div class="alert alert-danger" role="alert">';
+					    		echo form_error('campoCPF');
+					    		echo form_error('campoNome');
+					    		echo form_error('campoMail1');
+					    		echo form_error('campoMail2');
+					    		echo '</div>';
+					    	}
+				    	?>
+			  	 
+		    	</div>	
+		   	</div>
+		   	<!-- Fim das mensagens e alertas -->
+		
+		    
+		    <form class="form-horizontal" role="form" id="frm1" name="frm1" action="<?php echo $form_action; ?>" method="post">
+		    
 			
-	</form>
+			<div class="panel panel-primary">
+			
+				<div class="panel-heading">
+				  	<h3 class="panel-title"><?php echo $titulo; ?></h3>
+				</div>
+			
+				<div class="panel-body">
+				
+					<div class="form-group <?php echo (form_error('campoCPF') != '')? 'has-error':''; ?>"">
+					    <label for="campoCPF" class="col-sm-3 control-label">CPF</label>
+					    <div class="col-md-3">
+					      	<?php echo form_input($campoCPF); ?> 
+					    </div>
+					</div>
+					
+					<div class="form-group <?php echo (form_error('campoNome') != '')? 'has-error':''; ?>"">
+					    <label for="campoNome" class="col-sm-3 control-label">Nome</label>
+					    <div class="col-md-7">
+					      	<?php echo form_textarea($campoNome); ?> 
+					     </div>
+					</div>
+					
+					<div class="form-group <?php echo (form_error('campoMail1') != '')? 'has-error':''; ?>"">
+					    <label for="campoMail1" class="col-sm-3 control-label">E-mail</label>
+					    <div class="col-md-7">
+					      	<?php echo form_input($campoMail1); ?> 
+					     </div>
+					</div>
+					
+					<div class="form-group <?php echo (form_error('campoMail2') != '')? 'has-error':''; ?>"">
+					    <label for="campoMail2" class="col-sm-3 control-label">Confirmação do e-mail</label>
+					    <div class="col-md-7">
+					      	<?php echo form_input($campoMail2); ?> 
+					     </div>
+					</div>
+				
+				</div>
+				
+			</div>
+			
+			<div class="btn-group">
+		   		<?php
+				    echo $link_salvar;
+			    ?>
+			</div>
+					
+			</form>
+		</div>
+
 </div>

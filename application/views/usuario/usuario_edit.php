@@ -4,97 +4,162 @@
 	</center>
 </div>
 
-<div id="titulo" class="titulo1"> 
-    <?php echo $titulo; ?>
-</div>		
-
 <div id="msg" style="display:none;"><img src="{TPL_images}loader.gif" alt="Enviando" />Aguarde carregando...</div> 
 
 <div id="view_content">	
 
-    <?php
-    echo $link_back;
-    echo "<center>".$mensagem."</center>";
-    echo form_open($form_action);
-    ?>
-	
+	<div class="row">
+		<div class="col-md-12">
+			<p class="bg-success lead text-center">Usuário</p>
+		</div>
+	</div>
+
+    <div class="row">
+    
+	    <div class="col-md-12">
+	    	<div class="btn-group">
+		    <?php
+
+		    echo $link_back;
+
+		    $readonly = '';
+		    $painel = 'panel-primary';
+		    if ($disabled != null){
+		    	$readonly  = 'readonly : 1,';
+		    	$painel = 'panel-default';
+		    	echo $link_update_sm;
+		    }
+		    ?>
+		  	</div>  
+	    </div>
+
+    </div>
+    
+    
 	<div class="formulario">	
 	
-	    <fieldset class="conteiner2"> 
-	    
-	        <legend class="subTitulo6">Usuário</legend> 
-	        
-	        <table class="table_form">
-	        	<tbody>
-					
-					<tr>
-			        	<td class="gray" style="width: 150px;"><span class="text-red">*</span> CPF:
-			        	</td>
-			        	<td class="green"><?php echo form_input($campoCPF) .form_error('campoCPF'); ?> 
-			        	</td>
-		        	</tr>
-					
-		        	<tr>
-			        	<td class="gray"><span class="text-red">*</span> Nome:
-			        	</td>
-			        	<td class="green"><?php echo form_textarea($campoNome) .form_error('campoNome'); ?> 
-			        	</td>
-		        	</tr>
-		        	
-		        	<tr>
-			        	<td class="gray"><span class="text-red">*</span> E-mail:
-			        	</td>
-			        	<td class="green"><?php echo form_input($campoMail1) .form_error('campoMail1'); ?> 
-			        	</td>
-		        	</tr>
-		        	
-		        	<tr>
-			        	<td class="gray"><span class="text-red">*</span>Confirme o e-mail:
-			        	</td>
-			        	<td class="green"><?php echo form_input($campoMail2) .form_error('campoMail2'); ?> 
-			        	</td>
-		        	</tr>
-		        	
-		        	<tr>
-			        	<td class="gray"><span class="text-red">*</span> Senha:
-			        	</td>
-			        	<td class="green"><?php echo form_password($campoSenha) .form_error('campoSenha'); ?> 
-			        	</td>
-		        	</tr>
-		        	
-		        	<tr>
-			        	<td class="gray"><span class="text-red">*</span> Confirme a Senha:
-			        	</td>
-			        	<td class="green"><?php echo form_password($campoConfSenha) .form_error('campoConfSenha'); ?> 
-			        	</td>
-		        	</tr>
-		        	
-		        	<tr>
-						<td class="gray">Setor:</td>
-						<td class="green">
-	                         <?php
-	                            echo form_multiselect('campoSetores[]', $setoresDisponiveis, $setoresSelecionados);
-	                            // echo $this->validation->orgao_error;
-	                         ?>
-	                    </td>
-					</tr>
-		        	<tr>
-						<td class="gray"><span class="text-red">*</span> Nível:</td>
-						<td class="green">
-	                        <?php 
-	                             echo form_dropdown('campoNivel', $niveisDisponiveis, $nivelSelecionado) .form_error('campoNivel');
-	                         ?>
-	                    </td>
-					</tr>
-		        	
-	        	</tbody>
-	        </table>
-	    </fieldset>
+		<!-- Mensagens e alertas -->
+		<div class="row">
+	   		<div class="col-md-12">
+	    	
+			    	<?php 
+			    		echo "<center>".$mensagem."</center>"; 
+			    	
+				    	if(validation_errors() != ''){
+				    		echo '<div class="alert alert-danger" role="alert">';
+				    		echo form_error('campoCPF');
+				    		echo form_error('campoNome');
+				    		echo form_error('campoMail1');
+				    		echo form_error('campoMail2');
+				    		echo form_error('campoSenha');
+				    		echo form_error('campoConfSenha');
+				    		echo form_error('campoNivel');
+				    		echo '</div>';
+				    	}
+			    	?>
+		  	 
+	    	</div>	
+	   	</div>
+	   	<!-- Fim das mensagens e alertas -->
+	
+	
+		<form class="form-horizontal" role="form" id="frm1" name="frm1" action="<?php echo $form_action; ?>" method="post">
+		
 
-		<input type="submit" class="button" value="Salvar" title="Salvar"/>&nbsp;&nbsp;							
+		<fieldset <?php echo $disabled; ?>>
+		
+		<div class="panel <?php echo $painel; ?>">
+		
+			<div class="panel-heading">
+				  <h3 class="panel-title"><?php echo $titulo; ?></h3>
+			</div>
+			
+			<div class="panel-body">
+		
+		
+				<div class="form-group <?php echo (form_error('campoCPF') != '')? 'has-error':''; ?>">
+				    <label for="campoCPF" class="col-sm-3 control-label">CPF</label>
+				    <div class="col-md-3">
+				      	<?php echo form_input($campoCPF); ?> 
+				     </div>
+				</div>
+				
+				<div class="form-group <?php echo (form_error('campoNome') != '')? 'has-error':''; ?>">
+				    <label for="campoNome" class="col-sm-3 control-label">Nome</label>
+				    <div class="col-md-7">
+				      	<?php echo form_textarea($campoNome); ?> 
+				     </div>
+				</div>
+				
+				<div class="form-group <?php echo (form_error('campoMail1') != '')? 'has-error':''; ?>">
+				    <label for="campoMail1" class="col-sm-3 control-label">E-mail</label>
+				    <div class="col-md-7">
+				      	<?php echo form_input($campoMail1); ?> 
+				     </div>
+				</div>
+				
+				
+				<div class="form-group <?php echo (form_error('campoMail2') != '')? 'has-error':''; ?>">
+				    <label for="campoMail2" class="col-sm-3 control-label">Confirme o e-mail</label>
+				    <div class="col-md-7">
+				      	<?php echo form_input($campoMail2); ?> 
+				     </div>
+				</div>
+				
+				<div class="form-group <?php echo (form_error('campoSenha') != '')? 'has-error':''; ?>">
+				    <label for="campoSenha" class="col-sm-3 control-label">Senha</label>
+				    <div class="col-md-4">
+				      	<?php echo form_password($campoSenha); ?> 
+				     </div>
+				</div>
+				
+				
+				<div class="form-group <?php echo (form_error('campoConfSenha') != '')? 'has-error':''; ?>">
+				    <label for="campoConfSenha" class="col-sm-3 control-label">Confirme a Senha</label>
+				    <div class="col-md-4">
+				      	<?php echo form_password($campoConfSenha); ?> 
+				     </div>
+				</div>
+				
+				<div class="form-group">
+				    <label for="campoSetores[]" class="col-sm-3 control-label">Setor</label>
+				    <div class="col-md-7">
+				      	<?php echo form_multiselect('campoSetores[]', $setoresDisponiveis, $setoresSelecionados, 'class="form-control"'); ?> 
+				     </div>
+				</div>
+				
+				<div class="form-group <?php echo (form_error('campoNivel') != '')? 'has-error':''; ?>">
+				    <label for="campoNivel" class="col-sm-3 control-label">Nível</label>
+				    <div class="col-md-3">
+				      	<?php echo form_dropdown('campoNivel', $niveisDisponiveis, $nivelSelecionado, 'class="form-control"'); ?> 
+				     </div>
+				</div>
+				
+	
+			</div>
+			<!-- fim: div panel-body --> 
+				
+		</div>
+		<!-- fim: div panel --> 
+    
+    	</fieldset>
     	
-    </div>
+    	<div class="btn-group">
+		   		<?php
+			    	echo $link_cancelar;
+			    	
+					if ($disabled == null){
+				    	echo $link_salvar;
+				    }else{
+						echo $link_update;
+					}
+			    ?>
+		</div>
 
-</form> 
+		</form> 
 
-</div><!-- fim: div view_content --> 
+	 </div>
+	 <!-- fim: div formulario --> 
+	 
+</div>
+<!-- fim: div view_content --> 

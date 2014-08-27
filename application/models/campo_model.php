@@ -53,7 +53,7 @@ class Campo_model extends CI_Model {
 			break;
 				
 			case 'cancelar':
-				$link = anchor($area.'/index/'.$_SESSION['novoinicio'],'<span class="glyphicon glyphicon-remove"></span> Cancelar',array('class'=>'btn btn-default'));
+				$link = anchor($_SESSION['novoinicio'],'<span class="glyphicon glyphicon-remove"></span> Cancelar',array('class'=>'btn btn-default'));
 			break;
 				
 			case 'cancelar_doc':
@@ -550,7 +550,7 @@ function orgao($indice) {
     					'value' => $this->input->post('campoCPF'),
     					'maxlength' => '11',
     					'size' => '12',
-    					'class' => 'textboxUpper',
+    					'class' => 'form-control',
     			),
     			
     			'campoNome' => array(
@@ -559,7 +559,7 @@ function orgao($indice) {
     					'value' => mb_convert_case($this->input->post('campoNome'), MB_CASE_UPPER, "ISO-8859-1"),
     					'cols'  => '70',
     					'rows'  =>  '2',
-    					'class' => 'textboxUpper',
+    					'class' => 'form-control text-uppercase',
     			),
     			
     			'campoSenha' => array(
@@ -567,6 +567,7 @@ function orgao($indice) {
     					'id' => 'campoSenha',
     					'value' => $this->input->post('campoSenha'),
     					'size' => '15',
+    					'class' => 'form-control',
     			),
     			
     			'campoConfSenha' => array(
@@ -574,6 +575,7 @@ function orgao($indice) {
     					'id' => 'campoConfSenha',
     					'value' => $this->input->post('campoConfSenha'),
     					'size' => '15',
+    					'class' => 'form-control',
     			),
    
     			'campoNivel' => array(
@@ -582,7 +584,7 @@ function orgao($indice) {
     					'value' => mb_convert_case($this->input->post('campoNivel'), MB_CASE_UPPER, "ISO-8859-1"),
     					'maxlength' => '2',
     					'size' => '2',
-    					'class' => 'textboxUpper',
+    					'class' => 'form-control text-uppercase',
     			),
     	
 		    	'campoMail1' => array(
@@ -591,7 +593,7 @@ function orgao($indice) {
     					'value' 	=> mb_convert_case($this->input->post('campoMail1'), MB_CASE_LOWER, "ISO-8859-1"),
     					'maxgenght' => '60',
                         'size'      => '45',
-    					'class' 	=> 'textboxLower',
+    					'class' 	=> 'form-control text-lowercase',
     			),
     	
 		    	'campoMail2' => array(
@@ -600,7 +602,7 @@ function orgao($indice) {
 				    	'value' 	=> mb_convert_case($this->input->post('campoMail2'), MB_CASE_LOWER, "ISO-8859-1"),
 				    	'maxgenght' => '60',
 				    	'size'      => '45',
-				    	'class' 	=> 'textboxLower',
+				    	'class' 	=> 'form-control text-lowercase',
 		    	),
     			 
     			'arrayNiveis' => array(

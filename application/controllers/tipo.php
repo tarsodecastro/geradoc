@@ -115,13 +115,12 @@ class Tipo extends CI_Controller {
 	
 	public function add() {
 		
-		$data['disabled'] = '';
-	
 		$this->load->library(array('form_validation'));
 		$this->form_validation->set_error_delimiters('<div class="error_field"> <img class="img_align" src="{TPL_images}/error.png" alt="! " /> ', '</div>');
 	
 		$data['titulo'] = 'Novo';
 		
+		$data['disabled'] = '';
 		$data['link_back']  = $this->Campo_model->make_link($this->area, 'voltar');
 		$data['link_cancelar'] = $this->Campo_model->make_link($this->area,'cancelar');
 		$data['link_salvar'] = $this->Campo_model->make_link($this->area,'salvar');
@@ -274,8 +273,6 @@ class Tipo extends CI_Controller {
 	
 public function update($id, $disabled = null) {
 	
-		$data['disabled'] = ($disabled != null) ? 'disabled' : '';
-
 		$this->load->library('form_validation');
 		$this->form_validation->set_error_delimiters('<div class="error_field"> <img class="img_align" src="{TPL_images}/error.png" alt="! " /> ', '</div>');
 			
@@ -283,7 +280,7 @@ public function update($id, $disabled = null) {
 		$data['titulo'] = "Alteração";
 		$data['mensagem'] = '';
 		
-		
+		$data['disabled'] = ($disabled != null) ? 'disabled' : '';
 		$data['link_back'] = $this->Campo_model->make_link($this->area, 'voltar');
 		$data['link_cancelar'] = $this->Campo_model->make_link($this->area, 'cancelar');
 		$data['link_salvar'] = $this->Campo_model->make_link($this->area, 'salvar');
@@ -427,9 +424,17 @@ public function update($id, $disabled = null) {
 		$data['titulo'] = 'Vigência do tipo de documento';
 		$data['message'] = (isset($_SESSION['message']) and $_SESSION['message'] != null) ? $_SESSION['message'] : null;
 		$_SESSION['message'] = null;
-		$data['link_back'] = anchor($this->area.'/'.$_SESSION['novoinicio'],'<span class="glyphicon glyphicon-arrow-left"></span> Voltar',array('class'=>'btn btn-warning btn-sm'));
+		
+		
+		//$data['link_back'] = anchor($this->area.'/'.$_SESSION['novoinicio'],'<span class="glyphicon glyphicon-arrow-left"></span> Voltar',array('class'=>'btn btn-warning btn-sm'));
+		
+		$data['link_back'] = $this->Campo_model->make_link($this->area, 'voltar');
+		$data['link_cancelar'] = $this->Campo_model->make_link($this->area, 'cancelar');
+		$data['link_salvar'] = $this->Campo_model->make_link($this->area, 'salvar');
+		
+		
 		$data['form_action'] = site_url($this->area.'/year/'.$id);
-		$this->form_validation->set_error_delimiters('<span class="error_field"> <img class="img_align" src="{TPL_images}/error.png" alt="!" /> ', '</span>');
+		$this->form_validation->set_error_delimiters('<div class="error_field"> <img class="img_align" src="{TPL_images}/error.png" alt="! " /> ', '</div>');
 	
 	
 		//Constroe os campos do formulario
@@ -451,7 +456,7 @@ public function update($id, $disabled = null) {
 		$linha = "";
 		if($years){
 	
-			$linha = "<table>\n";
+			$linha = "<table class='table table-striped table-bordered table-hover'>\n";
 			$linha .= "<tr>\n";
 			$linha .= "<td style='text-align:center;'>\n";
 			$linha .=  "Ano";
@@ -549,7 +554,14 @@ public function update($id, $disabled = null) {
 		
 		$data['titulo'] = 'Edição da vigência do tipo de documento';
 		$data['message'] = null;
-		$data['link_back'] = anchor($this->area.'/'.$_SESSION['novoinicio'],'<span class="glyphicon glyphicon-arrow-left"></span> Voltar',array('class'=>'btn btn-warning btn-sm'));
+
+		//$data['link_back'] = anchor($this->area.'/'.$_SESSION['novoinicio'],'<span class="glyphicon glyphicon-arrow-left"></span> Voltar',array('class'=>'btn btn-warning btn-sm'));
+		
+		$data['link_back'] = $this->Campo_model->make_link($this->area, 'voltar');
+		$data['link_cancelar'] = $this->Campo_model->make_link($this->area, 'cancelar');
+		$data['link_salvar'] = $this->Campo_model->make_link($this->area, 'salvar');
+			
+		
 		$data['form_action'] = site_url($this->area.'/update_year/'.$id);
 	
 		//Constroe os campos do formulario

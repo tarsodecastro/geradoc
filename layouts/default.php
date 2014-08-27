@@ -64,6 +64,12 @@ $menu_modelos = '';
 $menu_organograma = '';
 $menu_pessoas = '';
 $menu_ferramentas = '';
+$menu_cadastro = '';
+$menu_senha = '';
+
+if($this->uri->segment(2) == 'cadastro' or $this->uri->segment(2) == 'altsenha'){
+	$area = $this->uri->segment(2);
+}
 
 switch ($area){
 	
@@ -97,6 +103,14 @@ switch ($area){
 		
 	case 'usuario':
 		$menu_pessoas = 'active';
+	break;
+	
+	case 'cadastro':
+		$menu_cadastro = 'active';
+	break;
+	
+	case 'altsenha':
+		$menu_senha = 'active';
 	break;
 	
 	case 'auditoria':
@@ -221,8 +235,7 @@ switch ($area){
 					            <li><a href="<?php echo site_url('/cargo/index'); ?>" title="Cargos">Cargos</a></li>
 					            <li><a href="<?php echo site_url('/contato/index'); ?>" title="Contatos">Remetentes</a></li>
 					            <li><a href="<?php echo site_url('/usuario/index'); ?>" title="Usuários">Usuários</a></li>
-					            <li><a href="<?php echo site_url('usuario/cadastro'); ?>" title="Meu cadastro">Meu cadastro</a></li>
-				       			<li><a href="<?php echo site_url('usuario/altsenha'); ?>" title="Alterar minha senha de acesso">Alterar minha senha</a></li>
+					            
 					          </ul>
 					        </li>
 					        
@@ -236,7 +249,8 @@ switch ($area){
 				        
 				        <?php } ?>
 				        
-				        
+				        <li class="<?php echo $menu_cadastro;?>"><a href="<?php echo site_url('usuario/cadastro'); ?>" title="Meu cadastro">Meu cadastro</a></li>
+				       	<li class="<?php echo $menu_senha;?>"><a href="<?php echo site_url('usuario/altsenha'); ?>" title="Alterar minha senha de acesso">Alterar minha senha</a></li>
 				        <li><a href="#" id="about" title="Sobre este sistema"><span class="glyphicon glyphicon-thumbs-up"></span> Sobre</a></li>
 				        <li><a href="<?php echo site_url('login/logoff'); ?>" title="Sair do sistema" ><span class="glyphicon glyphicon-off"></span> Sair</a></li>
 				        
@@ -271,7 +285,7 @@ switch ($area){
 						echo $titulo_modal;
 					?>
 				</div>
-				<div class="close"><a href="#"  id="bt_cancelar"> X </a></div>
+				<div class="close"><a href="#" id="bt_cancelar"> X </a></div>
 				<div class="text">
 					{TPL_modal}
 				</div>

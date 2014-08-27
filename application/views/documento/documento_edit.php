@@ -130,7 +130,7 @@ $.blockUI({ message: '<h1><img src="<?php echo base_url(); ?>scripts/images/ui-a
 					
 					<div class="form-group <?php echo (form_error('campoTipo') != '')? 'has-error':''; ?>">
 						<label for="campoTipo" class="col-sm-3 control-label"><span style="color: red;">*</span> Tipo</label>
-						<div class="col-md-3">
+						<div class="col-md-7">
 							<?php
 										
 								$jsTipo = 'class="form-control" onChange="window.location.href=(\''.site_url('documento').'/'.$acao.'/r/\' + document.form.campoRemetente.value + \'/t/\' + options[selectedIndex].value + \'/c/\' + document.form.campoCarimbo.value)"';

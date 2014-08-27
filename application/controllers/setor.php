@@ -36,9 +36,13 @@ class Setor extends CI_Controller {
 		
 		$this->js[] = 'setor';
 		
+		
 		$data['titulo']     = 'Setores';
+		
 		$data['link_add']   = $this->Campo_model->make_link($this->area, 'add');
 		$data['link_back']  = $this->Campo_model->make_link($this->area, 'voltar');
+		
+		
 		$data['form_action'] = site_url($this->area.'/search');
 		
 		// BUSCA
@@ -104,6 +108,7 @@ class Setor extends CI_Controller {
 		$this->form_validation->set_error_delimiters('<div class="error_field"> <img class="img_align" src="{TPL_images}/error.png" alt="! " /> ', '</div>');
 	
 		$data['titulo'] = 'Novo Setor';
+		$data['disabled']     = '';
 		
 		$data['link_back']  = $this->Campo_model->make_link($this->area, 'voltar');
 		$data['link_cancelar'] = $this->Campo_model->make_link($this->area,'cancelar');

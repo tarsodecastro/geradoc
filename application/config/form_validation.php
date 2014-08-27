@@ -300,15 +300,15 @@ $config = array(
 				),
 		
 				array(
-					'field' => 'campoCargo',
-					'label' => 'cargo',
-					'rules' => 'trim|required|greater_than[0]'
+						'field' => 'campoCargo',
+						'label' => 'cargo',
+						'rules' => 'trim|required|greater_than[0]'
 				),
 				
 				array(
-					'field' => 'campoSetor',
-					'label' => 'setor',
-					'rules' => 'trim|required|greater_than[0]'
+						'field' => 'campoSetor',
+						'label' => 'setor',
+						'rules' => 'trim|required|greater_than[0]'
 				),
 				
 				array(
@@ -357,25 +357,37 @@ $config = array(
 				array(
 						'field' => 'campoCPF',
 						'label' => 'CPF',
-						'rules' => 'required|min_length[11]'
+						'rules' => 'trim|required|min_length[11]'
 				),
 				
 				array(
 						'field' => 'campoNome',
 						'label' => 'nome',
-						'rules' => 'required|min_length[3]'
+						'rules' => 'trim|required|min_length[3]'
+				),
+				
+				array(
+						'field' => 'campoMail1',
+						'label' => 'E-mail',
+						'rules' => 'trim|required|valid_email'
+				),
+				
+				array(
+						'field' => 'campoMail2',
+						'label' => 'Confirmação',
+						'rules' => 'trim|required|valid_email|matches[campoMail1]'
 				),
 				
 				array(
 						'field' => 'campoSenha',
 						'label' => 'nova senha',
-						'rules' => 'required|min_length[6]'
+						'rules' => 'trim|required|min_length[6]'
 				),
 		
 				array(
 						'field' => 'campoConfSenha',
 						'label' => 'confirmação da nova senha',
-						'rules' => 'required|matches[campoSenha]'
+						'rules' => 'trim|required|matches[campoSenha]'
 				)
 		
 		),
@@ -385,37 +397,37 @@ $config = array(
 				array(
 					'field' => 'campoCPF',
 					'label' => 'CPF',
-					'rules' => 'required|min_length[11]'
+					'rules' => 'trim|required|min_length[11]'
 				),
 				
 				array(
 					'field' => 'campoNome',
 					'label' => 'nome',
-					'rules' => 'required|min_length[3]'
+					'rules' => 'trim|required|min_length[3]'
 				),
 		
 				array(
 					'field' => 'campoMail1',
 					'label' => 'E-mail',
-					'rules' => 'required|valid_email'
+					'rules' => 'trim|required|valid_email'
 				),
 				
 				array(
 					'field' => 'campoMail2',
 					'label' => 'Confirmação',
-					'rules' => 'required|valid_email|matches[campoMail1]'
+					'rules' => 'trim|required|valid_email|matches[campoMail1]'
 				),
 		
 				array(
 						'field' => 'campoSenha',
 						'label' => 'nova senha',
-						'rules' => 'required|min_length[6]'
+						'rules' => 'trim|required|min_length[6]'
 				),
 
 				array(
 						'field' => 'campoConfSenha',
 						'label' => 'confirmação da nova senha',
-						'rules' => 'required|matches[campoSenha]'
+						'rules' => 'trim|required|matches[campoSenha]'
 				)
 
 		),
@@ -424,17 +436,17 @@ $config = array(
 				array(
 						'field' => 'txtSenhaAtual',
 						'label' => 'senha atual',
-						'rules' => 'required|callback_check_senhaAtual'
+						'rules' => 'trim|required|callback_check_senhaAtual'
 				),
 				array(
 						'field' => 'txtSenhaNova',
 						'label' => 'nova senha',
-						'rules' => 'required|min_length[6]'
+						'rules' => 'trim|required|min_length[6]'
 				),
 				array(
 						'field' => 'txtSenhaNovaConf',
 						'label' => 'confirmação da nova senha',
-						'rules' => 'required|matches[txtSenhaNova]'
+						'rules' => 'trim|required|matches[txtSenhaNova]'
 				) 
 		),
 
@@ -442,25 +454,25 @@ $config = array(
 				array(
 					'field' => 'campoCPF',
 					'label' => 'CPF',
-					'rules' => 'required'
+					'rules' => 'trim|required'
 				),
 		
 				array(
 					'field' => 'campoNome',
 					'label' => 'Nome',
-					'rules' => 'required'
+					'rules' => 'trim|required'
 				),
 				
 				array(
 					'field' => 'campoMail1',
 					'label' => 'E-mail',
-					'rules' => 'required|valid_email'
+					'rules' => 'trim|required|valid_email'
 				),
 				
 				array(
 					'field' => 'campoMail2',
 					'label' => 'Confirmação',
-					'rules' => 'required|valid_email|matches[campoMail1]'
+					'rules' => 'trim|required|valid_email|matches[campoMail1]'
 				),
 		),
 
@@ -468,7 +480,7 @@ $config = array(
 				array(
 					'field' => 'txtCPF',
 					'label' => 'CPF',
-					'rules' => 'required'
+					'rules' => 'trim|required'
 				),
 		
 		/*

@@ -3,70 +3,104 @@
 		<img src="{TPL_images}Calendar-icon.png" height="72px" />
 	</center>
 </div>
-
-<ol class="breadcrumb">
-	<li><a href="<?php echo site_url('/tipo/index'); ?>">Tipos</a></li>
-  	<li class="active"><?php echo $titulo;?></li>
-</ol>		
-
+	
 <div id="msg" style="display:none;"><img src="{TPL_images}loader.gif" alt="Enviando" />Aguarde carregando...</div> 
 
 <div id="view_content">	
 
-    <?php
-    echo $link_back;
-    echo $message;
-    echo form_open($form_action);
-    ?>
+	<div class="row">
+		<div class="col-md-12">
+			<p class="bg-success lead text-center">Tipo</p>
+		</div>
+	</div>
+	
+	<div class="row">
+    
+	    <div class="col-md-12">
+	    	<div class="btn-group">
+		    <?php
+
+		    echo $link_back;
+		    echo '<center>'.$message.'</center>';
+		    
+		    $readonly = '';
+		    $painel = 'panel-primary';
+		    ?>
+		  	</div>  
+	    </div>
+
+    </div>
+
 	
 	<div class="formulario">	
 	
-	    <fieldset class="conteiner2"> 
-	    
-	        <legend class="subTitulo6">Tipo de documento</legend> 
-	          
-	        <table class="table_form">
-	        	<tbody>
-		        	<tr>
-			        	<td class=gray>Nome:
-			        	</td>
-			        	<td class="green"><?php echo $objeto->nome; ?> 
-			        	</td>
-		        	</tr>
-		        	<tr>
-			        	<td class=gray>Abreviação:
-			        	</td>
-			        	<td class="green"><?php echo $objeto->abreviacao; ?> 
-			        	</td>
-		        	</tr>
-		        	<tr>
-			        	<td class=gray><span class="text-red">*</span> Ano:
-			        	</td>
-			        	<td class="green"><?php echo form_input($campoAno) .form_error('campoAno'); ?> 
-			        	</td>
-		        	</tr>
-		        	<tr>
-			        	<td class=gray><span class="text-red">*</span> Início da contagem:
-			        	</td>
-			        	<td class="green"><?php echo form_input($campoInicio) .form_error('campoInicio'); ?> 
-			        	</td>
-		        	</tr>
-		        	<tr>
-						<td class="gray">Vigências:</td>
-						<td class="green">
-	                         <?php
-	                            echo $years;
-	                         ?>
-	                    </td>
-					</tr>
-	        	</tbody>
-	        </table>
-	    </fieldset>
-	    
-	    <input type="button" class="button" value="&nbsp; CANCELAR &nbsp;" title=" CANCELAR " onclick="javascript:window.history.back();" /> &nbsp; <input type="submit" class="button" value="Salvar" title="Salvar"/>&nbsp;&nbsp;	<br><br>
-				
-    </div>
+	<form class="form-horizontal" role="form" id="frm1" name="frm1" action="<?php echo $form_action; ?>" method="post">
+	
+		<div class="panel panel-primary">
+		
+			<div class="panel-heading">
+				  <h3 class="panel-title"><?php echo $titulo; ?></h3>
+			</div>
+		
+			<div class="panel-body">
+			
+					<div class="form-group">
+					    <label for="campoNome" class="col-sm-3 control-label">Nome</label>
+					    <div class="col-md-7">
+					   		<input type="text" class="form-control" name="campoNome" id="campoNome"  value="<?php echo $objeto->nome; ?>" > 	
+					    </div>
+				  	</div>
+				  	
+				  	<div class="form-group">
+					    <label for="campoAbreviacao" class="col-sm-3 control-label">Abreviação</label>
+					    <div class="col-md-3">
+					   		<input type="text" class="form-control" name="campoAbreviacao" id="campoAbreviacao"  value="<?php echo $objeto->abreviacao; ?>" > 	
+					    </div>
+				  	</div>
+				  	
+				  	<div class="form-group <?php echo (form_error('campoAno') != '')? 'has-error':''; ?>">
+					    <label for="campoAno" class="col-sm-3 control-label">Ano</label>
+					    <div class="col-md-3">
+					   		<?php echo form_input($campoAno); ?>  	
+					    </div>
+				  	</div>
+				  	
+				  	<div class="form-group <?php echo (form_error('campoInicio') != '')? 'has-error':''; ?>">
+					    <label for="campoInicio" class="col-sm-3 control-label">Início da contagem</label>
+					    <div class="col-md-3">
+					   		<?php echo form_input($campoInicio); ?>  	
+					    </div>
+				  	</div>
+				  	
+				  	<div class="form-group">
+					    <label for="campoVigencias" class="col-sm-3 control-label">Vigências</label>
+					    <div class="col-md-7">
+					   		<?php echo $years; ?>  	
+					    </div>
+				  	</div>
+				  	
+				  	<?php 
+					    if(validation_errors() != ''){
+							echo '<div class="form-group">';
+							echo form_error('campoNome');
+							echo form_error('campoAbreviacao');
+							echo form_error('campoAno');
+							echo form_error('campoInicio');
+							echo '</div>';
+						}
+					?>
 
-</form> 
+			</div>	
 
-</div><!-- fim: div view_content --> 
+	    </div>
+	    
+	    <div class="btn-group">
+		   		<?php
+			    	echo $link_cancelar;
+				    echo $link_salvar;
+			    ?>
+		</div>
+
+	</form> 
+	
+	</div><!-- fim: div view_content --> 
