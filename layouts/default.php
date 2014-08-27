@@ -250,7 +250,7 @@ switch ($area){
 				        <?php } ?>
 				        
 				        <li class="<?php echo $menu_cadastro;?>"><a href="<?php echo site_url('usuario/cadastro'); ?>" title="Meu cadastro">Meu cadastro</a></li>
-				       	<li class="<?php echo $menu_senha;?>"><a href="<?php echo site_url('usuario/altsenha'); ?>" title="Alterar minha senha de acesso">Alterar minha senha</a></li>
+				       	<li class="<?php echo $menu_senha;?>"><a href="<?php echo site_url('usuario/altsenha'); ?>" title="Alterar minha senha de acesso">Minha senha</a></li>
 				        <li><a href="#" id="about" title="Sobre este sistema"><span class="glyphicon glyphicon-thumbs-up"></span> Sobre</a></li>
 				        <li><a href="<?php echo site_url('login/logoff'); ?>" title="Sair do sistema" ><span class="glyphicon glyphicon-off"></span> Sair</a></li>
 				        
