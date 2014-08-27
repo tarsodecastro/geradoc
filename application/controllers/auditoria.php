@@ -23,6 +23,7 @@ class Auditoria extends CI_Controller {
 		parent::__construct();	
 		$this->load->library(array('restrict_page','table','form_validation','session'));
 		$this->load->helper('url');
+		$this->load->model('Campo_model','',TRUE);
 		$this->load->model('Auditoria_model','',TRUE);
         $this->load->model('Grid_model','',TRUE);
         $this->modal = $this->load->view('about_modal', '', TRUE);
@@ -35,6 +36,7 @@ class Auditoria extends CI_Controller {
 		
 		$data['titulo']     = 'Auditoria';
 		$data['link_add']   = null;
+		
 		$data['link_back']  = anchor('documento/index/','Lista de Documentos',array('class'=>'back'));
 		$data['form_action'] = site_url($this->area.'/search');
 		
@@ -71,7 +73,12 @@ class Auditoria extends CI_Controller {
         $this->load->model('Usuario_model','',TRUE);
         foreach ($objetos as $objeto){
             $this->table->add_row($objeto->id, $objeto->data, $this->Usuario_model->get_by_id($objeto->usuario)->row()->nome, $objeto->url,
-                anchor($this->area.'/view/'.$objeto->id,'visualizar',array('class'=>'view'))
+            		
+            		'<div class="btn-group">'.
+            		$this->Campo_model->make_link($this->area, 'visualizar', $objeto->id).
+            		'</div>'
+            		
+                //anchor($this->area.'/view/'.$objeto->id,'visualizar',array('class'=>'view'))
                 //anchor($this->area.'/update/'.$objeto->id,'alterar',array('class'=>'update'))
               //  anchor($this->area.'/delete/'.$objeto->id,'deletar',array('class'=>'delete','onclick'=>"return confirm('Deseja REALMENTE deletar esse orgao?')"))
             );
@@ -112,7 +119,7 @@ class Auditoria extends CI_Controller {
 		$this->js[] = 'auditoria';
 		$data['titulo'] = "Auditoria";
 		$data['link_add']   = null;
-		$data['link_search_cancel'] = anchor($this->area.'/search_cancel/','CANCELAR PESQUISA',array('class'=>'button_cancel'));
+		$data['link_search_cancel'] = $this->Campo_model->make_link($this->area, 'search_cancel');
 		$data['form_action'] = site_url($this->area.'/search');
 	
 		$this->load->library(array('pagination', 'table'));
@@ -145,7 +152,10 @@ class Auditoria extends CI_Controller {
 		foreach ($rows as $o){
 	
 			$this->table->add_row($o->id, $o->data, $o->usuario_nome, $o->url,
-					anchor($this->area.'/view/'.$o->id,'visualizar',array('class'=>'view'))
+					'<div class="btn-group">'.
+					$this->Campo_model->make_link($this->area, 'visualizar', $o->id).
+					'</div>'
+					//anchor($this->area.'/view/'.$o->id,'visualizar',array('class'=>'view'))
 					//anchor($this->area.'/update/'.$o->id,'alterar',array('class'=>'update'))
 					//  anchor($this->area.'/delete/'.$objeto->id,'deletar',array('class'=>'delete','onclick'=>"return confirm('Deseja REALMENTE deletar esse orgao?')"))
 			);

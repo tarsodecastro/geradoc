@@ -628,7 +628,7 @@ function orgao($indice) {
     					'value' 	=> mb_convert_case($this->input->post('campoNome'), MB_CASE_UPPER, "ISO-8859-1"),
     					'cols'  	=> '70',
     					'rows'  	=>  '2',
-    					'class' 	=> 'textboxUpper',
+    					'class' 	=> 'form-control text-uppercase',
     			),
     			
     			'campoAssinatura' => array(
@@ -646,7 +646,7 @@ function orgao($indice) {
     					'value'		=> $this->input->post('campoFone'),
     					'maxgenght' => '15',
                         'size'      => '16',
-    					'class'		=> 'textboxUpper',
+    					'class'		=> 'form-control text-uppercase',
     			),
     			
     			'campoCelular' => array(
@@ -655,7 +655,7 @@ function orgao($indice) {
     					'value' 	=> $this->input->post('campoCelular'),
     					'maxgenght' => '15',
                         'size'      => '16',
-    					'class' 	=> 'textboxUpper',
+    					'class' 	=> 'form-control text-uppercase',
     			),
     			
     			'campoFax' => array(
@@ -664,7 +664,7 @@ function orgao($indice) {
     					'value' 	=> $this->input->post('campoFax'),
     					'maxgenght'	=> '15',
                          'size'     => '16',
-    					'class' 	=> 'textboxUpper',
+    					'class' 	=> 'form-control text-uppercase',
     			),
     			
     			'campoMail1' => array(
@@ -673,7 +673,7 @@ function orgao($indice) {
     					'value' 	=> mb_convert_case($this->input->post('campoMail1'), MB_CASE_UPPER, "ISO-8859-1"),
     					'maxgenght' => '60',
                         'size'      => '45',
-    					'class' 	=> 'textboxLower',
+    					'class' 	=> 'form-control text-lowercase',
     			),
     			
     			'campoMail2' => array(
@@ -682,28 +682,28 @@ function orgao($indice) {
     					'value' 	=> mb_convert_case($this->input->post('campoMail2'), MB_CASE_LOWER, "ISO-8859-1"),
     					'maxgenght' => '60',
                         'size'      => '45',
-    					'class' 	=> 'textboxLower',
+    					'class' 	=> 'form-control text-lowercase',
     			),
     			
     			'campoCargo' => array(
     					'name' => 'campoCargo',
     					'id' => 'campoCargo',
     					'value' => mb_convert_case($this->input->post('campoCargo'), MB_CASE_LOWER, "ISO-8859-1"),
-    					'class' => 'textboxUpper',
+    					'class' => 'form-control text-uppercase',
     			),
     			
     			'campoSetor' => array(
     					'name' => 'campoSetor',
     					'id' => 'campoSetor',
     					'value' => mb_convert_case($this->input->post('campoSetor'), MB_CASE_UPPER, "ISO-8859-1"),
-    					'class' => 'textboxUpper',
+    					'class' => 'form-control text-uppercase',
     			),
     			
     			'campoSexo' => array(
     					'name' => 'campoSexo',
     					'id' => 'campoSexo',
     					'value' => mb_convert_case($this->input->post('campoSexo'), MB_CASE_UPPER, "ISO-8859-1"),
-    					'class' => 'textboxUpper',
+    					'class' => 'form-control text-uppercase',
     			),
     			
     			'arraySexos' => array(
@@ -715,7 +715,7 @@ function orgao($indice) {
     					'name' => 'campoStatus',
     					'id' => 'campoStatus',
     					'value' => mb_convert_case($this->input->post('campoStatus'), MB_CASE_UPPER, "ISO-8859-1"),
-    					'class' => 'textboxUpper',
+    					'class' => 'form-control text-uppercase',
     			),
     			
     			'arrayStatus' => array(

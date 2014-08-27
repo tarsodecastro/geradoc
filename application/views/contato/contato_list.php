@@ -4,9 +4,7 @@
 	</center>
 </div>
 
-<div class="titulo1">
-	<?php echo $titulo;?>
-</div>
+<p class="bg-success lead text-center"><?php echo $titulo;?></p>
 
 <div id="msg" style="display: none;">
 	<img src="{TPL_images}loader.gif" class="img_aling2" alt="Carregando" />Aguarde
@@ -15,19 +13,29 @@
 
 <div id="view_content">
 
-	<div style="float: left;">
-	<div id="conteiner_subMenu">
-		<?php echo $link_add; ?> &nbsp;  &nbsp; 
+	<!-- Formulario de pesquisa -->
+	<div class="row">
+
+		<div class="col-md-2">
+			<?php echo $link_add;?>
 		</div>
+
+		<div class="col-md-10" style="text-align: right;">
+
+			<form class="form-inline" id="frm_search" name="frm_search" action="<?php  echo $form_action; ?>" method="post">
+
+				<div class="input-group">
+					<input type="text" class="form-control" id="search" name="search" placeholder="pesquisa textual" value="<?php echo $keyword_contato; ?>">
+					<span class="input-group-btn">
+						<button class="btn btn-success" type="submit">Pesquisar</button> <?php echo $link_search_cancel; ?>
+					</span>
+				</div>
+
+			</form>
+		</div>
+
 	</div>
-	
-	<div style="float: right;">    
-	            <form id="frm_search" name="frm_search" action="<?php  echo $form_action; ?>" method="post">  
-	                <input class="search_text" type="text" id="search" name="search" value="<?php  echo $keyword_contato; ?>"/>
-	                <input type="submit" value="Pesquisar" class="button_search">
-	                <?php echo $link_search_cancel; ?>
-	            </form>
-	</div>  
+	<!-- Fim do formulario de pesquisa -->
 	
 	<div style="clear:both;"></div> 
 	        
