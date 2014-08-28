@@ -259,7 +259,7 @@ $.blockUI({ message: '<h1><img src="<?php echo base_url(); ?>scripts/images/ui-a
 							      	<?php echo $readonly; ?>
 							  		language : 'pt_BR',
 							  		menubar : false,
-							  		//width : 550,
+							  		width : 540,
 							  		browser_spellcheck : true,
 							  		forced_root_block : false,
 							  		setup : function(ed){
