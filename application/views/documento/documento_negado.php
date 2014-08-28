@@ -4,15 +4,26 @@
 	</center>
 </div>
 
-<div id="titulo" class="titulo1"> 
-    <?php echo $titulo; ?>
-</div>		
-
 <div id="msg" style="display:none;"><img src="{TPL_images}loader.gif" alt="Enviando" />Aguarde carregando...</div> 
+
 
 <div id="view_content">	
 
-    <?php echo $link_back;?>
+    <div class="row">
+		<div class="col-md-12">
+			<p class="bg-success lead text-center">Permissão negada</p>
+		</div>
+	</div>
+
+	<div class="row">
+    
+	    <div class="col-md-12">
+	    	<div class="btn-group">
+		    	<?php echo $link_back; ?>
+		  	</div>  
+	    </div>
+
+    </div>
 	
 	<div class="formulario">	
 	
@@ -23,7 +34,7 @@
        	<br> 
        	<br> 
 
-	    <input type="button" class="button" value="&nbsp; OK &nbsp;" title=" OK " onclick="javascript:window.location ='<?php echo $bt_ok; ?>'" /><br><br>
+	    <input type="button" class="btn btn-success" value="&nbsp; OK &nbsp;" title=" OK " onclick="javascript:window.location ='<?php echo $bt_ok; ?>'" /><br><br>
 				
     </div>
  

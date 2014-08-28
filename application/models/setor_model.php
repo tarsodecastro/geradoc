@@ -18,9 +18,22 @@ class Setor_model extends CI_Model {
 	}
 	
 	function list_funcionarios($setor){
-		$this->db->where('setor', $setor);
+		
+		$this->db->like('setor', $setor);
+		
+		$this->db->or_like('setores', $setor);
+		
+		$this->db->or_like('setores', $setor.';');
+		
+		$this->db->or_like('setores', ';'.$setor.';');
+		
 		$this->db->order_by('nome','asc');
-		return $this->db->get('usuario');
+		
+		$query = $this->db->get('usuario');
+		
+		//echo $this->db->last_query();
+		
+		return $query;
 	}
 	
 	function get_setor_by_dono($dono){
@@ -63,11 +76,6 @@ class Setor_model extends CI_Model {
         */
         function get_by_id($id){
 
-        	
-        	$sql = "SELECT s1.*, s2.id, s2.nome as setorPaiNome, s2.sigla as setorPaiSigla, o.sigla as orgaoSigla
-		        	FROM setor as s1, setor as s2, orgao as o
-		        	WHERE s1.id = $id and o.id = s1.orgao and s2.id = s1.setorPai
-		        	GROUP BY s1.id";
 		        
 			/*
         	$sql = "SELECT s1.*, s2.id, s2.nome as setorPaiNome, s2.sigla as setorPaiSigla, o.sigla as orgaoSigla 
@@ -75,8 +83,29 @@ class Setor_model extends CI_Model {
         			WHERE s1.id = $id and o.id = s1.orgao
         			GROUP BY s1.id";
         			*/
+        	
+        	/*
+        	$sql = "SELECT s1.*, s2.id, s2.nome as setorPaiNome, s2.sigla as setorPaiSigla, o.sigla as orgaoSigla
+        	FROM setor as s1, setor as s2, orgao as o
+        	WHERE s1.id = $id and o.id = s1.orgao and s2.id = s1.setorPai
+        	GROUP BY s1.id";
+        	*/
+        	
+        	$this->db->select('s1.*, s2.id, s2.nome as setorPaiNome, s2.sigla as setorPaiSigla, o.sigla as orgaoSigla');
+        	$this->db->where('s1.id', $id);
+        	$this->db->where('o.id = s1.orgao');
+        	$this->db->where('s2.id = s1.setorPai');
+        	
+        	$this->db->from('setor as s1, setor as s2, orgao as o');
+        	
+        	$this->db->group_by('s1.id');
+        	
+        	$query = $this->db->get();
+        	
+        	//echo $this->db->last_query();
+        	
 
-        	return $this->db->query($sql);
+        	return $query;
         	
         	
 	}
