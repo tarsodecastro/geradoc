@@ -55,8 +55,10 @@ class Cargo extends CI_Controller {
         $uri_segment = 3;
         $inicio = (!$this->uri->segment($uri_segment, 0)) ? 0 : ($this->uri->segment($uri_segment, 0) - 1) * $maximo;
        // $_SESSION['novoinicio'] = $this->uri->segment($uri_segment - 1, 'index').'/'.$this->uri->segment($uri_segment, 0);  //cria uma variavel de sessao para retornar a pagina correta apos visualizacao, delecao ou alteracao
-        $_SESSION['novoinicio'] = $this->uri->segment($uri_segment, 0);  //cria uma variavel de sessao para retornar a pagina correta apos visualizacao, delecao ou alteracao
-            
+      //  $_SESSION['novoinicio'] = $this->uri->segment($uri_segment, 0);  //cria uma variavel de sessao para retornar a pagina correta apos visualizacao, delecao ou alteracao
+
+        $_SESSION['novoinicio'] = current_url();
+        
         $config['base_url'] = site_url($this->area.'/index/');
         $config['total_rows'] = $this->Cargo_model->count_all();
         $config['per_page'] = $maximo;
@@ -283,7 +285,10 @@ public function update($id) {
         
         $maximo = 10;  
         $uri_segment = 3;  
-        $_SESSION['novoinicio'] = $this->uri->segment($uri_segment - 1, 0).'/'.$this->uri->segment($uri_segment, 0); 
+        //$_SESSION['novoinicio'] = $this->uri->segment($uri_segment - 1, 0).'/'.$this->uri->segment($uri_segment, 0); 
+        
+        $_SESSION['novoinicio'] = current_url();
+        
         $config['per_page'] = $maximo;    
         $config['base_url'] = site_url($this->area.'/search');
         $config['total_rows'] = $this->Cargo_model->count_all_search($keyword);           

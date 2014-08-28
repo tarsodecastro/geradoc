@@ -204,7 +204,7 @@ class Setor extends CI_Controller {
 			);
 			
 			//OBS: se a tabela setor estiver vazia:
-			if($this->Setor_model->count_all() == 0){
+			if($this->Setor_model->count_all() == 0 or $objeto_do_form['setorPai'] == 0){
 				$objeto_do_form['setorPai'] = '1';
 			}
 			//fim da OBS.
@@ -465,7 +465,7 @@ public function update($id, $disabled = null) {
 		$linha = "";
 		if($funcionarios){
 			
-			$linha = "<table>\n";
+			$linha = "<table class='table table-striped table-bordered table-hover'>\n";
 			foreach ($funcionarios as $key => $funcionario){
 				
 				//if($funcionario->id != $obj->dono){
@@ -501,7 +501,7 @@ public function update($id, $disabled = null) {
 						
 						$linha .= "<input type='hidden' name='id_usuario' value='$funcionario->id'>\n";
 						
-							$linha .=  "<select name='permissao' onchange='this.form.submit()'>\n";
+							$linha .=  "<select name='permissao' onchange='this.form.submit()' class='form-control'>\n";
 							
 							foreach ($arrayPermissoes as $key => $value){
 								

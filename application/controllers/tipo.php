@@ -252,7 +252,7 @@ class Tipo extends CI_Controller {
 		$this->load->model('Coluna_model','',TRUE);
 		$campos = $this->Coluna_model->list_all();
 		
-		$variaveis = '';
+		$variaveis = '[tipo_doc], [numero], [ano_doc], [setor_doc], [data], [destinatario], [assunto], [remetente_assinatura], [remetente_nome], [remetente_cargo], [objetivo], [documentacao], [analise], [conclusao], ';
 		foreach ($campos as $value){
 			
 			$variaveis .= "[$value], ";

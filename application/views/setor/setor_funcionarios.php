@@ -24,7 +24,7 @@
 			    <h3 class="panel-title"><?php echo $titulo; ?></h3>
 			  </div>
 			  	  
-			  <table class="table table-bordered table-striped table-hover">
+			  <table class="table table-bordered table-striped">
 			    <tbody>
 		        	<tr>
 			        	<td>Nome:

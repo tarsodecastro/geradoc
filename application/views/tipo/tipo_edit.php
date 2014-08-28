@@ -22,7 +22,6 @@
 		    <?php
 
 		    echo $link_back;
-		    echo $mensagem;
 		    
 		    $readonly = '';
 		    $painel = 'panel-primary';
@@ -37,7 +36,27 @@
 
     </div>
 	
-	<div class="formulario">	
+	<div class="formulario">
+	
+	<!-- Mensagens e alertas -->
+			<div class="row">
+		   		<div class="col-md-12">
+		    	
+				    	<?php 
+				    		echo "<center>".$mensagem."</center>"; 
+				    	
+					    	if(validation_errors() != ''){
+					    		echo '<div class="alert alert-danger" role="alert">';
+					    		echo form_error('campoNome');
+								echo form_error('campoAbreviacao');
+								echo form_error('campoConteudo');
+					    		echo '</div>';
+					    	}
+				    	?>
+			  	 
+		    	</div>	
+		   	</div>
+		   	<!-- Fim das mensagens e alertas -->	
 	
 	<form class="form-horizontal" role="form" id="frm1" name="frm1" action="<?php echo $form_action; ?>" method="post">
 	
@@ -87,9 +106,23 @@
 					</div>
 				</div>
 				
+				
+						
 				<div class="col-lg-12">	
 					<div class="form-group text-left <?php echo (form_error('campoConteudo') != '')? 'has-error':''; ?>"">
 					    <label for="campoConteudo" class="control-label"><span class="text-red">*</span> Distribuição do Conteúdo</label>
+					    <div class="bg-warning text-center" style="padding: 7px;">
+						  	<strong> Variáveis disponíveis: </strong>
+							 <?php 
+
+								$variaveis =  explode (', ', $variaveis_disponiveis);
+								
+								natsort($variaveis);
+							 
+							 	echo form_dropdown('variaveis', $variaveis,'' ,'id="variaveis"');
+							 	
+							 ?>
+						</div>
 					    <?php echo form_textarea($campoConteudo); ?>  
 					</div>
 				</div>
@@ -102,16 +135,6 @@
 					</div>
 				</div>
 				
-					<?php 
-					    if(validation_errors() != ''){
-							echo '<div class="form-group">';
-							echo form_error('campoNome');
-							echo form_error('campoAbreviacao');
-							echo form_error('campoConteudo');
-							echo '</div>';
-						}
-					?>
-
 	    	 </div>
     		<!-- fim: div panel-body --> 
 	    
@@ -146,7 +169,14 @@
 
 
 <script type="text/javascript"> 
-    $(document).ready(function(){		
+    $(document).ready(function(){	
+
+
+    	$('#variaveis').change(function(){
+    	    $('textarea#campoConteudo').val($('textarea#campoConteudo').val()+" "+$('#variaveis option:selected').text());
+    		//$('textarea#campoConteudo').html($('textarea#campoConteudo').val() + $('#variaveis option:selected').text());
+    	});
+    				
     	 $("textarea#campoCabecalho").tinymce({
 		      script_url : '<?php echo base_url(); ?>js/tinymce/tinymce.min.js',
 		      <?php echo $readonly; ?>
@@ -172,7 +202,7 @@
 		      language : 'pt_BR',
 		  	  menubar : false,
 		  	  browser_spellcheck : true,
-		  	  forced_root_block : false, // <br />, para <p> deve ser comentado
+		  	  //forced_root_block : false, // <br />, para <p> deve ser comentado
 		  	  setup : function(ed){
 		  		ed.on('init', function() {
 		  			   this.getDoc().body.style.fontSize = '10.5pt';
