@@ -152,12 +152,13 @@ $config = array(
 						'rules' => 'required|trim'
 				),
 				
+				/*
 				array(
 						'field' => 'campoPara',
 						'label' => 'para',
 						'rules' => 'required|trim'
 				),
-				/*
+				
 				array(
 						'field' => 'campoRedacao',
 						'label' => 'redacao',

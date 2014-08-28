@@ -51,7 +51,6 @@ $.blockUI({ message: '<h1><img src="<?php echo base_url(); ?>scripts/images/ui-a
 		    <?php
 
 		    echo $link_back;
-		    echo $message;
 		    
 		    $readonly = '';
 		    $painel = 'panel-primary';
@@ -68,6 +67,24 @@ $.blockUI({ message: '<h1><img src="<?php echo base_url(); ?>scripts/images/ui-a
     </div>
 
 	<div class="formulario">
+	
+		<!-- Mensagens e alertas -->
+		<div class="row">
+	   		<div class="col-md-12">
+	    	
+			    	<?php 
+			    		echo "<center>".$message."</center>"; 
+			    	
+				    	if(validation_errors() != ''){
+				    		echo '<div class="alert alert-danger" role="alert">';
+				    		echo validation_errors();
+				    		echo '</div>';
+				    	}
+			    	?>
+		  	 
+	    	</div>	
+	   	</div>
+	   	<!-- Fim das mensagens e alertas -->
 	
 	
 	<form class="form-horizontal" role="form" id="form" name="form" action="<?php echo $form_action; ?>" method="post" >
@@ -86,7 +103,7 @@ $.blockUI({ message: '<h1><img src="<?php echo base_url(); ?>scripts/images/ui-a
 						
 					<div class="form-group <?php echo (form_error('campoRemetente') != '')? 'has-error':''; ?>">
 						<label for="campoRemetente" class="col-sm-3 control-label"><span style="color: red;">*</span> Remetente</label>
-						<div class="col-md-7">
+						<div class="col-md-8">
 							<?php
 								$jsRemet = 'class="form-control" id="campoRemetente" onChange="window.location.href=(\''.site_url('documento').'/'.$acao.'/r\' + \'/\' + document.form.campoRemetente.value + \'/t/\' + document.form.campoTipo.value + \'/c/\' + document.form.campoCarimbo.value)"';
 	
@@ -98,7 +115,7 @@ $.blockUI({ message: '<h1><img src="<?php echo base_url(); ?>scripts/images/ui-a
 					
 					<div class="form-group <?php echo (form_error('campoSetor') != '')? 'has-error':''; ?>">
 						<label for="campoSetor" class="col-sm-3 control-label">Setor</label>
-						<div class="col-md-7">
+						<div class="col-md-8">
 							<input type="hidden" name="setorId" id="setorId" value="<?php echo $setorId; ?>" />
 							<?php echo form_input($campoSetor); ?>
 						</div>
@@ -130,7 +147,7 @@ $.blockUI({ message: '<h1><img src="<?php echo base_url(); ?>scripts/images/ui-a
 					
 					<div class="form-group <?php echo (form_error('campoTipo') != '')? 'has-error':''; ?>">
 						<label for="campoTipo" class="col-sm-3 control-label"><span style="color: red;">*</span> Tipo</label>
-						<div class="col-md-7">
+						<div class="col-md-8">
 							<?php
 										
 								$jsTipo = 'class="form-control" onChange="window.location.href=(\''.site_url('documento').'/'.$acao.'/r/\' + document.form.campoRemetente.value + \'/t/\' + options[selectedIndex].value + \'/c/\' + document.form.campoCarimbo.value)"';
@@ -141,7 +158,7 @@ $.blockUI({ message: '<h1><img src="<?php echo base_url(); ?>scripts/images/ui-a
 					
 					<div class="form-group <?php echo (form_error('campoAssunto') != '')? 'has-error':''; ?>">
 						<label for="campoAssunto" class="col-sm-3 control-label"><span style="color: red;">*</span> Assunto</label>
-						<div class="col-md-7">
+						<div class="col-md-8">
 							<?php echo form_input($campoAssunto);?> 
 						</div>
 					</div>
@@ -157,6 +174,8 @@ $.blockUI({ message: '<h1><img src="<?php echo base_url(); ?>scripts/images/ui-a
 										
 										$this->load->model('Coluna_model','',TRUE);
 										$campos_especiais = $this->Coluna_model->list_all();
+										
+										$campos_especiais = array_diff($campos_especiais, array('para'));
 							
 										foreach ($campos_especiais as $key => $nome_campo){
 							
@@ -184,7 +203,7 @@ $.blockUI({ message: '<h1><img src="<?php echo base_url(); ?>scripts/images/ui-a
 		
 													<div class="form-group '.$erro.'">
 														<label for="'.'campo_'.$nome_campo.'" class="col-sm-3 control-label"><span style="color: red;">*</span> '.$campo[1].'</label>
-															<div class="col-md-7">
+															<div class="col-md-8">
 															'.$input_campo[$nome_campo].'
 															</div>
 													</div>
@@ -199,22 +218,138 @@ $.blockUI({ message: '<h1><img src="<?php echo base_url(); ?>scripts/images/ui-a
 									}
 									
 									echo $campos_dinamicos_pequenos;
+									
+									if($tipoSelecionado != null and $obj_tipo->para != 'N'){
 								
 								?>
 					
 					
-						<div class="form-group <?php echo (form_error('campoPara') != '')? 'has-error':''; ?>">
-							<label for="campoPara" class="col-sm-3 control-label"><span style="color: red;">*</span> Destinatário</label>
-							<div class="col-md-7">
-								<input type="text" name="campoBusca" value="pesquisa textual" id="campoBusca" size="30" class="form-control" />
-								
-								<?php echo form_textarea($campoPara); ?>
-								<span class="error_field" id="para_error" style="display: none;"></span> 
+							<div class="form-group <?php echo (form_error('campoPara') != '')? 'has-error':''; ?>">
+								<label for="campoPara" class="col-sm-3 control-label"><br><br><span style="color: red;">*</span> Para</label>
+								<div class="col-md-8">
+									<div class="input-group">
+									<span class="input-group-addon glyphicon glyphicon-search" style="top: 0px;"></span>
+									<input type="text" name="campoBusca" value="pesquisa textual" id="campoBusca" size="30" class="form-control">
+									</div>
+									<?php echo form_textarea($campoPara); ?>
+									<span class="error_field" id="para_error" style="display: none;"></span> 
+									
+								</div>
 							</div>
-						</div>
+							
+							<script type="text/javascript">
+						$().ready(function() {
+
+							 $("#campoBusca").focus(function() {
+							        if($("#campoBusca").val() == 'pesquisa textual'){
+							        	$("#campoBusca").addClass('campo_busca_hover');
+							            $("#campoBusca").attr('value','');
+							        }
+							        
+							    }).blur(function() {
+							        if($("#campoBusca").val() == ''){
+							        	 $("#campoBusca").addClass('campo_busca');
+							            $("#campoBusca").attr('value','pesquisa textual');
+							        }
+							       
+							    });
+
+							 $("textarea#campoPara").tinymce({
+							      script_url : '<?php echo base_url(); ?>js/tinymce/tinymce.min.js',
+							      	<?php echo $readonly; ?>
+							  		language : 'pt_BR',
+							  		menubar : false,
+							  		//width : 550,
+							  		browser_spellcheck : true,
+							  		forced_root_block : false,
+							  		setup : function(ed){
+							  		ed.on('init', function() {
+							  			   this.getDoc().body.style.fontSize = '10.5pt';
+							  			});
+							  	},
+							  	toolbar: "undo redo | bold italic underline superscript ",
+							  	statusbar : false,
+							   });
+
+						});
+
+							function log( message ) {
+								$("#campoPara").val(message);
+							}
+
+						    $('#campoBusca').autocomplete({
+								minLength: 3,
+								source: function(req, add){
+									$.ajax({
+									    url: '<?php echo base_url(); ?>index.php/documento/loadDestinatario/',
+									    dataType: 'json',
+									    type: 'POST',
+									    data: req,
+									    success: function(data){
+									        if(data.response =='true'){
+									           add(data.message);
+									        }else{
+									            $('#campoBusca').removeClass( "ui-autocomplete-loading" );
+									        }
+									    },
+									});
+						    	},
+
+							select: function( event, ui ) {
+
+								log( ui.item ? ui.item.label : "Nothing selected, input was " + this.value);
+								this.value = "";
+								return false;
+							},
+						            
+						    }).data( "ui-autocomplete" )._renderItem = function( ul, item ) {
+						        return $( "<li></li>" )
+						            .data( "ui-autocomplete-item", item )
+						            .append( "<a>" + item.label + "</a>" )
+						            .appendTo( ul );
+						    };
+
+						        $("#form").submit(function() {
+
+						            var campoPara = $('#campoPara').val();
+						            var campoRedacao = $('#campoRedacao').val();
+
+						            var teste1 = false;
+						            var teste2 = false;
+						          
+						            if (campoPara == '') {
+						                //alert(campoPara);
+						                $("#para_error").html("<img class='img_align' src='{TPL_images}error.png' alt='!' /> * requerido").show();
+						                teste1 = false;
+						            }else{
+						                //alert(campoPara);
+						                $("#para_error").hide();
+						                teste1 = true;
+						            }
+
+						            if (campoRedacao == '') {
+						               // alert(campoRedacao);
+						                $("#redacao_error").html("<img class='img_align' src='{TPL_images}error.png' alt='!' /> * requerido").show();
+						                teste2 = false;
+						            }else{
+						                // alert(campoRedacao);
+						                $("#redacao_error").hide();
+						                teste2 = true;
+						            }
+
+						            if(teste1 == true && teste2 == true){
+						                return true;
+						            }else{
+						                return false;
+						            }
+
+						        });
+
+						</script>
 					
 
 						<?php 
+						}
 						
 						if ($tipoSelecionado != null and $disabled == null){
 						
@@ -229,6 +364,8 @@ $.blockUI({ message: '<h1><img src="<?php echo base_url(); ?>scripts/images/ui-a
 								<div class="error_field" id="monitor" style="background-color: #fff; position:relative; float: right; top: -23px; padding-right: 20px;"></div>
 							</div>
 						</div>
+						
+						
 
 						<?php 
 						}
@@ -264,7 +401,7 @@ $.blockUI({ message: '<h1><img src="<?php echo base_url(); ?>scripts/images/ui-a
 					
 											<!--  Campo '.$nome_campo.' -->
 		
-												<div class="col-lg-11">
+												<div class="col-lg-12">
 		
 												<div class="text-left form-group '.$erro.'">
 													<label class="control-label text-left"><span style="color: red;">*</span> '.$campo[1].'</label>
@@ -278,7 +415,7 @@ $.blockUI({ message: '<h1><img src="<?php echo base_url(); ?>scripts/images/ui-a
 															  	  menubar : false,
 															  	  browser_spellcheck : true,
 															  	  content_css : "'. base_url() .'css/style_editor.css" ,
-															  	  width : 800,
+															  	//  width : 800,
 															  	  relative_urls: false,
 															  	  setup : function(ed){
 															  		ed.on("init", function() {
@@ -351,112 +488,7 @@ $.blockUI({ message: '<h1><img src="<?php echo base_url(); ?>scripts/images/ui-a
 
 <script type="text/javascript">
 //Initializes all textareas with the tinymce class
-$().ready(function() {
 
-	 $("#campoBusca").focus(function() {
-	        if($("#campoBusca").val() == 'pesquisa textual'){
-	        	$("#campoBusca").addClass('campo_busca_hover');
-	            $("#campoBusca").attr('value','');
-	        }
-	        
-	    }).blur(function() {
-	        if($("#campoBusca").val() == ''){
-	        	 $("#campoBusca").addClass('campo_busca');
-	            $("#campoBusca").attr('value','pesquisa textual');
-	        }
-	       
-	    });
-
-	 $("textarea#campoPara").tinymce({
-	      script_url : '<?php echo base_url(); ?>js/tinymce/tinymce.min.js',
-	      	<?php echo $readonly; ?>
-	  		language : 'pt_BR',
-	  		menubar : false,
-	  		width : 550,
-	  		browser_spellcheck : true,
-	  		forced_root_block : false,
-	  		setup : function(ed){
-	  		ed.on('init', function() {
-	  			   this.getDoc().body.style.fontSize = '10.5pt';
-	  			});
-	  	},
-	  	toolbar: "undo redo | bold italic underline superscript ",
-	  	statusbar : false,
-	   });
-
-});
-
-	function log( message ) {
-		$("#campoPara").val(message);
-	}
-
-    $('#campoBusca').autocomplete({
-		minLength: 3,
-		source: function(req, add){
-			$.ajax({
-			    url: '<?php echo base_url(); ?>index.php/documento/loadDestinatario/',
-			    dataType: 'json',
-			    type: 'POST',
-			    data: req,
-			    success: function(data){
-			        if(data.response =='true'){
-			           add(data.message);
-			        }else{
-			            $('#campoBusca').removeClass( "ui-autocomplete-loading" );
-			        }
-			    },
-			});
-    	},
-
-	select: function( event, ui ) {
-
-		log( ui.item ? ui.item.label : "Nothing selected, input was " + this.value);
-		this.value = "";
-		return false;
-	},
-            
-    }).data( "ui-autocomplete" )._renderItem = function( ul, item ) {
-        return $( "<li></li>" )
-            .data( "ui-autocomplete-item", item )
-            .append( "<a>" + item.label + "</a>" )
-            .appendTo( ul );
-    };
-
-        $("#form").submit(function() {
-
-            var campoPara = $('#campoPara').val();
-            var campoRedacao = $('#campoRedacao').val();
-
-            var teste1 = false;
-            var teste2 = false;
-          
-            if (campoPara == '') {
-                //alert(campoPara);
-                $("#para_error").html("<img class='img_align' src='{TPL_images}error.png' alt='!' /> * requerido").show();
-                teste1 = false;
-            }else{
-                //alert(campoPara);
-                $("#para_error").hide();
-                teste1 = true;
-            }
-
-            if (campoRedacao == '') {
-               // alert(campoRedacao);
-                $("#redacao_error").html("<img class='img_align' src='{TPL_images}error.png' alt='!' /> * requerido").show();
-                teste2 = false;
-            }else{
-                // alert(campoRedacao);
-                $("#redacao_error").hide();
-                teste2 = true;
-            }
-
-            if(teste1 == true && teste2 == true){
-                return true;
-            }else{
-                return false;
-            }
-
-        });
 
 
 

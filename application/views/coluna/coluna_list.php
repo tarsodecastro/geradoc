@@ -43,12 +43,23 @@
 			<?php echo $table; ?>
 	</div>
 
-	<div class="subTitulo2">
-		Total de registros: <?php echo $total_rows; ?>
+	<!-- Paginacao -->
+	<div class="row">
+		<div class="col-md-4 text-center">
+			<div class="dataTables_info" role="status">
+				<p class="well well-sm">Total de registros:
+				<?php echo $total_rows; ?>
+				</p>
+			</div>
+		</div>
+		<div class="col-md-2">
+		</div>
+		<div class="col-md-6">
+			<div class="dataTables_paginate paging_simple_numbers">
+				<?php echo $pagination; ?>
+			</div>
+		</div>
 	</div>
-
-	<div class="paginacao">
-		<?php echo $pagination; ?>
-	</div>
+	<!-- Fium da paginacao -->
 
 </div>

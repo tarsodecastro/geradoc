@@ -48,28 +48,28 @@
 				<div class="panel-body">
 				
 					<div class="form-group <?php echo (form_error('campoCPF') != '')? 'has-error':''; ?>"">
-					    <label for="campoCPF" class="col-sm-3 control-label">CPF</label>
+					    <label for="campoCPF" class="col-sm-3 control-label"><span style="color: red;">*</span> CPF</label>
 					    <div class="col-md-3">
 					      	<?php echo form_input($campoCPF); ?> 
 					    </div>
 					</div>
 					
 					<div class="form-group <?php echo (form_error('campoNome') != '')? 'has-error':''; ?>"">
-					    <label for="campoNome" class="col-sm-3 control-label">Nome</label>
+					    <label for="campoNome" class="col-sm-3 control-label"><span style="color: red;">*</span> Nome</label>
 					    <div class="col-md-7">
 					      	<?php echo form_textarea($campoNome); ?> 
 					     </div>
 					</div>
 					
 					<div class="form-group <?php echo (form_error('campoMail1') != '')? 'has-error':''; ?>"">
-					    <label for="campoMail1" class="col-sm-3 control-label">E-mail</label>
+					    <label for="campoMail1" class="col-sm-3 control-label"><span style="color: red;">*</span> E-mail</label>
 					    <div class="col-md-7">
 					      	<?php echo form_input($campoMail1); ?> 
 					     </div>
 					</div>
 					
 					<div class="form-group <?php echo (form_error('campoMail2') != '')? 'has-error':''; ?>"">
-					    <label for="campoMail2" class="col-sm-3 control-label">Confirmação do e-mail</label>
+					    <label for="campoMail2" class="col-sm-3 control-label"><span style="color: red;">*</span> Confirmação do e-mail</label>
 					    <div class="col-md-7">
 					      	<?php echo form_input($campoMail2); ?> 
 					     </div>

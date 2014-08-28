@@ -78,21 +78,21 @@
 		
 		
 				<div class="form-group <?php echo (form_error('campoCPF') != '')? 'has-error':''; ?>">
-				    <label for="campoCPF" class="col-sm-3 control-label">CPF</label>
+				    <label for="campoCPF" class="col-sm-3 control-label"><span style="color: red;">*</span> CPF</label>
 				    <div class="col-md-3">
 				      	<?php echo form_input($campoCPF); ?> 
 				     </div>
 				</div>
 				
 				<div class="form-group <?php echo (form_error('campoNome') != '')? 'has-error':''; ?>">
-				    <label for="campoNome" class="col-sm-3 control-label">Nome</label>
+				    <label for="campoNome" class="col-sm-3 control-label"><span style="color: red;">*</span> Nome</label>
 				    <div class="col-md-7">
 				      	<?php echo form_textarea($campoNome); ?> 
 				     </div>
 				</div>
 				
 				<div class="form-group <?php echo (form_error('campoMail1') != '')? 'has-error':''; ?>">
-				    <label for="campoMail1" class="col-sm-3 control-label">E-mail</label>
+				    <label for="campoMail1" class="col-sm-3 control-label"><span style="color: red;">*</span> E-mail</label>
 				    <div class="col-md-7">
 				      	<?php echo form_input($campoMail1); ?> 
 				     </div>
@@ -100,14 +100,14 @@
 				
 				
 				<div class="form-group <?php echo (form_error('campoMail2') != '')? 'has-error':''; ?>">
-				    <label for="campoMail2" class="col-sm-3 control-label">Confirme o e-mail</label>
+				    <label for="campoMail2" class="col-sm-3 control-label"><span style="color: red;">*</span> Confirme o e-mail</label>
 				    <div class="col-md-7">
 				      	<?php echo form_input($campoMail2); ?> 
 				     </div>
 				</div>
 				
 				<div class="form-group <?php echo (form_error('campoSenha') != '')? 'has-error':''; ?>">
-				    <label for="campoSenha" class="col-sm-3 control-label">Senha</label>
+				    <label for="campoSenha" class="col-sm-3 control-label"><span style="color: red;">*</span> Senha</label>
 				    <div class="col-md-4">
 				      	<?php echo form_password($campoSenha); ?> 
 				     </div>
@@ -115,7 +115,7 @@
 				
 				
 				<div class="form-group <?php echo (form_error('campoConfSenha') != '')? 'has-error':''; ?>">
-				    <label for="campoConfSenha" class="col-sm-3 control-label">Confirme a Senha</label>
+				    <label for="campoConfSenha" class="col-sm-3 control-label"><span style="color: red;">*</span> Confirme a Senha</label>
 				    <div class="col-md-4">
 				      	<?php echo form_password($campoConfSenha); ?> 
 				     </div>
@@ -129,7 +129,7 @@
 				</div>
 				
 				<div class="form-group <?php echo (form_error('campoNivel') != '')? 'has-error':''; ?>">
-				    <label for="campoNivel" class="col-sm-3 control-label">Nível</label>
+				    <label for="campoNivel" class="col-sm-3 control-label"><span style="color: red;">*</span> Nível</label>
 				    <div class="col-md-3">
 				      	<?php echo form_dropdown('campoNivel', $niveisDisponiveis, $nivelSelecionado, 'class="form-control"'); ?> 
 				     </div>
