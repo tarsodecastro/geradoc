@@ -64,8 +64,7 @@ $menu_modelos = '';
 $menu_organograma = '';
 $menu_pessoas = '';
 $menu_ferramentas = '';
-$menu_cadastro = '';
-$menu_senha = '';
+$menu_perfil = '';
 
 if($this->uri->segment(2) == 'cadastro' or $this->uri->segment(2) == 'altsenha'){
 	$area = $this->uri->segment(2);
@@ -106,11 +105,11 @@ switch ($area){
 	break;
 	
 	case 'cadastro':
-		$menu_cadastro = 'active';
+		$menu_perfil = 'active';
 	break;
 	
 	case 'altsenha':
-		$menu_senha = 'active';
+		$menu_perfil = 'active';
 	break;
 	
 	case 'auditoria':
@@ -152,8 +151,6 @@ switch ($area){
 	<link href="<?php echo base_url();?>bootstrap/css/bootstrap_custom.css" rel="stylesheet">
 	<link href="<?php echo base_url();?>bootstrap/css/sticky-footer-navbar.css" rel="stylesheet">
 	
-	
-
 	<script type="text/javascript">
 		var CI_ROOT = '<?php echo site_url(); ?>';    	 
     </script>
@@ -249,8 +246,14 @@ switch ($area){
 				        
 				        <?php } ?>
 				        
-				        <li class="<?php echo $menu_cadastro;?>"><a href="<?php echo site_url('usuario/cadastro'); ?>" title="Meu cadastro">Meu cadastro</a></li>
-				       	<li class="<?php echo $menu_senha;?>"><a href="<?php echo site_url('usuario/altsenha'); ?>" title="Alterar minha senha de acesso">Minha senha</a></li>
+				         	<li class="dropdown <?php echo $menu_perfil;?>">
+					          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> Perfil <span class="caret"></span></a>
+					          <ul class="dropdown-menu" role="menu">
+					            <li><a href="<?php echo site_url('usuario/cadastro'); ?>" title="Meu cadastro">Meu cadastro</a></li>
+					            <li><a href="<?php echo site_url('usuario/altsenha'); ?>" title="Alterar minha senha de acesso">Minha senha</a></li>
+					          </ul>
+					        </li>
+				       	
 				        <li><a href="#" id="about" title="Sobre este sistema"><span class="glyphicon glyphicon-thumbs-up"></span> Sobre</a></li>
 				        <li><a href="<?php echo site_url('login/logoff'); ?>" title="Sair do sistema" ><span class="glyphicon glyphicon-off"></span> Sair</a></li>
 				        
