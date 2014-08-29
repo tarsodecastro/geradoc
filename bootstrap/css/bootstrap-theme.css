@@ -263,13 +263,13 @@
 	background-color: #3FA989;
 }
 .navbar-default .navbar-toggle {
-	border-color: #c69900;
+	border-color: #06ab5f;
 }
 .navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
-	background-color: #c69900;
+	background-color: #eeffee;
 }
 .navbar-default .navbar-toggle .icon-bar {
-	background-color: #ffffff;
+	background-color: #3FA989;
 }
 .navbar-default .navbar-collapse,
 .navbar-default .navbar-form {

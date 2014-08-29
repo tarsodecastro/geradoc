@@ -167,9 +167,12 @@ switch ($area){
     <![endif]-->
     </head>
     <body>
+    
+    		
             
-            <div class="container">
+            
         	<!--  Topo -->
+        	<!-- 
             <div id="topo">			
                 <div id="topo_left"></div>				
                 <div id="topo_center"> 
@@ -179,17 +182,46 @@ switch ($area){
                 </div>					
                 <div id="topo_right"></div> 
             </div> 
+             -->
             <!--  Fim do Topo -->
             
+            <div class="row" id="topo">
+	            <div class="col-sm-1 col-md-1 col-lg-1"><div id="topo_left"></div></div>
+	            <div class="col-sm-9 col-md-8 col-lg-9">
+	            	<div class="row" >
+		            	<div id="topo_center"> 
+		            	
+		            		<div class="col-lg-3 visible-lg">
+		                    	<strong><?php echo $today; ?></strong> &nbsp; &nbsp;
+		                    </div>
+		                    
+		                    <div class="col-sm-12 col-md-9 col-lg-9">
+		                    	<span class="topo_campo"> Usuário: </span> <?php echo $nome_usuario; ?> &nbsp; &nbsp;
+		                    	<span class="topo_campo"> Nível: </span> <?php echo $nivel_usuario; ?>
+		                    </div>
+	               		</div>
+               		</div>
+                </div>
+	            <div class="col-sm-12 col-md-3 col-lg-2 visible-md visible-lg"><div id="topo_right" class="text-right"></div></div>
+            </div>
+            
             <!--  Logo -->
-            <div id="logo"> 
-                <div id="logo_left" style="background-image: url(<?php echo $CI->config->item('base_url');?>images/bg_logo_left_<?php echo $CI->config->item('orgao');?>.png);"></div>			
-                <div id="logo_right"><?php echo $CI->config->item('title_short');?></div>		
+            <div class="row">
+	        
+	                
+	                <div class="col-md-6 col-lg-6 visible-md visible-lg">
+	                	<img src="<?php echo $CI->config->item('base_url');?>images/bg_logo_left_<?php echo $CI->config->item('orgao');?>.png"> 	
+	                </div>
+	                
+	                <div class="col-sm-12 col-md-6 col-lg-6 text-right" id="logo_right" style="padding-right: 25px;">
+	                	<div ><?php echo $CI->config->item('title_short');?></div>
+	                </div>
+	          
             </div>
             <!-- Fim do Logo -->
             
             <!--  Menu -->
-             <div id="menu">
+             
              
 	             <nav class="navbar navbar-default" role="navigation">
 				  <div class="container-fluid">
@@ -263,8 +295,9 @@ switch ($area){
 				  </div><!-- /.container-fluid -->
 				</nav>
 
-            </div>
+        
             <!--  Fim do Menu -->
+            <div class="container">
             
             {TPL_content}	
             

@@ -33,7 +33,9 @@
 	margin: 15px 0 15px 0px;
 	font-size: 12px;
 	color:#FFFFFF;
+	/*
 	float:left;	
+	*/
 }
 
 #topo #topo_right{	
@@ -50,7 +52,9 @@
 	background-position:right;
 	background-repeat:no-repeat;
 	background-color: white; 
+	/*
 	display: block;
+	*/
 }
 
 #logo #logo_left{	
@@ -59,10 +63,16 @@
 	width:400px;
 }
 
-#logo #logo_right{	
+#logo_right{	
+	/*
 	float:right;
 	height:80px;
 	margin: -70px 30px 20px 0px;
+	*/
+	background-image: url(../images/bg_logo_right.jpg);	
+	background-position:right;
+	background-repeat:no-repeat;
+	background-color: white; 
 	font-size: 20pt;
 	font-family: 'Times New Roman',Times,serif;
 }
