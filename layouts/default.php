@@ -171,22 +171,12 @@ switch ($area){
     		
             
             
-        	<!--  Topo -->
-        	<!-- 
-            <div id="topo">			
-                <div id="topo_left"></div>				
-                <div id="topo_center"> 
-                    <strong><?php echo $today; ?></strong> &nbsp; &nbsp;
-                    <span class="topo_campo"> Usuário: </span> <?php echo $nome_usuario; ?> &nbsp; &nbsp;
-                    <span class="topo_campo"> Nível neste sistema: </span> <?php echo $nivel_usuario; ?>
-                </div>					
-                <div id="topo_right"></div> 
-            </div> 
-             -->
-            <!--  Fim do Topo -->
+        	
+            <div class="container">
             
+            <!--  Topo -->
             <div class="row" id="topo">
-	            <div class="col-sm-1 col-md-1 col-lg-1"><div id="topo_left"></div></div>
+	            <div class="col-sm-1 col-md-1 col-lg-1"></div>
 	            <div class="col-sm-9 col-md-8 col-lg-9">
 	            	<div class="row" >
 		            	<div id="topo_center"> 
@@ -202,8 +192,9 @@ switch ($area){
 	               		</div>
                		</div>
                 </div>
-	            <div class="col-sm-12 col-md-3 col-lg-2 visible-md visible-lg"><div id="topo_right" class="text-right"></div></div>
+	            <div class="col-sm-12 col-md-3 col-lg-2 visible-md visible-lg text-right"><div id="topo_right" class="text-right"></div></div>
             </div>
+            <!-- Fim do Topo -->
             
             <!--  Logo -->
             <div class="row">
@@ -222,7 +213,7 @@ switch ($area){
             
             <!--  Menu -->
              
-             
+            <div class="row"> 
 	             <nav class="navbar navbar-default" role="navigation">
 				  <div class="container-fluid">
 				    <!-- Brand and toggle get grouped for better mobile display -->
@@ -295,9 +286,9 @@ switch ($area){
 				  </div><!-- /.container-fluid -->
 				</nav>
 
-        
+        	</div>
             <!--  Fim do Menu -->
-            <div class="container">
+            
             
             {TPL_content}	
             

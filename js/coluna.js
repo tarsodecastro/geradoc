@@ -3,12 +3,12 @@
 	 var oTable = $('#tabela').dataTable( {
          "bJQueryUI": true,
          "bStateSave": false,
-         "bPaginate": false,
+         "bPaginate": true,
          "sPaginationType": "full_numbers",
          "bSort": false,
-         "bFilter": false,
+         "bFilter": true,
          "bLengthChange": false,
-         "bInfo": false,
+         "bInfo": true,
          "aoColumns": [
        				{"sWidth":"30px", "sClass": "text-center"},
        				{"sClass": "text-center"},					
