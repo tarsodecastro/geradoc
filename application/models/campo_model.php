@@ -40,16 +40,16 @@ class Campo_model extends CI_Model {
 			break;
 				
 			case 'visualizar':
-				$link =  anchor($area.'/view/'.$id,'<span class="glyphicon glyphicon-search"></span> Visualizar', array('class'=>'btn btn-success btn-sm'));
+				$link =  anchor($area.'/view/'.$id,'<i class="cus-magnifier"></i> Visualizar', array('class'=>'btn btn-success btn-sm'));
 			break;
 				
 			case 'voltar':
-				$link = anchor($_SESSION['novoinicio'],'<span class="glyphicon glyphicon-arrow-left"></span> Voltar',array('class'=>'btn btn-default btn-sm'));
+				$link = anchor($_SESSION['novoinicio'],'<i class="cus-arrow_left"></i> Voltar',array('class'=>'btn btn-default btn-sm'));
 			break;
 				
 			case 'voltar_doc':
 				//anchor($_SESSION['homepage'],'<span class="glyphicon glyphicon-arrow-left"></span> Voltar',array('class'=>'btn btn-warning btn-sm'));
-				$link = anchor($_SESSION['homepage'],'<span class="glyphicon glyphicon-arrow-left"></span> Voltar',array('class'=>'btn btn-default btn-sm'));
+				$link = anchor($_SESSION['homepage'],'<i class="cus-arrow_left"></i> Voltar',array('class'=>'btn btn-default btn-sm'));
 			break;
 				
 			case 'cancelar':

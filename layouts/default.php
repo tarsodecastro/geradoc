@@ -146,6 +146,7 @@ switch ($area){
     
 	{TPL_css}
 	<link href="<?php echo base_url();?>bootstrap/css/bootstrap.min.css" rel="stylesheet"> 
+	<link href="<?php echo base_url();?>bootstrap/css/cus-icons.css" rel="stylesheet"> 
 	<link href="<?php echo base_url();?>bootstrap/css/datatables.bootstrap.css" rel="stylesheet">
 	<link href="<?php echo base_url();?>bootstrap/css/bootstrap-theme.css" rel="stylesheet">
 	<link href="<?php echo base_url();?>bootstrap/css/bootstrap_custom.css" rel="stylesheet">
