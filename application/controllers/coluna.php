@@ -14,9 +14,8 @@ class Coluna extends CI_Controller {
 	
 	public $layout = 'default';
 	public $css = array('style');
-	public $js = array('jquery-1.7.1.min','jquery.dataTables.min','jquery.blockUI','about');
+	public $js = array('jquery-1.11.1.min','jquery.dataTables.min','jquery.blockUI','about');
 	public $js_custom;
-	
     private $area = "coluna";
         
 	public function __construct (){

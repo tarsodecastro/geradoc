@@ -33,6 +33,6 @@
 	<div class="conteiner_tabela">
 			<?php echo $table; ?>
 	</div>
-
-
 </div>
+
+
