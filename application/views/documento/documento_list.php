@@ -18,6 +18,7 @@
 			<?php echo $link_add;?>
 		</div>
 
+		<div class="col-sm-12 visible-xs" style="padding: 5px;"></div>
 
 		<div class="col-md-6">
 			<form class="form-inline">
@@ -41,6 +42,8 @@
 			<!-- /input-group -->
 		</div>
 
+		<div class="col-sm-12 visible-xs" style="padding: 5px;"></div>
+		
 		<div class="col-md-4" style="text-align: right;">
 
 
@@ -61,6 +64,8 @@
 			</form>
 		</div>
 		<!-- /.col-lg-6 -->
+		
+		<div class="col-sm-12 visible-xs" style="padding: 5px;"></div>
 
 	</div>
 	<!-- /.row -->

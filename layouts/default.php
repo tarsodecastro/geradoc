@@ -167,11 +167,7 @@ switch ($area){
     <![endif]-->
     </head>
     <body>
-    
-    		
-            
-            
-        	
+
             <div class="container">
             
             <!--  Topo -->
