@@ -86,9 +86,9 @@ class Coluna extends CI_Controller {
 	 		
 	            $this->table->add_row($key, $value,
 	            		'<div class="btn-group">'.
-			             anchor($this->area.'/view/'.$value,'<span class="glyphicon glyphicon-search"></span> Visualizar',array('class'=>'btn btn-success btn-sm')).' '.
-			             anchor($this->area.'/update/'.$value,'<span class="glyphicon glyphicon-pencil"></span> Alterar', array('class'=>'btn btn-warning btn-sm')).' '.
-			             anchor($this->area.'/delete/'.$value,'<span class="glyphicon glyphicon-trash"></span> Deletar',array('class'=>'btn btn-danger btn-sm','onclick'=>"return confirm('Deseja REALMENTE deletar esse campo?')")).
+			             anchor($this->area.'/view/'.$value,'<i class="cus-zoom"></i> Visualizar',array('class'=>'btn btn-default btn-sm')).' '.
+			             anchor($this->area.'/update/'.$value,'<i class="cus-pencil"></i> Alterar', array('class'=>'btn btn-default btn-sm')).' '.
+			             anchor($this->area.'/delete/'.$value,'<i class="cus-cancel"></i> Deletar',array('class'=>'btn btn-default btn-sm','onclick'=>"return confirm('Deseja REALMENTE deletar esse campo?')")).
 	            		'</div>'
 	            );
             
@@ -96,8 +96,8 @@ class Coluna extends CI_Controller {
 	 			
 	 			$this->table->add_row($key, $value,
 	 					'<div class="btn-group">'.
-			 				anchor($this->area.'/view/'.$value,'<span class="glyphicon glyphicon-search"></span> Visualizar',array('class'=>'btn btn-success btn-sm')).' '.
-			 				anchor($this->area.'/update/'.$value,'<span class="glyphicon glyphicon-pencil"></span> Alterar', array('class'=>'btn btn-warning btn-sm')).
+			 				anchor($this->area.'/view/'.$value,'<i class="cus-zoom"></i> Visualizar',array('class'=>'btn btn-default btn-sm')).' '.
+			 				anchor($this->area.'/update/'.$value,'<i class="cus-pencil"></i> Alterar', array('class'=>'btn btn-default btn-sm')).
 	 					'</div>'
 	 			);
 	 			

@@ -40,16 +40,16 @@ class Campo_model extends CI_Model {
 			break;
 				
 			case 'visualizar':
-				$link =  anchor($area.'/view/'.$id,'<i class="cus-magnifier"></i> Visualizar', array('class'=>'btn btn-success btn-sm'));
+				$link =  anchor($area.'/view/'.$id,'<i class="cus-zoom"></i> Visualizar', array('class'=>'btn btn-default btn-sm'));
 			break;
 				
 			case 'voltar':
-				$link = anchor($_SESSION['novoinicio'],'<i class="cus-arrow_left"></i> Voltar',array('class'=>'btn btn-default btn-sm'));
+				$link = anchor($_SESSION['novoinicio'],'<span class="glyphicon glyphicon-arrow-left"></span> Voltar',array('class'=>'btn btn-default btn-sm'));
 			break;
 				
 			case 'voltar_doc':
 				//anchor($_SESSION['homepage'],'<span class="glyphicon glyphicon-arrow-left"></span> Voltar',array('class'=>'btn btn-warning btn-sm'));
-				$link = anchor($_SESSION['homepage'],'<i class="cus-arrow_left"></i> Voltar',array('class'=>'btn btn-default btn-sm'));
+				$link = anchor($_SESSION['homepage'],'<span class="glyphicon glyphicon-arrow-left"></span> Voltar',array('class'=>'btn btn-default btn-sm'));
 			break;
 				
 			case 'cancelar':
@@ -61,12 +61,16 @@ class Campo_model extends CI_Model {
 			break;
 				
 			case 'alterar_sm':
-				$link = anchor($area.'/update/'.$id,'<span class="glyphicon glyphicon-pencil"></span> Alterar', array('class'=>'btn btn-warning btn-sm'));
+				$link = anchor($area.'/update/'.$id,'<i class="cus-pencil"></i> Alterar', array('class'=>'btn btn-default btn-sm'));
 			break;
 				
 			case 'alterar':
 				$link = anchor($area.'/update/'.$id,'<span class="glyphicon glyphicon-pencil"></span> Alterar', array('class'=>'btn btn-warning'));
 			break;
+			
+			case 'alterar_doc':
+				$link = anchor($area.'/update/'.$id,'<span class="glyphicon glyphicon-pencil"></span> Alterar', array('class'=>'btn btn-default btn-sm'));
+				break;
 				
 			case 'salvar':
 				$link = '<button type="submit" class="btn btn-success"><span class="glyphicon glyphicon glyphicon-ok"></span> Salvar</button>';
@@ -77,7 +81,7 @@ class Campo_model extends CI_Model {
 			break;
 				
 			case 'funcionarios':
-				$link = anchor($area.'/funcionarios/'.$id,'<span class="glyphicon glyphicon-pencil"></span> Funcionários', array('class'=>'btn btn-primary btn-sm'));
+				$link = anchor($area.'/funcionarios/'.$id,'<i class="cus-user"></i> Funcionários', array('class'=>'btn btn-default btn-sm'));
 			break;
 			
 			case 'exportar':
@@ -89,15 +93,15 @@ class Campo_model extends CI_Model {
 			break;
 			
 			case 'ano':
-				$link =  anchor($area.'/year/'.$id,'<span class="glyphicon glyphicon-calendar"></span> Ano', array('class'=>'btn btn-info btn-sm'));
+				$link =  anchor($area.'/year/'.$id,'<i class="cus-date"></i> Ano', array('class'=>'btn btn-default btn-sm'));
 			break;
 			
 			case 'despublicado':
-				$link =  anchor($area.'/altera_publicacao/'.$id,'<span class="glyphicon glyphicon-remove"></span> Despublicado', array('class'=>'btn btn-danger btn-sm'));
+				$link =  anchor($area.'/altera_publicacao/'.$id,'<i class="cus-cross"></i> Despublicado', array('class'=>'btn btn-default btn-sm'));
 			break;
 			
 			case 'publicado':
-				$link =  anchor($area.'/altera_publicacao/'.$id,'<span class="glyphicon glyphicon-ok"></span> Publicado', array('class'=>'btn btn-primary btn-sm'));
+				$link =  anchor($area.'/altera_publicacao/'.$id,'<i class="cus-tick"></i> Publicado', array('class'=>'btn btn-default btn-sm'));
 			break;
 				
 		}

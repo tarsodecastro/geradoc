@@ -13,7 +13,7 @@
        				{"sWidth":"30px", "sClass": "text-center"},
        				{"sClass": "text-justify"},	
        				{"sClass": "text-justify"},
-       				{"sClass": "text-center"} 								 	
+       				{"sWidth":"400px", "sClass": "text-left"} 								 	
        			],
      });
 	
