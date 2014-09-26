@@ -126,29 +126,42 @@ $.blockUI({ message: '<h1><img src="<?php echo base_url(); ?>scripts/images/ui-a
 						</div>
 					</div>
 					  
-					<div class="form-group <?php echo (form_error('campoData') != '')? 'has-error':''; ?>">
-						<label for="campoData" class="col-sm-3 control-label"><span style="color: red;">*</span> Data</label>
-						<div class="col-md-2">
-							<?php echo form_input($campoData); ?>
+					  
+					<div class="row">
+					  
+					  	<div class="col-md-6">
+							<div class="form-group <?php echo (form_error('campoData') != '')? 'has-error':''; ?>">
+								<label for="campoData" class="col-md-6 control-label"><span style="color: red;">*</span> Data</label>
+								<div class="col-md-4">
+									<?php echo form_input($campoData); ?>
+								</div>
+							</div>
 						</div>
+						
+						<div class="col-md-6">
+							<div class="form-group <?php echo (form_error('campoCarimbo') != '')? 'has-error':''; ?>">
+								<label for="campoCarimbo" class="col-md-5 control-label">Carimbo de folha</label>
+								<div class="col-md-5">
+									<?php
+										/*			
+										if($acao == 'update'){
+											$jsCarimbo = 'class="form-control"';
+		
+										}else{
+											$jsCarimbo = 'class="form-control" onChange="window.location.href=(\''.site_url('documento').'/'.$acao.'/r/\' + document.form.campoRemetente.value + \'/t/\' + document.form.campoTipo.value + \'/c/\' + document.form.campoCarimbo.value)"';
+										}
+										
+										echo form_dropdown('campoCarimbo', $carimbosDisponiveis, $carimboSelecionado, $jsCarimbo);
+										*/
+									
+										echo form_dropdown('campoCarimbo', $carimbosDisponiveis, $carimboSelecionado, 'class="form-control"');
+									?>
+								</div>
+							</div>
+						</div>
+					
 					</div>
 					
-					<div class="form-group <?php echo (form_error('campoCarimbo') != '')? 'has-error':''; ?>">
-						<label for="campoCarimbo" class="col-sm-3 control-label">Carimbo de folha</label>
-						<div class="col-md-3">
-							<?php
-											
-								if($acao == 'update'){
-									$jsCarimbo = 'class="form-control"';
-
-								}else{
-									$jsCarimbo = 'class="form-control" onChange="window.location.href=(\''.site_url('documento').'/'.$acao.'/r/\' + document.form.campoRemetente.value + \'/t/\' + document.form.campoTipo.value + \'/c/\' + document.form.campoCarimbo.value)"';
-								}
-								
-								echo form_dropdown('campoCarimbo', $carimbosDisponiveis, $carimboSelecionado, $jsCarimbo);
-							?>
-						</div>
-					</div>
 					
 					<div class="form-group <?php echo (form_error('campoTipo') != '')? 'has-error':''; ?>">
 						<label for="campoTipo" class="col-sm-3 control-label"><span style="color: red;">*</span> Tipo</label>
@@ -186,9 +199,21 @@ $.blockUI({ message: '<h1><img src="<?php echo base_url(); ?>scripts/images/ui-a
 							
 											if(strpos($obj_tipo->$nome_campo, ';') != FALSE){
 												$campo = explode(';' , $obj_tipo->$nome_campo);
+												
+												if(count($campo) == 2){ // se campo tiver apenas 2 partes...
+													$campo[2] = ''; // rotulo = ''
+												}
+												
+												if($campo[1] == 'S'){
+													$asterisco = '<span style="color: red;">*</span>';
+												}else{
+													$asterisco = '';
+												}
+												
+												
 											}else{
 												$campo[0] = $obj_tipo->$nome_campo;
-												$campo[1] = $nome_campo;
+												$campo[2] = $nome_campo;
 											}
 											
 											$coluna = $this->Coluna_model->get_by_nome($nome_campo);
@@ -207,7 +232,7 @@ $.blockUI({ message: '<h1><img src="<?php echo base_url(); ?>scripts/images/ui-a
 													<!--  Campo '.$nome_campo.' -->
 		
 													<div class="form-group '.$erro.'">
-														<label for="'.'campo_'.$nome_campo.'" class="col-sm-3 control-label"><span style="color: red;">*</span> '.$campo[1].'</label>
+														<label for="'.'campo_'.$nome_campo.'" class="col-sm-3 control-label">'. $asterisco .' '. $campo[2].'</label>
 															<div class="col-md-8">
 															'.$input_campo[$nome_campo].'
 															</div>
@@ -224,7 +249,11 @@ $.blockUI({ message: '<h1><img src="<?php echo base_url(); ?>scripts/images/ui-a
 									
 									echo $campos_dinamicos_pequenos;
 									
-									if($tipoSelecionado != null and $obj_tipo->para != 'N'){
+									//print_ $obj_tipo->para;
+									
+									if($tipoSelecionado != null and $obj_tipo->para != 'N;N'){
+									
+									//echo $obj_tipo->para;
 								
 								?>
 					
@@ -388,9 +417,21 @@ $.blockUI({ message: '<h1><img src="<?php echo base_url(); ?>scripts/images/ui-a
 					
 									if(strpos($obj_tipo->$nome_campo, ';') != FALSE){
 										$campo = explode(';' , $obj_tipo->$nome_campo);
+										
+										if(count($campo) == 2){ // se campo tiver apenas 2 partes...
+											$campo[2] = ''; // rotulo = ''
+										}
+										
+										if($campo[1] == 'S'){
+											$asterisco = '<span style="color: red;">*</span>';
+										}else{
+											$asterisco = '';
+										}
+										
+										
 									}else{
 										$campo[0] = $obj_tipo->$nome_campo;
-										$campo[1] = $nome_campo;
+										$campo[2] = $nome_campo;
 									}
 									
 									$coluna = $this->Coluna_model->get_by_nome($nome_campo);
@@ -409,7 +450,7 @@ $.blockUI({ message: '<h1><img src="<?php echo base_url(); ?>scripts/images/ui-a
 												<div class="col-lg-12">
 		
 												<div class="text-left form-group '.$erro.'">
-													<label class="control-label text-left"><span style="color: red;">*</span> '.$campo[1].'</label>
+													<label class="control-label text-left">'. $asterisco .' '. $campo[2].'</label>
 													
 													<script type="text/javascript">
 														$().ready(function() {				

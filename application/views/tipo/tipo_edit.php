@@ -90,7 +90,9 @@
 				   		<tr>
 				   			<th class="text-center">Campo</th>
 				   			<th class="text-center">Disponível</th>
+				   			<th class="text-center">Obrigatório</th>
 				   			<th class="text-center">Rótulo</th>
+				   			<th class="text-center">Ordem</th>
 				   		</tr>
 				   	</thead>
 				    <tbody>
