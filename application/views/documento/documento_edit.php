@@ -196,9 +196,13 @@ $.blockUI({ message: '<h1><img src="<?php echo base_url(); ?>scripts/images/ui-a
 										$campos_especiais = array_diff($campos_especiais, array('para'));
 										
 										// Reordena os campos com base no valor da ordenacao 
+										
 										foreach ($campos_especiais as $key => $nome_campo){
 
+											
 											$campo = explode(';' , $obj_tipo->$nome_campo);
+											
+											$campo[3] = isset($campo[3]) ? $campo[3] : '';
 											
 											$campos_especiais[$key] = $campo[3] . '#'. $nome_campo;
 
@@ -442,6 +446,8 @@ $.blockUI({ message: '<h1><img src="<?php echo base_url(); ?>scripts/images/ui-a
 								
 									$campo = explode(';' , $obj_tipo->$nome_campo);
 										
+									$campo[3] = isset($campo[3]) ? $campo[3] : ''; // campo da ordenacao pode estar vazio
+									
 									$campos_especiais[$key] = $campo[3] . '#'. $nome_campo;
 								
 								}

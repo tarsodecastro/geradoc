@@ -81,8 +81,8 @@
 	<div class="row">
 		<div class="col-md-4 text-center">
 			<div class="dataTables_info" role="status">
-				<p class="well well-sm">Total de registros:
-				<?php echo $total_rows; ?>
+				<p>Total de registros:
+				<span class="label label-default">&nbsp; <?php echo $total_rows; ?> &nbsp;</span>
 				</p>
 			</div>
 		</div>

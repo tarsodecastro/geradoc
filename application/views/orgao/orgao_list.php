@@ -47,7 +47,9 @@
 
 		<div class="col-md-6">
 			<div class="dataTables_info">
-				Total de registros: <?php echo $total_rows; ?>
+				<p>Total de registros:
+				<span class="label label-default">&nbsp; <?php echo $total_rows; ?> &nbsp;</span>
+				</p>
 			</div>
 		</div>
 		
