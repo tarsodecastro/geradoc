@@ -1,6 +1,7 @@
 
 <script type="text/javascript" src="<?php echo base_url(); ?>js/tinymce/tinymce.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/tinymce/jquery.tinymce.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>js/datepicker/js/jquery.ui.datepicker-pt-BR.js"></script>
 
 <script type="text/javascript" src="<?php echo base_url(); ?>js/jquery.blockUI.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>scripts/calendario/_scripts/jquery.click-calendario-1.0-min.js"></script>
@@ -107,7 +108,7 @@ $.blockUI({ message: '<h1><img src="<?php echo base_url(); ?>scripts/images/ui-a
 
 						
 					<div class="form-group <?php echo (form_error('campoRemetente') != '')? 'has-error':''; ?>">
-						<label for="campoRemetente" class="col-sm-3 control-label"><span style="color: red;">*</span> Remetente</label>
+						<label for="campoRemetente" class="col-sm-2 control-label"><span style="color: red;">*</span> Remetente</label>
 						<div class="col-md-8">
 							<?php
 								$jsRemet = 'class="form-control" id="campoRemetente" onChange="window.location.href=(\''.site_url('documento').'/'.$acao.'/r\' + \'/\' + document.form.campoRemetente.value + \'/t/\' + document.form.campoTipo.value + \'/c/\' + document.form.campoCarimbo.value)"';
@@ -119,7 +120,7 @@ $.blockUI({ message: '<h1><img src="<?php echo base_url(); ?>scripts/images/ui-a
 					
 					
 					<div class="form-group <?php echo (form_error('campoSetor') != '')? 'has-error':''; ?>">
-						<label for="campoSetor" class="col-sm-3 control-label">Setor</label>
+						<label for="campoSetor" class="col-sm-2 control-label">Setor</label>
 						<div class="col-md-8">
 							<input type="hidden" name="setorId" id="setorId" value="<?php echo $setorId; ?>" />
 							<?php echo form_input($campoSetor); ?>
@@ -129,10 +130,10 @@ $.blockUI({ message: '<h1><img src="<?php echo base_url(); ?>scripts/images/ui-a
 					  
 					<div class="row">
 					  
-					  	<div class="col-md-6">
+					  	<div class="col-md-4">
 							<div class="form-group <?php echo (form_error('campoData') != '')? 'has-error':''; ?>">
 								<label for="campoData" class="col-md-6 control-label"><span style="color: red;">*</span> Data</label>
-								<div class="col-md-4">
+								<div class="col-md-6">
 									<?php echo form_input($campoData); ?>
 								</div>
 							</div>
@@ -140,8 +141,8 @@ $.blockUI({ message: '<h1><img src="<?php echo base_url(); ?>scripts/images/ui-a
 						
 						<div class="col-md-6">
 							<div class="form-group <?php echo (form_error('campoCarimbo') != '')? 'has-error':''; ?>">
-								<label for="campoCarimbo" class="col-md-5 control-label">Carimbo de folha</label>
-								<div class="col-md-5">
+								<label for="campoCarimbo" class="col-md-6 control-label">Carimbo de folha</label>
+								<div class="col-md-6">
 									<?php
 										/*			
 										if($acao == 'update'){
@@ -164,7 +165,7 @@ $.blockUI({ message: '<h1><img src="<?php echo base_url(); ?>scripts/images/ui-a
 					
 					
 					<div class="form-group <?php echo (form_error('campoTipo') != '')? 'has-error':''; ?>">
-						<label for="campoTipo" class="col-sm-3 control-label"><span style="color: red;">*</span> Tipo</label>
+						<label for="campoTipo" class="col-sm-2 control-label"><span style="color: red;">*</span> Tipo</label>
 						<div class="col-md-8">
 							<?php
 										
@@ -175,13 +176,12 @@ $.blockUI({ message: '<h1><img src="<?php echo base_url(); ?>scripts/images/ui-a
 					</div>
 					
 					<div class="form-group <?php echo (form_error('campoAssunto') != '')? 'has-error':''; ?>">
-						<label for="campoAssunto" class="col-sm-3 control-label"><span style="color: red;">*</span> Assunto</label>
+						<label for="campoAssunto" class="col-sm-2 control-label"><span style="color: red;">*</span> Assunto</label>
 						<div class="col-md-8">
 							<?php echo form_input($campoAssunto);?> 
 						</div>
 					</div>
 						
-	
 								<?php 
 						
 								$campos_dinamicos_pequenos = '';
@@ -194,9 +194,33 @@ $.blockUI({ message: '<h1><img src="<?php echo base_url(); ?>scripts/images/ui-a
 										$campos_especiais = $this->Coluna_model->list_all();
 										
 										$campos_especiais = array_diff($campos_especiais, array('para'));
-							
+										
+										// Reordena os campos com base no valor da ordenacao 
 										foreach ($campos_especiais as $key => $nome_campo){
+
+											$campo = explode(';' , $obj_tipo->$nome_campo);
+											
+											$campos_especiais[$key] = $campo[3] . '#'. $nome_campo;
+
+										}
+	
+										natsort($campos_especiais);
+										//Fim da reordenacao dos campos
+										
+										/*
+										echo "<pre>";
+										print_r($campos_especiais);
+										echo "</pre>";
+										*/
+										//exit;
 							
+										foreach ($campos_especiais as $key => $nome_campo){	
+											
+											//retira o # apos a reordenacao
+											$pos = strpos($nome_campo, '#');
+											$nome_campo = substr($nome_campo, $pos + 1);
+											//fim
+											
 											if(strpos($obj_tipo->$nome_campo, ';') != FALSE){
 												$campo = explode(';' , $obj_tipo->$nome_campo);
 												
@@ -216,6 +240,7 @@ $.blockUI({ message: '<h1><img src="<?php echo base_url(); ?>scripts/images/ui-a
 												$campo[2] = $nome_campo;
 											}
 											
+											
 											$coluna = $this->Coluna_model->get_by_nome($nome_campo);
 											
 											$erro = '';
@@ -232,7 +257,7 @@ $.blockUI({ message: '<h1><img src="<?php echo base_url(); ?>scripts/images/ui-a
 													<!--  Campo '.$nome_campo.' -->
 		
 													<div class="form-group '.$erro.'">
-														<label for="'.'campo_'.$nome_campo.'" class="col-sm-3 control-label">'. $asterisco .' '. $campo[2].'</label>
+														<label for="'.'campo_'.$nome_campo.'" class="col-sm-2 control-label">'. $asterisco .' '. $campo[2].'</label>
 															<div class="col-md-8">
 															'.$input_campo[$nome_campo].'
 															</div>
@@ -249,17 +274,18 @@ $.blockUI({ message: '<h1><img src="<?php echo base_url(); ?>scripts/images/ui-a
 									
 									echo $campos_dinamicos_pequenos;
 									
-									//print_ $obj_tipo->para;
+											
+									if($tipoSelecionado != null){ // testa se o tipo foi selecionado
 									
-									if($tipoSelecionado != null and $obj_tipo->para != 'N;N'){
+										$campo_para = explode(';' , $obj_tipo->para);
 									
-									//echo $obj_tipo->para;
+										if($campo_para[0] != 'N'){ // testa se o campo 'para'esta disponivel
 								
 								?>
 					
 					
 							<div class="form-group <?php echo (form_error('campoPara') != '')? 'has-error':''; ?>">
-								<label for="campoPara" class="col-sm-3 control-label"><br><br><span style="color: red;">*</span> Para</label>
+								<label for="campoPara" class="col-sm-2 control-label"><br><br><span style="color: red;">*</span> Para</label>
 								<div class="col-md-8">
 									<div class="input-group">
 									<span class="input-group-addon glyphicon glyphicon-search" style="top: 0px;"></span>
@@ -381,9 +407,9 @@ $.blockUI({ message: '<h1><img src="<?php echo base_url(); ?>scripts/images/ui-a
 
 						</script>
 					
-
 						<?php 
-						}
+							} // fim do teste que verifica se o campo para esta disponivel
+						}// fim do teste que verifica se o tipo foi selecionado 
 						
 						if ($tipoSelecionado != null and $disabled == null){
 						
@@ -399,8 +425,6 @@ $.blockUI({ message: '<h1><img src="<?php echo base_url(); ?>scripts/images/ui-a
 							</div>
 						</div>
 						
-						
-
 						<?php 
 						}
 						
@@ -412,8 +436,25 @@ $.blockUI({ message: '<h1><img src="<?php echo base_url(); ?>scripts/images/ui-a
 								
 								$this->load->model('Coluna_model','',TRUE);
 								$campos_especiais = $this->Coluna_model->list_all();
+								
+								// Reordena os campos com base no valor da ordenacao
+								foreach ($campos_especiais as $key => $nome_campo){
+								
+									$campo = explode(';' , $obj_tipo->$nome_campo);
+										
+									$campos_especiais[$key] = $campo[3] . '#'. $nome_campo;
+								
+								}
+								
+								natsort($campos_especiais);
+								//Fim da reordenacao dos campos
 					
 								foreach ($campos_especiais as $key => $nome_campo){
+
+									//retira o # apos a reordenacao
+									$pos = strpos($nome_campo, '#');
+									$nome_campo = substr($nome_campo, $pos + 1);
+									//fim
 					
 									if(strpos($obj_tipo->$nome_campo, ';') != FALSE){
 										$campo = explode(';' , $obj_tipo->$nome_campo);
@@ -600,6 +641,9 @@ function blink(elem, times, speed) {
         				}
         			});
 
+        			$.datepicker.setDefaults( $.datepicker.regional[ "pt-BR" ] );
+        			$( "#campoData" ).datepicker();
+        			/*
                     $('#campoData').focus(function(){
                           $(this).calendario({
                                 target:'#campoData',
@@ -607,6 +651,7 @@ function blink(elem, times, speed) {
                                 left:80
                             });
                        });
+                    */
                 });
 
         $(function() {

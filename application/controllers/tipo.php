@@ -143,6 +143,11 @@ class Tipo extends CI_Controller {
 		$campos_especiais = $this->Coluna_model->list_all();
 		
 		$linhas = '';
+		
+		//echo "<pre>";
+		//print_r($campos_especiais);
+		//echo "</pre>";
+		
 		foreach ($campos_especiais as $key => $value){
 			
 			$flag_selecionada  = $this->input->post('campoFlag_'.$value) ? $this->input->post('campoFlag_'.$value) : 'N';
@@ -166,6 +171,9 @@ class Tipo extends CI_Controller {
 				        </td>
 			        	</tr>';
 		}	
+		
+		
+		
 		$data['linhas'] = $linhas;
 	
 		if ($this->form_validation->run($this->area."/add") == FALSE) {
