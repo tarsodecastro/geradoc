@@ -36,6 +36,10 @@
     !important;
 }
 
+div.ui-datepicker{
+ font-size:10pt;
+}
+
 </style>
 
 <script type="text/javascript">
@@ -648,7 +652,13 @@ function blink(elem, times, speed) {
         			});
 
         			$.datepicker.setDefaults( $.datepicker.regional[ "pt-BR" ] );
-        			$( "#campoData" ).datepicker();
+        			$( "#campoData" ).datepicker({
+        				beforeShow: function() {
+        			        setTimeout(function(){
+        			            $('.ui-datepicker').css('z-index', 99999999999999);
+        			        }, 0);
+        			    }
+        			});
         			/*
                     $('#campoData').focus(function(){
                           $(this).calendario({
