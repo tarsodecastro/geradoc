@@ -72,14 +72,14 @@
 			
 			
 				<div class="form-group <?php echo (form_error('campoNome') != '')? 'has-error':''; ?>"">
-				    <label for="campoNome" class="col-sm-3 control-label">Nome</label>
+				    <label for="campoNome" class="col-sm-3 control-label"><span style="color: red;">*</span> Nome</label>
 				    <div class="col-md-7">
 				      	<?php echo form_input($campoNome); ?> 
 				     </div>
 				</div>
 				
 				<div class="form-group <?php echo (form_error('campoAbreviacao') != '')? 'has-error':''; ?>"">
-				    <label for="campoAbreviacao" class="col-sm-3 control-label">Abreviação</label>
+				    <label for="campoAbreviacao" class="col-sm-3 control-label"><span style="color: red;">*</span> Abreviação</label>
 				    <div class="col-md-3">
 				      	<?php echo form_input($campoAbreviacao); ?> 
 				     </div>
@@ -112,7 +112,7 @@
 						
 				<div class="col-lg-12">	
 					<div class="form-group text-left <?php echo (form_error('campoConteudo') != '')? 'has-error':''; ?>"">
-					    <label for="campoConteudo" class="control-label"><span class="text-red">*</span> Distribuição do Conteúdo</label>
+					    <label for="campoConteudo" class="control-label"><span class="text-red">*</span> Distribuição do conteúdo</label>
 					    <div class="bg-warning text-center" style="padding: 7px;">
 						  	<strong> Variáveis disponíveis: </strong>
 							 <?php 

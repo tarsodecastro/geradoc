@@ -69,7 +69,7 @@ class Campo_model extends CI_Model {
 			break;
 			
 			case 'alterar_doc':
-				$link = anchor($area.'/update/'.$id,'<span class="glyphicon glyphicon-pencil"></span> Alterar', array('class'=>'btn btn-default btn-sm'));
+				$link = anchor($area.'/update/'.$id,'<i class="cus-pencil"></i> Alterar', array('class'=>'btn btn-default btn-sm'));
 				break;
 				
 			case 'salvar':
@@ -85,7 +85,7 @@ class Campo_model extends CI_Model {
 			break;
 			
 			case 'exportar':
-				$link = anchor($area.'/export/'.$id,'<span class="glyphicon glyphicon-print"></span> Exportar', array('target'=>'_blank', 'class'=>'btn btn-default btn-sm'));
+				$link = anchor($area.'/export/'.$id,'<i class="cus-printer"></i> Exportar', array('target'=>'_blank', 'class'=>'btn btn-default btn-sm'));
 			break;
 			
 			case 'exportar_doc':

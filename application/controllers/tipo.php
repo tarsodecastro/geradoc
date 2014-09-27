@@ -353,21 +353,17 @@ public function update($id, $disabled = null) {
 				
 				$campo = explode(';' , $obj->$nome_campo);
 				
-				if(count($campo) == 2){ // se campo tiver apenas 2 partes...
+				if(count($campo) < 4){ // se campo tiver apenas 2 partes...
 					$campo[2] = ''; // rotulo = ''
+					$campo[3] = ''; // ordenacao = ''
 				}
-				
-				
-				
+						
 			}else{
 				$campo[0] = $obj->$nome_campo;
 				$campo[1] = '';
 				$campo[2] = '';
 				$campo[3] = '0';
 			}
-			
-			
-			
 			
 			$flag_selecionada  = $this->input->post('campoFlag_'.$nome_campo) ? $this->input->post('campoFlag_'.$nome_campo) : $campo[0];
 			
