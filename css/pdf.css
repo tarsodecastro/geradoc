@@ -1,5 +1,24 @@
 @CHARSET "UTF-8";
 
+.pagina {
+	
+	border: 1px solid #333;
+	width: 210mm;
+    height: 297mm;
+    margin: 0 auto;
+    padding-top: 35px;
+    padding-left: 85px;
+    padding-right: 80px;
+    padding-bottom: 30px;
+    
+    -webkit-box-shadow: 7px 7px 5px 0px rgba(50, 50, 50, 0.5);
+	-moz-box-shadow:    7px 7px 5px 0px rgba(50, 50, 50, 0.5);
+	box-shadow:         7px 7px 5px 0px rgba(50, 50, 50, 0.5);
+	
+}
+
+/*daqui para baixo afeta o pdf */
+
 #t1 {
 	text-align: left;
 }
@@ -21,7 +40,7 @@
 	font-family: "Times New Roman", Times, serif;
 	font-size: 15px;
 	text-align: justify;
-	line-height: 150%;
+	line-height: 175%;
 	font-weight: normal;
 }
 
@@ -82,7 +101,7 @@
 	border-color: #000;
 }
 
-.conteudo table td,.redacao table th {
+.conteudo table td,.conteudo table th {
 	margin: 0;
 	padding: 4px;
 	border-width: 1px;
