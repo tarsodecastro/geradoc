@@ -51,6 +51,12 @@ class Campo_model extends CI_Model {
 				//anchor($_SESSION['homepage'],'<span class="glyphicon glyphicon-arrow-left"></span> Voltar',array('class'=>'btn btn-warning btn-sm'));
 				$link = anchor($_SESSION['homepage'],'<span class="glyphicon glyphicon-arrow-left"></span> Voltar',array('class'=>'btn btn-default btn-sm'));
 			break;
+			
+			case 'history_back':
+				//$link = anchor('#','<span class="glyphicon glyphicon-arrow-left"></span> Voltar', array('class'=>'btn btn-default btn-sm', 'onclick'=>'javascript: window.history.go(-1)'));
+					
+				$link = '<a href="javascript: window.history.go(-1)" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-arrow-left"></span> Voltar</a>';
+			break;
 				
 			case 'cancelar':
 				$link = anchor($_SESSION['novoinicio'],'<span class="glyphicon glyphicon-remove"></span> Cancelar',array('class'=>'btn btn-default'));
@@ -70,7 +76,23 @@ class Campo_model extends CI_Model {
 			
 			case 'alterar_doc':
 				$link = anchor($area.'/update/'.$id,'<i class="cus-pencil"></i> Alterar', array('class'=>'btn btn-default btn-sm'));
-				break;
+			break;
+			
+			case 'stamp':
+				$link = anchor($area.'/stamp/'.$id,'<i class="cus-stamp_in"></i> Carimbar', array('class'=>'btn btn-default btn-sm'));
+			break;
+			
+			case 'stamp_out':
+				$link = anchor($area.'/stamp_out/'.$id,'<i class="cus-stamp_out"></i> Retirar carimbo', array('class'=>'btn btn-default btn-sm'));
+			break;
+			
+			case 'history':
+				$link = anchor($area.'/history/'.$id,'<i class="cus-clock_history"></i> Histórico', array('class'=>'btn btn-primary btn-sm'));
+			break;
+			
+			case 'workflow':
+				$link = anchor($area.'/workflow/'.$id,'<i class="cus-paper_airplane"></i> Tramitação', array('class'=>'btn btn-success btn-sm'));
+			break;
 				
 			case 'salvar':
 				$link = '<button type="submit" class="btn btn-success"><span class="glyphicon glyphicon glyphicon-ok"></span> Salvar</button>';

@@ -958,7 +958,7 @@ background-repeat: no-repeat;
 .cus-thumb_down{ background-position: -1743px -189px; width: 16px; height: 16px; } 
 .cus-thumb_up{ background-position: -1764px -189px; width: 16px; height: 16px; } 
 .cus-tick{ background-position: -1785px -189px; width: 16px; height: 16px; } 
-.cus-time{ background-position: -1806px -189px; width: 16px; height: 16px; } 
+.cus-time{ background-position: -1806px -189px; width: 16px; height: 16px;} 
 .cus-time_add{ background-position: -1827px -189px; width: 16px; height: 16px; } 
 .cus-time_delete{ background-position: -1848px -189px; width: 16px; height: 16px; } 
 .cus-time_go{ background-position: -1869px -189px; width: 16px; height: 16px; } 
@@ -1017,3 +1017,7 @@ background-repeat: no-repeat;
 .cus-zoom{ background-position: -987px -210px; width: 16px; height: 16px; } 
 .cus-zoom_in{ background-position: -1008px -210px; width: 16px; height: 16px; } 
 .cus-zoom_out{ background-position: -1029px -210px; width: 16px; height: 16px; } 
+.cus-stamp_in{ background-image: url("icons/stamp.png"); background-position: 0px -1px;  background-size: 17px 17px; }
+.cus-stamp_out{ background-image: url("icons/stamp-minus.png"); background-position: 0px -1px;  background-size: 17px 17px; } 
+.cus-clock_history{ background-image: url("icons/clock-history.png"); background-position: -1px -1px;  background-size: 18px 18px; } 
+.cus-paper_airplane{ background-image: url("icons/paper-airplane.png"); background-position: -1px -1px;  background-size: 17px 17px; } 
