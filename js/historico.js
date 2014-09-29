@@ -64,7 +64,7 @@
 		var winH = $(window).height();
 		var winW = $(window).width();
               
-		$(id).css('top',  winH/2-$(id).height()/2);
+		$(id).css('top',  winH/2-$(id).height()/2.5);
 		$(id).css('left', winW/2-$(id).width()/2);
 	
 		$(id).fadeIn(1000); 

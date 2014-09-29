@@ -8,6 +8,7 @@
 	
 		- campos dinâmicos para os tipos de documentos; <br>
 		- bootstrap; <br>
+		- histórico de versões dos documentos; <br>
 		
 	<br><br><b>VERSÃO 2.4:</b><br>
 	

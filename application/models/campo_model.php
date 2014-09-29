@@ -92,7 +92,7 @@ class Campo_model extends CI_Model {
 			break;
 			
 			case 'history':
-				$link = anchor($area.'/history/'.$id,'<i class="cus-clock_history"></i> Histórico', array('class'=>'btn btn-primary btn-sm'));
+				$link = anchor($area.'/history/'.$id,'<i class="cus-clock_history"></i> Versões', array('class'=>'btn btn-primary btn-sm'));
 			break;
 			
 			case 'workflow':

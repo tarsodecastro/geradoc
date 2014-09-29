@@ -3,11 +3,12 @@
 	 $('#about').click(function() { 
          $.blockUI({ 
         	 message: $('#modalDialog'),
-        	 overlayCSS: { backgroundColor: '#000' },
+        	 overlayCSS: { backgroundColor: '#000', opacity: 0.8, cursor: 'default'},
         	 css: { 
                  top: '150px',
                  left: ($(window).width() - 500) /2 + 'px', 
                  width: '500px',
+                 cursor: 'default' 
              } 
          
          }); 

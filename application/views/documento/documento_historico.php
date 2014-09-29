@@ -6,7 +6,7 @@
 	</center>
 </div>
 
-<p class="bg-success lead text-center">Histórico do documento</p>
+<p class="bg-success lead text-center">Versões do documento</p>
 
 <div id="msg" style="display: none;">
 	<img src="{TPL_images}loader.gif" alt="Enviando" />Aguarde
@@ -40,6 +40,5 @@
 
 <div id="boxes">
 	<?php echo $dialogos; ?>
-	
 	<div id="mask"></div>
 </div>

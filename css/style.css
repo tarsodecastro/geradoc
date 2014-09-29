@@ -659,27 +659,21 @@
   background-color:#ffffff; 
   width:210mm;
   height: 500px;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  padding-left: 70px;
-  padding-right: 50px;
+  padding: 20px;
+  
   overflow: auto;
   
-  font-family: "Times New Roman", Times, serif;
-  font-size: 18px;
-  text-align: justify;
-  line-height: 175%;
-}
-
-#boxes #dialog {
-  width:375px; 
-  height:203px;
-  padding:10px;
-  background-color:#ffffff;
-  
   
 }
 
+.modal_historico_texto{
+	font-family: "Times New Roman", Times, serif;
+	font-size: 18px;
+	text-align: justify;
+	line-height: 175%;
+	padding-left: 70px;
+  	padding-right: 50px;
+}
 .close{text-align:right;}
 /*** Fim do modal do historico ***/
 
