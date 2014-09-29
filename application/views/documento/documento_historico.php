@@ -17,7 +17,7 @@
 
 	<div class="row">
     
-	    <div class="col-md-12 text-center">
+	    <div class="col-md-12">
 	    	<div class="btn-group">
 		    <?php
 		    	echo $link_back;
@@ -27,17 +27,19 @@
 
     </div>
 
-
-	<div class="formulario">
 	
-	
-	
-	Em desenvolvimento
-	
-
+	<div style="clear:both;"></div> 
+	        
+	<div class="conteiner_tabela">
+			<?php echo $table; ?>
 	</div>
-	<!-- fim da div formulario -->
 
 	
 </div>
 <!-- fim da div  view_content -->
+
+<div id="boxes">
+	<?php echo $dialogos; ?>
+	
+	<div id="mask"></div>
+</div>

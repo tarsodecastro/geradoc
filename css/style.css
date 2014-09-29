@@ -635,3 +635,51 @@
 
 /*** FIM DO MODAL ***/
 
+/*** Modal do historico ***/
+#mask {
+  position:absolute;
+  left:0;
+  top:0;
+  z-index:9000;
+  background-color:#000;
+  display:none;
+}
+
+#boxes .window {
+  position:absolute;
+  left:0;
+  top:0;
+  /*
+  width:440px;
+  height:200px;
+  padding:20px;
+  */ 
+  display:none;
+  z-index:9999;
+  background-color:#ffffff; 
+  width:210mm;
+  height: 500px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 70px;
+  padding-right: 50px;
+  overflow: auto;
+  
+  font-family: "Times New Roman", Times, serif;
+  font-size: 18px;
+  text-align: justify;
+  line-height: 175%;
+}
+
+#boxes #dialog {
+  width:375px; 
+  height:203px;
+  padding:10px;
+  background-color:#ffffff;
+  
+  
+}
+
+.close{text-align:right;}
+/*** Fim do modal do historico ***/
+

@@ -42,6 +42,11 @@ class Campo_model extends CI_Model {
 			case 'visualizar':
 				$link =  anchor($area.'/view/'.$id,'<i class="cus-zoom"></i> Visualizar', array('class'=>'btn btn-default btn-sm'));
 			break;
+			
+			case 'visualizar_historico':
+				//$link =  anchor($area.'/view/'.$id,'<i class="cus-zoom"></i> Visualizar texto completo', array('class'=>'btn btn-default btn-sm'));
+				$link = '<a href="#dialog" name="modal" class="btn btn-default btn-sm"><i class="cus-zoom"></i> Visualizar texto completo</a>';
+			break;
 				
 			case 'voltar':
 				$link = anchor($_SESSION['novoinicio'],'<span class="glyphicon glyphicon-arrow-left"></span> Voltar',array('class'=>'btn btn-default btn-sm'));

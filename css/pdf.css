@@ -5,7 +5,7 @@
 	
 	border: 1px solid #777;
 	width: 210mm;
-    height: 297mm;
+    min-height: 297mm;
     margin: 0 auto;
     padding-top: 35px;
     padding-left: 90px;
@@ -15,6 +15,7 @@
     -webkit-box-shadow: 7px 7px 10px 0px rgba(50, 50, 50, 0.5);
 	-moz-box-shadow:    7px 7px 10px 0px rgba(50, 50, 50, 0.5);
 	box-shadow:         7px 7px 10px 0px rgba(50, 50, 50, 0.5);
+	/*overflow: auto;*/
 	
 }
 
