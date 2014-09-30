@@ -36,15 +36,63 @@
 
 	<div class="formulario">
 	
-	<table class="table table-bordered table-striped table-hover">
-	   	<thead>
-	   		<?php echo $linhas_cabecalho;?>
-	   </thead>
-	<tbody>
+	<form class="form-horizontal" role="form" id="frm1" name="frm1" action="<?php echo $form_action; ?>" method="post">
 	
-	</tbody>
-		<?php echo $linhas_corpo;?>
-	</table>
+	<fieldset>
+		
+		<div class="panel panel-default">
+		
+			<div class="panel-heading">
+				  <h3 class="panel-title">Detalhes do documento</h3>
+			</div>
+	
+				<table class="table table-bordered table-striped table-hover">
+				   
+				<tbody>
+					<tr>
+						<td class="text-right text-muted">
+							Origem
+						</td>
+						<td class="text-left" style="color: #777">
+							<?php echo $setor_origem; ?>
+						</td>
+					</tr>
+					<tr>
+						<td class="text-right">
+							<strong>Destino</strong>
+						</td>
+						<td class="text-left">
+							<?php echo $setor_destino; ?>
+						</td>
+					</tr>
+				</tbody>
+					
+				</table>
+	
+		</div>
+		
+	</fieldset>
+	
+	
+	<fieldset>
+		
+		<div class="panel panel-primary">
+	
+			<div class="panel-heading">
+				  <h3 class="panel-title">Envio</h3>
+			</div>
+			
+			<table class="table table-bordered table-striped table-hover">
+			   	<thead>
+			   		<?php echo $linhas_cabecalho;?>
+			   </thead>
+			<tbody>
+					<?php echo $linhas_corpo;?>
+			</tbody>
+				
+			</table>
+		</div>
+	</fieldset>
 	
 	
 	<table class="table table-bordered table-striped table-hover" style="width: 500px; margin: 0 auto;">
@@ -56,12 +104,12 @@
 	   		
 	   </thead>
 	<tbody>
-	
-	</tbody>
 		<?php echo $linhas_tramitacao;?>
+	</tbody>
+	
 	</table>
 	
-
+	</form>
 	</div>
 	<!-- fim da div formulario -->
 
