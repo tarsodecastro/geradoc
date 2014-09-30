@@ -350,7 +350,6 @@ public function update($id, $disabled = null) {
 		
 			if(strpos($obj->$nome_campo, ';') != FALSE){
 				
-				
 				$campo = explode(';' , $obj->$nome_campo);
 				
 				if(count($campo) < 4){ // se campo tiver apenas 2 partes...

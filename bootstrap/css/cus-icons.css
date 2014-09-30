@@ -1021,3 +1021,4 @@ background-repeat: no-repeat;
 .cus-stamp_out{ background-image: url("icons/stamp-minus.png"); background-position: 0px -1px;  background-size: 17px 17px; } 
 .cus-clock_history{ background-image: url("icons/clock-history.png"); background-position: -1px -1px;  background-size: 18px 18px; } 
 .cus-paper_airplane{ background-image: url("icons/paper-airplane.png"); background-position: -1px -1px;  background-size: 17px 17px; } 
+.cus-pen{ background-image: url("icons/pen.png"); background-position: 0px 0px;  background-size: 16px 16px; } 

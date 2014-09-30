@@ -1,7 +1,7 @@
 
 <div id="Layer1" style="position: relative; width:100%; height:200px; overflow: auto; text-align: justify; padding-left: 3px; padding-right: 10px;">
 	<br>
-	Sistema desenvolvido originalmente para facilitar a criação de documentos oficiais padronizados nos setores da Academia Estadual de Segurança Pública do Estado do Ceará.
+	Sistema desenvolvido originalmente para facilitar a criação e o gerenciamento de documentos oficiais padronizados nos setores da Academia Estadual de Segurança Pública do Estado do Ceará.
 	
 	
 	<br><br><b>VERSÃO 2.5:</b><br>
