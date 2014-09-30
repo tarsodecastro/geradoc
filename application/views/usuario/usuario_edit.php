@@ -124,7 +124,7 @@
 				<div class="form-group">
 				    <label for="campoSetores[]" class="col-sm-3 control-label">Setor</label>
 				    <div class="col-md-7">
-				      	<?php echo form_multiselect('campoSetores[]', $setoresDisponiveis, $setoresSelecionados, 'class="form-control"'); ?> 
+				      	<?php echo form_multiselect('campoSetores[]', $setoresDisponiveis, $setoresSelecionados, 'class="form-control" size="7"'); ?> 
 				     </div>
 				</div>
 				
