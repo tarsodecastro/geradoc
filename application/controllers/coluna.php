@@ -287,9 +287,15 @@ public function update($nome) {
 		
 		$obj = $this->Coluna_model->get_by_nome($campo);
 		
+		$tamanho_atual = $this->Coluna_model->tamanho_maximo($campo);
+		
+		///echo $tamanho_atual;
+		
+		//print_r($obj);
+		
 		//checa se o campo existe e se esta vazio
-		if ($this->db->field_exists($campo, 'documento') and $obj['max_length'] == 0)
-		{
+		if ($this->db->field_exists($campo, 'documento') and $tamanho_atual == 0){
+			//echo "deletou";
 			$this->Coluna_model->delete($campo);
 		}
 	

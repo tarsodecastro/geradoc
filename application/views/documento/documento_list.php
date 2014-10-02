@@ -79,14 +79,12 @@
 	
 	<!-- Paginacao -->
 	<div class="row">
-		<div class="col-md-4">
+		<div class="col-md-6">
 			<div class="dataTables_info" role="status">
 				<p>Total de registros:
 				<span class="label label-default">&nbsp; <?php echo $total_rows; ?> &nbsp;</span>
 				</p>
 			</div>
-		</div>
-		<div class="col-md-2">
 		</div>
 		<div class="col-md-6">
 			<div class="dataTables_paginate paging_simple_numbers">

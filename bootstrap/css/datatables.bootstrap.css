@@ -15,7 +15,6 @@ div.dataTables_filter label {
 
 div.dataTables_filter input {
 	width: 16em;
-	margin-left: 0.5em;
 }
 
 div.dataTables_info {
@@ -28,10 +27,10 @@ div.dataTables_paginate {
 }
 
 div.dataTables_paginate ul.pagination {
-	margin: 2px 0;
-	white-space: nowrap;
+	margin: 2px;
 }
 
+table.dataTable,
 table.dataTable td,
 table.dataTable th {
 	-webkit-box-sizing: content-box;
@@ -62,11 +61,6 @@ table.dataTable thead .sorting_desc { background: url('../images/sort_desc.png')
 table.dataTable thead .sorting_asc_disabled { background: url('../images/sort_asc_disabled.png') no-repeat center right; }
 table.dataTable thead .sorting_desc_disabled { background: url('../images/sort_desc_disabled.png') no-repeat center right; }
 
-table.dataTable thead > tr > th {
-	padding-left: 18px;
-	padding-right: 18px;
-}
-
 table.dataTable th:active {
 	outline: none;
 }
@@ -86,7 +80,6 @@ div.dataTables_scrollHead table thead tr:last-child td:first-child {
 
 div.dataTables_scrollBody table {
 	border-top: none;
-	margin-top: 0 !important;
 	margin-bottom: 0 !important;
 }
 
@@ -96,33 +89,7 @@ div.dataTables_scrollBody tbody tr:first-child td {
 }
 
 div.dataTables_scrollFoot table {
-	margin-top: 0 !important;
 	border-top: none;
-}
-
-/* Frustratingly the border-collapse:collapse used by Bootstrap makes the column
-   width calculations when using scrolling impossible to align columns. We have
-   to use separate
- */
-table.table-bordered.dataTable {
-	border-collapse: separate !important;
-}
-table.table-bordered thead th,
-table.table-bordered thead td {
-	border-left-width: 0;
-	border-top-width: 0;
-}
-table.table-bordered tbody th,
-table.table-bordered tbody td {
-	border-left-width: 0;
-	border-bottom-width: 0;
-}
-table.table-bordered th:last-child,
-table.table-bordered td:last-child {
-	border-right-width: 0;
-}
-div.dataTables_scrollHead table.table-bordered {
-	border-bottom-width: 0;
 }
 
 
@@ -142,8 +109,7 @@ div.dataTables_scrollHead table.table-bordered {
 	background-color: #0075b0 !important;
 }
 
-.table tbody tr.active th > a,
-.table tbody tr.active td > a {
+.table tbody tr.active a {
 	color: white;
 }
 
@@ -187,25 +153,10 @@ div.DTTT_collection_background {
 }
 
 /* TableTools information display */
-div.DTTT_print_info {
-	position: fixed;
-	top: 50%;
-	left: 50%;
-	width: 400px;
+div.DTTT_print_info.modal {
 	height: 150px;
-	margin-left: -200px;
 	margin-top: -75px;
 	text-align: center;
-	color: #333;
-	padding: 10px 30px;
-	opacity: 0.95;
-
-	background-color: white;
-	border: 1px solid rgba(0, 0, 0, 0.2);
-	border-radius: 6px;
-	
-	-webkit-box-shadow: 0 3px 7px rgba(0, 0, 0, 0.5);
-	        box-shadow: 0 3px 7px rgba(0, 0, 0, 0.5);
 }
 
 div.DTTT_print_info h6 {
@@ -220,26 +171,6 @@ div.DTTT_print_info p {
 	line-height: 20px;
 }
 
-div.dataTables_processing {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 100%;
-    height: 40px;
-    margin-left: -50%;
-    margin-top: -25px;
-    padding-top: 20px;
-    text-align: center;
-    font-size: 1.2em;
-    background-color: white;
-    background: -webkit-gradient(linear, left top, right top, color-stop(0%, rgba(255,255,255,0)), color-stop(25%, rgba(255,255,255,0.9)), color-stop(75%, rgba(255,255,255,0.9)), color-stop(100%, rgba(255,255,255,0)));
-    background: -webkit-linear-gradient(left, rgba(255,255,255,0) 0%, rgba(255,255,255,0.9) 25%, rgba(255,255,255,0.9) 75%, rgba(255,255,255,0) 100%);
-    background: -moz-linear-gradient(left, rgba(255,255,255,0) 0%, rgba(255,255,255,0.9) 25%, rgba(255,255,255,0.9) 75%, rgba(255,255,255,0) 100%);
-    background: -ms-linear-gradient(left, rgba(255,255,255,0) 0%, rgba(255,255,255,0.9) 25%, rgba(255,255,255,0.9) 75%, rgba(255,255,255,0) 100%);
-    background: -o-linear-gradient(left, rgba(255,255,255,0) 0%, rgba(255,255,255,0.9) 25%, rgba(255,255,255,0.9) 75%, rgba(255,255,255,0) 100%);
-    background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.9) 25%, rgba(255,255,255,0.9) 75%, rgba(255,255,255,0) 100%);
-}
-
 
 
 /*
@@ -251,7 +182,6 @@ div.DTFC_RightHeadWrapper table,
 div.DTFC_RightFootWrapper table,
 table.DTFC_Cloned tr.even {
     background-color: white;
-    margin-bottom: 0;
 }
  
 div.DTFC_RightHeadWrapper table ,
@@ -273,7 +203,7 @@ div.DTFC_LeftHeadWrapper table thead tr:last-child td:first-child {
 div.DTFC_RightBodyWrapper table,
 div.DTFC_LeftBodyWrapper table {
     border-top: none;
-    margin: 0 !important;
+    margin-bottom: 0 !important;
 }
  
 div.DTFC_RightBodyWrapper tbody tr:first-child th,
@@ -290,13 +220,8 @@ div.DTFC_LeftFootWrapper table {
 
 
 /*
- * FixedHeader styles
- */
-div.FixedHeader_Cloned table {
-	margin: 0 !important
-}
-
-
+* Tarso
+*/
 #tabela tbody>tr>td
 {
     vertical-align: middle;
@@ -304,68 +229,6 @@ div.FixedHeader_Cloned table {
 
 #tabela th { text-align: center }
 
-/*
-#tabela tbody tr.even{
-	background-color: #eeffee;
-}
-
-#tabela tbody tr.odd{
-	background-color: #d5e2dc;
-}
-
-#tabela tbody tr.even:hover, #example tbody tr.even td.highlighted {
-	background-color: #FFF0BE;
-}
-
-#tabela tbody tr.odd:hover, #example tbody tr.odd td.highlighted {
-	background-color: #FFF0BE;
-}
-
-#tabela tr.even:hover {
-	background-color: #FFF0BE;
-}
-
-#tabela tr.even:hover td.sorting_1 {
-	background-color: #DDFF75;
-}
-
-#tabela tr.even:hover td.sorting_2 {
-	background-color: #E7FF9E;
-}
-
-#tabela tr.even:hover td.sorting_3 {
-	background-color: #E2FF89;
-}
-
-#tabela tr.odd:hover {
-	background-color: #E6FF99;
-}
-
-#tabela tr.odd:hover td.sorting_1 {
-	background-color: #D6FF5C;
-}
-
-#tabela tr.odd:hover td.sorting_2 {
-	background-color: #E0FF84;
-}
-
-#tabela tr.odd:hover td.sorting_3 {
-	background-color: #DBFF70;
-}
-
-*/
-
-/*
-.table-striped>tbody>tr:nth-child(odd)>td, 
-.table-striped>tbody>tr:nth-child(odd)>th {
-   background-color: #e9f4f0;
- }
- 
- .table-striped>tbody>tr:nth-child(even)>td, 
-.table-striped>tbody>tr:nth-child(even)>th {
-   background-color: #eeffee;
- }
- */
 
 .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
   background-color: #FFF0BE;
