@@ -318,6 +318,7 @@ switch ($area){
             
          <script src="<?php echo base_url();?>bootstrap/js/bootstrap.min.js"></script>
          <script src="<?php echo base_url();?>bootstrap/js/datatables.bootstrap.js"></script>
+         <script src="<?php echo base_url();?>bootstrap/js/bootstrap-select.min.js"></script>
          
     </body>
 </html>

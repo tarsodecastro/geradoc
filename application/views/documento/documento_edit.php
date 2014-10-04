@@ -6,10 +6,10 @@
 <script type="text/javascript" src="<?php echo base_url(); ?>js/jquery.blockUI.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>scripts/calendario/_scripts/jquery.click-calendario-1.0-min.js"></script>
 
+
 <link rel="stylesheet" href="<?php echo base_url(); ?>scripts/calendario/_style/jquery.click-calendario-1.0.css">
 <link rel="stylesheet" href="<?php echo base_url(); ?>css/jquery.countdown.css">
-
-
+<link rel="stylesheet" href="<?php echo base_url(); ?>bootstrap/css/bootstrap-select.min.css">
 <link href="<?php echo base_url(); ?>js/jquery-ui.min.css" rel="stylesheet" type="text/css" />
 
 <script type="text/javascript" src="<?php echo base_url(); ?>js/countdown/jquery.countdown.js"></script>
@@ -115,7 +115,7 @@ $.blockUI({ message: '<h1><img src="<?php echo base_url(); ?>scripts/images/ui-a
 						<label for="campoRemetente" class="col-sm-2 control-label"><span style="color: red;">*</span> Remetente</label>
 						<div class="col-md-8">
 							<?php
-								$jsRemet = 'class="form-control" id="campoRemetente" onChange="window.location.href=(\''.site_url('documento').'/'.$acao.'/r\' + \'/\' + document.form.campoRemetente.value + \'/t/\' + document.form.campoTipo.value + \'/c/\' + document.form.campoCarimbo.value)"';
+								$jsRemet = 'class="form-control selectpicker" data-style="btn-info" data-live-search="true" id="campoRemetente" onChange="window.location.href=(\''.site_url('documento').'/'.$acao.'/r\' + \'/\' + document.form.campoRemetente.value + \'/t/\' + document.form.campoTipo.value + \'/c/\' + document.form.campoCarimbo.value)"';
 	
 								echo form_dropdown('campoRemetente', $remetentesDisponiveis, $remetenteSelecionado, $jsRemet);
 							?> 

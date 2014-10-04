@@ -14,7 +14,7 @@ class Cargo_model extends CI_Model {
 	}
 	
 	function list_all(){
-		$this->db->order_by('id','asc');
+		$this->db->order_by('nome','asc');
 		return $this->db->get($this->tabela);
 	}
 	

@@ -419,7 +419,7 @@ class Contato extends CI_Controller {
 
 public function search($page = 1) { 
     	$this->js[] = 'contato';
-        $data['titulo'] = "Busca por contatos";
+        $data['titulo'] = "Busca por remetentes";
         $data['link_add']   = $this->Campo_model->make_link($this->area, 'add');
         $data['link_search_cancel'] = $this->Campo_model->make_link($this->area, 'search_cancel');
         $data['form_action'] = site_url($this->area.'/search');

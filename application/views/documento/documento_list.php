@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="<?php echo base_url(); ?>bootstrap/css/bootstrap-select.min.css">
+
 <div class="areaimage">
 	<center>
 		<img src="{TPL_images}cabinet-icon.png" height="72px" />
@@ -30,11 +32,11 @@
 
 					$var = site_url('documento/index');
 
-					$js = 'id="setores" onChange="window.location.href=(\''.$var.'/s\'+ document.getElementById(\'setores\').value)"';//\''.site_url('documento/index').'"';//.'\' + document.form.setores.value)"';
+					$js = 'class="form-control selectpicker" data-style="btn-info" data-live-search="true" id="setores" onChange="window.location.href=(\''.$var.'/s\'+ document.getElementById(\'setores\').value)"';//\''.site_url('documento/index').'"';//.'\' + document.form.setores.value)"';
 
 					echo '<div class="input-group">';
 					echo '<div class="input-group-addon">Setor</div>';
-					echo form_dropdown('setores', $setoresDisponiveis, $setorSelecionado, 'class="form-control"' . $js);
+					echo form_dropdown('setores', $setoresDisponiveis, $setorSelecionado, $js);
 					echo '</div>';
 				}
 				?>
