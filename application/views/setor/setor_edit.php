@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="<?php echo base_url(); ?>bootstrap/css/bootstrap-select.min.css">
+
 <div class="areaimage">
 	<center>
 		<img src="{TPL_images}office-women-glasses-icon.png" height="72px"/>
@@ -41,7 +43,7 @@
 					  <div class="form-group <?php echo (form_error('campoOrgao') != '')? 'has-error':''; ?>"">
 					    <label for="campoOrgao" class="col-sm-3 control-label">Órgão</label>
 					    <div class="col-md-7">
-					      	<?php echo form_dropdown('campoOrgao', $orgaosDisponiveis, $orgaoSelecionado, 'class="form-control"'); ?> 
+					      	<?php echo form_dropdown('campoOrgao', $orgaosDisponiveis, $orgaoSelecionado, 'class="form-control selectpicker" data-style="btn-default" data-live-search="true"'); ?> 
 					     </div>
 					  </div>
 					  
@@ -49,7 +51,7 @@
 					  <div class="form-group <?php echo (form_error('campoSetorPai') != '')? 'has-error':''; ?>">
 					    <label for="campoSetorPai" class="col-sm-3 control-label">Setor pai</label>
 					    <div class="col-md-7">
-					   	 	<?php echo form_dropdown('campoSetorPai', $setoresPaiDisponiveis, $setorPaiSelecionado, 'class="form-control"'); ?>
+					   	 	<?php echo form_dropdown('campoSetorPai', $setoresPaiDisponiveis, $setorPaiSelecionado, 'class="form-control selectpicker" data-style="btn-default" data-live-search="true"'); ?>
 					    </div>
 					  </div>
 					  
@@ -65,7 +67,7 @@
 					  <div class="form-group <?php echo (form_error('campoResponsavel') != '')? 'has-error':''; ?>">
 					    <label for="campoResponsavel" class="col-sm-3 control-label">Chefe</label>
 					    <div class="col-md-7">
-					    	<?php echo form_dropdown('campoResponsavel', $responsaveis, $responsavel, 'class="form-control"'); ?>
+					    	<?php echo form_dropdown('campoResponsavel', $responsaveis, $responsavel, 'class="form-control selectpicker" data-style="btn-default" data-live-search="true"'); ?>
 					    </div>
 					  </div>
 					  

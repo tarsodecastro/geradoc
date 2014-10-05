@@ -4,7 +4,7 @@
     vertical-align: middle;
 }
 </style>
-<link rel="stylesheet" href="<?php echo base_url(); ?>css/pdf.css">
+<link rel="stylesheet" href="<?php echo base_url(); ?>bootstrap/css/bootstrap-select.min.css">
 
 <div class="areaimage">
 	<center>
@@ -79,7 +79,7 @@
 		<div class="panel panel-primary">
 	
 			<div class="panel-heading">
-				  <h3 class="panel-title">Envio</h3>
+				  <h3 class="panel-title">Tramitação</h3>
 			</div>
 			
 			<table class="table table-bordered table-striped table-hover">
@@ -95,7 +95,15 @@
 	</fieldset>
 	
 	
-	<table class="table table-bordered table-striped table-hover" style="width: 500px; margin: 0 auto;">
+	<fieldset style="width: 500px; margin: 0 auto;">
+		
+		<div class="panel panel-default">
+	
+			<div class="panel-heading">
+				  <h3 class="panel-title">Histórico da tramitação</h3>
+			</div>
+			
+	<table class="table table-bordered table-striped table-hover">
 	   	<thead>
 	   	<tr>
 		   	<th class="text-center">Data</th>
@@ -108,6 +116,7 @@
 	</tbody>
 	
 	</table>
+	</div></fieldset>
 	
 	</form>
 	</div>

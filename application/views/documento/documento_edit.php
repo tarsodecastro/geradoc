@@ -115,7 +115,7 @@ $.blockUI({ message: '<h1><img src="<?php echo base_url(); ?>scripts/images/ui-a
 						<label for="campoRemetente" class="col-sm-2 control-label"><span style="color: red;">*</span> Remetente</label>
 						<div class="col-md-8">
 							<?php
-								$jsRemet = 'class="form-control selectpicker" data-style="btn-info" data-live-search="true" id="campoRemetente" onChange="window.location.href=(\''.site_url('documento').'/'.$acao.'/r\' + \'/\' + document.form.campoRemetente.value + \'/t/\' + document.form.campoTipo.value + \'/c/\' + document.form.campoCarimbo.value)"';
+								$jsRemet = 'class="form-control selectpicker" data-style="btn-primary" data-live-search="true" id="campoRemetente" onChange="window.location.href=(\''.site_url('documento').'/'.$acao.'/r\' + \'/\' + document.form.campoRemetente.value + \'/t/\' + document.form.campoTipo.value + \'/c/\' + document.form.campoCarimbo.value)"';
 	
 								echo form_dropdown('campoRemetente', $remetentesDisponiveis, $remetenteSelecionado, $jsRemet);
 							?> 

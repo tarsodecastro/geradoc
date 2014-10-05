@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="<?php echo base_url(); ?>bootstrap/css/bootstrap-select.min.css">
 <div class="areaimage">
 	<center>
 		<img src="{TPL_images}black-pages-icon.png" height="72px"/>
@@ -115,7 +116,7 @@
 				<div class="form-group <?php echo (form_error('campoCargo') != '')? 'has-error':''; ?>">
 				    <label for="campoCargo" class="col-sm-3 control-label">Cargo</label>
 				    <div class="col-md-7">
-				      	<?php echo form_dropdown('campoCargo', $cargosDisponiveis, $cargoSelecionado, 'class="form-control"'); ?> 
+				      	<?php echo form_dropdown('campoCargo', $cargosDisponiveis, $cargoSelecionado, 'class="form-control selectpicker" data-style="btn-default" data-live-search="true" '); ?> 
 				     </div>
 				</div>
 			
@@ -123,7 +124,7 @@
 				<div class="form-group <?php echo (form_error('campoSetor') != '')? 'has-error':''; ?>">
 				    <label for="campoSetor" class="col-sm-3 control-label">Setor</label>
 				    <div class="col-md-7">
-				      	<?php echo form_dropdown('campoSetor', $setoresDisponiveis, $setorSelecionado, 'class="form-control"'); ?> 
+				      	<?php echo form_dropdown('campoSetor', $setoresDisponiveis, $setorSelecionado, 'class="form-control selectpicker" data-style="btn-default" data-live-search="true"'); ?> 
 				     </div>
 				</div>
 				
