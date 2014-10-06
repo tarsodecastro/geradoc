@@ -226,7 +226,14 @@ switch ($area){
 				    <!-- Collect the nav links, forms, and other content for toggling -->
 				    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				      <ul class="nav navbar-nav">
-				        <li class="<?php echo $menu_documento;?>"><a href="<?php echo site_url('/documento/index'); ?>" title="Documentos"><span class="glyphicon glyphicon-file"></span> Documentos</a></li>
+				        <li class="<?php echo $menu_documento;?>">
+				        	<a href="#" class="dropdown-toggle" data-toggle="dropdown" title="Documentos"><span class="glyphicon glyphicon-file"></span> Documentos <span class="caret"></span></a>
+				        	<ul class="dropdown-menu" role="menu">
+					            <li><a href="<?php echo site_url('/documento/index'); ?>" title="Lista">Lista</a></li>
+					            <li><a href="<?php echo site_url('/documento/add'); ?>" title="Novo">Novo</a></li>
+					            <li><a href="<?php echo site_url('/documento/workflows'); ?>" title="Recebimentos">Recebimentos</a></li>
+					        </ul>
+				        </li>
 				           
 				        <?php if ($nivel_id == 1){ //apenas para administradores?>
 				        

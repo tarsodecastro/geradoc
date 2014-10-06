@@ -202,6 +202,16 @@ $config = array(
 					
 		),
 		
+		'documento/workflow' => array(
+		
+				array(
+						'field' => 'campoSetor',
+						'label' => 'destino',
+						'rules' => 'trim|required|greater_than[0]'
+				),
+			
+		),
+		
 		'documento/add_parecer_tecnico' => array(
 				
 				array(

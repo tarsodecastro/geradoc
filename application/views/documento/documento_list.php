@@ -16,13 +16,14 @@
 	<div class="row">
 
 
-		<div class="col-md-2">
+		<div class="col-md-4">
 			<?php echo $link_add;?>
+			<a href="<?php echo site_url();?>/documento/workflows" class="btn btn-danger"><span class="glyphicon glyphicon-inbox"></span> Recebimentos</a>
 		</div>
 
 		<div class="col-sm-12 visible-xs" style="padding: 5px;"></div>
 
-		<div class="col-md-6">
+		<div class="col-md-4">
 			<form class="form-inline">
 				<?php
 
