@@ -110,26 +110,28 @@ $.blockUI({ message: '<h1><img src="<?php echo base_url(); ?>scripts/images/ui-a
 
 				<div class="panel-body">
 
+					
 						
 					<div class="form-group <?php echo (form_error('campoRemetente') != '')? 'has-error':''; ?>">
 						<label for="campoRemetente" class="col-sm-2 control-label"><span style="color: red;">*</span> Remetente</label>
 						<div class="col-md-8">
 							<?php
-								$jsRemet = 'class="form-control selectpicker" data-style="btn-primary" data-live-search="true" id="campoRemetente" onChange="window.location.href=(\''.site_url('documento').'/'.$acao.'/r\' + \'/\' + document.form.campoRemetente.value + \'/t/\' + document.form.campoTipo.value + \'/c/\' + document.form.campoCarimbo.value)"';
+								$jsRemet = 'class="form-control selectpicker" data-style="btn-default" data-live-search="true" id="campoRemetente" onChange="window.location.href=(\''.site_url('documento').'/'.$acao.'/r\' + \'/\' + document.form.campoRemetente.value + \'/t/\' + document.form.campoTipo.value + \'/c/\' + document.form.campoCarimbo.value)"';
 	
 								echo form_dropdown('campoRemetente', $remetentesDisponiveis, $remetenteSelecionado, $jsRemet);
 							?> 
 						</div>
 					</div>
 					
-					
 					<div class="form-group <?php echo (form_error('campoSetor') != '')? 'has-error':''; ?>">
 						<label for="campoSetor" class="col-sm-2 control-label">Setor</label>
 						<div class="col-md-8">
 							<input type="hidden" name="setorId" id="setorId" value="<?php echo $setorId; ?>" />
-							<?php echo form_input($campoSetor); ?>
+							<div class="alert alert-success text-left" style="margin-bottom: 0px; padding: 7px;"><strong><?php echo $campoSetor['value']; ?></strong>&nbsp;</div>
+							
 						</div>
 					</div>
+					
 					  
 					  
 					<div class="row">
@@ -173,7 +175,7 @@ $.blockUI({ message: '<h1><img src="<?php echo base_url(); ?>scripts/images/ui-a
 						<div class="col-md-8">
 							<?php
 										
-								$jsTipo = 'class="form-control" onChange="window.location.href=(\''.site_url('documento').'/'.$acao.'/r/\' + document.form.campoRemetente.value + \'/t/\' + options[selectedIndex].value + \'/c/\' + document.form.campoCarimbo.value)"';
+								$jsTipo = 'class="form-control selectpicker" data-style="btn-default" data-live-search="true" onChange="window.location.href=(\''.site_url('documento').'/'.$acao.'/r/\' + document.form.campoRemetente.value + \'/t/\' + options[selectedIndex].value + \'/c/\' + document.form.campoCarimbo.value)"';
 								echo form_dropdown('campoTipo', $tiposDisponiveis, $tipoSelecionado, $jsTipo);
 							?>
 						</div>
