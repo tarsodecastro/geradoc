@@ -43,6 +43,30 @@
             $("#search").addClass('search_text');
         }
     });
+    
+    
+    $('#setorSelect').click(function() { 
+        $.blockUI({ 
+       	 message: $('#dialogSetor'),
+       	 overlayCSS: { backgroundColor: '#000', opacity: 0.8, cursor: 'default'},
+       	 css: { 
+                top: '150px',
+                left: ($(window).width() - 700) /2 + 'px', 
+                width: '700px',
+                cursor: 'default' 
+            } 
+        
+        }); 
+        $('.blockOverlay').attr('title','Click to unblock').click($.unblockUI); 
+    }); 
+
+    $('#setor_bt_cancelar').click(function() { 
+        setTimeout($.unblockUI); 
+    });
+    
+    $('#setores').change(function() { 
+    	$.blockUI({ message: '<h1>Aguarde...</h1>' });
+    });
 
 			
  });	

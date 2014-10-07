@@ -23,25 +23,24 @@
 
 		<div class="col-sm-12 visible-xs" style="padding: 5px;"></div>
 
+		
 		<div class="col-md-4">
-			<form class="form-inline">
-				<?php
-
-				$options = array();
-					
-				if(isset($setores)){
-
-					$var = site_url('documento/index');
-
-					$js = 'class="form-control selectpicker" data-style="btn-info" data-live-search="true" id="setores" onChange="window.location.href=(\''.$var.'/s\'+ document.getElementById(\'setores\').value)"';//\''.site_url('documento/index').'"';//.'\' + document.form.setores.value)"';
-
-					echo '<div class="input-group">';
-					echo '<div class="input-group-addon">Setor</div>';
-					echo form_dropdown('setores', $setoresDisponiveis, $setorSelecionado, $js);
-					echo '</div>';
-				}
-				?>
-			</form>
+			
+				
+				<?php if (isset($setorCaminho)){?>
+				<div class="input-group">
+					<span class="input-group-btn">
+			        <a href="#" class="btn btn-info" disabled> Setor</a>
+			      </span>
+					<input type="text" class="form-control" value="<?php echo $setorCaminho?>" readonly>
+			      <span class="input-group-btn">
+			        <a href="#" id="setorSelect" class="btn btn-info"><span class="glyphicon glyphicon-refresh"></span> Mudar</a>
+			      </span>
+			    </div>
+			    <?php }?>
+				
+				
+			
 			<!-- /input-group -->
 		</div>
 
@@ -96,3 +95,48 @@
 		</div>
 	</div>
 	<!-- Fium da paginacao -->
+	
+	
+	<div id="dialogSetor" style="display:none;">
+
+		<div class="panel panel-primary" style="height: 200px; margin-bottom: 0px">
+		
+				  <div class="panel-heading">
+				  
+				    <div class="row">
+				    <div class="col-md-10">
+				    	<h2 class="panel-title">Mudar o setor da lista</h2>
+				    </div>
+				     <div class="col-md-2 text-right">
+				    	<a href="#" id="setor_bt_cancelar" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-remove"></span></a>
+				    </div>
+				    </div>
+				    
+				    
+				    
+				  </div>
+				  	  
+				  <div class="panel-body text-left">
+					  <form class="form-inline">
+						<?php
+		
+						$options = array();
+							
+						if(isset($setores)){
+		
+							$var = site_url('documento/index');
+		
+							$js = 'class="form-control selectpicker" data-style="btn-info" data-live-search="true" id="setores" onChange="window.location.href=(\''.$var.'/s\'+ document.getElementById(\'setores\').value)"';//\''.site_url('documento/index').'"';//.'\' + document.form.setores.value)"';
+		
+							echo '<div class="input-group">';
+							echo '<div class="input-group-addon">Selecione o setor</div>';
+							echo form_dropdown('setores', $setoresDisponiveis, $setorSelecionado, $js);
+							echo '</div>';
+						}
+						?>
+						</form>
+				  </div>
+		</div>
+	
+	</div> 
+	

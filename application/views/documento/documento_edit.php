@@ -46,7 +46,6 @@ div.ui-datepicker{
 //--- Tela de Aguarde... (Loading) ---/
 $.blockUI({ message: '<h1><img src="<?php echo base_url(); ?>scripts/images/ui-anim_basic_16x16.gif" /> Aguarde...</h1>' });
 //--- Fim ---//
-
 </script>
 
 
