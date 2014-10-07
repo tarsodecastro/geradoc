@@ -96,7 +96,7 @@
 
 <div style="text-align: right; position: relative; top:4px; z-index: 9; padding-top: 8px; color:#888">
 		Criado por Tarso de Castro<br>
-		tarsodecastro@gmail.com
+		<a href="https://github.com/tarsodecastro" target="_blank">https://github.com/tarsodecastro</a>
 </div>
 	
 

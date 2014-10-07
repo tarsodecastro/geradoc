@@ -51,8 +51,8 @@
        	 overlayCSS: { backgroundColor: '#000', opacity: 0.8, cursor: 'default'},
        	 css: { 
                 top: '150px',
-                left: ($(window).width() - 700) /2 + 'px', 
-                width: '700px',
+                left: ($(window).width() - 800) /2 + 'px', 
+                width: '800px',
                 cursor: 'default' 
             } 
         

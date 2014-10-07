@@ -99,44 +99,56 @@
 	
 	<div id="dialogSetor" style="display:none;">
 
-		<div class="panel panel-primary" style="height: 200px; margin-bottom: 0px">
+	
+	<form class="form-horizontal" role="form" id="frm1" name="frm1" method="post">
+	
+		<div class="panel panel-primary" style="height: 210px; margin-bottom: 0px">
 		
 				  <div class="panel-heading">
 				  
-				    <div class="row">
-				    <div class="col-md-10">
-				    	<h2 class="panel-title">Mudar o setor da lista</h2>
-				    </div>
-				     <div class="col-md-2 text-right">
-				    	<a href="#" id="setor_bt_cancelar" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-remove"></span></a>
-				    </div>
-				    </div>
-				    
-				    
-				    
+					    <div class="row">
+					    <div class="col-md-10">
+					    	<h2 class="panel-title"><strong>Selecione um setor</strong></h2>
+					    </div>
+					     <div class="col-md-2 text-right">
+					    	<a href="#" id="setor_bt_cancelar" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-remove"></span></a>
+					    </div>
+					    </div>
+	
 				  </div>
-				  	  
-				  <div class="panel-body text-left">
-					  <form class="form-inline">
+				  
+				  <div class="panel-body" style="padding-top: 30px;">
+					<div class="form-group">
+						<label for="campoNome" class="col-md-1 control-label">Setor</label>
+						<div class="col-md-11">
 						<?php
-		
-						$options = array();
+			
+							$options = array();
+								
+							if(isset($setores)){
+			
+								$var = site_url('documento/index');
+			
+								$js = 'class="form-control selectpicker" data-style="btn-info" data-live-search="true" id="setores" onChange="window.location.href=(\''.$var.'/s\'+ document.getElementById(\'setores\').value)"';//\''.site_url('documento/index').'"';//.'\' + document.form.setores.value)"';
+			
 							
-						if(isset($setores)){
-		
-							$var = site_url('documento/index');
-		
-							$js = 'class="form-control selectpicker" data-style="btn-info" data-live-search="true" id="setores" onChange="window.location.href=(\''.$var.'/s\'+ document.getElementById(\'setores\').value)"';//\''.site_url('documento/index').'"';//.'\' + document.form.setores.value)"';
-		
-							echo '<div class="input-group">';
-							echo '<div class="input-group-addon">Selecione o setor</div>';
-							echo form_dropdown('setores', $setoresDisponiveis, $setorSelecionado, $js);
-							echo '</div>';
-						}
-						?>
-						</form>
-				  </div>
+								echo form_dropdown('setores', $setoresDisponiveis, $setorSelecionado, $js);
+							
+							}
+							?>
+						</div>
+					</div>
+					<div class="row" style="vertical-align: bottom; padding-top: 25px; color: #777; font-size: 10pt;">
+						<div class="col-md-12 text-center">
+							GeraDoc - Sistema Gerenciador de Documentos <br>
+							Desenvolvido por: Tarso de Castro <br>
+							<a href="https://github.com/tarsodecastro" target="_blank">https://github.com/tarsodecastro</a>
+						</div>
+					</div>
+				</div>  
 		</div>
+		
+	</form>
 	
 	</div> 
 	
