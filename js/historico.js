@@ -11,9 +11,8 @@
          "bInfo": false,
          "aoColumns": [
        				{"sWidth":"30px", "sClass": "text-center"},
-       				{"sWidth":"100px", "sClass": "text-center"},
-       				{"sClass": "text-center"},
-       				{"sWidth":"200px", "sClass": "text-left"} 								 	
+       				{"sWidth":"200px", "sClass": "text-center"},
+       				{"sClass": "text-left"} 								 	
        			],
      });
 	

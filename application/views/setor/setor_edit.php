@@ -41,7 +41,7 @@
 			  <div class="panel-body">
 			  	
 					  <div class="form-group <?php echo (form_error('campoOrgao') != '')? 'has-error':''; ?>"">
-					    <label for="campoOrgao" class="col-sm-3 control-label">Órgão</label>
+					    <label for="campoOrgao" class="col-sm-3 control-label"><span style="color: red;">*</span> Órgão</label>
 					    <div class="col-md-7">
 					      	<?php echo form_dropdown('campoOrgao', $orgaosDisponiveis, $orgaoSelecionado, 'class="form-control selectpicker" data-style="btn-default" data-live-search="true"'); ?> 
 					     </div>
@@ -57,7 +57,7 @@
 					  
 					  
 					  <div class="form-group <?php echo (form_error('campoNome') != '')? 'has-error':''; ?>">
-					    <label for="campoNome" class="col-sm-3 control-label">Nome</label>
+					    <label for="campoNome" class="col-sm-3 control-label"><span style="color: red;">*</span> Nome</label>
 					    <div class="col-md-7">
 					    	<?php echo form_textarea($campoNome); ?>
 					    </div>
@@ -65,7 +65,7 @@
 					  
 					  
 					  <div class="form-group <?php echo (form_error('campoResponsavel') != '')? 'has-error':''; ?>">
-					    <label for="campoResponsavel" class="col-sm-3 control-label">Chefe</label>
+					    <label for="campoResponsavel" class="col-sm-3 control-label"><span style="color: red;">*</span> Chefe</label>
 					    <div class="col-md-7">
 					    	<?php echo form_dropdown('campoResponsavel', $responsaveis, $responsavel, 'class="form-control selectpicker" data-style="btn-default" data-live-search="true"'); ?>
 					    </div>
@@ -73,7 +73,7 @@
 					  
 					  
 					  <div class="form-group <?php echo (form_error('campoSigla') != '')? 'has-error':''; ?>">
-					    <label for="campoSigla" class="col-sm-3 control-label">Sigla</label>
+					    <label for="campoSigla" class="col-sm-3 control-label"><span style="color: red;">*</span> Sigla</label>
 					    <div class="col-md-7">
 					    	<?php echo form_input($campoSigla); ?>
 					    </div>
@@ -81,7 +81,7 @@
 					  
 					  
 					  <div class="form-group <?php echo (form_error('campoArtigo') != '')? 'has-error':''; ?>">
-					    <label for="campoArtigo" class="col-sm-3 control-label">Artigo</label>
+					    <label for="campoArtigo" class="col-sm-3 control-label"> Artigo</label>
 					    <div class="col-md-2">
 					    	<?php echo form_dropdown('campoArtigo', $artigosDisponiveis, $artigoSelecionado, 'class="form-control"'); ?>
 					    </div>

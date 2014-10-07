@@ -129,7 +129,7 @@
 				</div>
 				
 				<div class="form-group <?php echo (form_error('campoNivel') != '')? 'has-error':''; ?>">
-				    <label for="campoNivel" class="col-sm-3 control-label"><span style="color: red;">*</span> Nível</label>
+				    <label for="campoNivel" class="col-sm-3 control-label">Nível</label>
 				    <div class="col-md-3">
 				      	<?php echo form_dropdown('campoNivel', $niveisDisponiveis, $nivelSelecionado, 'class="form-control"'); ?> 
 				     </div>

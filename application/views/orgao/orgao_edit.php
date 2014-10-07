@@ -28,7 +28,7 @@
 			  <div class="panel-body">
 			  	
 					  <div class="form-group <?php echo (form_error('campoNome') != '')? 'has-error':''; ?>"">
-					    <label for="campoNome" class="col-sm-3 control-label">Nome</label>
+					    <label for="campoNome" class="col-sm-3 control-label"><span style="color: red;">*</span> Nome</label>
 					    <div class="col-md-7">
 					      	<?php echo form_input($campoNome); ?> 
 					     </div>
@@ -36,7 +36,7 @@
 					  
 					  
 					  <div class="form-group <?php echo (form_error('campoSigla') != '')? 'has-error':''; ?>">
-					    <label for="campoSigla" class="col-sm-3 control-label">Sigla</label>
+					    <label for="campoSigla" class="col-sm-3 control-label"><span style="color: red;">*</span> Sigla</label>
 					    <div class="col-md-7">
 					   	 	<?php echo form_input($campoSigla); ?>
 					    </div>
@@ -44,7 +44,7 @@
 					  
 					  
 					  <div class="form-group <?php echo (form_error('campoEndereco') != '')? 'has-error':''; ?>">
-					    <label for="campoEndereco" class="col-sm-3 control-label">Endereço</label>
+					    <label for="campoEndereco" class="col-sm-3 control-label"><span style="color: red;">*</span> Endereço</label>
 					    <div class="col-md-7">
 					    	<?php echo form_textarea($campoEndereco); ?>
 					    </div>

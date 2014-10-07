@@ -85,7 +85,7 @@
 			
 			
 				<div class="form-group <?php echo (form_error('campoNome') != '')? 'has-error':''; ?>">
-				    <label for="campoNome" class="col-sm-3 control-label">Nome</label>
+				    <label for="campoNome" class="col-sm-3 control-label"><span style="color: red;">*</span> Nome</label>
 				    <div class="col-md-7">
 				      	<?php echo form_textarea($campoNome); ?> 
 				     </div>
@@ -114,7 +114,7 @@
 				
 				
 				<div class="form-group <?php echo (form_error('campoCargo') != '')? 'has-error':''; ?>">
-				    <label for="campoCargo" class="col-sm-3 control-label">Cargo</label>
+				    <label for="campoCargo" class="col-sm-3 control-label"><span style="color: red;">*</span> Cargo</label>
 				    <div class="col-md-7">
 				      	<?php echo form_dropdown('campoCargo', $cargosDisponiveis, $cargoSelecionado, 'class="form-control selectpicker" data-style="btn-default" data-live-search="true" '); ?> 
 				     </div>
@@ -122,14 +122,14 @@
 			
 			
 				<div class="form-group <?php echo (form_error('campoSetor') != '')? 'has-error':''; ?>">
-				    <label for="campoSetor" class="col-sm-3 control-label">Setor</label>
+				    <label for="campoSetor" class="col-sm-3 control-label"><span style="color: red;">*</span> Setor</label>
 				    <div class="col-md-7">
 				      	<?php echo form_dropdown('campoSetor', $setoresDisponiveis, $setorSelecionado, 'class="form-control selectpicker" data-style="btn-default" data-live-search="true"'); ?> 
 				     </div>
 				</div>
 				
 				<div class="form-group <?php echo (form_error('campoFone') != '')? 'has-error':''; ?>">
-				    <label for="campoFone" class="col-sm-3 control-label">Telefone fixo</label>
+				    <label for="campoFone" class="col-sm-3 control-label"><span style="color: red;">*</span> Telefone fixo</label>
 				    <div class="col-md-3">
 				      	<?php echo form_input($campoFone); ?> 
 				     </div>
@@ -150,7 +150,7 @@
 				</div>
 				
 				<div class="form-group <?php echo (form_error('campoMail1') != '')? 'has-error':''; ?>">
-				    <label for="campoMail1" class="col-sm-3 control-label">E-mail institucional</label>
+				    <label for="campoMail1" class="col-sm-3 control-label"><span style="color: red;">*</span> E-mail institucional</label>
 				    <div class="col-md-7">
 				      	<?php echo form_input($campoMail1); ?> 
 				     </div>

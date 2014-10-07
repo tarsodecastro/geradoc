@@ -23,7 +23,7 @@
 
 	<div class="row">
     
-	    <div class="col-md-12 text-left">
+	    <div class="col-md-12 text-center">
 	    	<div class="btn-group">
 		    <?php
 		    	
@@ -119,8 +119,10 @@
 				  <h3 class="panel-title">Envio</h3>
 			</div>
 			
+			
 			<div class="panel-body">
 			
+				<?php if($privado == 'N'){ ?>
 				<div class="form-group <?php echo (form_error('campoSetor') != '')? 'has-error':''; ?>">
 					<label for="campoSetor" class="col-sm-2 control-label">Setor de destino</label>
 					<div class="col-md-10">
@@ -131,7 +133,11 @@
 				</div>
 				
 				<button type="submit" class="btn btn-success" style="margin-top: 10px;"><span class="glyphicon glyphicon glyphicon-send"></span> Enviar </button>
+				<?php }else{?>
 				
+				<div class="alert alert-warning" role="alert"><h4><strong>Documento privado!</strong> <br><br><p> Para tramitar um documento ele deve ser <strong>público</strong>.</p></h4></div>
+				
+				<?php }?>
 			</div>
 			
 			

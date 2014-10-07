@@ -14,7 +14,7 @@
        				{"sWidth":"200px", "sClass": "text-center"},
        				{"sClass": "text-center"},
        				{"sClass": "text-center"},
-       				{"sWidth":"300px", "sClass": "text-left"} 								 	
+       				{"sWidth":"400px", "sClass": "text-left"} 								 	
        			],
      });
 	

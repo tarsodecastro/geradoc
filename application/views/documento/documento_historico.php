@@ -17,7 +17,7 @@
 
 	<div class="row">
     
-	    <div class="col-md-12">
+	    <div class="col-md-12 text-center">
 	    	<div class="btn-group">
 		    <?php
 		    	echo $link_back;
@@ -30,7 +30,7 @@
 	
 	<div style="clear:both;"></div> 
 	        
-	<div class="conteiner_tabela">
+	<div class="conteiner_tabela" style="width: 600px; margin: 0 auto">
 			<?php echo $table; ?>
 	</div>
 
