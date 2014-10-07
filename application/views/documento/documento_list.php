@@ -94,12 +94,12 @@
 			</div>
 		</div>
 	</div>
-	<!-- Fium da paginacao -->
+	<!-- Fim da paginacao -->
 	
 	
+	<!-- dialogSetor -->
 	<div id="dialogSetor" style="display:none;">
 
-	
 	<form class="form-horizontal" role="form" id="frm1" name="frm1" method="post">
 	
 		<div class="panel panel-primary" style="height: 210px; margin-bottom: 0px">
@@ -107,10 +107,12 @@
 				  <div class="panel-heading">
 				  
 					    <div class="row">
-					    <div class="col-md-10">
+					     <div class="col-md-2">
+					     </div>
+					    <div class="col-md-8">
 					    	<h2 class="panel-title"><strong>Selecione um setor</strong></h2>
 					    </div>
-					     <div class="col-md-2 text-right">
+					    <div class="col-md-2 text-right">
 					    	<a href="#" id="setor_bt_cancelar" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-remove"></span></a>
 					    </div>
 					    </div>
@@ -138,7 +140,7 @@
 							?>
 						</div>
 					</div>
-					<div class="row" style="vertical-align: bottom; padding-top: 25px; color: #777; font-size: 10pt;">
+					<div class="row" style="vertical-align: bottom; padding-top: 25px; color: #999; font-size: 10pt;">
 						<div class="col-md-12 text-center">
 							GeraDoc - Sistema Gerenciador de Documentos <br>
 							Desenvolvido por: Tarso de Castro <br>
@@ -150,5 +152,78 @@
 		
 	</form>
 	
-	</div> 
+	</div>
+	<!-- fim dialogSetor -->
+	
+	<?php 
+	if($workflow > 0){
+	?>
+	<!-- dialogSetor -->
+	<div id="dialogAlerta" style="display:none;">
+
+	<form class="form-horizontal" role="form" id="frm_tramitacao" name="frm_tramitacao" method="post">
+	
+		<div class="panel panel-warning" style="height: 240px; margin-bottom: 0px">
+		
+				  <div class="panel-heading">
+				  
+					    <div class="row">
+					    <div class="col-md-2 text-right">
+					    	
+					    </div>
+					    <div class="col-md-8" style="font-size: 14pt;">
+					    	<strong>Alerta</strong>
+					    </div>
+					    <div class="col-md-2 text-right">
+					    	<a href="#" id="alerta_bt_cancelar" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-remove"></span></a>
+					    </div>
+					    </div>
+	
+				  </div>
+				  
+				  <div class="panel-body" style="padding-top: 30px;">
+				  
+					<h4>Existem documentos aguardando recebimento!</h4>
+					
+					<div class="row">
+						<div class="col-md-12">
+							
+							<a href="<?php echo site_url();?>/documento/workflows" class="btn btn-danger"><span class="glyphicon glyphicon-inbox"></span> Recebimentos</a>
+						</div>
+					</div>
+					
+					<div class="row" style="vertical-align: bottom; padding-top: 25px; color: #999; font-size: 10pt;">
+						<div class="col-md-12 text-center">
+							GeraDoc - Sistema Gerenciador de Documentos <br>
+							Desenvolvido por: Tarso de Castro <br>
+							<a href="https://github.com/tarsodecastro" target="_blank">https://github.com/tarsodecastro</a>
+						</div>
+					</div>
+				</div>  
+		</div>
+		
+	</form>
+	
+	</div>
+	<!-- fim dialogSetor -->
+	<script type="text/javascript">
+		$.blockUI({ 
+      	 message: $('#dialogAlerta'),
+      	 overlayCSS: { backgroundColor: '#000', opacity: 0.8, cursor: 'default'},
+      	 css: { 
+               top: '150px',
+               left: ($(window).width() - 800) /2 + 'px', 
+               width: '800px',
+               cursor: 'default' 
+           } 
+       
+       }); 
+       $('.blockOverlay').attr('title','Click to unblock').click($.unblockUI); 
+
+       $('#alerta_bt_cancelar').click(function() { 
+           setTimeout($.unblockUI); 
+       });
+	</script>
+	<?php }?>
+	
 	

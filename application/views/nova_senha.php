@@ -1,7 +1,3 @@
-<div class="titulo1">	 			
-	<?php echo $titulo; ?>
-</div>
-
 <div class="areaimage">
 	<center>
 		<img src="{TPL_images}secrecy-icon.png" height="72px"/>
@@ -28,7 +24,7 @@
 	<div class="panel panel-primary">
 
 		  <div class="panel-heading">
-		    <h3 class="panel-title">Identificação</h3>
+		    <h3 class="panel-title">Solicitação de nova senha</h3>
 		  </div>
 		  
 		  
