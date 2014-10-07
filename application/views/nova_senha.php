@@ -9,47 +9,49 @@
 </div>
 <?php echo $mensagem; ?>
 			
-<div class="formulario">		
-	<form id="frm1" name="frm1" action="<?php echo $form_action; ?>" method="post">
-	
-	<fieldset class="conteiner2"> 
-	    
-	        <legend class="subTitulo6">Identificação</legend> 
-	        
-	        <table class="table_form">
-	        	<tbody>
-		        	<tr>
-			        	<td class=gray style="width: 150px;"><span class="text-red">*</span> CPF: </td>
-			        	<td class="green">
-			        	<input class="textbox" value="<?php echo set_value('txtCPF')?>"  name="txtCPF"  id="txtCPF" size="15" /><?php echo form_error('txtCPF'); ?>
-			        	</td>
-		        	</tr>
-		        	
-		        	<!-- 
-		        	<tr>
-			        	<td class=gray><span class="text-red">*</span> E-mail: </td>
-			        	<td class="green">
-			        	<input class="textbox" value="<?php echo set_value('txtEmail')?>"  name="txtEmail"  id="txtEmail" size="35" /><?php echo form_error('txtEmail'); ?>
-			        	</td>
-		        	</tr>
-		        	
-		        	<tr>
-			        	<td class=gray><span class="text-red">*</span> Confirme o e-mail: </td>
-			        	<td class="green">
-			        	<input class="textbox" value="<?php echo set_value('txtConfEmail')?>"  name="txtConfEmail"  id="txtConfEmail" size="35" /><?php echo form_error('txtConfEmail'); ?>
-			        	</td>
-		        	</tr>
-		        	 -->
-		        	
-	        	</tbody>
-	        </table>
-	    </fieldset>
+<div class="formulario">	
 
-		<br>
-		
-		<input type="button" class="button" value="Voltar" title="Voltar" onclick="javascript:window.history.back();"/> &nbsp; &nbsp;					
-		<input type="submit" class="button" value="Enviar" title="Enviar" id="enviar" style="display:true;" />&nbsp;&nbsp;		
-		<div id="msg" style="display:none; margin: 0 auto; width: 300px; padding-top: 20px; font-size: 13pt"><img src="{TPL_images}loader.gif" alt="Enviando" /> Aguarde, enviando...</div>
+	<!-- Mensagens e alertas -->
+			<div class="row">
+		   		<div class="col-md-12">
+				    	<?php 
+					    	if(validation_errors() != ''){
+					    		echo '<div class="alert alert-danger" role="alert">';
+					    		echo form_error('txtCPF');
+					    		echo '</div>';
+					    	}
+				    	?>
+		    	</div>	
+		   	</div>
+	<!-- Fim das mensagens e alertas -->
+	
+	<div class="panel panel-primary">
+
+		  <div class="panel-heading">
+		    <h3 class="panel-title">Identificação</h3>
+		  </div>
+		  
+		  
+		  <div class="panel-body">
+		   	
+			<form class="form-horizontal" role="form" id="frm1" name="frm1" action="<?php echo $form_action; ?>" method="post">
 			
-	</form>
+			
+				<div class="form-group <?php echo (form_error('txtCPF') != '')? 'has-error':''; ?>"">
+				    <label for="txtSenhaAtual" class="col-sm-4 control-label"><span style="color: red;">*</span> CPF</label>
+				    <div class="col-sm-4">
+				      <input type="text" class="form-control" name="txtCPF" id="txtCPF" placeholder="informe o CPF" value="<?php echo set_value('txtCPF')?>" >
+				    </div>
+				</div>
+			
+				<div class="form-group">
+				    <div class="col-sm-offset-4 col-sm-4">
+				    	<button type="button" class="btn btn-default" onclick="javascript:window.history.back();">Voltar</button>
+				      	<button type="submit" class="btn btn-success">Enviar</button>
+				    </div>
+				</div>
+		
+			</form>
+		</div>
+	</div>
 </div>
