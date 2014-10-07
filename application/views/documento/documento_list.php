@@ -156,7 +156,8 @@
 	<!-- fim dialogSetor -->
 	
 	<?php 
-	if($workflow > 0){
+	//echo $_SESSION['workflow_wait'];
+	if($workflow > 0 and !isset($_SESSION['workflow_wait'])){
 	?>
 	<!-- dialogSetor -->
 	<div id="dialogAlerta" style="display:none;">
@@ -172,7 +173,7 @@
 					    	
 					    </div>
 					    <div class="col-md-8" style="font-size: 14pt;">
-					    	<strong>Alerta</strong>
+					    	<strong>Atenção!</strong>
 					    </div>
 					    <div class="col-md-2 text-right">
 					    	<a href="#" id="alerta_bt_cancelar" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-remove"></span></a>
@@ -181,14 +182,16 @@
 	
 				  </div>
 				  
-				  <div class="panel-body" style="padding-top: 30px;">
+				  <div class="panel-body" style="padding-top: 5px;">
 				  
 					<h4>Existem documentos aguardando recebimento!</h4>
 					
+					<p>Clique no botão abaixo para recebê-los.</p>
+					
 					<div class="row">
 						<div class="col-md-12">
-							
-							<a href="<?php echo site_url();?>/documento/workflows" class="btn btn-danger"><span class="glyphicon glyphicon-inbox"></span> Recebimentos</a>
+							<a href="<?php echo site_url();?>/documento/workflow_wait" class="btn btn-warning"><span class="glyphicon glyphicon-time"></span> Aguardando originais</a>
+							<a href="<?php echo site_url();?>/documento/workflows" class="btn btn-danger"><span class="glyphicon glyphicon-inbox"></span> Verificar recebimentos</a>
 						</div>
 					</div>
 					
