@@ -18,7 +18,7 @@
 
 		<div class="col-md-4">
 			<?php echo $link_add;?>
-			<a href="<?php echo site_url();?>/documento/workflows" class="btn btn-danger"><span class="glyphicon glyphicon-inbox"></span> Recebimentos</a>
+			<a href="<?php echo site_url();?>/documento/workflows" class="btn btn-danger"><span class="glyphicon glyphicon-inbox"></span> Entrada <span class="badge"><?php echo $workflow;?></span></a>
 		</div>
 
 		<div class="col-sm-12 visible-xs" style="padding: 5px;"></div>
@@ -189,8 +189,8 @@
 					
 					<div class="row">
 						<div class="col-md-12">
-							<a href="<?php echo site_url();?>/documento/workflow_wait" id="btn_workflow_wait" class="btn btn-warning"><span class="glyphicon glyphicon-time"></span> Suspender este aviso</a>
-							<a href="<?php echo site_url();?>/documento/workflows" id="btn_workflows" class="btn btn-danger"><span class="glyphicon glyphicon-inbox"></span> Verificar recebimentos</a>
+							<a href="<?php echo site_url();?>/documento/workflow_wait" id="btn_workflow_wait" class="btn btn-default"><span class="glyphicon glyphicon-time"></span> Suspender este aviso</a>
+							<a href="<?php echo site_url();?>/documento/workflows" id="btn_workflows" class="btn btn-danger"><span class="glyphicon glyphicon-inbox"></span> Verificar entrada</a>
 						</div>
 					</div>
 					

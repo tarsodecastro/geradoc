@@ -231,7 +231,7 @@ switch ($area){
 				        	<ul class="dropdown-menu" role="menu">
 					            <li><a href="<?php echo site_url('/documento/index'); ?>" title="Lista">Lista</a></li>
 					            <li><a href="<?php echo site_url('/documento/add'); ?>" title="Novo">Novo</a></li>
-					            <li><a href="<?php echo site_url('/documento/workflows'); ?>" title="Recebimentos">Recebimentos</a></li>
+					            <li><a href="<?php echo site_url('/documento/workflows'); ?>" title="Entrada">Entrada</a></li>
 					        </ul>
 				        </li>
 				           
