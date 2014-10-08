@@ -157,7 +157,7 @@
 	
 	<?php 
 	//echo $_SESSION['workflow_wait'];
-	if($workflow > 0 and !isset($_SESSION['workflow_wait'])){
+	if($workflow > 0 and $_SESSION['workflow_wait'] == null){
 	?>
 	<!-- dialogSetor -->
 	<div id="dialogAlerta" style="display:none;">
@@ -186,11 +186,11 @@
 				  
 					<h4>Existem documentos aguardando recebimento!</h4>
 					
-					<p>Clique no botão abaixo para recebê-los.</p>
+					<p>Clique em uma das opções abaixo:</p>
 					
 					<div class="row">
 						<div class="col-md-12">
-							<a href="<?php echo site_url();?>/documento/workflow_wait" class="btn btn-warning"><span class="glyphicon glyphicon-time"></span> Aguardando originais</a>
+							<a href="<?php echo site_url();?>/documento/workflow_wait" class="btn btn-warning"><span class="glyphicon glyphicon-time"></span> Suspender este aviso</a>
 							<a href="<?php echo site_url();?>/documento/workflows" class="btn btn-danger"><span class="glyphicon glyphicon-inbox"></span> Verificar recebimentos</a>
 						</div>
 					</div>
