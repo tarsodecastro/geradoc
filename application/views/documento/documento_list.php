@@ -140,10 +140,9 @@
 							?>
 						</div>
 					</div>
-					<div class="row" style="vertical-align: bottom; padding-top: 25px; color: #999; font-size: 10pt;">
-						<div class="col-md-12 text-center">
-							GeraDoc - Sistema Gerenciador de Documentos <br>
-							Desenvolvido por: Tarso de Castro <br>
+					<div class="row" style="vertical-align: bottom; padding-top: 40px; color: #AAA; font-size: 10pt;">
+						<div class="col-md-12 text-right">
+							Desenvolvido por Tarso de Castro <br>
 							<a href="https://github.com/tarsodecastro" target="_blank">https://github.com/tarsodecastro</a>
 						</div>
 					</div>
@@ -190,15 +189,14 @@
 					
 					<div class="row">
 						<div class="col-md-12">
-							<a href="<?php echo site_url();?>/documento/workflow_wait" class="btn btn-warning"><span class="glyphicon glyphicon-time"></span> Suspender este aviso</a>
-							<a href="<?php echo site_url();?>/documento/workflows" class="btn btn-danger"><span class="glyphicon glyphicon-inbox"></span> Verificar recebimentos</a>
+							<a href="<?php echo site_url();?>/documento/workflow_wait" id="btn_workflow_wait" class="btn btn-warning"><span class="glyphicon glyphicon-time"></span> Suspender este aviso</a>
+							<a href="<?php echo site_url();?>/documento/workflows" id="btn_workflows" class="btn btn-danger"><span class="glyphicon glyphicon-inbox"></span> Verificar recebimentos</a>
 						</div>
 					</div>
 					
-					<div class="row" style="vertical-align: bottom; padding-top: 25px; color: #999; font-size: 10pt;">
-						<div class="col-md-12 text-center">
-							GeraDoc - Sistema Gerenciador de Documentos <br>
-							Desenvolvido por: Tarso de Castro <br>
+					<div class="row" style="vertical-align: bottom; padding-top: 40px; color: #AAA; font-size: 10pt;">
+						<div class="col-md-12 text-right">
+							Desenvolvido por Tarso de Castro <br>
 							<a href="https://github.com/tarsodecastro" target="_blank">https://github.com/tarsodecastro</a>
 						</div>
 					</div>
@@ -224,7 +222,21 @@
        $('.blockOverlay').attr('title','Click to unblock').click($.unblockUI); 
 
        $('#alerta_bt_cancelar').click(function() { 
+    	   $.blockUI({ message: '<h1>Aguarde...</h1>' });
            setTimeout($.unblockUI); 
+       });
+
+       $('#alerta_bt_cancelar').click(function() { 
+    	   $.blockUI({ message: '<h1>Aguarde...</h1>' });
+           setTimeout($.unblockUI); 
+       });
+
+       $('#btn_workflow_wait').click(function() { 
+    	   $.blockUI({ message: '<h1>Aguarde...</h1>' });
+       });
+
+       $('#btn_workflows').click(function() { 
+    	   $.blockUI({ message: '<h1>Aguarde...</h1>' });
        });
 	</script>
 	<?php }?>
