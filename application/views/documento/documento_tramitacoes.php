@@ -2,7 +2,7 @@
 
 <div class="areaimage">
 	<center>
-		<img src="{TPL_images}Actions-document-edit-icon.png" height="72px" />
+		<img src="{TPL_images}document-icon.png" height="72px" />
 	</center>
 </div>
 
@@ -21,8 +21,6 @@
 		<div class="col-md-2">
 			<?php echo $link_back;?>
 		</div>
-
-		
 
 	</div>
 	<!-- Fim do formulario de pesquisa -->
