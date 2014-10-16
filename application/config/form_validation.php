@@ -25,6 +25,19 @@ $config = array(
 						'rules' => 'required'
 				)
 		),
+		
+		'login/login_mail' => array(
+				array(
+						'field' => 'email',
+						'label' => 'E-mail',
+						'rules' => 'required'
+				),
+				array(
+						'field' => 'txtSenha',
+						'label' => 'senha',
+						'rules' => 'required'
+				)
+		),
 
 
 		'orgao/add' => array(

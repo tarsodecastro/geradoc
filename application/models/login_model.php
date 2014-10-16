@@ -49,6 +49,17 @@ class Login_model extends CI_Model {
 		return $this->db->get()->row();
 	
 	}
+	
+	public function get_usuario_mail($email, $senha){
+	
+		$this->db->where('email', $email);
+		$this->db->where('senha',$senha);
+	
+		$this->db->from('usuario');
+	
+		return $this->db->get()->row();
+	
+	}
         
     public function get_usuario_sso($cpf){            
     	$sistemaId = $this->sistemaId; 
