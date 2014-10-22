@@ -156,6 +156,11 @@
 	
 	<?php 
 	//echo $_SESSION['workflow_wait'];
+	if(!isset($_SESSION['workflow_wait'])){
+		$_SESSION['workflow_wait'] = '';
+	}
+
+	
 	if($workflow > 0 and $_SESSION['workflow_wait'] == null){
 	?>
 	<!-- dialogSetor -->

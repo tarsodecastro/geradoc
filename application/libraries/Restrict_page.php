@@ -6,7 +6,7 @@
 			$CI->load->library('session');
 			
 		    if ( !($CI->session->userdata('login')) && !($CI->session->userdata('id_usuario')) ){
-		   		redirect('login/');
+		   		redirect('login_mail/');
 		    }
 		}	
 	}

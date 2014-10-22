@@ -427,11 +427,11 @@ $.blockUI({ message: '<h1><img src="<?php echo base_url(); ?>scripts/images/ui-a
 						
 						<div class="form-group">
 							<div class="col-md-12">
-								<div style="width: 330px; margin-top: 3px; margin-left: auto; margin-right: auto; display:block; display: table; background-color: #eee;">
-									<div style="float: left; color: #333; height:37px; border: 1px solid #ccc; line-height: 200%;"> &nbsp;Esta sessão expira em:&nbsp;</div>
-									<div id="defaultCountdown" style="width: 170px; height:37px; float: right; color: #C00000;"></div>
+							
+								<div class="alert alert-warning text-center" style="margin: 0px auto; padding: 7px; width: 330px;">
+									Esta sessão expira em <span id="defaultCountdown" style="color: #C00000;"></span>
 								</div>
-								<div class="error_field" id="monitor" style="background-color: #fff; position:relative; float: right; top: -23px; padding-right: 20px;"></div>
+
 							</div>
 						</div>
 						
@@ -621,10 +621,12 @@ function blink(elem, times, speed) {
         $(function () {
         	var austDay = new Date();
         	austDay = new Date(austDay.getFullYear() + 1, 1 - 1, 26);
-        	
+				
         	$('#defaultCountdown').countdown({
         										until: <?php echo $sess_expiration;?>, 
         										onTick: warnUser, 
+        										compact: true,
+        										layout: '{hnn}h{sep}{mnn}m{sep}{snn}s',
         										format: 'HMS',
         										expiryUrl: "<?php echo site_url('login/logoff'); ?>"
         									});

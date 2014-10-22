@@ -40,7 +40,7 @@ class Setor extends CI_Controller {
 		$data['titulo']     = 'Setores';
 		
 		$data['link_add']   = $this->Campo_model->make_link($this->area, 'add');
-		$data['link_back']  = $this->Campo_model->make_link($this->area, 'voltar');
+		$data['link_back']  = $this->Campo_model->make_link($this->area, 'history_back');
 		
 		
 		$data['form_action'] = site_url($this->area.'/search');

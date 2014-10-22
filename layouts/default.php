@@ -121,8 +121,24 @@ switch ($area){
 	break;
 	
 }
-  
+
+
+$SessTimeLeft    = 0;
+$SessExpTime     = $CI->config->config["sess_expiration"];
+$CurrTime        = time();
+         
+$SQL = 'SELECT last_activity
+		FROM ci_sessions
+		WHERE session_id = '." '".$CI->session->userdata('session_id')."' ";
+         //print "$SQL";
+         $query = $CI->db->query($SQL);
+         $arrLastActivity = $query->result_array();
+         //print "LastActivity: ".$arrLastActivity[0]["last_activity"]."\r\n";
+         //print "CurrentTime: ".$CurrTime."\r\n";
+         //print "ExpTime: ".$SessExpTime."\r\n";
+$SessTimeLeft = ($SessExpTime - ($CurrTime - $arrLastActivity[0]["last_activity"]));
 ?>
+         
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
@@ -151,6 +167,8 @@ switch ($area){
 	<link href="<?php echo base_url();?>bootstrap/css/bootstrap-theme.css" rel="stylesheet">
 	<link href="<?php echo base_url();?>bootstrap/css/bootstrap_custom.css" rel="stylesheet">
 	<link href="<?php echo base_url();?>bootstrap/css/sticky-footer-navbar.css" rel="stylesheet">
+	<link href="<?php echo base_url();?>font-awesome/css/font-awesome.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="<?php echo base_url(); ?>css/jquery.countdown.css">
 	
 	<script type="text/javascript">
 		var CI_ROOT = '<?php echo site_url(); ?>';    	 
@@ -182,14 +200,25 @@ switch ($area){
 		                    	<strong><?php echo $today; ?></strong> &nbsp; &nbsp;
 		                    </div>
 		                    
-		                    <div class="col-sm-12 col-md-9 col-lg-9">
-		                    	<span class="topo_campo"> Usuário: </span> <?php echo $nome_usuario; ?> &nbsp; &nbsp;
+		                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+		                    	<span class="topo_campo"> Usuário: </span> <?php echo $nome_usuario; ?>
+		                    </div>
+		                    
+		                     <div class="col-lg-2 visible-lg">
 		                    	<span class="topo_campo"> Nível: </span> <?php echo $nivel_usuario; ?>
+		                    </div>
+		                    
+		                    <div class="col-sm-6 col-md-5 col-lg-4  visible-sm visible-md visible-lg">
+		                    	<span class="glyphicon glyphicon-time"></span> <span class="countdown"></span> restantes.
 		                    </div>
 	               		</div>
                		</div>
                 </div>
-	            <div class="col-sm-12 col-md-3 col-lg-2 visible-md visible-lg text-right"><div id="topo_right" class="text-right"></div></div>
+	            <div class="col-sm-12 col-md-3 col-lg-2 visible-md visible-lg text-right">
+	            <!-- logo mini
+	            	<div id="topo_right" class="text-right"></div>
+	            	 -->
+	            </div>
             </div>
             <!-- Fim do Topo -->
             
@@ -197,8 +226,11 @@ switch ($area){
             <div class="row">
 	        
 	                
-	                <div class="col-md-6 col-lg-6 visible-md visible-lg">
+	                <div class="col-md-6 col-lg-6 visible-md visible-lg" style="height: 75px;">
+	               	 <i class="fa fa-file-text-o fa-4x mar-bot20" style="padding-top: 7px; padding-left: 57px;"></i>
+	               <!-- logo normal
 	                	<img src="<?php echo $CI->config->item('base_url');?>images/bg_logo_left_<?php echo $CI->config->item('orgao');?>.png"> 	
+	                	 -->
 	                </div>
 	                
 	                <div class="col-sm-12 col-md-6 col-lg-6 text-right" id="logo_right" style="padding-right: 25px;">
@@ -282,7 +314,7 @@ switch ($area){
 					        </li>
 				       	
 				        <li><a href="#" id="about" title="Sobre este sistema"><span class="glyphicon glyphicon-thumbs-up"></span> Sobre</a></li>
-				        <li><a href="<?php echo site_url('login/logoff'); ?>" title="Sair do sistema" ><span class="glyphicon glyphicon-off"></span> Sair</a></li>
+				        <li><a href="<?php echo site_url('login_mail/logoff'); ?>" title="Sair do sistema" ><span class="glyphicon glyphicon-off"></span> Sair</a></li>
 				        
 				      </ul>
 	
@@ -301,11 +333,29 @@ switch ($area){
 
   
             <!--  Rodape -->
-            <div id="rodape" class="footer">
-            	<div class="container">	
-              		<?php echo $CI->config->item('rodape_sistema');?>	
-             	</div>		
-            </div> 
+           <section id="footer" class="section footer">
+			<div class="container">
+				<div class="row animated opacity mar-bot20" data-andown="fadeIn" data-animation="animation">
+					<div class="col-sm-12 align-center">
+	                    <ul class="social-network social-circle">
+	                    	<!-- 
+	                        <li><a href="#" class="icoRss" title="Rss"><i class="fa fa-rss"></i></a></li>
+	                        <li><a href="#" class="icoLinkedin" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
+	                         -->
+	                        <li><a href="#" class="icoFacebook" title="Facebook"><i class="fa fa-facebook"></i></a></li>
+	                        <li><a href="#" class="icoTwitter" title="Twitter"><i class="fa fa-twitter"></i></a></li>
+	                        <li><a href="#" class="icoGoogle" title="Google +"><i class="fa fa-google-plus"></i></a></li>
+	                        
+	                    </ul>				
+					</div>
+				</div>
+	
+				<div class="row align-center copyright">
+						<div class="col-sm-12"><p>Copyright &copy; 2014 GeraDox - by <a href="<?php echo base_url();?>">GeraDox</a></p></div>
+				</div>
+			</div>
+
+			</section>
             <!--  Fim do Rodape  -->
            
            <div id="modalDialog" style="display:none; min-height: 300px;">
@@ -326,6 +376,17 @@ switch ($area){
          <script src="<?php echo base_url();?>bootstrap/js/bootstrap.min.js"></script>
          <script src="<?php echo base_url();?>bootstrap/js/datatables.bootstrap.js"></script>
          <script src="<?php echo base_url();?>bootstrap/js/bootstrap-select.min.js"></script>
+         
+         <script src="<?php echo base_url(); ?>js/countdown/jquery.countdown.js"></script>
+		 <script src="<?php echo base_url(); ?>js/countdown/jquery.countdown-pt-BR.js"></script>
+         
+         <script type="text/javascript">
+        
+	         $('span.countdown').countdown({until: <?php echo $SessTimeLeft;?>, compact: true, 
+							        	    layout: '{hnn}h{sep}{mnn}m{sep}{snn}s',
+							        	    expiryUrl: "<?php echo base_url();?>"
+		        	    				});
+         </script>
          
     </body>
 </html>
