@@ -372,6 +372,9 @@ $SessTimeLeft = ($SessExpTime - ($CurrTime - $arrLastActivity[0]["last_activity"
 				</div>
 				<div class="foot"></div>
 			</div> 
+			
+		
+			<div class="popover" role="tooltip"><div class="arrow"></div><h3 class="popover-title"></h3><div class="popover-content"></div></div>
             
          <script src="<?php echo base_url();?>bootstrap/js/bootstrap.min.js"></script>
          <script src="<?php echo base_url();?>bootstrap/js/datatables.bootstrap.js"></script>
@@ -386,6 +389,8 @@ $SessTimeLeft = ($SessExpTime - ($CurrTime - $arrLastActivity[0]["last_activity"
 							        	    layout: '{hnn}h{sep}{mnn}m{sep}{snn}s',
 							        	    expiryUrl: "<?php echo base_url();?>"
 		        	    				});
+
+	         $("a.btn").popover();
          </script>
          
     </body>
