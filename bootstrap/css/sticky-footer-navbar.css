@@ -5,15 +5,17 @@ html {
   min-height: 100%;
 }
 body {
-  /* Margin bottom by footer height */
-  margin-bottom: 170px;
+  /* Margin bottom by footer height 40 pixels a mais que o .footer */
+  /*com os icones de midias sociais colocar 170*/
+  margin-bottom: 120px; 
 }
 .footer {
   position: absolute;
   bottom: 0;
   width: 100%;
   /* Set the fixed height of the footer here */
-  height: 130px;
+   /*com os icones de midias sociais colocar 130*/
+  height: 80px;
  
   text-align:center;
   /*
