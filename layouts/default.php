@@ -155,8 +155,8 @@ $SessTimeLeft = ($SessExpTime - ($CurrTime - $arrLastActivity[0]["last_activity"
 	<meta name="keywords" content="aluno on-line, fale conosco, aesp, geradoc, documento, oficio, comunicacao interna, memorando, despacho, portaria, php, software livre, corpo de bombeiros">
 	<meta name="ROBOT" content="Index,Follow">
 	
-	<link rel="shortcut icon" href="{TPL_images}<?php echo $CI->config->item('orgao');?>.ico" type="image/x-icon" />
-	<link rel="icon" href="{TPL_images}<?php echo $CI->config->item('orgao');?>.ico" />
+	<link rel="shortcut icon" href="{TPL_images}file-text-o_4e8079_128.ico" type="image/x-icon" />
+	<link rel="icon" href="{TPL_images}file-text-o_4e8079_128.ico" />
     
     <title><?php echo $CI->config->item('title');?></title>
     
@@ -169,6 +169,7 @@ $SessTimeLeft = ($SessExpTime - ($CurrTime - $arrLastActivity[0]["last_activity"
 	<link href="<?php echo base_url();?>bootstrap/css/sticky-footer-navbar.css" rel="stylesheet">
 	<link href="<?php echo base_url();?>font-awesome/css/font-awesome.min.css" rel="stylesheet">
 	<link rel="stylesheet" href="<?php echo base_url(); ?>css/jquery.countdown.css">
+	<link rel="stylesheet" href="<?php echo base_url();?>bootstrap/css/animate.css">
 	
 	<script type="text/javascript">
 		var CI_ROOT = '<?php echo site_url(); ?>';    	 
@@ -227,7 +228,11 @@ $SessTimeLeft = ($SessExpTime - ($CurrTime - $arrLastActivity[0]["last_activity"
 	        
 	                
 	                <div class="col-md-6 col-lg-6 visible-md visible-lg" style="height: 75px;">
-	               	 <i class="fa fa-file-text-o fa-4x mar-bot20" style="padding-top: 7px; padding-left: 57px;"></i>
+
+	               	 <a href="<?php echo site_url('/documento/index'); ?>" title="Lista">
+	               	 	<i id="emblema" class="fa fa-file-text-o fa-4x" style="padding-top: 7px; padding-left: 57px; color: #4e8079;"></i>
+	               	 </a>
+
 	               <!-- logo normal
 	                	<img src="<?php echo $CI->config->item('base_url');?>images/bg_logo_left_<?php echo $CI->config->item('orgao');?>.png"> 	
 	                	 -->
@@ -377,22 +382,28 @@ $SessTimeLeft = ($SessExpTime - ($CurrTime - $arrLastActivity[0]["last_activity"
 		
 			<div class="popover" role="tooltip"><div class="arrow"></div><h3 class="popover-title"></h3><div class="popover-content"></div></div>
             
-         <script src="<?php echo base_url();?>bootstrap/js/bootstrap.min.js"></script>
-         <script src="<?php echo base_url();?>bootstrap/js/datatables.bootstrap.js"></script>
-         <script src="<?php echo base_url();?>bootstrap/js/bootstrap-select.min.js"></script>
-         
-         <script src="<?php echo base_url(); ?>js/countdown/jquery.countdown.js"></script>
-		 <script src="<?php echo base_url(); ?>js/countdown/jquery.countdown-pt-BR.js"></script>
-         
-         <script type="text/javascript">
-        
-	         $('span.countdown').countdown({until: <?php echo $SessTimeLeft;?>, compact: true, 
-							        	    layout: '{hnn}h{sep}{mnn}m{sep}{snn}s',
-							        	    expiryUrl: "<?php echo base_url();?>"
-		        	    				});
+	         <script src="<?php echo base_url();?>bootstrap/js/bootstrap.min.js"></script>
+	         <script src="<?php echo base_url();?>bootstrap/js/datatables.bootstrap.js"></script>
+	         <script src="<?php echo base_url();?>bootstrap/js/bootstrap-select.min.js"></script>
+	         
+	         <script src="<?php echo base_url(); ?>js/countdown/jquery.countdown.js"></script>
+			 <script src="<?php echo base_url(); ?>js/countdown/jquery.countdown-pt-BR.js"></script>
+	         
+	         <script type="text/javascript">
+	        
+		         $('span.countdown').countdown({until: <?php echo $SessTimeLeft;?>, compact: true, 
+								        	    layout: '{hnn}h{sep}{mnn}m{sep}{snn}s',
+								        	    expiryUrl: "<?php echo base_url();?>"
+			        	    				});
+	
+		         $("a.btn").popover();
+	
 
-	         $("a.btn").popover();
-         </script>
+		         $( "#emblema" ).hover(function() {
+		        	 $( this ). toggleClass('animated rubberBand');
+		        });
+		         
+	         </script>
          
     </body>
 </html>

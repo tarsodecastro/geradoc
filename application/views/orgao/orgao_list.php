@@ -1,14 +1,14 @@
+<div class="areaimage" >
+	<center>
+		<img src="{TPL_images}companies-icon_2.png" height="72px"/>
+	</cente>
+</div>
+
 <p class="bg-success lead text-center"><?php echo $titulo;?></p>
 
 <div id="msg" style="display: none;">
 	<img src="{TPL_images}loader.gif" class="img_aling2" alt="Carregando" />Aguarde
 	carregando...
-</div>
-
-<div class="areaimage" >
-	<center>
-		<img src="{TPL_images}companies-icon_2.png" height="72px"/>
-	</cente>
 </div>
 
 <div id="view_content">

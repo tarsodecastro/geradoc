@@ -112,7 +112,7 @@ class Campo_model extends CI_Model {
 			break;
 			
 			case 'exportar':
-				$link = anchor($area.'/export/'.$id,'<i class="cus-printer"></i> Exportar', array('target'=>'_blank', 'class'=>'btn btn-default btn-sm'));
+				$link = anchor($area.'/export/'.$id,'<i class="fa fa-file-pdf-o fa-lg" style="color: #d9534f;"></i> Exportar', array('target'=>'_blank', 'class'=>'btn btn-default btn-sm'));
 			break;
 			
 			case 'exportar_doc':

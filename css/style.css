@@ -74,12 +74,17 @@
 	height:80px;
 	margin: -70px 30px 20px 0px;
 	*/
-	background-image: url(../images/bg_logo_right.jpg);	
+	
+	background: linear-gradient(to left, rgba(255,255,255,0), rgba(255,255,255,1)), url(../images/pattern-6dzp.png);
+	
+	height:75px;
+	
 	background-position:right;
-	background-repeat:no-repeat;
+	background-repeat:repeat;
 	background-color: white; 
 	font-size: 20pt;
 	font-family: 'Times New Roman',Times,serif;
+	padding-top: 7px;
 }
 
 /*-------MENU---------*/
@@ -118,11 +123,15 @@
 
 
 .areaimage{
-	top: 48px; 
-	position: absolute; 
-	width: 95%; 
-	margin: 0px auto; 
-	z-index: 1;
+	top: -118px; 
+	position: relative;
+	margin: 0 auto;
+	width: 300px;
+	height: 0px;
+}
+
+#emblema{ 
+	z-index: 9;
 }
 
 

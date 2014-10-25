@@ -229,7 +229,11 @@
 
 
 .navbar-nav > li > a {padding-top:7px !important; padding-bottom:7px !important;}
-.navbar {min-height:30px !important; }
+
+.navbar {
+	min-height:30px !important; 
+	margin-bottom: 10px;
+}
 
 
 /*
