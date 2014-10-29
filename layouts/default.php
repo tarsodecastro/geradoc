@@ -275,7 +275,7 @@ $SessTimeLeft = ($SessExpTime - ($CurrTime - $arrLastActivity[0]["last_activity"
 				        <?php if ($nivel_id == 1){ //apenas para administradores?>
 				        
 					        <li class="dropdown <?php echo $menu_modelos;?>">
-					          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-list-alt"></span> Modelos <span class="caret"></span></a>
+					          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-file-code-o fa-lg"></i> Modelos <span class="caret"></span></a>
 					          <ul class="dropdown-menu" role="menu">
 					            <li><a href="<?php echo site_url('/coluna/index'); ?>" title="Campos">Campos</a></li>
 					            <li><a href="<?php echo site_url('/tipo/index'); ?>" title="Tipos">Tipos de Documentos</a></li>
@@ -283,7 +283,7 @@ $SessTimeLeft = ($SessExpTime - ($CurrTime - $arrLastActivity[0]["last_activity"
 					        </li>
 					        
 					        <li class="dropdown <?php echo $menu_organograma;?>">
-					          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-tree-conifer"></span> Organograma <span class="caret"></span></a>
+					          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bank fa-lg"></i> Organograma <span class="caret"></span></a>
 					          <ul class="dropdown-menu" role="menu">
 					            <li><a href="<?php echo site_url('/orgao/index'); ?>" title="Órgãos">Órgãos</a></li>
 					            <li><a href="<?php echo site_url('/setor/index'); ?>" title="Setores">Setores</a></li>
@@ -291,7 +291,7 @@ $SessTimeLeft = ($SessExpTime - ($CurrTime - $arrLastActivity[0]["last_activity"
 					        </li>
 					        
 					        <li class="dropdown <?php echo $menu_pessoas;?>">
-					          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> Pessoas <span class="caret"></span></a>
+					          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-users fa-lg"></i> Pessoas <span class="caret"></span></a>
 					          <ul class="dropdown-menu" role="menu">
 					            <li><a href="<?php echo site_url('/cargo/index'); ?>" title="Cargos">Cargos</a></li>
 					            <li><a href="<?php echo site_url('/contato/index'); ?>" title="Contatos">Remetentes</a></li>
@@ -318,7 +318,7 @@ $SessTimeLeft = ($SessExpTime - ($CurrTime - $arrLastActivity[0]["last_activity"
 					          </ul>
 					        </li>
 				       	
-				        <li><a href="#" id="about" title="Sobre este sistema"><i class="fa fa-thumbs-o-up"></i> Sobre</a></li>
+				        <li><a href="#" id="about" title="Sobre este sistema"><i class="fa fa-thumbs-o-up fa-lg"></i> Sobre</a></li>
 				        <li><a href="<?php echo site_url('login_mail/logoff'); ?>" title="Sair do sistema" ><span class="glyphicon glyphicon-off"></span> Sair</a></li>
 				        
 				      </ul>
