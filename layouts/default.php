@@ -193,29 +193,29 @@ $SessTimeLeft = ($SessExpTime - ($CurrTime - $arrLastActivity[0]["last_activity"
             <!--  Topo -->
             <div class="row" id="topo">
 	            <div class="col-sm-1 col-md-1 col-lg-1"></div>
-	            <div class="col-sm-9 col-md-8 col-lg-9">
+	            <div class="col-sm-9 col-md-8 col-lg-10">
 	            	<div class="row" >
 		            	<div id="topo_center"> 
 		            	
-		            		<div class="col-lg-3 visible-lg">
+		            		<div class="col-lg-3 visible-lg text-left">
 		                    	<strong><?php echo $today; ?></strong> &nbsp; &nbsp;
 		                    </div>
 		                    
-		                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+		                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 text-left">
 		                    	<span class="topo_campo"> Usuário: </span> <?php echo $nome_usuario; ?>
 		                    </div>
 		                    
-		                     <div class="col-lg-2 visible-lg">
+		                     <div class="col-lg-2 visible-lg text-center">
 		                    	<span class="topo_campo"> Nível: </span> <?php echo $nivel_usuario; ?>
 		                    </div>
 		                    
-		                    <div class="col-sm-6 col-md-5 col-lg-4  visible-sm visible-md visible-lg">
+		                    <div class="col-sm-6 col-md-5 col-lg-3 visible-sm visible-md visible-lg text-right">
 		                    	<span class="glyphicon glyphicon-time"></span> <span class="countdown"></span> restantes.
 		                    </div>
 	               		</div>
                		</div>
                 </div>
-	            <div class="col-sm-12 col-md-3 col-lg-2 visible-md visible-lg text-right">
+	            <div class="col-sm-12 col-md-3 col-lg-1 visible-md visible-lg text-right">
 	            <!-- logo mini
 	            	<div id="topo_right" class="text-right"></div>
 	            	 -->
