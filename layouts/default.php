@@ -264,7 +264,7 @@ $SessTimeLeft = ($SessExpTime - ($CurrTime - $arrLastActivity[0]["last_activity"
 				    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				      <ul class="nav navbar-nav">
 				        <li class="<?php echo $menu_documento;?>">
-				        	<a href="#" class="dropdown-toggle" data-toggle="dropdown" title="Documentos"><span class="glyphicon glyphicon-file"></span> Documentos <span class="caret"></span></a>
+				        	<a href="#" class="dropdown-toggle" data-toggle="dropdown" title="Documentos"><i class="fa fa-file-o fa-lg"></i> Documentos <span class="caret"></span></a>
 				        	<ul class="dropdown-menu" role="menu">
 					            <li><a href="<?php echo site_url('/documento/index'); ?>" title="Lista">Lista</a></li>
 					            <li><a href="<?php echo site_url('/documento/add'); ?>" title="Novo">Novo</a></li>
