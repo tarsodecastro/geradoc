@@ -318,7 +318,7 @@ $SessTimeLeft = ($SessExpTime - ($CurrTime - $arrLastActivity[0]["last_activity"
 					          </ul>
 					        </li>
 				       	
-				        <li><a href="#" id="about" title="Sobre este sistema"><span class="glyphicon glyphicon-thumbs-up"></span> Sobre</a></li>
+				        <li><a href="#" id="about" title="Sobre este sistema"><i class="fa fa-thumbs-o-up"></i> Sobre</a></li>
 				        <li><a href="<?php echo site_url('login_mail/logoff'); ?>" title="Sair do sistema" ><span class="glyphicon glyphicon-off"></span> Sair</a></li>
 				        
 				      </ul>
