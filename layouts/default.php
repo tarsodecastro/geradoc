@@ -308,7 +308,11 @@ $SessTimeLeft = ($SessExpTime - ($CurrTime - $arrLastActivity[0]["last_activity"
 					          </ul>
 					        </li>
 				        
-				        <?php } ?>
+				        <?php } 
+				        
+				        if($CI->session->userdata('email') != 'demo@geradox.com.br'){
+				        
+				        ?>
 				        
 				         	<li class="dropdown <?php echo $menu_perfil;?>">
 					          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> Perfil <span class="caret"></span></a>
@@ -317,6 +321,7 @@ $SessTimeLeft = ($SessExpTime - ($CurrTime - $arrLastActivity[0]["last_activity"
 					            <li><a href="<?php echo site_url('usuario/altsenha'); ?>" title="Alterar minha senha de acesso">Minha senha</a></li>
 					          </ul>
 					        </li>
+					    <?php }?>
 				       	
 				        <li><a href="#" id="about" title="Sobre este sistema"><i class="fa fa-thumbs-o-up fa-lg"></i> Sobre</a></li>
 				        <li><a href="<?php echo site_url('login_mail/logoff'); ?>" title="Sair do sistema" ><span class="glyphicon glyphicon-off"></span> Sair</a></li>
