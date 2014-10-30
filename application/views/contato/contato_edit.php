@@ -12,7 +12,7 @@
 
 	<div class="row">
 		<div class="col-md-12">
-			<p class="bg-success lead text-center">Usuário</p>
+			<p class="bg-success lead text-center">Remetente</p>
 		</div>
 	</div>
 
