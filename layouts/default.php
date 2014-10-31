@@ -310,7 +310,8 @@ $SessTimeLeft = ($SessExpTime - ($CurrTime - $arrLastActivity[0]["last_activity"
 				        
 				        <?php } 
 				        
-				        if($CI->session->userdata('email') != 'demo@geradox.com.br'){
+				      
+				        if($CI->session->userdata('email') != 'demo@geradox.com.br' and $CI->session->userdata('email') != 'convidado@geradox.com.br'){
 				        
 				        ?>
 				        
@@ -362,7 +363,7 @@ $SessTimeLeft = ($SessExpTime - ($CurrTime - $arrLastActivity[0]["last_activity"
 				</div>
 	
 				<div class="row align-center copyright">
-						<div class="col-sm-12"><p>Copyright &copy; 2014 GeraDox - by <a href="<?php echo base_url();?>">GeraDox</a></p></div>
+						<div class="col-sm-12"><p>Copyright &copy; 2014 GeraDox - by <a href="http://www.geradox.com.br" target="_blank">GeraDox</a></p></div>
 				</div>
 			</div>
 
