@@ -2,7 +2,7 @@
 <div id="Layer1" style="position: relative; width:100%; height:200px; overflow: auto; text-align: justify; padding-left: 3px; padding-right: 10px;">
 	<br>
 	O GeraDoc é um sistema de Gerenciamento de Conteúdo Corporativo (ECM - Enterprise Content Management).
-	<br>
+	<br><br>
 	
 	Ele foi desenvolvido para facilitar a criação de documentos oficiais padronizados, como ofícios, comunicações internas, despachos, pareceres técnicos, 
 	pareceres jurídicos, atos administrativos e notas de instrução nos diversos setores de instituições governamentais, mantendo as formas, 
