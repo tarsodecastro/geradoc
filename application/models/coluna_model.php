@@ -17,7 +17,7 @@ class Coluna_model extends CI_Model {
 		
 		$fields = array_diff($fields, array('id', 'tipo', 'numero', 'setor', 'cidade', 'data', 'data_criacao', 'destinatario',
 											'assunto', 'remetente', 'dono', 'dono_cpf',
-											'cadeado', 'oculto', 'cancelado', 'carimbo'));
+											'cadeado', 'oculto', 'cancelado', 'carimbo', 'carimbo_via', 'carimbo_urgente', 'carimbo_confidencial'));
 		return $fields;
 	}
 	
