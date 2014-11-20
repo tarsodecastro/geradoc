@@ -423,28 +423,24 @@ $SessTimeLeft = ($SessExpTime - ($CurrTime - $arrLastActivity[0]["last_activity"
 			      <div class="modal-body">
 			      <p> Utilize o formulário abaixo para enviar suas crítias, dúvidas ou sugestões. <br>Sua opinião é importante para nós.</p>
 			      
-			      <div id="sendmessage">
-							Sua mensagem foi enviada. Obrigado!
-				  </div>
-							
-			       
-			       		
-			          <div class="form-group">
-			            <label for="recipient-name" class="control-label">Assunto:</label>
-			            <input type="text" class="form-control" name="subject" id="subject" data-rule="maxlen:4" data-msg="Please enter at least 4 chars">
-			            <div class="validation"></div>
+				  	  <div class="form-group">
+			            <label for="recipient-name" class="control-label">Seu nome:</label>
+			            <input type="text" class="form-control" name="nome" id="nome" required>
+			          </div>
+			       	
+			       	  <div class="form-group">
+			            <label for="recipient-name" class="control-label">Seu e-mail:</label>
+			            <input type="email" class="form-control"  name="email" id="email" required>
 			          </div>
 			          
 			          <div class="form-group">
-			            <label for="recipient-name" class="control-label">Seu e-mail:</label>
-			            <input type="text" class="form-control"  name="email" id="email" data-rule="email" data-msg="Please enter a valid email">
-			            <div class="validation"></div>
+			            <label for="recipient-name" class="control-label">Assunto:</label>
+			            <input type="text" class="form-control" name="subject" id="subject" required>
 			          </div>
 			          
 			          <div class="form-group">
 			            <label for="message-text" class="control-label">Mensagem:</label>
-			            <textarea class="form-control" name="message" id="message" rows="4" data-rule="required"></textarea>
-			            <div class="validation"></div>
+			            <textarea class="form-control" name="message" id="message" rows="4" required></textarea>
 			          </div>
 			        
 			      </div>
@@ -470,9 +466,7 @@ $SessTimeLeft = ($SessExpTime - ($CurrTime - $arrLastActivity[0]["last_activity"
 	         
 	         <script src="<?php echo base_url(); ?>js/countdown/jquery.countdown.js"></script>
 			 <script src="<?php echo base_url(); ?>js/countdown/jquery.countdown-pt-BR.js"></script>
-			 
-			 <script src="<?php echo base_url(); ?>js/faleconosco.js"></script>
-	         
+		
 	         <script type="text/javascript">
 	        
 		         $('span.countdown').countdown({until: <?php echo $SessTimeLeft;?>, compact: true, 
