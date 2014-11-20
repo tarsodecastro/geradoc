@@ -27,7 +27,7 @@
 			  	  
 			  <div class="panel-body">
 			  	
-					  <div class="form-group <?php echo (form_error('campoNome') != '')? 'has-error':''; ?>"">
+					  <div class="form-group <?php echo (form_error('campoNome') != '')? 'has-error':''; ?>">
 					    <label for="campoNome" class="col-sm-3 control-label"><span style="color: red;">*</span> Nome</label>
 					    <div class="col-md-7">
 					      	<?php echo form_input($campoNome); ?> 

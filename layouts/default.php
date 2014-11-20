@@ -324,7 +324,8 @@ $SessTimeLeft = ($SessExpTime - ($CurrTime - $arrLastActivity[0]["last_activity"
 					        </li>
 					    <?php }?>
 				       	
-				        <li><a href="#" id="about" title="Sobre este sistema"><i class="fa fa-thumbs-o-up fa-lg"></i> Sobre</a></li>
+				        <li><a href="#modalSobre"  class="btn" data-toggle="modal"><i class="fa fa-thumbs-o-up fa-lg"></i> Sobre</a></li>
+				         <li><a href="#exampleModal" class="btn" id="fale" data-toggle="modal"><i class="fa fa-comment-o fa-lg"></i> Fale conosco</a></li>
 				        <li><a href="<?php echo site_url('login_mail/logoff'); ?>" title="Sair do sistema" ><span class="glyphicon glyphicon-off"></span> Sair</a></li>
 				        
 				      </ul>
@@ -385,6 +386,81 @@ $SessTimeLeft = ($SessExpTime - ($CurrTime - $arrLastActivity[0]["last_activity"
 				<div class="foot"></div>
 			</div> 
 			
+			
+			<div class="modal fade" id="modalSobre" tabindex="-1" role="dialog" aria-labelledby="modalSobre" aria-hidden="true">
+			  <div class="modal-dialog">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Fechar</span></button>
+			        <h4 class="modal-title" id="exampleModalLabel">
+			        	<?php 
+							$pos = strpos($CI->config->item('title_short'), "<");
+							$titulo_modal = substr($CI->config->item('title_short'), 0, $pos);
+							echo $titulo_modal;
+						?>
+			        </h4>
+			      </div>
+			      <div class="modal-body">
+			        {TPL_modal}
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+			
+			
+			<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			  <div class="modal-dialog">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Fechar</span></button>
+			        <h4 class="modal-title" id="exampleModalLabel">Fale conosco</h4>
+			      </div>
+			      
+			       <form id="contactForm" role="form" action="<?php echo site_url();?>/faleconosco/mensagem" method="post">
+			      <div class="modal-body">
+			      <p> Utilize o formulário abaixo para enviar suas crítias, dúvidas ou sugestões. <br>Sua opinião é importante para nós.</p>
+			      
+			      <div id="sendmessage">
+							Sua mensagem foi enviada. Obrigado!
+				  </div>
+							
+			       
+			       		
+			          <div class="form-group">
+			            <label for="recipient-name" class="control-label">Assunto:</label>
+			            <input type="text" class="form-control" name="subject" id="subject" data-rule="maxlen:4" data-msg="Please enter at least 4 chars">
+			            <div class="validation"></div>
+			          </div>
+			          
+			          <div class="form-group">
+			            <label for="recipient-name" class="control-label">Seu e-mail:</label>
+			            <input type="text" class="form-control"  name="email" id="email" data-rule="email" data-msg="Please enter a valid email">
+			            <div class="validation"></div>
+			          </div>
+			          
+			          <div class="form-group">
+			            <label for="message-text" class="control-label">Mensagem:</label>
+			            <textarea class="form-control" name="message" id="message" rows="4" data-rule="required"></textarea>
+			            <div class="validation"></div>
+			          </div>
+			        
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+			        <button type="submit" class="btn btn-primary">Enviar</button>
+			        
+			      </div>
+			      
+			      </form>
+			      
+			      
+			    </div>
+			  </div>
+			</div>
+			
 		
 			<div class="popover" role="tooltip"><div class="arrow"></div><h3 class="popover-title"></h3><div class="popover-content"></div></div>
             
@@ -394,6 +470,8 @@ $SessTimeLeft = ($SessExpTime - ($CurrTime - $arrLastActivity[0]["last_activity"
 	         
 	         <script src="<?php echo base_url(); ?>js/countdown/jquery.countdown.js"></script>
 			 <script src="<?php echo base_url(); ?>js/countdown/jquery.countdown-pt-BR.js"></script>
+			 
+			 <script src="<?php echo base_url(); ?>js/faleconosco.js"></script>
 	         
 	         <script type="text/javascript">
 	        
@@ -408,7 +486,7 @@ $SessTimeLeft = ($SessExpTime - ($CurrTime - $arrLastActivity[0]["last_activity"
 		         $( "#emblema" ).hover(function() {
 		        	 $( this ). toggleClass('animated rubberBand');
 		        });
-		         
+		        	
 	         </script>
          
     </body>

@@ -95,3 +95,15 @@ body {
     background-color:#2c4762;
     color:#fff;
 }
+
+.modal-header {
+   background:#f9f9f9;
+   border-top-left-radius: 5px;
+   border-top-right-radius: 5px;
+}
+
+.modal-footer {
+   background:#f9f9f9;
+   border-bottom-left-radius: 5px;
+   border-bottom-right-radius: 5px;
+}
