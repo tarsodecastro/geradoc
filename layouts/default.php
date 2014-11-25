@@ -325,7 +325,7 @@ $SessTimeLeft = ($SessExpTime - ($CurrTime - $arrLastActivity[0]["last_activity"
 					    <?php }?>
 				       	
 				        <li><a href="#modalSobre"  class="btn" data-toggle="modal"><i class="fa fa-thumbs-o-up fa-lg"></i> Sobre</a></li>
-				         <li><a href="#exampleModal" class="btn" id="fale" data-toggle="modal"><i class="fa fa-comment-o fa-lg"></i> Fale conosco</a></li>
+				         <li><a href="#modalFaleconosco" class="btn" id="fale" data-toggle="modal"><i class="fa fa-comment-o fa-lg"></i> Fale conosco</a></li>
 				        <li><a href="<?php echo site_url('login_mail/logoff'); ?>" title="Sair do sistema" ><span class="glyphicon glyphicon-off"></span> Sair</a></li>
 				        
 				      </ul>
@@ -386,7 +386,6 @@ $SessTimeLeft = ($SessExpTime - ($CurrTime - $arrLastActivity[0]["last_activity"
 				<div class="foot"></div>
 			</div> 
 			
-			
 			<div class="modal fade" id="modalSobre" tabindex="-1" role="dialog" aria-labelledby="modalSobre" aria-hidden="true">
 			  <div class="modal-dialog">
 			    <div class="modal-content">
@@ -409,9 +408,12 @@ $SessTimeLeft = ($SessExpTime - ($CurrTime - $arrLastActivity[0]["last_activity"
 			    </div>
 			  </div>
 			</div>
-			
-			
-			<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+						
+			 <?php      
+			      $action_fale_conosco = site_url() . "/faleconosco/mensagem/" . uri_string(); 
+			 ?>
+
+			<div class="modal fade" id="modalFaleconosco" tabindex="-1" role="dialog" aria-labelledby="modalFaleconosco" aria-hidden="true">
 			  <div class="modal-dialog">
 			    <div class="modal-content">
 			      <div class="modal-header">
@@ -419,9 +421,9 @@ $SessTimeLeft = ($SessExpTime - ($CurrTime - $arrLastActivity[0]["last_activity"
 			        <h4 class="modal-title" id="exampleModalLabel">Fale conosco</h4>
 			      </div>
 			      
-			       <form id="contactForm" role="form" action="<?php echo site_url();?>/faleconosco/mensagem" method="post">
+			      <form id="contactForm" role="form" action="<?php echo $action_fale_conosco;?>" method="post">
 			      <div class="modal-body">
-			      <p> Utilize o formulário abaixo para enviar suas crítias, dúvidas ou sugestões. <br>Sua opinião é importante para nós.</p>
+			      <p class="text-muted text-justify"> Utilize o formulário abaixo para enviar suas crítias, dúvidas ou sugestões. Sua opinião é importante para nós.</p>
 			      
 				  	  <div class="form-group">
 			            <label for="recipient-name" class="control-label">Seu nome:</label>
@@ -457,9 +459,35 @@ $SessTimeLeft = ($SessExpTime - ($CurrTime - $arrLastActivity[0]["last_activity"
 			  </div>
 			</div>
 			
-		
+			
+			<div class="modal fade" id="modalAguarde" tabindex="-1" role="dialog" aria-labelledby="modalAguarde" aria-hidden="true">
+			  <div class="modal-dialog">
+			    <div class="modal-content">
+			    
+			      <div class="modal-header">
+			        <h4 class="modal-title" id="exampleModalLabel">
+			        	Aguarde
+			        </h4>
+			      </div>
+			      
+			      <div class="modal-body">
+			     		<p>Enviando...</p>
+			        	<div class="progress">
+			        		
+			        		 
+						  <div class="progress-bar progress-bar-striped active" id="bar" role="progressbar" aria-valuemin="0" aria-valuenow="100" aria-valuemax="100" style="width: 0%;">
+						    <span class="sr-only">45% Complete</span>
+						  </div>
+						  
+						</div>
+			      </div>
+
+			    </div>
+			  </div>
+			</div>
+			
 			<div class="popover" role="tooltip"><div class="arrow"></div><h3 class="popover-title"></h3><div class="popover-content"></div></div>
-            
+			       
 	         <script src="<?php echo base_url();?>bootstrap/js/bootstrap.min.js"></script>
 	         <script src="<?php echo base_url();?>bootstrap/js/datatables.bootstrap.js"></script>
 	         <script src="<?php echo base_url();?>bootstrap/js/bootstrap-select.min.js"></script>
@@ -475,12 +503,38 @@ $SessTimeLeft = ($SessExpTime - ($CurrTime - $arrLastActivity[0]["last_activity"
 			        	    				});
 	
 		         $("a.btn").popover();
-	
 
 		         $( "#emblema" ).hover(function() {
 		        	 $( this ). toggleClass('animated rubberBand');
 		        });
-		        	
+
+		        //--- Fale conosco ---//
+				$('#contactForm').submit(function() {
+				    var pass = true;
+				    //some validations
+				
+				    if(pass == false){
+				        return false;
+				    }
+				    $("#modalFaleconosco").modal('hide');
+				    $("#modalAguarde").modal('show');
+				
+					var bar = $('.progress-bar');
+					var val = 0;
+
+					(function myLoop (i) {
+        	    	        setTimeout(function () {
+        	    	            console.log(val);
+        	    	            val += 10;
+        	    	            bar.attr('aria-valuenow', val);
+        	    	            bar.css('width', val + '%');
+        	    	            if (--i) myLoop(i);
+        	    	        }, 500)
+        	    	    })(100);
+
+	        	    return true;
+	        	});
+				 //--- Fim do Fale conosco ---//	
 	         </script>
          
     </body>
