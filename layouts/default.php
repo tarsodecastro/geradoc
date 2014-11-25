@@ -475,7 +475,7 @@ $SessTimeLeft = ($SessExpTime - ($CurrTime - $arrLastActivity[0]["last_activity"
 			        	<div class="progress">
 			        		
 			        		 
-						  <div class="progress-bar progress-bar-striped active" id="bar" role="progressbar" aria-valuemin="0" aria-valuenow="100" aria-valuemax="100" style="width: 0%;">
+						  <div class="progress-bar progress-bar-striped active" id="bar" role="progressbar" aria-valuemin="0" aria-valuenow="1" aria-valuemax="90" style="width: 0%;">
 						    <span class="sr-only">45% Complete</span>
 						  </div>
 						  
@@ -485,9 +485,7 @@ $SessTimeLeft = ($SessExpTime - ($CurrTime - $arrLastActivity[0]["last_activity"
 			    </div>
 			  </div>
 			</div>
-			
-			<div class="popover" role="tooltip"><div class="arrow"></div><h3 class="popover-title"></h3><div class="popover-content"></div></div>
-			       
+      
 	         <script src="<?php echo base_url();?>bootstrap/js/bootstrap.min.js"></script>
 	         <script src="<?php echo base_url();?>bootstrap/js/datatables.bootstrap.js"></script>
 	         <script src="<?php echo base_url();?>bootstrap/js/bootstrap-select.min.js"></script>
