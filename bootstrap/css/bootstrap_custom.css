@@ -112,3 +112,13 @@ body {
   -webkit-transition: width 1.5s ease-in-out;
   transition: width 1.5s ease-in-out;
 }
+
+.merged input:first-child {
+    border-right: 0px;
+}
+
+.merged input + .input-group-addon {
+    border-left: 0px;
+    border-right: 0px;
+    background-color: @input-bg;
+}

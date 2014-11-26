@@ -266,9 +266,9 @@ $SessTimeLeft = ($SessExpTime - ($CurrTime - $arrLastActivity[0]["last_activity"
 				        <li class="<?php echo $menu_documento;?>">
 				        	<a href="#" class="dropdown-toggle" data-toggle="dropdown" title="Documentos"><i class="fa fa-file-o fa-lg"></i> Documentos <span class="caret"></span></a>
 				        	<ul class="dropdown-menu" role="menu">
-					            <li><a href="<?php echo site_url('/documento/index'); ?>" title="Lista">Lista</a></li>
-					            <li><a href="<?php echo site_url('/documento/add'); ?>" title="Novo">Novo</a></li>
-					            <li><a href="<?php echo site_url('/documento/workflows'); ?>" title="Entrada">Entrada</a></li>
+					            <li><a href="<?php echo site_url('/documento/index'); ?>" title="Lista"><i class="fa fa-list"></i> Lista</a></li>
+					            <li><a href="<?php echo site_url('/documento/add'); ?>" title="Novo"><i class="fa fa-plus"></i> Novo</a></li>
+					            <li><a href="<?php echo site_url('/documento/workflows'); ?>" title="Entrada"><i class="fa fa-inbox"></i> Entrada</a></li>
 					        </ul>
 				        </li>
 				           
@@ -277,25 +277,25 @@ $SessTimeLeft = ($SessExpTime - ($CurrTime - $arrLastActivity[0]["last_activity"
 					        <li class="dropdown <?php echo $menu_modelos;?>">
 					          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-file-code-o fa-lg"></i> Modelos <span class="caret"></span></a>
 					          <ul class="dropdown-menu" role="menu">
-					            <li><a href="<?php echo site_url('/coluna/index'); ?>" title="Campos">Campos</a></li>
-					            <li><a href="<?php echo site_url('/tipo/index'); ?>" title="Tipos">Tipos de Documentos</a></li>
+					            <li><a href="<?php echo site_url('/coluna/index'); ?>" title="Campos"><i class="fa fa-database"></i> Campos</a></li>
+					            <li><a href="<?php echo site_url('/tipo/index'); ?>" title="Tipos"><i class="fa fa-files-o"></i> Tipos de Documentos</a></li>
 					          </ul>
 					        </li>
 					        
 					        <li class="dropdown <?php echo $menu_organograma;?>">
 					          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bank fa-lg"></i> Organograma <span class="caret"></span></a>
 					          <ul class="dropdown-menu" role="menu">
-					            <li><a href="<?php echo site_url('/orgao/index'); ?>" title="Órgãos">Órgãos</a></li>
-					            <li><a href="<?php echo site_url('/setor/index'); ?>" title="Setores">Setores</a></li>
+					            <li><a href="<?php echo site_url('/orgao/index'); ?>" title="Órgãos"><i class="fa fa-building-o"></i> Órgãos</a></li>
+					            <li><a href="<?php echo site_url('/setor/index'); ?>" title="Setores"><i class="fa fa-sitemap"></i> Setores</a></li>
 					          </ul>
 					        </li>
 					        
 					        <li class="dropdown <?php echo $menu_pessoas;?>">
 					          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-users fa-lg"></i> Pessoas <span class="caret"></span></a>
 					          <ul class="dropdown-menu" role="menu">
-					            <li><a href="<?php echo site_url('/cargo/index'); ?>" title="Cargos">Cargos</a></li>
-					            <li><a href="<?php echo site_url('/contato/index'); ?>" title="Contatos">Remetentes</a></li>
-					            <li><a href="<?php echo site_url('/usuario/index'); ?>" title="Usuários">Usuários</a></li>
+					            <li><a href="<?php echo site_url('/cargo/index'); ?>" title="Cargos"><i class="fa fa-suitcase"></i> Cargos</a></li>
+					            <li><a href="<?php echo site_url('/contato/index'); ?>" title="Contatos"><i class="fa fa-pencil"></i> Remetentes</a></li>
+					            <li><a href="<?php echo site_url('/usuario/index'); ?>" title="Usuários"><i class="fa fa-keyboard-o"></i> Usuários</a></li>
 					            
 					          </ul>
 					        </li>
@@ -303,8 +303,8 @@ $SessTimeLeft = ($SessExpTime - ($CurrTime - $arrLastActivity[0]["last_activity"
 					        <li class="dropdown <?php echo $menu_ferramentas;?>">
 					          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-wrench"></span> Ferramentas <span class="caret"></span></a>
 					          <ul class="dropdown-menu" role="menu">
-					            <li><a href="<?php echo site_url('/auditoria/index'); ?>" title="Auditoria">Auditoria</a></li>
-					            <li><a href="<?php echo site_url('/estatistica/index'); ?>" title="Estatísticas">Estatísticas</a></li>
+					            <li><a href="<?php echo site_url('/auditoria/index'); ?>" title="Auditoria"><i class="fa fa-binoculars"></i> Auditoria</a></li>
+					            <li><a href="<?php echo site_url('/estatistica/index'); ?>" title="Estatísticas"><i class="fa fa-bar-chart"></i> Estatísticas</a></li>
 					          </ul>
 					        </li>
 				        
@@ -318,8 +318,8 @@ $SessTimeLeft = ($SessExpTime - ($CurrTime - $arrLastActivity[0]["last_activity"
 				         	<li class="dropdown <?php echo $menu_perfil;?>">
 					          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> Perfil <span class="caret"></span></a>
 					          <ul class="dropdown-menu" role="menu">
-					            <li><a href="<?php echo site_url('usuario/cadastro'); ?>" title="Meu cadastro">Meu cadastro</a></li>
-					            <li><a href="<?php echo site_url('usuario/altsenha'); ?>" title="Alterar minha senha de acesso">Minha senha</a></li>
+					            <li><a href="<?php echo site_url('usuario/cadastro'); ?>" title="Meu cadastro"><i class="fa fa-smile-o"></i> Meu cadastro</a></li>
+					            <li><a href="<?php echo site_url('usuario/altsenha'); ?>" title="Alterar minha senha de acesso"><i class="fa fa-key"></i> Minha senha</a></li>
 					          </ul>
 					        </li>
 					    <?php }?>
@@ -471,7 +471,7 @@ $SessTimeLeft = ($SessExpTime - ($CurrTime - $arrLastActivity[0]["last_activity"
 			      </div>
 			      
 			      <div class="modal-body">
-			     		<p>Enviando...</p>
+			     		<p> Enviando... </p>
 			        	<div class="progress">
 			        		
 			        		 
@@ -502,10 +502,14 @@ $SessTimeLeft = ($SessExpTime - ($CurrTime - $arrLastActivity[0]["last_activity"
 	
 		         $("a.btn").popover();
 
+		         $("a.input-group-addon").popover();
+
 		         $( "#emblema" ).hover(function() {
 		        	 $( this ). toggleClass('animated rubberBand');
 		        });
 
+		        // $("#modalAguarde").modal('show');
+		         
 		        //--- Fale conosco ---//
 				$('#contactForm').submit(function() {
 				    var pass = true;
