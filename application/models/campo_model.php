@@ -96,7 +96,7 @@ class Campo_model extends CI_Model {
 			break;
 			
 			case 'workflow':
-				$link = anchor($area.'/workflow/'.$id,'<i class="cus-paper_airplane"></i> Tramitação', array('class'=>'btn btn-success btn-sm'));
+				$link = anchor('/workflow/update/'.$id,'<i class="cus-paper_airplane"></i> Tramitação', array('class'=>'btn btn-success btn-sm'));
 			break;
 				
 			case 'salvar':

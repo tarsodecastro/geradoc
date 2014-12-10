@@ -268,7 +268,7 @@ $SessTimeLeft = ($SessExpTime - ($CurrTime - $arrLastActivity[0]["last_activity"
 				        	<ul class="dropdown-menu" role="menu">
 					            <li><a href="<?php echo site_url('/documento/index'); ?>" title="Lista"><i class="fa fa-list"></i> Lista</a></li>
 					            <li><a href="<?php echo site_url('/documento/add'); ?>" title="Novo"><i class="fa fa-plus"></i> Novo</a></li>
-					            <li><a href="<?php echo site_url('/documento/workflows'); ?>" title="Entrada"><i class="fa fa-inbox"></i> Entrada</a></li>
+					            <li><a href="<?php echo site_url('/workflow'); ?>" title="Entrada"><i class="fa fa-inbox"></i> Entrada</a></li>
 					        </ul>
 				        </li>
 				           

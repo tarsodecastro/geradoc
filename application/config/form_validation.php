@@ -215,7 +215,7 @@ $config = array(
 					
 		),
 		
-		'documento/workflow' => array(
+		'workflow/update' => array(
 		
 				array(
 						'field' => 'campoSetor',
