@@ -105,45 +105,48 @@ $.blockUI({ message: '<h1><img src="<?php echo base_url(); ?>scripts/images/ui-a
 				<div class="panel-heading">
 					<h3 class="panel-title"><?php echo $titulo; ?></h3>
 				</div>
+			
 
 				<div class="panel-body">
 
+					
+						
 					<div class="form-group <?php echo (form_error('campoRemetente') != '')? 'has-error':''; ?>">
 						<label for="campoRemetente" class="col-md-2 control-label"><span style="color: red;">*</span> Remetente</label>
 						<div class="col-md-8">
 						
-							<div class="input-group">
 								<?php
 									$jsRemet = 'class="form-control selectpicker" data-style="btn-default" data-live-search="true" id="campoRemetente" onChange="window.location.href=(\''.site_url('documento').'/'.$acao.'/r\' + \'/\' + document.form.campoRemetente.value + \'/t/\' + document.form.campoTipo.value + \'/c/\' + document.form.campoCarimbo.value)"';
 		
 									echo form_dropdown('campoRemetente', $remetentesDisponiveis, $remetenteSelecionado, $jsRemet);
 								?> 
-			
-								<a href="#" class="input-group-addon" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="top" data-html="true" title='<strong>Remetente</strong> <i class="fa fa-question-circle fa-lg" style="color: #428bca;"></i>' data-content="<div class='text-justify'>É quem assina o documento. <br> O remetente está associado a um setor. É possível criar um documento para que outra pessoa o assine. Uma vez que o documento é salvo não se pode alterar o remente.</div>">
-									<i class="fa fa-question-circle fa-lg"></i>
-								</a>	
-							</div>
-							
-						</div>					
+						</div>
+					
+						<div class="col-md-2 text-left">
+							<a href="#" class="btn" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="top" data-html="true" title='<strong>Remetente</strong> <i class="fa fa-question-circle fa-lg" style="color: #428bca;"></i>' data-content="<div class='text-justify'>É quem assina o documento. <br> O remetente está associado a um setor. É possível criar um documento para que outra pessoa o assine. Uma vez que o documento é salvo não se pode alterar o remente.</div>">
+								<i class="fa fa-question-circle fa-lg" style="color: #428bca;"></i>
+							</a>	
+						</div>
 
 					</div>
 					
 					<div class="form-group <?php echo (form_error('campoSetor') != '')? 'has-error':''; ?>">
 						<label for="campoSetor" class="col-sm-2 control-label">Setor</label>
 						<div class="col-md-8">
-							<div class="input-group">
-								<input type="hidden" name="setorId" id="setorId" value="<?php echo $setorId; ?>" />
-								<div class="alert alert-success text-left" style="margin-bottom: 0px; padding: 7px;"><strong><?php echo $campoSetor['value']; ?></strong>&nbsp;</div>
-								
-								<a href="#" class="input-group-addon" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="top" data-html="true" title='<strong>Setor</strong> <i class="fa fa-question-circle fa-lg" style="color: #428bca;"></i>' 
-								data-content="<div class='text-justify'>É a unidade adiministrativa a qual pertence o rementente do documento. <br> Não é possível alterar diretamento o setor, ele muda de acordo com o remetente selecionado.</div>">
-											<i class="fa fa-question-circle fa-lg"></i>
-								</a>
-							</div>
-						</div>	
+							<input type="hidden" name="setorId" id="setorId" value="<?php echo $setorId; ?>" />
+							<div class="alert alert-success text-left" style="margin-bottom: 0px; padding: 7px;"><strong><?php echo $campoSetor['value']; ?></strong>&nbsp;</div>
+							
+						</div>
 						
+						<div class="col-md-2 text-left">
+							<a href="#" class="btn" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="top" data-html="true" title='<strong>Setor</strong> <i class="fa fa-question-circle fa-lg" style="color: #428bca;"></i>' data-content="<div class='text-justify'>É a unidade adiministrativa a qual pertence o rementente do documento. <br> Não é possível alterar diretamento o setor, mas durante a criação do documento é possível mudar o remetente.</div>">
+								<i class="fa fa-question-circle fa-lg" style="color: #428bca;"></i>
+							</a>	
+						</div>
 					</div>
-		  
+					
+					  
+					  
 					<div class="row">
 					  
 					  	<div class="col-md-4">
