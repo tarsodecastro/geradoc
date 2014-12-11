@@ -39,7 +39,7 @@ class Estatistica extends CI_Controller {
 		$this->js[] = 'datepicker/js/jquery.ui.datepicker-pt-BR';
 		$this->js[] = 'estatistica';
 			
-		$data['titulo']         = "EstatÃ­sticas";
+		$data['titulo']         = "Estat’sticas";
 		$data['message']        = '';
 		$data['form_action']	= site_url($this->area);
 		$graph_temp_directory = 'temp';

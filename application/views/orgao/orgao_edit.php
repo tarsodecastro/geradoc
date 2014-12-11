@@ -1,7 +1,7 @@
 <div class="areaimage" >
 	<center>
 		<img src="{TPL_images}companies-icon_2.png" height="72px"/>
-	</cente>
+	</center>
 </div>
 	
 <div id="msg" style="display:none;"><img src="{TPL_images}loader.gif" alt="Enviando" />Aguarde carregando...</div> 

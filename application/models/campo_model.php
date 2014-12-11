@@ -789,8 +789,7 @@ function orgao($indice) {
                 'id' => 'campoDataIni',
                 'value' => $this->input->post('campoDataIni'),
                 'maxgenght' => '10',
-                'size' => '11',
-                'class' => 'textboxUpper',
+                'class' => 'form-control',
             ),
     		
     		'campoDataFim' => array(
@@ -798,8 +797,7 @@ function orgao($indice) {
     			'id' => 'campoDataFim',
     			'value' => $this->input->post('campoDataFim'),
     			'maxgenght' => '10',
-    			'size' => '11',
-    			'class' => 'textboxUpper',
+    			'class' => 'form-control',
     		),
     			
     			
