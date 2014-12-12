@@ -438,7 +438,7 @@ class Workflow extends CI_Controller {
     	redirect('workflow/update/'. $id_doc);
     }
     
-    function workflow_wait(){
+    function suspender_aviso(){
     	$_SESSION['workflow_wait'] = "wait";
     	redirect('documento/index/');
     }
