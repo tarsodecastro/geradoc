@@ -63,7 +63,6 @@ class Workflow extends CI_Controller {
 		
 		$id_setor = $this->session->userdata('setor');
 		
-		
 		// BUSCA
 		$data['keyword_'.$this->area] = '';
 		if(isset($_SESSION['keyword_'.$this->area]) == true and $_SESSION['keyword_'.$this->area] != null){
@@ -107,7 +106,10 @@ class Workflow extends CI_Controller {
 			
 			$setorRemetente = $this->getCaminho($doc->setor);
 			
+			$cor_texto = "";
 			if($objeto->data_recebimento == null){
+				$cor_texto = "text-primary";
+				
 				$botoes = '<a href="'.site_url().'/documento/view/'.$objeto->id_documento.'" class="btn btn-default btn-sm"><i class="cus-zoom"></i> Visualizar</a>
 							<a href="'.site_url().'/workflow/acusar_recebimento/'.$objeto->id_workflow.'" class="btn btn-primary btn-sm" 
 									data-container="body" data-toggle="popover" data-trigger="hover" data-placement="top" data-html="true" 
@@ -116,6 +118,7 @@ class Workflow extends CI_Controller {
 									<span class="glyphicon glyphicon-ok"></span> Acusar recebimento
 							</a>';
 			}else{
+				$cor_texto = "text-muted";
 				$botoes = '<a href="'.site_url().'/documento/view/'.$objeto->id_documento.'" class="btn btn-default btn-sm"><i class="cus-zoom"></i> Visualizar</a>
 							<a href="'.site_url().'/workflow/desfazer_recebimento/'.$objeto->id_workflow.'" class="btn btn-default btn-sm"><i class="cus-cross"></i> Desfazer recebimento</a>
 							<a href="'.site_url().'/workflow/update/'.$objeto->id_documento.'" class="btn btn-success btn-sm"><i class="cus-paper_airplane"></i> Tramitação</a>';
@@ -125,16 +128,14 @@ class Workflow extends CI_Controller {
 				$doc->para = ''; 
 			}
 			
-			$this->table->add_row($objeto->id_workflow, $this->datas->datetimeToBR($objeto->data_envio), 
-					
-				
-					"$tipoNome->abreviacao Nº $doc->numero <br> $setorRemetente",
-
-					$doc->para,
-					
-					$doc->assunto,
-					
-					'<div class="btn-group">'.$botoes.'</div>'
+			
+			$this->table->add_row(
+									'<span class="'.$cor_texto.'">'.$objeto->id_workflow.'</span>', 
+									'<span class="'.$cor_texto.'">'.$this->datas->datetimeToBR($objeto->data_envio).'</span>', 
+									'<span class="'.$cor_texto.'">'."$tipoNome->abreviacao Nº $doc->numero <br> $setorRemetente".'</span>',
+									'<span class="'.$cor_texto.'">'.$doc->para.'</span>',
+									'<span class="'.$cor_texto.'">'.$doc->assunto.'</span>',
+									'<div class="btn-group">'.$botoes.'</div>'
 			);
 						
 		}

@@ -231,5 +231,28 @@ div.DTFC_LeftFootWrapper table {
 
 
 .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
-  background-color: #FFF0BE;
+	/*	default 
+	color: #8a6d3b;
+	*/
+	background-color: #FFF0BE;
+	border-color: #faebcc;
+	
+  
+  	/* amarelo 
+  	color: #8a6d3b;
+    background-color: #fcf8e3;
+    border-color: #faebcc;
+    */
+   
+    /* verde 
+  	color: #3c763d;
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+    */
+    
+    /* azul 
+  	color: #31708f;
+    background-color: #d9edf7;
+    border-color: #bce8f1;
+    */
 }
