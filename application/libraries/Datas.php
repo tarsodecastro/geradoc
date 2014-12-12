@@ -117,7 +117,15 @@
 			$b = explode(' ', $a[2]);
 			$dataBR = $b[0].'/'.$a[1];
 			return $dataBR;
-		}			
+		}		
+
+		public function getMesAnoUS($dateUS){
+			
+			$a = explode('-', $dateUS);
+			$b = explode(' ', $a[2]);
+			$dataBR = $a[1].'/'.$a[0];
+			return $dataBR;
+		}
 
 	}
 ?>

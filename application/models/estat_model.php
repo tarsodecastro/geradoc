@@ -98,7 +98,7 @@ class Estat_model extends CI_Model {
 	
 	
 	function doc_por_periodo($dataIni, $dataFim, $tipoDoc = 0){
-
+		
 
 		$sql = "SELECT DISTINCT d.setor, d.tipo, d.data_criacao, COUNT(DISTINCT d.id) AS totalPorData
 				FROM documento as d, tipo as t ";
@@ -113,13 +113,57 @@ class Estat_model extends CI_Model {
 			
 		}
 
-		$sql = $sql . " GROUP BY DAY(d.data_criacao)
-						ORDER BY d.data_criacao asc";
+	//	echo $this->data_to_number($dataFim) . "<br>";
+		//echo $this->data_to_number($dataFim) . "<br>";
+		
+		if($this->data_to_number($dataFim) - $this->data_to_number($dataIni) <= 60){
+			$sql = $sql . " GROUP BY d.tipo, DAY(d.data_criacao)
+							ORDER BY d.data_criacao asc";
+		}else{
+			$sql = $sql . " GROUP BY d.tipo, DAY(d.data_criacao)
+							ORDER BY d.data_criacao asc";
+			
+		}
 
 		//echo "<br>doc_por_periodo<br> " . $sql;
 		
+		$query = $this->db->query($sql);
+		
+		echo $this->db->last_query() . "<br>";
+		
 		return $this->db->query($sql);
 		
+	}
+	
+	function dias_com_registro ($dataIni, $dataFim, $tipoDoc = 0){
+	
+	
+		$sql = "SELECT DISTINCT  d.tipo, d.data_criacao, COUNT(DISTINCT d.id) AS total
+				FROM documento as d, tipo as t ";
+	
+		if($tipoDoc == 0){
+	
+			$sql = $sql . " WHERE d.tipo = t.id and d.data_criacao >= '$dataIni' and d.data_criacao <= '$dataFim' ";
+	
+		}else{
+	
+			$sql = $sql . " WHERE d.tipo = '$tipoDoc' and d.data_criacao >= '$dataIni' and d.data_criacao <= '$dataFim' ";
+				
+		}
+	
+		$sql = $sql . " GROUP BY d.tipo
+						ORDER BY d.data_criacao asc";
+	
+		//echo "<br>doc_por_periodo<br> " . $sql;
+		
+		$query = $this->db->query($sql);
+		
+		//echo $this->db->last_query() . "<br>";
+		
+		//print_r($query->result_array());
+	
+		return $query;
+	
 	}
 	
 	
@@ -132,13 +176,16 @@ class Estat_model extends CI_Model {
 		$sql = $sql . " WHERE d.tipo = t.id and d.data_criacao >= '$dataIni' and d.data_criacao <= '$dataFim' ";
 	
 	
-		$sql = $sql . " GROUP BY t.id
+		$sql = $sql . " GROUP BY d.tipo
 						ORDER BY d.data_criacao asc";
 	
 	
-		//echo "<br>doc_por_periodo<br> " . $sql;
+		$query = $this->db->query($sql);
+		
+		//echo $this->db->last_query() . "<br>";
+		
 	
-		return $this->db->query($sql);
+		return $query;
 	
 	}
 	
@@ -181,6 +228,18 @@ class Estat_model extends CI_Model {
 						FROM tipo
 						WHERE id = $id";
                 return $this->db->query($sql);
+	}
+	
+	public function data_to_number($data){
+		
+		$pre_array = explode(' ', $data);
+	
+		$array_data = explode('-', $pre_array[0]);
+			
+		$numero = $array_data[0].$array_data[1].$array_data[2];
+	
+		return $numero;
+	
 	}
 
 }
