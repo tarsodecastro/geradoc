@@ -30,13 +30,18 @@ class Estat_model extends CI_Model {
 
 	
 	
-	function docs_por_tipo_no_periodo($dataIni, $dataFim){
+	function docs_por_tipo_no_periodo($dataIni, $dataFim, $tipo){
 	
 		$sql = "SELECT d.setor, d.tipo, t.nome, d.data_criacao, COUNT(d.id) AS totalPorTipo
 				FROM documento as d, tipo as t ";
 	
-		$sql = $sql . " WHERE d.tipo = t.id and d.data_criacao >= '$dataIni' and d.data_criacao <= '$dataFim' ";
-	
+		if($tipo == 0){
+			$sql = $sql . " WHERE d.tipo = t.id and d.data_criacao >= '$dataIni' and d.data_criacao <= '$dataFim' ";
+		}else{
+			$sql = $sql . " WHERE d.tipo = '$tipo' and d.tipo = t.id and d.data_criacao >= '$dataIni' and d.data_criacao <= '$dataFim' ";
+		}
+		
+		
 		$sql = $sql . " GROUP BY d.tipo
 						ORDER BY d.data_criacao asc";
 		

@@ -74,12 +74,12 @@ class Estatistica extends CI_Controller {
 		$data['tipos'] = $arrayTipos;
 		$data['tipoSelecionado'] = $this->input->post('campoTipo') ? $this->input->post('campoTipo') : 0;
 
-
 /*
 |--------------------------------------------------------------------------
 | Popula os campos do formulario com valores inicais
 |--------------------------------------------------------------------------
 */
+		$objeto_do_form['tipo'] = $data['tipoSelecionado'] ;
 
 		if($this->input->post('campoDataIni')){
 			$objeto_do_form['dataIni']		= $this->input->post('campoDataIni');
@@ -116,7 +116,7 @@ class Estatistica extends CI_Controller {
 | Monta o primeiro grafico (de pizza)
 |--------------------------------------------------------------------------
 */
-		$linhas = $this->Estat_model->docs_por_tipo_no_periodo($objeto_do_form['dataIni'], $objeto_do_form['dataFim']);
+		$linhas = $this->Estat_model->docs_por_tipo_no_periodo($objeto_do_form['dataIni'], $objeto_do_form['dataFim'], $objeto_do_form['tipo']);
 		
 		$data['grafico_1_titulo'] = "Sem registros";
 		$data['grafico_1_dados'] = "";
