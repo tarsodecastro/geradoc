@@ -70,7 +70,7 @@
 
 			?> 
 		
-			<div id="grafico1" style="width:600px;height:350px; margin: 0 auto; margin-bottom: 30px;"></div>
+			<div id="grafico1" style="width:600px;height:300px; margin: 0 auto; margin-bottom: 30px;"></div>
 			
 			<div id="grafico2" style="width:800px;height:400px; margin: 0 auto; margin-bottom: 30px;"></div>
 			
@@ -96,21 +96,30 @@ $(document).ready(function() {
     $( "#campoDataFim" ).datepicker();
 
 
+    Highcharts.setOptions({
+        lang: {
+            decimalPoint: ',',
+            thousandsSep: '.'
+        }
+    });
+    
     $('#grafico1').highcharts({
 
     	//colors: ['#7cb5ec', '#f7a35c', '#90ee7e', '#7798BF', '#aaeeee', '#FFFF00', '#55BF3B', '#FF0000','#00FF00', '#8085e9', '#0000FF', '#2b908f', '#CC9900', '#CCCCCC','#7cb5ec', '#ED561B', '#4572A7', '#AA4643', '#89A54E', '#80699B', '#3D96AE', '#DB843D', '#92A8CD', '#A47D7C', '#B5CA92'],
 
-        
         chart: {
         	borderColor: '#CCC',
             borderWidth: 1,
             type: 'line'
         },
         title: {
-            text: '<?php echo $grafico_1_titulo; ?>'
+            text: '<?php echo $grafico_1_titulo; ?>',
+            style: {
+            	"fontSize": "12pt" 
+            }
         },
         tooltip: {
-            pointFormat: '{series.name}: <b>{point.y:f}</b>'
+            pointFormat: '{series.name}: <b>{point.y:,.0f}</b>'
         },
         plotOptions: {
             pie: {
@@ -118,7 +127,7 @@ $(document).ready(function() {
                 cursor: 'pointer',
                 dataLabels: {
                     enabled: true,
-                    format: '<b>{point.name}</b>: {point.y:f}',
+                    format: '<b>{point.name}</b>: {point.y:,.0f}',
                     style: {
                         color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
                     }
@@ -133,13 +142,11 @@ $(document).ready(function() {
     });
 
 
-
+/*
 
     $('#grafico2').highcharts({
 
     	//colors: ['#7cb5ec', '#f7a35c', '#90ee7e', '#7798BF', '#aaeeee', '#FFFF00', '#55BF3B', '#FF0000','#00FF00', '#8085e9', '#0000FF', '#2b908f', '#CC9900', '#CCCCCC','#7cb5ec', '#ED561B', '#4572A7', '#AA4643', '#89A54E', '#80699B', '#3D96AE', '#DB843D', '#92A8CD', '#A47D7C', '#B5CA92'],
-
-        
     	 chart: {
              borderColor: '#CCC',
              borderWidth: 1,
@@ -151,7 +158,7 @@ $(document).ready(function() {
         },
 
         xAxis: {
-            categories: [<?php echo $grafico_2_valores_eixo_x; ?>],
+            categories: [<?php echo $grafico_2_valores_X; ?>],
             labels:{
             	rotation: -75
             }
@@ -177,11 +184,11 @@ $(document).ready(function() {
         },
        
         series: [
-				<?php echo $grafico_2_valores_eixo_y; ?>
+				<?php echo $grafico_2_valores_Y; ?>
         ]
     });
     
-
+*/
     
 } );
 

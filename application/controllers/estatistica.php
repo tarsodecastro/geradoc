@@ -104,127 +104,50 @@ class Estatistica extends CI_Controller {
 				
 		}
 		
+		$dataIniForm = $objeto_do_form['dataIni'];
+		$dataFimForm = $objeto_do_form['dataFim'];
+		
 		$objeto_do_form['dataIni']			= $this->datas->dateToUS($objeto_do_form['dataIni']) . ' 00:00:00';
 		$objeto_do_form['dataFim'] 			= $this->datas->dateToUS($objeto_do_form['dataFim']) . ' 23:59:59';
 		
-		
-			
-/*
-|--------------------------------------------------------------------------
-| Monta o primeiro grafico
-|--------------------------------------------------------------------------
-*/	
-		$ydataG1[0] = 0;
-		$ydataG1[1] = 0;
-		$xdataG1[0] = 0;
-		$xdataG1[1] = 0;
-
-		$objs_g1 = $this->Estat_model->doc_por_periodo($objeto_do_form['dataIni'], $objeto_do_form['dataFim'], $data['tipoSelecionado'])->result();
-		
-		//echo $this->db->last_query();
-
-		$data['grafico_2_dados'] = "	{
-									            name: 'Tokyo',
-									            data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
-									        },
-					
-									        {
-									            name: 'New York',
-									            data: [-0.2, 0.8, 5.7, 11.3, 17.0, 22.0, 24.8, 24.1, 20.1, 14.1, 8.6, 2.5]
-									        },
-					
-									        {
-									            name: 'Berlin',
-									            data: [-0.9, 0.6, 3.5, 8.4, 13.5, 17.0, 18.6, 17.9, 14.3, 9.0, 3.9, 1.0]
-									        },
-					
-									        {
-									            name: 'London',
-									            data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
-									        }";
-
-		$data['grafico_2_valores_eixo_x'] = '';
-		
-		$data['grafico_2_valores_eixo_y'] = '';
-		
-		$dias_com_registro = $this->Estat_model->dias_com_registro($objeto_do_form['dataIni'], $objeto_do_form['dataFim'], $data['tipoSelecionado'])->result();
-		
-		
-// 		echo "<pre>";
-// 		print_r($dias_com_registro);
-// 		echo "/<pre>";
-		
-		foreach ($dias_com_registro as $dia){
-			
-			$data['grafico_2_valores_eixo_y'] .= "{
-										            name: '".$this->get_nome_tipo_doc($dia->tipo)."',
-										             data: [";
-			
-					foreach ($objs_g1 as $key => $obj_g1) {
-
-							$data['grafico_2_valores_eixo_x'] .= "'".$this->datas->getDiaMesUS($obj_g1->data_criacao) . "',";							
-							
-							if($obj_g1->tipo == $dia->tipo){
-								
-								$data['grafico_2_valores_eixo_y'] .= $obj_g1->totalPorData.",";
-							}
-				
-					}
-			
-			$data['grafico_2_valores_eixo_y'] .= "]},";
-			
-		}
-		
-		$Qtd = $this->Estat_model->conta_doc_por_periodo($objeto_do_form['dataIni'], $objeto_do_form['dataFim'], $data['tipoSelecionado'])->row()->total;
-
-		if($data['tipoSelecionado'] == 0){
-			
-			$Qtd = $nombre_format_francais = number_format($Qtd, 0, '', '.');
-			
-			$graph_1_titulo = $Qtd . " registros entre: <br>";
-			
-
-		}else{
-
-			$nomeDoc = $this->Estat_model->get_tipo($data['tipoSelecionado'])->row()->nome;
-
-			$graph_1_titulo = $Qtd . " registros do tipo " . $nomeDoc . " entre: <br>";
-
-		}
-
-		$graph_1_titulo = $graph_1_titulo . $this->datas->datetimeToBR($objeto_do_form['dataIni']) . ' e ' . $this->datas->datetimeToBR($objeto_do_form['dataFim']);
-
-		$data['grafico_2_titulo'] = $graph_1_titulo;
-
 
 /*
 |--------------------------------------------------------------------------
-| Monta o segundo grafico
+| Monta o primeiro grafico (de pizza)
 |--------------------------------------------------------------------------
 */
-		$objs_g2 = $this->Estat_model->qtd_doc_por_periodo($objeto_do_form['dataIni'], $objeto_do_form['dataFim'])->result();
-
-		$data['grafico_1_dados'] = "";
+		$linhas = $this->Estat_model->docs_por_tipo_no_periodo($objeto_do_form['dataIni'], $objeto_do_form['dataFim']);
 		
-		$data['grafico_1_titulo'] = 'Documentos produzidos entre '.$this->datas->get_date_US_to_BR($objeto_do_form['dataIni']).' e ' . $this->datas->get_date_US_to_BR($objeto_do_form['dataFim']);
+		$data['grafico_1_titulo'] = "Sem registros";
+		$data['grafico_1_dados'] = "";
 			
-		if($objs_g2){
-			
+		if(count($linhas) > 0){
+
 			$data['grafico_1_dados'] = '';
 			
-			foreach ($objs_g2 as $key => $obj_2) {
-			
-				$xdata2[$key] = $obj_2->nome;
-				$ydata2[$key] = $obj_2->totalPorData;
-	
-				$data['grafico_1_dados'] .= "['". $obj_2->nome ."',". $obj_2->totalPorData . "],";
+			$total = 0;
+				
+			foreach ($linhas as $key => $item) {
 
-			}
-
-		}
+				$data['grafico_1_dados'] .= "['". $item['nome'] ."',". $item['totalPorTipo'] . "],";
+				
+				$total += $item['totalPorTipo'];
 		
-		$this->load->view($this->area.'/'.$this->area.'_view', $data);
+			}
+			
+			$data['grafico_1_titulo'] = number_format($total, 0, ',', '.') . ' documentos produzidos entre <br>'.$this->datas->get_date_US_to_BR($objeto_do_form['dataIni']).' e ' . $this->datas->get_date_US_to_BR($objeto_do_form['dataFim']);
+					
+		}
 
+/*
+|--------------------------------------------------------------------------
+| Fim do primeiro grafico
+|--------------------------------------------------------------------------
+*/
+
+
+		$this->load->view($this->area.'/'.$this->area.'_view', $data);
+		
 	}
 
 
