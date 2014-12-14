@@ -190,6 +190,29 @@ class Estat_model extends CI_Model {
 	}
 	*/
 	
+	function get_total_ocultos($dataIni, $dataFim, $tipo, $setor){
+	
+		$sql = "SELECT d.oculto, COUNT(d.id) AS total
+				FROM documento as d ";
+	
+		$sql .= "WHERE d.data_criacao >= '$dataIni' and d.data_criacao <= '$dataFim' ";
+	
+		$sql = $sql . " GROUP BY d.oculto
+						ORDER BY d.oculto asc";
+	
+		$query = $this->db->query($sql)->result_array();
+	
+		// 		echo "<pre>";
+		// 		print_r($query);
+		// 		echo "</pre>";
+	
+		//exit;
+		//echo $this->db->last_query() . "<br>";
+	
+		return $query;
+	
+	}
+	
 	
  	function get_setor($id){
 

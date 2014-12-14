@@ -168,14 +168,14 @@ class Estatistica extends CI_Controller {
 			}
 	
 			if($objeto_do_form['tipo'] == 0){
-				$data['grafico_1_titulo'] = 'Total de ' . number_format($total, 0, ',', '.') . ' documentos produzidos entre <br>'.$this->datas->get_date_US_to_BR($objeto_do_form['dataIni']).' e ' . $this->datas->get_date_US_to_BR($objeto_do_form['dataFim']);
+				$data['grafico_1_titulo'] = 'Total de ' . number_format($total, 0, ',', '.') . ' documentos produzidos <br> entre '.$this->datas->get_date_US_to_BR($objeto_do_form['dataIni']).' e ' . $this->datas->get_date_US_to_BR($objeto_do_form['dataFim']);
 			}else{
-				$data['grafico_1_titulo'] = 'Total de ' . number_format($total, 0, ',', '.') . ' documentos do tipo <strong>'.$this->get_nome_tipo_doc($objeto_do_form['tipo']).'</strong> produzidos entre <br>'.$this->datas->get_date_US_to_BR($objeto_do_form['dataIni']).' e ' . $this->datas->get_date_US_to_BR($objeto_do_form['dataFim']);
+				$data['grafico_1_titulo'] = 'Total de ' . number_format($total, 0, ',', '.') . ' documentos do tipo <strong>'.$this->get_nome_tipo_doc($objeto_do_form['tipo']).'</strong> produzidos <br> entre '.$this->datas->get_date_US_to_BR($objeto_do_form['dataIni']).' e ' . $this->datas->get_date_US_to_BR($objeto_do_form['dataFim']);
 			}		
 		}
 		
 	
-		$data['grafico_1'] = '<div id="grafico1" style="width:600px;height:300px; margin: 0 auto; margin-bottom: 30px;"></div>';
+		$data['grafico_1'] = '<div id="grafico1" style="width:99%; height:320px; margin: 0 auto; margin-bottom: 30px;"></div>';
 	
 
 /*
@@ -201,16 +201,8 @@ class Estatistica extends CI_Controller {
 		$data['grafico_2_valores_Y'] = '';
 			
 		if(count($linhas2) > 0){
-		
-			
-				
+						
 			$total = 0;
-			
-// 			echo "<pre>";
-// 			print_r($linhas2);
-// 			echo "</pre>";
-			
-// 			exit;
 			
 			$meses = array();
 			foreach ($linhas2 as $key => $item) {
@@ -218,29 +210,7 @@ class Estatistica extends CI_Controller {
 				$data['grafico_2_valores_X'] .= "'". $this->get_nome_mes($item['mes']) ."',";
 				
 				$meses[$key] = $item['mes'];
-				
-				/*
-				$data['grafico_2_valores_Y'] .= "{
-										            name: '". $item['nome'] ."',
-										            data: [";
-				
-				 
-				
-				$total_por_tipo = $this->Estat_model->get_total_mes_tipo($objeto_do_form['dataIni'], $objeto_do_form['dataFim'], $item['tipo'] , 0);
-				
-				
-				if(!empty($total_por_tipo)){
-					
-					$data['grafico_2_valores_Y'] .= $total_por_tipo['0']['totalPorTipo'] .",";
-					
-				}else{
-					
-					$data['grafico_2_valores_Y'] .= "0,";
-				}
-				
-				$data['grafico_2_valores_Y'] .= "]},";
-				*/
-		
+
 				$total += $item['totalPorTipo'];
 		
 			}
@@ -275,30 +245,74 @@ class Estatistica extends CI_Controller {
 			
 				$data['grafico_2_valores_Y'] .= "]},";
 			
-			
-				//$total += $total_por_tipo['0']['totalPorTipo'];
-			
 			}
-
-			
-			//$data['grafico_2_valores_Y'] .= ']';
-			
-			//$data['grafico_2_valores_X'] .= "]";
 		
 			if($objeto_do_form['tipo'] == 0){
-				$data['grafico_2_titulo'] = 'Quantidade de documentos produzidos por mês entre <br>'.$this->datas->get_date_US_to_BR($objeto_do_form['dataIni']).' e ' . $this->datas->get_date_US_to_BR($objeto_do_form['dataFim']);
+				$data['grafico_2_titulo'] = 'Quantidade de documentos produzidos por mês <br> entre '.$this->datas->get_date_US_to_BR($objeto_do_form['dataIni']).' e ' . $this->datas->get_date_US_to_BR($objeto_do_form['dataFim']);
 			}else{
-				$data['grafico_2_titulo'] = 'Quantidade de documentos do tipo <strong>'.$this->get_nome_tipo_doc($objeto_do_form['tipo']).'</strong> produzidos por mês entre <br>'.$this->datas->get_date_US_to_BR($objeto_do_form['dataIni']).' e ' . $this->datas->get_date_US_to_BR($objeto_do_form['dataFim']);
+				$data['grafico_2_titulo'] = 'Quantidade de documentos do tipo <strong>'.$this->get_nome_tipo_doc($objeto_do_form['tipo']).'</strong> produzidos por mês <br> entre '.$this->datas->get_date_US_to_BR($objeto_do_form['dataIni']).' e ' . $this->datas->get_date_US_to_BR($objeto_do_form['dataFim']);
 			}
+			
+			$data['grafico_2'] = '<div id="grafico2" style="width:99%; height:320px; margin: 0 auto; margin-bottom: 30px;"></div>';
+			
 		}
 		
-		$data['grafico_2'] = '<div id="grafico2" style="width:800px;height:400px; margin: 0 auto; margin-bottom: 30px;"></div>';
+		
 
 /*
 |--------------------------------------------------------------------------
 | Fim do grafico 2
 |--------------------------------------------------------------------------
 */
+		
+/*
+|--------------------------------------------------------------------------
+| Grafico 3
+|--------------------------------------------------------------------------
+*/
+		$linhas4 = $this->Estat_model->get_total_ocultos($objeto_do_form['dataIni'], $objeto_do_form['dataFim'], $objeto_do_form['tipo'], $objeto_do_form['setor']);
+		
+		$data['grafico_3'] = '';
+		$data['grafico_3_titulo'] = "Sem registros";
+		$data['grafico_3_dados'] = "";
+			
+		if(count($linhas4) > 0){
+		
+			$data['grafico_3_dados'] = '';
+				
+			$total = 0;
+		
+			foreach ($linhas4 as $key => $item) {
+				
+				if($item['oculto'] == 'S'){
+					$legenda = 'Privados';
+				}else{
+					$legenda = 'Públicos';
+				}
+		
+				$data['grafico_3_dados'] .= "['". $legenda ."',". $item['total'] . "],";
+		
+				$total += $item['total'];
+		
+			}
+		
+			if($objeto_do_form['tipo'] == 0){
+				$data['grafico_3_titulo'] = 'Total de ' . number_format($total, 0, ',', '.') . ' documentos produzidos <br> entre '.$this->datas->get_date_US_to_BR($objeto_do_form['dataIni']).' e ' . $this->datas->get_date_US_to_BR($objeto_do_form['dataFim']);
+			}else{
+				$data['grafico_3_titulo'] = 'Total de ' . number_format($total, 0, ',', '.') . ' documentos do tipo <strong>'.$this->get_nome_tipo_doc($objeto_do_form['tipo']).'</strong> produzidos <br> entre '.$this->datas->get_date_US_to_BR($objeto_do_form['dataIni']).' e ' . $this->datas->get_date_US_to_BR($objeto_do_form['dataFim']);
+			}
+		}
+		
+		
+		$data['grafico_3'] = '<div id="grafico3" style="width:99%; height:320px; margin: 0 auto; margin-bottom: 30px;"></div>';
+		
+		
+/*
+|--------------------------------------------------------------------------
+| Fim do grafico 3
+|--------------------------------------------------------------------------
+*/
+		
 		$this->load->view($this->area.'/'.$this->area.'_view', $data);
 		
 	}
