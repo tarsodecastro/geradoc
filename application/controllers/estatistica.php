@@ -84,6 +84,7 @@ class Estatistica extends CI_Controller {
 		$objSetores = $this->Setor_model->list_all()->result();
 
 		$arraySetores[0] = "TODOS";
+		
 		foreach ($objSetores as $item) {
 			
 			$setor =  $this->Setor_model->get_by_id($item->id)->row();
@@ -165,8 +166,7 @@ class Estatistica extends CI_Controller {
 				$total += $item['totalPorTipo'];
 		
 			}
-			
-			
+	
 			if($objeto_do_form['tipo'] == 0){
 				$data['grafico_1_titulo'] = number_format($total, 0, ',', '.') . ' documentos produzidos entre <br>'.$this->datas->get_date_US_to_BR($objeto_do_form['dataIni']).' e ' . $this->datas->get_date_US_to_BR($objeto_do_form['dataFim']);
 			}else{

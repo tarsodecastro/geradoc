@@ -22,7 +22,7 @@
 			<div class="panel panel-primary">
 			
 				<div class="panel-heading">
-			    	<h3 class="panel-title">Estatísticas</h3>
+			    	<h3 class="panel-title">Filtros para estatísticas</h3>
 			  	</div>
 			
 				<div class="panel-body">
@@ -143,8 +143,7 @@ $(document).ready(function() {
     });
 
 
-/*
-
+    <?php if( $grafico_2 != '') { ?>
     $('#grafico2').highcharts({
 
     	//colors: ['#7cb5ec', '#f7a35c', '#90ee7e', '#7798BF', '#aaeeee', '#FFFF00', '#55BF3B', '#FF0000','#00FF00', '#8085e9', '#0000FF', '#2b908f', '#CC9900', '#CCCCCC','#7cb5ec', '#ED561B', '#4572A7', '#AA4643', '#89A54E', '#80699B', '#3D96AE', '#DB843D', '#92A8CD', '#A47D7C', '#B5CA92'],
@@ -189,7 +188,7 @@ $(document).ready(function() {
         ]
     });
     
-*/
+    <?php } ?>
     
 } );
 

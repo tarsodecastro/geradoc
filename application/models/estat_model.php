@@ -26,9 +26,7 @@ class Estat_model extends CI_Model {
 		return $this->db->query($sql);
 		
 	}
-	
 
-	
 	
 	function docs_por_tipo_no_periodo($dataIni, $dataFim, $tipo, $setor){
 	
@@ -47,7 +45,6 @@ class Estat_model extends CI_Model {
 		
 		$sql .= "d.tipo = t.id and d.data_criacao >= '$dataIni' and d.data_criacao <= '$dataFim'";
 		
-
 		$sql = $sql . " GROUP BY d.tipo
 						ORDER BY d.data_criacao asc";
 		
@@ -59,8 +56,6 @@ class Estat_model extends CI_Model {
 	
 	}
 	
-
-
 	
  	function get_setor($id){
 
