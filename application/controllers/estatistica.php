@@ -215,7 +215,7 @@ class Estatistica extends CI_Controller {
 			$meses = array();
 			foreach ($linhas2 as $key => $item) {
 		
-				$data['grafico_2_valores_X'] .= "'". $item['mes'] ."',";
+				$data['grafico_2_valores_X'] .= "'". $this->get_nome_mes($item['mes']) ."',";
 				
 				$meses[$key] = $item['mes'];
 				
@@ -321,6 +321,55 @@ class Estatistica extends CI_Controller {
 		$nome = $this->Tipo_model->get_by_id($id_tipo_doc)->row();
 	
 		return $nome->nome;
+	
+	}
+	
+	public function get_nome_mes($mes){
+			
+		
+		$nome = '';
+		
+		switch ($mes) {
+			case 1:
+				$nome = "Janeiro";
+				break;
+			case 2:
+				$nome = "Fevereiro";
+				break;
+			case 3:
+				$nome = "Março";
+				break;
+			case 4:
+				$nome = "Abril";
+				break;
+			case 5:
+				$nome = "Maio";
+				break;
+			case 6:
+				$nome = "Junho";
+				break;
+			case 7:
+				$nome = "Julho";
+				break;
+			case 8:
+				$nome = "Agosto";
+				break;
+			case 9:
+				$nome = "Setembro";
+				break;
+			case 10:
+				$nome = "Outubro";
+				break;
+			case 11:
+				$nome = "Novembro";
+				break;
+			case 12:
+				$nome = "Dezembro";
+				break;
+			
+		}	
+	
+		return $nome;
 	
 	}
 

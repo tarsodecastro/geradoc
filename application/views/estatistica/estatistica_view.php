@@ -6,7 +6,11 @@
 	</center>
 </div>	
 
-<div id="msg" style="display:none;"><img src="{TPL_images}loader.gif" alt="Enviando" />Aguarde carregando...</div> 
+<div id="msg" style="display: none; padding: 13px;">
+
+	 <h4><img src="{TPL_images}loader.gif" class="img_aling2" alt="Carregando" height="21px"/> &nbsp; Aguarde, carregando... </h4>
+	
+</div>
 
 <div id="view_content">	
 
@@ -22,6 +26,7 @@
 			<div class="panel panel-primary">
 			
 				<div class="panel-heading">
+				
 			    	<h3 class="panel-title">Filtros para estatísticas</h3>
 			  	</div>
 			
@@ -54,7 +59,7 @@
 						 </div>
 
 					<div class="form-group">
-					<input type="submit" class="btn btn-primary btn-lg" value="Consultar" title="Consultar" />
+					<input type="submit" id="btn_consultar" class="btn btn-primary btn-lg" value="Consultar" title="Consultar" />
 				</div>
 				 </div>
 				 
@@ -91,6 +96,30 @@
 <script type="text/javascript">
 
 $(document).ready(function() {
+
+	//--- Loading ---//
+	
+	 $('#btn_consultar').click(function() { 
+         $.blockUI({ 
+        	 message: $('#msg'),
+        	 overlayCSS: { backgroundColor: '#000', opacity: 0.8, cursor: 'default'},
+        	 css: { 
+                 top: '150px',
+                 left: ($(window).width() - 300) /2 + 'px', 
+                 width: '300px',
+                 cursor: 'default' 
+             } 
+         
+         }); 
+         $('.blockOverlay').attr('title','Click to unblock').click($.unblockUI); 
+     }); 
+
+     $('#bt_cancelar').click(function() { 
+         setTimeout($.unblockUI); 
+     });
+    
+       
+	//--- Fim do loading ---//
 
 	$.datepicker.setDefaults( $.datepicker.regional[ "pt-BR" ] );
     $( "#campoDataIni" ).datepicker();
@@ -163,7 +192,8 @@ $(document).ready(function() {
         xAxis: {
             categories: [<?php echo $grafico_2_valores_X; ?>],
             labels:{
-            	rotation: -75
+            	rotation: -50,
+            	x: 10
             }
         },
         yAxis: {
