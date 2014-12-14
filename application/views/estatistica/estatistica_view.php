@@ -155,7 +155,7 @@ $(document).ready(function() {
         title: {
             text: '<?php echo $grafico_2_titulo; ?>',
             style: {
-            	"fontSize": "12pt" 
+            	"fontSize": "11pt" 
             },
             x: -20 //center
         },
