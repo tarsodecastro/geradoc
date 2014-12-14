@@ -183,10 +183,120 @@ class Estatistica extends CI_Controller {
 | Fim do primeiro grafico
 |--------------------------------------------------------------------------
 */
+				
+/*
+|--------------------------------------------------------------------------
+| Grafico 2
+|--------------------------------------------------------------------------
+*/
 
+		$linhas2 = $this->Estat_model->docs_por_tipo_no_periodo_g2($objeto_do_form['dataIni'], $objeto_do_form['dataFim'], $objeto_do_form['tipo'], $objeto_do_form['setor']);
+		
 		$data['grafico_2'] = '';
-		//$data['grafico_2'] = '<div id="grafico2" style="width:800px;height:400px; margin: 0 auto; margin-bottom: 30px;"></div>';
+		$data['grafico_2_titulo'] = "Sem registros";
+		$data['grafico_2_dados'] = "";
+			
+		if(count($linhas2) > 0){
+		
+			$data['grafico_2_valores_X'] = '';
+			
+			$data['grafico_2_valores_Y'] = '';
+				
+			$total = 0;
+			
+// 			echo "<pre>";
+// 			print_r($linhas2);
+// 			echo "</pre>";
+			
+// 			exit;
+			
+			$meses = array();
+			foreach ($linhas2 as $key => $item) {
+		
+				$data['grafico_2_valores_X'] .= "'". $item['mes'] ."',";
+				
+				$meses[$key] = $item['mes'];
+				
+				/*
+				$data['grafico_2_valores_Y'] .= "{
+										            name: '". $item['nome'] ."',
+										            data: [";
+				
+				 
+				
+				$total_por_tipo = $this->Estat_model->get_total_mes_tipo($objeto_do_form['dataIni'], $objeto_do_form['dataFim'], $item['tipo'] , 0);
+				
+				
+				if(!empty($total_por_tipo)){
+					
+					$data['grafico_2_valores_Y'] .= $total_por_tipo['0']['totalPorTipo'] .",";
+					
+				}else{
+					
+					$data['grafico_2_valores_Y'] .= "0,";
+				}
+				
+				$data['grafico_2_valores_Y'] .= "]},";
+				*/
+		
+				$total += $item['totalPorTipo'];
+		
+			}
+			
+			
+			$linhas3 = $this->Estat_model->get_tipos_periodo($objeto_do_form['dataIni'], $objeto_do_form['dataFim'], $objeto_do_form['setor']);
+			
+			
+			foreach ($linhas3 as $key => $item) {
+			
 
+				 $data['grafico_2_valores_Y'] .= "{
+				name: '". $item['nome'] ."',
+				data: [";
+
+				foreach ($meses as $mes){
+					
+						//$total_por_tipo = $this->Estat_model->get_total_tipo_datas($objeto_do_form['dataIni'], $objeto_do_form['dataFim'], $item['tipo'] , 0);
+
+						$total_por_tipo = $this->Estat_model->get_total_tipo_mes($objeto_do_form['dataIni'], $objeto_do_form['dataFim'], $mes, $item['tipo'] , 0);
+						
+					
+						if(!empty($total_por_tipo)){
+							
+							$data['grafico_2_valores_Y'] .= $total_por_tipo['0']['totalPorTipo'] .",";
+							
+						}else{
+							
+							$data['grafico_2_valores_Y'] .= "0,";
+						}
+				}
+			
+				$data['grafico_2_valores_Y'] .= "]},";
+			
+			
+				//$total += $total_por_tipo['0']['totalPorTipo'];
+			
+			}
+
+			
+			//$data['grafico_2_valores_Y'] .= ']';
+			
+			//$data['grafico_2_valores_X'] .= "]";
+		
+			if($objeto_do_form['tipo'] == 0){
+				$data['grafico_2_titulo'] = number_format($total, 0, ',', '.') . ' documentos produzidos entre <br>'.$this->datas->get_date_US_to_BR($objeto_do_form['dataIni']).' e ' . $this->datas->get_date_US_to_BR($objeto_do_form['dataFim']);
+			}else{
+				$data['grafico_2_titulo'] = number_format($total, 0, ',', '.') . ' documentos do tipo <strong>'.$this->get_nome_tipo_doc($objeto_do_form['tipo']).'</strong> produzidos entre <br>'.$this->datas->get_date_US_to_BR($objeto_do_form['dataIni']).' e ' . $this->datas->get_date_US_to_BR($objeto_do_form['dataFim']);
+			}
+		}
+		
+		$data['grafico_2'] = '<div id="grafico2" style="width:800px;height:400px; margin: 0 auto; margin-bottom: 30px;"></div>';
+
+/*
+|--------------------------------------------------------------------------
+| Fim do grafico 2
+|--------------------------------------------------------------------------
+*/
 		$this->load->view($this->area.'/'.$this->area.'_view', $data);
 		
 	}
