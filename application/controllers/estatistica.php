@@ -131,7 +131,7 @@ class Estatistica extends CI_Controller {
 		$data['erro'] = '';
 		if($this->data_to_number($objeto_do_form['dataIni']) > $this->data_to_number($objeto_do_form['dataFim'])){
 				
-			$data['erro'] =  '<div class="alert alert-danger" role="alert"><i class="fa fa-exclamation-triangle fa-2x"></i> <br> A data inicial informada é maior que a data final!</div>';
+			$data['erro'] =  '<div class="alert alert-danger text-center" role="alert"><i class="fa fa-exclamation-triangle fa-2x"></i> <br> A data inicial informada é maior que a data final!</div>';
 				
 		}
 		
@@ -147,19 +147,19 @@ class Estatistica extends CI_Controller {
 | Monta o primeiro grafico (de pizza)
 |--------------------------------------------------------------------------
 */
-		$linhas = $this->Estat_model->docs_por_tipo_no_periodo($objeto_do_form['dataIni'], $objeto_do_form['dataFim'], $objeto_do_form['tipo'], $objeto_do_form['setor']);
+		$linhas_g1 = $this->Estat_model->docs_por_tipo_no_periodo($objeto_do_form['dataIni'], $objeto_do_form['dataFim'], $objeto_do_form['tipo'], $objeto_do_form['setor']);
 		
 		$data['grafico_1'] = '';
 		$data['grafico_1_titulo'] = "Sem registros";
 		$data['grafico_1_dados'] = "";
 			
-		if(count($linhas) > 0){
+		if(count($linhas_g1) > 0){
 
 			$data['grafico_1_dados'] = '';
 			
 			$total = 0;
 				
-			foreach ($linhas as $key => $item) {
+			foreach ($linhas_g1 as $key => $item) {
 
 				$data['grafico_1_dados'] .= "['". $item['nome'] ."',". $item['totalPorTipo'] . "],";
 				
@@ -168,9 +168,9 @@ class Estatistica extends CI_Controller {
 			}
 	
 			if($objeto_do_form['tipo'] == 0){
-				$data['grafico_1_titulo'] = 'Total de ' . number_format($total, 0, ',', '.') . ' documentos produzidos <br> entre '.$this->datas->get_date_US_to_BR($objeto_do_form['dataIni']).' e ' . $this->datas->get_date_US_to_BR($objeto_do_form['dataFim']);
+				$data['grafico_1_titulo'] = 'Total de ' . number_format($total, 0, ',', '.') . ' documentos produzidos <br> <span style="font-size: 10pt"> entre '.$this->datas->get_date_US_to_BR($objeto_do_form['dataIni']).' e ' . $this->datas->get_date_US_to_BR($objeto_do_form['dataFim'].'</span>');
 			}else{
-				$data['grafico_1_titulo'] = 'Total de ' . number_format($total, 0, ',', '.') . ' documentos do tipo <strong>'.$this->get_nome_tipo_doc($objeto_do_form['tipo']).'</strong> produzidos <br> entre '.$this->datas->get_date_US_to_BR($objeto_do_form['dataIni']).' e ' . $this->datas->get_date_US_to_BR($objeto_do_form['dataFim']);
+				$data['grafico_1_titulo'] = 'Total de ' . number_format($total, 0, ',', '.') . ' documentos do tipo <strong>'.$this->get_nome_tipo_doc($objeto_do_form['tipo']).'</strong> produzidos <br> <span style="font-size: 10pt"> entre '.$this->datas->get_date_US_to_BR($objeto_do_form['dataIni']).' e ' . $this->datas->get_date_US_to_BR($objeto_do_form['dataFim'].'</span>');
 			}		
 		}
 		
@@ -190,7 +190,7 @@ class Estatistica extends CI_Controller {
 |--------------------------------------------------------------------------
 */
 
-		$linhas2 = $this->Estat_model->docs_por_tipo_no_periodo_g2($objeto_do_form['dataIni'], $objeto_do_form['dataFim'], $objeto_do_form['tipo'], $objeto_do_form['setor']);
+		$linhas_g2 = $this->Estat_model->docs_por_tipo_no_periodo_g2($objeto_do_form['dataIni'], $objeto_do_form['dataFim'], $objeto_do_form['tipo'], $objeto_do_form['setor']);
 		
 		$data['grafico_2'] = '';
 		$data['grafico_2_titulo'] = "Sem registros";
@@ -199,13 +199,25 @@ class Estatistica extends CI_Controller {
 		$data['grafico_2_valores_X'] = '';
 			
 		$data['grafico_2_valores_Y'] = '';
+		
+		$numeroDataIni = $this->data_to_number($dataIniForm);
+		
+		$numeroDataFim = $this->data_to_number($dataFimForm);
+		
+		$limitePeriodo = 365; // em dias
+
+		$diferenca = $this->diffDate($this->datas->dateToUS($dataIniForm), $this->datas->dateToUS($dataFimForm), $type='D', $sep='-');
+
+		if($diferenca > $limitePeriodo){
+			$data['grafico_2_titulo'] = "O limite do prazo para consulta deste gráfico é de " . $limitePeriodo . " dias. <br> Reduza o período de consulta.";
+		}
 			
-		if(count($linhas2) > 0){
+		if(count($linhas_g2) > 0 and $diferenca <= $limitePeriodo){
 						
 			$total = 0;
 			
 			$meses = array();
-			foreach ($linhas2 as $key => $item) {
+			foreach ($linhas_g2 as $key => $item) {
 		
 				$data['grafico_2_valores_X'] .= "'". $this->get_nome_mes($item['mes']) ."',";
 				
@@ -216,23 +228,22 @@ class Estatistica extends CI_Controller {
 			}
 			
 			
-			$linhas3 = $this->Estat_model->get_tipos_periodo($objeto_do_form['dataIni'], $objeto_do_form['dataFim'], $objeto_do_form['setor']);
+			$linhas_g2_b = $this->Estat_model->get_tipos_periodo($objeto_do_form['dataIni'], $objeto_do_form['dataFim'], $objeto_do_form['setor']);
 			
 			
-			foreach ($linhas3 as $key => $item) {
+			foreach ($linhas_g2_b as $key => $item) {
 			
 
 				 $data['grafico_2_valores_Y'] .= "{
-				name: '". $item['nome'] ."',
-				data: [";
+													name: '". $item['nome'] ."',
+													data: [";
 
 				foreach ($meses as $mes){
 					
 						//$total_por_tipo = $this->Estat_model->get_total_tipo_datas($objeto_do_form['dataIni'], $objeto_do_form['dataFim'], $item['tipo'] , 0);
 
 						$total_por_tipo = $this->Estat_model->get_total_tipo_mes($objeto_do_form['dataIni'], $objeto_do_form['dataFim'], $mes, $item['tipo'] , 0);
-						
-					
+									
 						if(!empty($total_por_tipo)){
 							
 							$data['grafico_2_valores_Y'] .= $total_por_tipo['0']['totalPorTipo'] .",";
@@ -248,14 +259,16 @@ class Estatistica extends CI_Controller {
 			}
 		
 			if($objeto_do_form['tipo'] == 0){
-				$data['grafico_2_titulo'] = 'Quantidade de documentos produzidos por mês <br> entre '.$this->datas->get_date_US_to_BR($objeto_do_form['dataIni']).' e ' . $this->datas->get_date_US_to_BR($objeto_do_form['dataFim']);
+				$data['grafico_2_titulo'] = 'Documentos produzidos por mês <br> <span style="font-size: 9pt"> entre '.$this->datas->get_date_US_to_BR($objeto_do_form['dataIni']).' e ' . $this->datas->get_date_US_to_BR($objeto_do_form['dataFim'].'</span>');
 			}else{
-				$data['grafico_2_titulo'] = 'Quantidade de documentos do tipo <strong>'.$this->get_nome_tipo_doc($objeto_do_form['tipo']).'</strong> produzidos por mês <br> entre '.$this->datas->get_date_US_to_BR($objeto_do_form['dataIni']).' e ' . $this->datas->get_date_US_to_BR($objeto_do_form['dataFim']);
+				$data['grafico_2_titulo'] = 'Documentos do tipo <strong>'.$this->get_nome_tipo_doc($objeto_do_form['tipo']).'</strong> produzidos por mês <br> <span style="font-size: 9pt">entre '.$this->datas->get_date_US_to_BR($objeto_do_form['dataIni']).' e ' . $this->datas->get_date_US_to_BR($objeto_do_form['dataFim'].'</span>');
 			}
 			
-			$data['grafico_2'] = '<div id="grafico2" style="width:99%; height:320px; margin: 0 auto; margin-bottom: 30px;"></div>';
 			
 		}
+		
+		$data['grafico_2'] = '<div id="grafico2" style="width:99%; height:320px; margin: 0 auto; margin-bottom: 30px;"></div>';
+			
 		
 		
 
@@ -297,9 +310,9 @@ class Estatistica extends CI_Controller {
 			}
 		
 			if($objeto_do_form['tipo'] == 0){
-				$data['grafico_3_titulo'] = 'Total de ' . number_format($total, 0, ',', '.') . ' documentos produzidos <br> entre '.$this->datas->get_date_US_to_BR($objeto_do_form['dataIni']).' e ' . $this->datas->get_date_US_to_BR($objeto_do_form['dataFim']);
+				$data['grafico_3_titulo'] = 'Documentos publicos e privados produzidos <br> <span style="font-size: 9pt"> entre '.$this->datas->get_date_US_to_BR($objeto_do_form['dataIni']).' e ' . $this->datas->get_date_US_to_BR($objeto_do_form['dataFim'].'</span>');
 			}else{
-				$data['grafico_3_titulo'] = 'Total de ' . number_format($total, 0, ',', '.') . ' documentos do tipo <strong>'.$this->get_nome_tipo_doc($objeto_do_form['tipo']).'</strong> produzidos <br> entre '.$this->datas->get_date_US_to_BR($objeto_do_form['dataIni']).' e ' . $this->datas->get_date_US_to_BR($objeto_do_form['dataFim']);
+				$data['grafico_3_titulo'] = 'Documentos publicos e privados do tipo <strong>'.$this->get_nome_tipo_doc($objeto_do_form['tipo']).'</strong> produzidos <br> <span style="font-size: 9pt"> entre '.$this->datas->get_date_US_to_BR($objeto_do_form['dataIni']).' e ' . $this->datas->get_date_US_to_BR($objeto_do_form['dataFim'].'</span>');
 			}
 		}
 		
@@ -385,6 +398,33 @@ class Estatistica extends CI_Controller {
 	
 		return $nome;
 	
+	}
+	
+	
+	function diffDate($d1, $d2, $type='', $sep='-'){
+		$d1 = explode($sep, $d1);
+		$d2 = explode($sep, $d2);
+		switch ($type)
+		{
+			case 'A':
+				$X = 31536000;
+				break;
+			case 'M':
+				$X = 2592000;
+				break;
+			case 'D':
+				$X = 86400;
+				break;
+			case 'H':
+				$X = 3600;
+				break;
+			case 'MI':
+				$X = 60;
+				break;
+			default:
+				$X = 1;
+		}
+		return floor( ( ( mktime(0, 0, 0, $d2[1], $d2[2], $d2[0]) - mktime(0, 0, 0, $d1[1], $d1[2], $d1[0] ) ) / $X ) );
 	}
 
 }

@@ -294,9 +294,9 @@ $(document).ready(function() {
             },
 
             title: {
-                text: 'Quantidade de documentos públicos e privados',
+                text: '<?php echo $grafico_3_titulo; ?>',
                 style: {
-                	"fontSize": "11pt" 
+                	"fontSize": "10pt" 
                 },
             },
             subtitle: {
