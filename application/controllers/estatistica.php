@@ -217,6 +217,7 @@ class Estatistica extends CI_Controller {
 			$total = 0;
 			
 			$meses = array();
+			
 			foreach ($linhas_g2 as $key => $item) {
 		
 				$data['grafico_2_valores_X'] .= "'". $this->get_nome_mes($item['mes']) ."',";
