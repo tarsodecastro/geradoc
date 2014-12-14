@@ -73,6 +73,34 @@ class Estatistica extends CI_Controller {
 
 		$data['tipos'] = $arrayTipos;
 		$data['tipoSelecionado'] = $this->input->post('campoTipo') ? $this->input->post('campoTipo') : 0;
+		
+		
+/*
+|--------------------------------------------------------------------------
+| Lista os setores
+|--------------------------------------------------------------------------
+*/
+		$this->load->model('Setor_model','',TRUE);
+		$objSetores = $this->Setor_model->list_all()->result();
+
+		$arraySetores[0] = "TODOS";
+		foreach ($objSetores as $item) {
+			
+			$setor =  $this->Setor_model->get_by_id($item->id)->row();
+		
+			if($setor->setorPaiSigla and $setor->setorPaiSigla != "NENHUM" and $setor->setorPaiSigla != $setor->orgaoSigla and $setor->sigla != $setor->setorPaiSigla){
+    		
+				$arraySetores[$item->id] = $item->nome . " - " . $item->sigla . "/" . $setor->setorPaiSigla;
+				
+			}else{
+				
+				$arraySetores[$item->id] = $item->nome . " - " . $item->sigla;
+			}
+		
+		}
+		
+		$data['setores'] = $arraySetores;
+		$data['setorSelecionado'] = $this->input->post('campoSetor') ? $this->input->post('campoSetor') : 0;
 
 /*
 |--------------------------------------------------------------------------
@@ -80,6 +108,8 @@ class Estatistica extends CI_Controller {
 |--------------------------------------------------------------------------
 */
 		$objeto_do_form['tipo'] = $data['tipoSelecionado'] ;
+		
+		$objeto_do_form['setor'] = $data['setorSelecionado'] ;
 
 		if($this->input->post('campoDataIni')){
 			$objeto_do_form['dataIni']		= $this->input->post('campoDataIni');
@@ -116,8 +146,9 @@ class Estatistica extends CI_Controller {
 | Monta o primeiro grafico (de pizza)
 |--------------------------------------------------------------------------
 */
-		$linhas = $this->Estat_model->docs_por_tipo_no_periodo($objeto_do_form['dataIni'], $objeto_do_form['dataFim'], $objeto_do_form['tipo']);
+		$linhas = $this->Estat_model->docs_por_tipo_no_periodo($objeto_do_form['dataIni'], $objeto_do_form['dataFim'], $objeto_do_form['tipo'], $objeto_do_form['setor']);
 		
+		$data['grafico_1'] = '';
 		$data['grafico_1_titulo'] = "Sem registros";
 		$data['grafico_1_dados'] = "";
 			
@@ -135,9 +166,17 @@ class Estatistica extends CI_Controller {
 		
 			}
 			
-			$data['grafico_1_titulo'] = number_format($total, 0, ',', '.') . ' documentos produzidos entre <br>'.$this->datas->get_date_US_to_BR($objeto_do_form['dataIni']).' e ' . $this->datas->get_date_US_to_BR($objeto_do_form['dataFim']);
-					
+			
+			if($objeto_do_form['tipo'] == 0){
+				$data['grafico_1_titulo'] = number_format($total, 0, ',', '.') . ' documentos produzidos entre <br>'.$this->datas->get_date_US_to_BR($objeto_do_form['dataIni']).' e ' . $this->datas->get_date_US_to_BR($objeto_do_form['dataFim']);
+			}else{
+				$data['grafico_1_titulo'] = number_format($total, 0, ',', '.') . ' documentos do tipo <strong>'.$this->get_nome_tipo_doc($objeto_do_form['tipo']).'</strong> produzidos entre <br>'.$this->datas->get_date_US_to_BR($objeto_do_form['dataIni']).' e ' . $this->datas->get_date_US_to_BR($objeto_do_form['dataFim']);
+			}		
 		}
+		
+	
+		$data['grafico_1'] = '<div id="grafico1" style="width:600px;height:300px; margin: 0 auto; margin-bottom: 30px;"></div>';
+	
 
 /*
 |--------------------------------------------------------------------------
@@ -145,6 +184,8 @@ class Estatistica extends CI_Controller {
 |--------------------------------------------------------------------------
 */
 
+		$data['grafico_2'] = '';
+		//$data['grafico_2'] = '<div id="grafico2" style="width:800px;height:400px; margin: 0 auto; margin-bottom: 30px;"></div>';
 
 		$this->load->view($this->area.'/'.$this->area.'_view', $data);
 		

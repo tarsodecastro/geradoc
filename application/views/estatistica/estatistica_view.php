@@ -17,7 +17,7 @@
 	<div class="formulario">	
 	
 	
-		<form class="form-inline" role="form" id="frm1" name="frm1" action="<?php echo $form_action; ?>" method="post">
+		<form class="form-horizontal" role="form" id="frm1" name="frm1" action="<?php echo $form_action; ?>" method="post">
 		
 			<div class="panel panel-primary">
 			
@@ -27,32 +27,37 @@
 			
 				<div class="panel-body">
 				
-					 <div class="form-group">
-					    <label for="campoNome" class="control-label">Tipo de documento</label>
-					   
-					     <?php echo form_dropdown( 'campoTipo', $tipos, $tipoSelecionado, 'id="campoTipo" class="form-control selectpicker" data-style="btn-default" data-live-search="true"  '); ?> 
-					  
-					 </div>
+						 <div class="form-group">
+						    <label for="campoTipo" class="col-sm-3  control-label">Tipo de documento:</label>
+						  	<div class="col-sm-8">
+						     <?php echo form_dropdown( 'campoTipo', $tipos, $tipoSelecionado, 'id="campoTipo" class="form-control selectpicker" data-style="btn-default" data-live-search="true"  '); ?> 
+						  	</div>
+						 </div>
+
+						 <div class="form-group">
+						    <label for="campoDataIni" class="col-sm-3 control-label">Data inicial:</label>
+						  	<div class="col-sm-3">
+						    <?php echo form_input($campoDataIni); ?> 
+						   	</div>
+						   	
+						   	<label for="campoDataFim" class="col-sm-2  control-label">Data final:</label>
+						  <div class="col-sm-3">
+						    <?php echo form_input($campoDataFim); ?> 
+						   </div>
+						 </div>
+
+					 	<div class="form-group">
+						    <label for="campoSetor" class="col-sm-3 control-label">Setor:</label>
+						   <div class="col-sm-8">
+						     <?php echo form_dropdown( 'campoSetor', $setores, $setorSelecionado, 'id="campoSetor" class="form-control selectpicker" data-style="btn-default" data-live-search="true"  '); ?> 
+						  </div>
+						 </div>
 					 
-					 <div class="form-group">
-					    <label for="campoDataIni" class="control-label">Data inicial</label><br>
-					  
-					    <?php echo form_input($campoDataIni); ?> 
-					   
-					 </div>
-					 
-					 <div class="form-group">
-					    <label for="campoDataFim" class="control-label">Data final</label><br>
-					  
-					    <?php echo form_input($campoDataFim); ?> 
-					   
-					 </div>
+					<div class="form-group">
+					<input type="submit" class="btn btn-primary btn-lg" value="Consultar" title="Consultar" />
+				</div>
 				 </div>
 				 
-				 <div class="form-group" style="padding-bottom: 10px">
-					<input type="submit" class="btn btn-primary" value="Consultar" title="Consultar" />
-				</div>
-				
 				
 
 			</div>
@@ -68,19 +73,15 @@
 			
 			}else{
 
+				echo $grafico_1;
+				
+				echo $grafico_2;	
+
+			}
+
 			?> 
-		
-			<div id="grafico1" style="width:600px;height:300px; margin: 0 auto; margin-bottom: 30px;"></div>
-			
-			<div id="grafico2" style="width:800px;height:400px; margin: 0 auto; margin-bottom: 30px;"></div>
-			
-			<?php } ?> 
 
-			
     </div>
-
-
-
 
 </div><!-- fim: div view_content --> 
 

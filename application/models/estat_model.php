@@ -30,24 +30,30 @@ class Estat_model extends CI_Model {
 
 	
 	
-	function docs_por_tipo_no_periodo($dataIni, $dataFim, $tipo){
+	function docs_por_tipo_no_periodo($dataIni, $dataFim, $tipo, $setor){
 	
-		$sql = "SELECT d.setor, d.tipo, t.nome, d.data_criacao, COUNT(d.id) AS totalPorTipo
+		$sql = "SELECT d.setor, d.tipo, t.nome, COUNT(d.id) AS totalPorTipo
 				FROM documento as d, tipo as t ";
 	
-		if($tipo == 0){
-			$sql = $sql . " WHERE d.tipo = t.id and d.data_criacao >= '$dataIni' and d.data_criacao <= '$dataFim' ";
-		}else{
-			$sql = $sql . " WHERE d.tipo = '$tipo' and d.tipo = t.id and d.data_criacao >= '$dataIni' and d.data_criacao <= '$dataFim' ";
+		$sql .= "WHERE "; 
+		
+		if($tipo != 0){		
+			$sql .= "d.tipo = '$tipo' and "; 
 		}
 		
+		if($setor != 0){
+			$sql .= "d.setor = '$setor' and ";
+		}
 		
+		$sql .= "d.tipo = t.id and d.data_criacao >= '$dataIni' and d.data_criacao <= '$dataFim'";
+		
+
 		$sql = $sql . " GROUP BY d.tipo
 						ORDER BY d.data_criacao asc";
 		
 		$query = $this->db->query($sql)->result_array();
 		
-		echo $this->db->last_query() . "<br>";
+		//echo $this->db->last_query() . "<br>";
 		
 		return $query;
 	
