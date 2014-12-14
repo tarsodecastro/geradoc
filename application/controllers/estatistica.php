@@ -310,9 +310,9 @@ class Estatistica extends CI_Controller {
 			}
 		
 			if($objeto_do_form['tipo'] == 0){
-				$data['grafico_3_titulo'] = 'Documentos publicos e privados produzidos <br> <span style="font-size: 9pt"> entre '.$this->datas->get_date_US_to_BR($objeto_do_form['dataIni']).' e ' . $this->datas->get_date_US_to_BR($objeto_do_form['dataFim'].'</span>');
+				$data['grafico_3_titulo'] = 'Documentos públicos e privados produzidos <br> <span style="font-size: 9pt"> entre '.$this->datas->get_date_US_to_BR($objeto_do_form['dataIni']).' e ' . $this->datas->get_date_US_to_BR($objeto_do_form['dataFim'].'</span>');
 			}else{
-				$data['grafico_3_titulo'] = 'Documentos publicos e privados do tipo <strong>'.$this->get_nome_tipo_doc($objeto_do_form['tipo']).'</strong> produzidos <br> <span style="font-size: 9pt"> entre '.$this->datas->get_date_US_to_BR($objeto_do_form['dataIni']).' e ' . $this->datas->get_date_US_to_BR($objeto_do_form['dataFim'].'</span>');
+				$data['grafico_3_titulo'] = 'Documentos públicos e privados do tipo <strong>'.$this->get_nome_tipo_doc($objeto_do_form['tipo']).'</strong> produzidos <br> <span style="font-size: 9pt"> entre '.$this->datas->get_date_US_to_BR($objeto_do_form['dataIni']).' e ' . $this->datas->get_date_US_to_BR($objeto_do_form['dataFim'].'</span>');
 			}
 		}
 		
