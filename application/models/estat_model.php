@@ -101,7 +101,7 @@ class Estat_model extends CI_Model {
 // 		echo "</pre>";
 	
 		//exit;
-		echo $this->db->last_query() . "<br>";
+		//echo $this->db->last_query() . "<br>";
 	
 		return $query;
 	

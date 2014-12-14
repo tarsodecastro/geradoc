@@ -168,9 +168,9 @@ class Estatistica extends CI_Controller {
 			}
 	
 			if($objeto_do_form['tipo'] == 0){
-				$data['grafico_1_titulo'] = number_format($total, 0, ',', '.') . ' documentos produzidos entre <br>'.$this->datas->get_date_US_to_BR($objeto_do_form['dataIni']).' e ' . $this->datas->get_date_US_to_BR($objeto_do_form['dataFim']);
+				$data['grafico_1_titulo'] = 'Total de ' . number_format($total, 0, ',', '.') . ' documentos produzidos entre <br>'.$this->datas->get_date_US_to_BR($objeto_do_form['dataIni']).' e ' . $this->datas->get_date_US_to_BR($objeto_do_form['dataFim']);
 			}else{
-				$data['grafico_1_titulo'] = number_format($total, 0, ',', '.') . ' documentos do tipo <strong>'.$this->get_nome_tipo_doc($objeto_do_form['tipo']).'</strong> produzidos entre <br>'.$this->datas->get_date_US_to_BR($objeto_do_form['dataIni']).' e ' . $this->datas->get_date_US_to_BR($objeto_do_form['dataFim']);
+				$data['grafico_1_titulo'] = 'Total de ' . number_format($total, 0, ',', '.') . ' documentos do tipo <strong>'.$this->get_nome_tipo_doc($objeto_do_form['tipo']).'</strong> produzidos entre <br>'.$this->datas->get_date_US_to_BR($objeto_do_form['dataIni']).' e ' . $this->datas->get_date_US_to_BR($objeto_do_form['dataFim']);
 			}		
 		}
 		
@@ -195,12 +195,14 @@ class Estatistica extends CI_Controller {
 		$data['grafico_2'] = '';
 		$data['grafico_2_titulo'] = "Sem registros";
 		$data['grafico_2_dados'] = "";
+		
+		$data['grafico_2_valores_X'] = '';
+			
+		$data['grafico_2_valores_Y'] = '';
 			
 		if(count($linhas2) > 0){
 		
-			$data['grafico_2_valores_X'] = '';
 			
-			$data['grafico_2_valores_Y'] = '';
 				
 			$total = 0;
 			
@@ -284,9 +286,9 @@ class Estatistica extends CI_Controller {
 			//$data['grafico_2_valores_X'] .= "]";
 		
 			if($objeto_do_form['tipo'] == 0){
-				$data['grafico_2_titulo'] = number_format($total, 0, ',', '.') . ' documentos produzidos entre <br>'.$this->datas->get_date_US_to_BR($objeto_do_form['dataIni']).' e ' . $this->datas->get_date_US_to_BR($objeto_do_form['dataFim']);
+				$data['grafico_2_titulo'] = 'Quantidade de documentos produzidos por mês entre <br>'.$this->datas->get_date_US_to_BR($objeto_do_form['dataIni']).' e ' . $this->datas->get_date_US_to_BR($objeto_do_form['dataFim']);
 			}else{
-				$data['grafico_2_titulo'] = number_format($total, 0, ',', '.') . ' documentos do tipo <strong>'.$this->get_nome_tipo_doc($objeto_do_form['tipo']).'</strong> produzidos entre <br>'.$this->datas->get_date_US_to_BR($objeto_do_form['dataIni']).' e ' . $this->datas->get_date_US_to_BR($objeto_do_form['dataFim']);
+				$data['grafico_2_titulo'] = 'Quantidade de documentos do tipo <strong>'.$this->get_nome_tipo_doc($objeto_do_form['tipo']).'</strong> produzidos por mês entre <br>'.$this->datas->get_date_US_to_BR($objeto_do_form['dataIni']).' e ' . $this->datas->get_date_US_to_BR($objeto_do_form['dataFim']);
 			}
 		}
 		

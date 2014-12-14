@@ -33,26 +33,26 @@
 						     <?php echo form_dropdown( 'campoTipo', $tipos, $tipoSelecionado, 'id="campoTipo" class="form-control selectpicker" data-style="btn-default" data-live-search="true"  '); ?> 
 						  	</div>
 						 </div>
+						 
+						 <div class="form-group">
+						    <label for="campoSetor" class="col-sm-3 control-label">Setor:</label>
+						    <div class="col-sm-8">
+						     <?php echo form_dropdown( 'campoSetor', $setores, $setorSelecionado, 'id="campoSetor" class="form-control selectpicker" data-style="btn-default" data-live-search="true"  '); ?> 
+						   </div>
+						 </div>
 
 						 <div class="form-group">
 						    <label for="campoDataIni" class="col-sm-3 control-label">Data inicial:</label>
 						  	<div class="col-sm-3">
 						    <?php echo form_input($campoDataIni); ?> 
-						   	</div>
+						 	</div>
 						   	
 						   	<label for="campoDataFim" class="col-sm-2  control-label">Data final:</label>
-						  <div class="col-sm-3">
+						  	<div class="col-sm-3">
 						    <?php echo form_input($campoDataFim); ?> 
 						   </div>
 						 </div>
 
-					 	<div class="form-group">
-						    <label for="campoSetor" class="col-sm-3 control-label">Setor:</label>
-						   <div class="col-sm-8">
-						     <?php echo form_dropdown( 'campoSetor', $setores, $setorSelecionado, 'id="campoSetor" class="form-control selectpicker" data-style="btn-default" data-live-search="true"  '); ?> 
-						  </div>
-						 </div>
-					 
 					<div class="form-group">
 					<input type="submit" class="btn btn-primary btn-lg" value="Consultar" title="Consultar" />
 				</div>
@@ -154,6 +154,9 @@ $(document).ready(function() {
          },
         title: {
             text: '<?php echo $grafico_2_titulo; ?>',
+            style: {
+            	"fontSize": "12pt" 
+            },
             x: -20 //center
         },
 
