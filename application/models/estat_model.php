@@ -86,7 +86,7 @@ class Estat_model extends CI_Model {
 	
 	function get_tipos_periodo($dataIni, $dataFim, $setor){
 	
-		$sql = "SELECT d.setor, d.tipo, t.nome, month(d.data_criacao)
+		$sql = "SELECT d.setor, d.tipo, t.nome, month(d.data_criacao) as mes
 				FROM documento as d, tipo as t ";
 	
 		$sql .= "WHERE d.tipo = t.id and d.data_criacao >= '$dataIni' and d.data_criacao <= '$dataFim' ";
@@ -196,6 +196,14 @@ class Estat_model extends CI_Model {
 				FROM documento as d ";
 	
 		$sql .= "WHERE d.data_criacao >= '$dataIni' and d.data_criacao <= '$dataFim' ";
+		
+		if($tipo != 0){
+			$sql .= "and d.tipo = '$tipo' ";
+		}
+		
+		if($setor != 0){
+		$sql .= "and d.setor = '$setor' ";
+		}
 	
 		$sql = $sql . " GROUP BY d.oculto
 						ORDER BY d.oculto asc";

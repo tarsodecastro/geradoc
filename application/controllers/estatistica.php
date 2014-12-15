@@ -168,9 +168,9 @@ class Estatistica extends CI_Controller {
 			}
 	
 			if($objeto_do_form['tipo'] == 0){
-				$data['grafico_1_titulo'] = 'Total de ' . number_format($total, 0, ',', '.') . ' documentos produzidos <br> <span style="font-size: 10pt"> entre '.$this->datas->get_date_US_to_BR($objeto_do_form['dataIni']).' e ' . $this->datas->get_date_US_to_BR($objeto_do_form['dataFim'].'</span>');
+				$data['grafico_1_titulo'] = 'Total de <strong>' . number_format($total, 0, ',', '.') . '</strong> documentos produzidos <br> <span style="font-size: 10pt"> entre '.$this->datas->get_date_US_to_BR($objeto_do_form['dataIni']).' e ' . $this->datas->get_date_US_to_BR($objeto_do_form['dataFim'].'</span>');
 			}else{
-				$data['grafico_1_titulo'] = 'Total de ' . number_format($total, 0, ',', '.') . ' documentos do tipo <strong>'.$this->get_nome_tipo_doc($objeto_do_form['tipo']).'</strong> produzidos <br> <span style="font-size: 10pt"> entre '.$this->datas->get_date_US_to_BR($objeto_do_form['dataIni']).' e ' . $this->datas->get_date_US_to_BR($objeto_do_form['dataFim'].'</span>');
+				$data['grafico_1_titulo'] = 'Total de <strong>' . number_format($total, 0, ',', '.') . '</strong> documentos do tipo <strong>'.$this->get_nome_tipo_doc($objeto_do_form['tipo']).'</strong> produzidos <br> <span style="font-size: 10pt"> entre '.$this->datas->get_date_US_to_BR($objeto_do_form['dataIni']).' e ' . $this->datas->get_date_US_to_BR($objeto_do_form['dataFim'].'</span>');
 			}		
 		}
 		
@@ -190,20 +190,12 @@ class Estatistica extends CI_Controller {
 |--------------------------------------------------------------------------
 */
 
-		$linhas_g2 = $this->Estat_model->docs_por_tipo_no_periodo_g2($objeto_do_form['dataIni'], $objeto_do_form['dataFim'], $objeto_do_form['tipo'], $objeto_do_form['setor']);
-		
-		$data['grafico_2'] = '';
-		$data['grafico_2_titulo'] = "Sem registros";
-		$data['grafico_2_dados'] = "";
-		
+		$data['grafico_2'] 			 = '';
+		$data['grafico_2_titulo'] 	 = "Sem registros";
+		$data['grafico_2_dados'] 	 = "";
 		$data['grafico_2_valores_X'] = '';
-			
 		$data['grafico_2_valores_Y'] = '';
-		
-		$numeroDataIni = $this->data_to_number($dataIniForm);
-		
-		$numeroDataFim = $this->data_to_number($dataFimForm);
-		
+
 		$limitePeriodo = 365; // em dias
 
 		$diferenca = $this->diffDate($this->datas->dateToUS($dataIniForm), $this->datas->dateToUS($dataFimForm), $type='D', $sep='-');
@@ -212,6 +204,8 @@ class Estatistica extends CI_Controller {
 			$data['grafico_2_titulo'] = "O limite do prazo para consulta deste gráfico é de " . $limitePeriodo . " dias. <br> Reduza o período de consulta.";
 		}
 			
+		$linhas_g2 = $this->Estat_model->docs_por_tipo_no_periodo_g2($objeto_do_form['dataIni'], $objeto_do_form['dataFim'], $objeto_do_form['tipo'], $objeto_do_form['setor']);
+		
 		if(count($linhas_g2) > 0 and $diferenca <= $limitePeriodo){
 						
 			$total = 0;
@@ -228,9 +222,7 @@ class Estatistica extends CI_Controller {
 		
 			}
 			
-			
 			$linhas_g2_b = $this->Estat_model->get_tipos_periodo($objeto_do_form['dataIni'], $objeto_do_form['dataFim'], $objeto_do_form['setor']);
-			
 			
 			foreach ($linhas_g2_b as $key => $item) {
 			
@@ -269,9 +261,7 @@ class Estatistica extends CI_Controller {
 		}
 		
 		$data['grafico_2'] = '<div id="grafico2" style="width:99%; height:320px; margin: 0 auto; margin-bottom: 30px;"></div>';
-			
-		
-		
+					
 
 /*
 |--------------------------------------------------------------------------

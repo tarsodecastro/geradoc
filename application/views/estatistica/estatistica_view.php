@@ -280,13 +280,11 @@ $(document).ready(function() {
 
     $('#grafico3').highcharts({
 
-			//colors: ['#55BF3B', '#7798BF', '#aaeeee', '#ff0066', '#eeaaee', '#2b908f'],
+			colors: ['#FFD700', '#808080'],
 			
 			//colors: ["#7cb5ec", "#f7a35c", "#90ee7e", "#7798BF", "#aaeeee", "#ff0066", "#eeaaee", "#55BF3B", "#DF5353", "#7798BF", "#aaeeee"],
-
 			//colors: ["#2b908f", "#90ee7e", "#f45b5b", "#7798BF", "#aaeeee", "#ff0066", "#eeaaee", "#55BF3B", "#DF5353", "#7798BF", "#aaeeee"],
 
-			
             chart: {
             	 borderColor: '#CCC',
                  borderWidth: 1,
