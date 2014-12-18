@@ -13,7 +13,7 @@
 
 <div id="msg" style="display: none; padding: 13px;">
 
-	 <h4><img src="{TPL_images}loader.gif" class="img_aling2" alt="Carregando" height="21px"/> &nbsp; Aguarde, pocessando informações... </h4>
+	 <h4><img src="{TPL_images}loader.gif" class="img_aling2" alt="Carregando" height="21px"/> &nbsp; Aguarde, processando informações... </h4>
 	
 </div>
 
@@ -280,7 +280,7 @@ $(document).ready(function() {
 
     $('#grafico3').highcharts({
 
-			colors: ['#FFD700', '#808080'],
+			colors: ['#FFD700', '#FF0000'],
 			
 			//colors: ["#7cb5ec", "#f7a35c", "#90ee7e", "#7798BF", "#aaeeee", "#ff0066", "#eeaaee", "#55BF3B", "#DF5353", "#7798BF", "#aaeeee"],
 			//colors: ["#2b908f", "#90ee7e", "#f45b5b", "#7798BF", "#aaeeee", "#ff0066", "#eeaaee", "#55BF3B", "#DF5353", "#7798BF", "#aaeeee"],
