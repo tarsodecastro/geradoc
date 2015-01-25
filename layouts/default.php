@@ -223,29 +223,7 @@ $SessTimeLeft = ($SessExpTime - ($CurrTime - $arrLastActivity[0]["last_activity"
             </div>
             <!-- Fim do Topo -->
             
-            <!--  Logo -->
-            <div class="row">
-	        
-	                
-	                <div class="col-md-6 col-lg-6 visible-md visible-lg" style="height: 75px;">
-
-	               	 <a href="<?php echo site_url('/documento/index'); ?>" title="Lista">
-	               	 	<i id="emblema" class="fa fa-file-text-o fa-4x" style="padding-top: 7px; padding-left: 57px; color: #4e8079;"></i>
-	               	 </a>
-
-	               <!-- logo normal
-	                	<img src="<?php echo $CI->config->item('base_url');?>images/bg_logo_left_<?php echo $CI->config->item('orgao');?>.png"> 	
-	                	 -->
-	                </div>
-	                
-	                <div class="col-sm-12 col-md-6 col-lg-6 text-right" id="logo_right" style="padding-right: 25px;">
-	                	<div ><?php echo $CI->config->item('title_short');?></div>
-	                </div>
-	          
-            </div>
-            <!-- Fim do Logo -->
-            
-            <!--  Menu -->
+              <!--  Menu -->
              
             <div class="row"> 
 	             <nav class="navbar navbar-default" role="navigation">
@@ -258,6 +236,9 @@ $SessTimeLeft = ($SessExpTime - ($CurrTime - $arrLastActivity[0]["last_activity"
 				        <span class="icon-bar"></span>
 				        <span class="icon-bar"></span>
 				      </button>
+				      <!-- 
+				      <a class="navbar-brand" href="#">Project name</a>
+				       -->
 				    </div>
 				
 				    <!-- Collect the nav links, forms, and other content for toggling -->
@@ -324,8 +305,8 @@ $SessTimeLeft = ($SessExpTime - ($CurrTime - $arrLastActivity[0]["last_activity"
 					        </li>
 					    <?php }?>
 				       	
-				        <li><a href="#modalSobre"  class="btn" data-toggle="modal"><i class="fa fa-thumbs-o-up fa-lg"></i> Sobre</a></li>
-				         <li><a href="#modalFaleconosco" class="btn" id="fale" data-toggle="modal"><i class="fa fa-comment-o fa-lg"></i> Fale conosco</a></li>
+				        <li><a href="#modalSobre" data-toggle="modal"><i class="fa fa-thumbs-o-up fa-lg"></i> Sobre</a></li>
+				         <li><a href="#modalFaleconosco" id="fale" data-toggle="modal"><i class="fa fa-envelope-o fa-lg"></i> Fale conosco</a></li>
 				        <li><a href="<?php echo site_url('login_mail/logoff'); ?>" title="Sair do sistema" ><span class="glyphicon glyphicon-off"></span> Sair</a></li>
 				        
 				      </ul>
@@ -337,7 +318,27 @@ $SessTimeLeft = ($SessExpTime - ($CurrTime - $arrLastActivity[0]["last_activity"
         	</div>
             <!--  Fim do Menu -->
             
-            
+            <!--  Logo -->
+            <div class="row" style="margin-bottom: 5px; border-bottom: 1px solid #CCC;">
+	        
+	                <div class="col-md-6 col-lg-6 visible-md visible-lg" style="height: 75px;">
+
+	               	 <a href="<?php echo site_url('/documento/index'); ?>" title="Lista">
+	               	 	<i id="emblema" class="fa fa-file-text-o fa-4x" style="padding-top: 7px; padding-left: 57px; color: #4e8079;"></i>
+	               	 </a>
+
+	               <!-- logo normal
+	                	<img src="<?php echo $CI->config->item('base_url');?>images/bg_logo_left_<?php echo $CI->config->item('orgao');?>.png"> 	
+	                	 -->
+	                </div>
+	                
+	                <div class="col-sm-12 col-md-6 col-lg-6 text-right" id="logo_right" style="padding-right: 25px;">
+	                	<div ><?php echo $CI->config->item('title_short');?></div>
+	                </div>
+	          
+            </div>
+            <!-- Fim do Logo -->
+
             {TPL_content}	
             
             </div>
