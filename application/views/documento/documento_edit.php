@@ -149,19 +149,11 @@ $.blockUI({ message: '<h1><img src="<?php echo base_url(); ?>scripts/images/ui-a
 					  
 					<div class="row">
 					  
-					  	<div class="col-md-4">
-							<div class="form-group <?php echo (form_error('campoData') != '')? 'has-error':''; ?>">
-								<label for="campoData" class="col-md-6 control-label"><span style="color: red;">*</span> Data</label>
-								<div class="col-md-6">
-									<?php echo form_input($campoData); ?>
-								</div>
-							</div>
-						</div>
-						
-						<div class="col-md-6">
-							<div class="form-group <?php echo (form_error('campoTipo') != '')? 'has-error':''; ?>">
-								<label for="campoTipo" class="col-md-2 control-label"><span style="color: red;">*</span> Tipo</label>
-								<div class="col-md-10">
+					  	<div class="col-md-6">
+					  	
+					  		<div class="form-group <?php echo (form_error('campoTipo') != '')? 'has-error':''; ?>">
+								<label for="campoTipo" class="col-md-4 control-label"><span style="color: red;">*</span> Tipo</label>
+								<div class="col-md-8">
 									<?php
 												
 										$jsTipo = 'class="form-control selectpicker" data-style="btn-default" data-live-search="true" onChange="window.location.href=(\''.site_url('documento').'/'.$acao.'/r/\' + document.form.campoRemetente.value + \'/t/\' + options[selectedIndex].value)"';
@@ -169,6 +161,18 @@ $.blockUI({ message: '<h1><img src="<?php echo base_url(); ?>scripts/images/ui-a
 									?>
 								</div>
 							</div>
+
+						</div>
+						
+						<div class="col-md-4">
+						
+							<div class="form-group <?php echo (form_error('campoData') != '')? 'has-error':''; ?>">
+								<label for="campoData" class="col-md-6 control-label"><span style="color: red;">*</span> Data</label>
+								<div class="col-md-6">
+									<?php echo form_input($campoData); ?>
+								</div>
+							</div>
+							
 						
 						</div>
 
