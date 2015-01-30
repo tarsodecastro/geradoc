@@ -18,7 +18,7 @@
 		<div class="col-md-4">
 			<?php echo $link_add;?>
 			<a href="<?php echo site_url();?>/workflow" class="btn btn-danger"><span class="glyphicon glyphicon-inbox"></span> Entrada <span class="badge"><?php echo $workflow;?></span></a>
-			<a href="<?php echo site_url();?>/workflow" class="btn btn-warning"><i class="fa fa-folder-open"></i> Repositório <span class="badge"></span></a>
+			<a href="<?php echo site_url();?>/repositorio" class="btn btn-warning"><i class="fa fa-folder-open"></i> Repositório <span class="badge"></span></a>
 		</div>
 
 		<div class="col-sm-12 visible-xs" style="padding: 5px;"></div>
