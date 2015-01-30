@@ -241,7 +241,7 @@ $.blockUI({ message: '<h1><img src="<?php echo base_url(); ?>scripts/images/ui-a
 												}else{
 													$asterisco = '';
 												}
-												
+												 
 												
 											}else{
 												$campo[0] = $obj_tipo->$nome_campo;
