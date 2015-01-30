@@ -15,6 +15,8 @@
 <script type="text/javascript" src="<?php echo base_url(); ?>js/countdown/jquery.countdown.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/countdown/jquery.countdown-pt-BR.js"></script>
 
+<script src="<?php echo base_url(); ?>js/ckeditor/ckeditor.js"></script>
+
 <script src="<?php echo base_url(); ?>js/jquery-ui.min.js"></script>
 
 <div class="areaimage">
@@ -59,8 +61,6 @@ $.blockUI({ message: '<h1><img src="<?php echo base_url(); ?>scripts/images/ui-a
 	    	<div class="btn-group">
 		    <?php
 
-		    echo $link_back;
-		    
 		    $readonly = '';
 		    $painel = 'panel-primary';
 		    if ($disabled != null){
@@ -116,7 +116,7 @@ $.blockUI({ message: '<h1><img src="<?php echo base_url(); ?>scripts/images/ui-a
 						<div class="col-md-8">
 						
 								<?php
-									$jsRemet = 'class="form-control selectpicker" data-style="btn-default" data-live-search="true" id="campoRemetente" onChange="window.location.href=(\''.site_url('documento').'/'.$acao.'/r\' + \'/\' + document.form.campoRemetente.value + \'/t/\' + document.form.campoTipo.value + \'/c/\' + document.form.campoCarimbo.value)"';
+									$jsRemet = 'class="form-control selectpicker" data-style="btn-default" data-live-search="true" id="campoRemetente" onChange="window.location.href=(\''.site_url('documento').'/'.$acao.'/r\' + \'/\' + document.form.campoRemetente.value + \'/t/\' + document.form.campoTipo.value)"';
 		
 									echo form_dropdown('campoRemetente', $remetentesDisponiveis, $remetenteSelecionado, $jsRemet);
 								?> 
@@ -159,41 +159,21 @@ $.blockUI({ message: '<h1><img src="<?php echo base_url(); ?>scripts/images/ui-a
 						</div>
 						
 						<div class="col-md-6">
-							<div class="form-group <?php echo (form_error('campoCarimbo') != '')? 'has-error':''; ?>">
-								<label for="campoCarimbo" class="col-md-6 control-label">Carimbo de folha</label>
-								<div class="col-md-6">
+							<div class="form-group <?php echo (form_error('campoTipo') != '')? 'has-error':''; ?>">
+								<label for="campoTipo" class="col-md-2 control-label"><span style="color: red;">*</span> Tipo</label>
+								<div class="col-md-10">
 									<?php
-										/*			
-										if($acao == 'update'){
-											$jsCarimbo = 'class="form-control"';
-		
-										}else{
-											$jsCarimbo = 'class="form-control" onChange="window.location.href=(\''.site_url('documento').'/'.$acao.'/r/\' + document.form.campoRemetente.value + \'/t/\' + document.form.campoTipo.value + \'/c/\' + document.form.campoCarimbo.value)"';
-										}
-										
-										echo form_dropdown('campoCarimbo', $carimbosDisponiveis, $carimboSelecionado, $jsCarimbo);
-										*/
-									
-										echo form_dropdown('campoCarimbo', $carimbosDisponiveis, $carimboSelecionado, 'class="form-control"');
+												
+										$jsTipo = 'class="form-control selectpicker" data-style="btn-default" data-live-search="true" onChange="window.location.href=(\''.site_url('documento').'/'.$acao.'/r/\' + document.form.campoRemetente.value + \'/t/\' + options[selectedIndex].value)"';
+										echo form_dropdown('campoTipo', $tiposDisponiveis, $tipoSelecionado, $jsTipo);
 									?>
 								</div>
 							</div>
+						
 						</div>
-					
+
 					</div>
-					
-					
-					<div class="form-group <?php echo (form_error('campoTipo') != '')? 'has-error':''; ?>">
-						<label for="campoTipo" class="col-sm-2 control-label"><span style="color: red;">*</span> Tipo</label>
-						<div class="col-md-8">
-							<?php
-										
-								$jsTipo = 'class="form-control selectpicker" data-style="btn-default" data-live-search="true" onChange="window.location.href=(\''.site_url('documento').'/'.$acao.'/r/\' + document.form.campoRemetente.value + \'/t/\' + options[selectedIndex].value + \'/c/\' + document.form.campoCarimbo.value)"';
-								echo form_dropdown('campoTipo', $tiposDisponiveis, $tipoSelecionado, $jsTipo);
-							?>
-						</div>
-					</div>
-					
+
 					<div class="form-group <?php echo (form_error('campoAssunto') != '')? 'has-error':''; ?>">
 						<label for="campoAssunto" class="col-sm-2 control-label"><span style="color: red;">*</span> Assunto</label>
 						<div class="col-md-8">
@@ -338,27 +318,64 @@ $.blockUI({ message: '<h1><img src="<?php echo base_url(); ?>scripts/images/ui-a
 							       
 							    });
 
-							 $("textarea#campoPara").tinymce({
-							      script_url : '<?php echo base_url(); ?>js/tinymce/tinymce.min.js',
-							      	<?php echo $readonly; ?>
-							  		language : 'pt_BR',
-							  		menubar : false,
-							  		width : 540,
-							  		browser_spellcheck : true,
-							  		forced_root_block : false,
-							  		setup : function(ed){
-							  		ed.on('init', function() {
-							  			   this.getDoc().body.style.fontSize = '10.5pt';
-							  			});
-							  	},
-							  	toolbar: "undo redo | bold italic underline superscript ",
-							  	statusbar : false,
-							   });
+							
+// 							 $("textarea#campoPara").tinymce({
+//							      script_url : '<?php echo base_url(); ?>js/tinymce/tinymce.min.js',
+//							      	<?php echo $readonly; ?>
+// 							  		language : 'pt_BR',
+// 							  		menubar : false,
+// 							  		width : 540,
+// 							  		browser_spellcheck : true,
+// 							  		forced_root_block : false,
+// 							  		setup : function(ed){
+// 							  		ed.on('init', function() {
+// 							  			   this.getDoc().body.style.fontSize = '10.5pt';
+// 							  			});
+// 							  	},
+// 							  	toolbar: "undo redo | bold italic underline superscript ",
+// 							  	statusbar : false,
+// 							   });
+							 
+
+							// Replace the <textarea id="editor1"> with a CKEditor
+							// instance, using default configuration.
+							
+							CKEDITOR.replace( 'campoPara', {
+
+								contentsCss: '<?php echo base_url();?>/css/ckeditor_styles.css',
+								language: 'pt-BR',
+
+								height: '150',
+
+								filebrowserBrowseUrl: 		'<?php echo base_url();?>js/kcfinder/browse.php?opener=ckeditor&type=files',
+								filebrowserImageBrowseUrl: 	'<?php echo base_url();?>js/kcfinder/browse.php?opener=ckeditor&type=images',
+								filebrowserFlashBrowseUrl: 	'<?php echo base_url();?>js/kcfinder/browse.php?opener=ckeditor&type=flash',
+								filebrowserUploadUrl: 		'<?php echo base_url();?>js/kcfinder/upload.php?opener=ckeditor&type=files',
+								filebrowserImageUploadUrl:	'<?php echo base_url();?>js/kcfinder/upload.php?opener=ckeditor&type=images',
+								filebrowserFlashUploadUrl: 	'<?php echo base_url();?>js/kcfinder/upload.php?opener=ckeditor&type=flash',
+							   
+							    
+							    removeButtons: 'Source,Preview,Templates,'+
+							    			   'Cut,Copy,Paste,PasteText,PasteFromWord,Undo,Redo,Scayt,'+
+							    			   'NumberedList,BulletedList,Outdent,Indent,'+
+							    			   'Link,Unlink,Anchor,'+
+							    			   'Table,SpecialChar,'+
+							    			   'Font,'+
+							    			   'Maximize,ShowBlocks,'+
+							    			   'Save,NewPage,Print,Find,Replace,SelectAll,Form,Checkbox,Radio,' +
+								    		   'TextField,Textarea,Select,Button,ImageButton,HiddenField,Blockquote,CreateDiv,BidiLtr,BidiRtl,Language,Anchor,'+
+								    		   'Flash,HorizontalRule,Smiley,PageBreak,Iframe,Styles,Format,About'
+							
+							});
+							 
 
 						});
 
 							function log( message ) {
-								$("#campoPara").val(message);
+						
+							//	$("#campoPara").val(message); // descomentar essa linha sem o ckeditor
+
+								CKEDITOR.instances.campoPara.setData( message ); // descomentar essa linha com o ckeditor
 							}
 
 						    $('#campoBusca').autocomplete({
@@ -393,9 +410,11 @@ $.blockUI({ message: '<h1><img src="<?php echo base_url(); ?>scripts/images/ui-a
 						            .appendTo( ul );
 						    };
 
+						    
 						        $("#form").submit(function() {
 
-						            var campoPara = $('#campoPara').val();
+						            //var campoPara = $('#campoPara').val(); // descomentar essa linha se nao estiver usando o ckeditor
+						            var campoPara = CKEDITOR.instances.campoPara.getData(); // descomentar essa linha se estiver usando o ckeditor
 						            var campoRedacao = $('#campoRedacao').val();
 
 						            var teste1 = false;
@@ -428,6 +447,7 @@ $.blockUI({ message: '<h1><img src="<?php echo base_url(); ?>scripts/images/ui-a
 						            }
 
 						        });
+						        
 
 						</script>
 					
@@ -520,30 +540,34 @@ $.blockUI({ message: '<h1><img src="<?php echo base_url(); ?>scripts/images/ui-a
 													<label class="control-label text-left">'. $asterisco .' '. $campo[2].'</label>
 													
 													<script type="text/javascript">
-														$().ready(function() {				
-															 $("textarea#campo_'.$nome_campo.'").tinymce({
-																  '.$readonly.'
-															      script_url : "'. base_url() .'js/tinymce/tinymce.min.js",
-															      language : "pt_BR",
-															  	  menubar : false,
-															  	  browser_spellcheck : true,
-															  	  content_css : "'. base_url() .'css/style_editor.css" ,
-															  	//  width : 800,
-															  	  relative_urls: false,
-															  	  setup : function(ed){
-															  		ed.on("init", function() {
-															  			   this.getDoc().body.style.fontSize = "10.5pt";
-															  			});
-															  	},
-												
-															  	plugins: "preview image jbimages spellchecker textcolor table lists code",
-												
-															  	toolbar: "undo redo | bold italic underline strikethrough | subscript superscript removeformat | alignleft aligncenter alignright alignjustify | forecolor backcolor | bullist numlist outdent indent | preview code | fontsizeselect table | jbimages ",
-															  	statusbar : false,
-															  	relative_urls: false
-												
-															   });
+		    										$().ready(function() {
+		    		
+		    											CKEDITOR.replace( \'campo_'.$nome_campo.'\', {
+
+															contentsCss: \''.base_url().'css/ckeditor_styles.css\',
+															language: \'pt-BR\',
+		  													height: \'350\',
+							
+															filebrowserBrowseUrl: 		\''.base_url().'js/kcfinder/browse.php?opener=ckeditor&type=files\',
+															filebrowserImageBrowseUrl: 	\''.base_url().'js/kcfinder/browse.php?opener=ckeditor&type=images\',
+															filebrowserFlashBrowseUrl: 	\''.base_url().'js/kcfinder/browse.php?opener=ckeditor&type=flash\',
+															filebrowserUploadUrl: 		\''.base_url().'js/kcfinder/upload.php?opener=ckeditor&type=files\',
+															filebrowserImageUploadUrl:	\''.base_url().'js/kcfinder/upload.php?opener=ckeditor&type=images\',
+															filebrowserFlashUploadUrl: 	\''.base_url().'js/kcfinder/upload.php?opener=ckeditor&type=flash\',
+														   
+														    
+														    removeButtons: \'Templates,\'+
+														    			   \'Cut,Copy,\'+
+														    			   \'Link,Unlink,Anchor,\'+
+														    			   \'SpecialChar,\'+
+														    			   \'Font,\'+
+														    			   \'Maximize,ShowBlocks,\'+
+														    			   \'Save,NewPage,Print,Find,Replace,SelectAll,Form,Checkbox,Radio,\' +
+															    		   \'TextField,Textarea,Select,Button,ImageButton,HiddenField,Blockquote,CreateDiv,BidiLtr,BidiRtl,Language,Anchor,\'+
+															    		   \'Flash,HorizontalRule,Smiley,PageBreak,Iframe,Styles,Format,About\'
+
 														});
+		    										});
 												   </script>
 													'.$input_campo[$nome_campo].'
 
@@ -575,6 +599,24 @@ $.blockUI({ message: '<h1><img src="<?php echo base_url(); ?>scripts/images/ui-a
 			
 		</fieldset>
 		
+		<!-- Mensagens e alertas -->
+		<div class="row">
+	   		<div class="col-md-12">
+	    	
+			    	<?php 
+			    		echo "<center>".$message."</center>"; 
+			    	
+				    	if(validation_errors() != ''){
+				    		echo '<div class="alert alert-danger" role="alert">';
+				    		echo validation_errors();
+				    		echo '</div>';
+				    	}
+			    	?>
+		  	 
+	    	</div>	
+	   	</div>
+	   	<!-- Fim das mensagens e alertas -->
+		
 			<div class="btn-group">
 		   		<?php
 		   		
@@ -591,6 +633,8 @@ $.blockUI({ message: '<h1><img src="<?php echo base_url(); ?>scripts/images/ui-a
 			</div>	
 		
 		</form>
+		
+		
 
 	</div>
 	<!-- fim da div formulario -->

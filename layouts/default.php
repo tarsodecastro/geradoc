@@ -19,6 +19,18 @@ switch ($nivel_id){
 
 /*
 | -------------------------------------------------------------------
+|	Importante para o upload de arquivos utilizando o kcfinder
+| -------------------------------------------------------------------
+*/
+
+//$_SESSION['id_usuario'] = $id_usuario;
+
+
+$_SESSION['upload_path'] = "uploads/".$id_usuario;
+
+
+/*
+| -------------------------------------------------------------------
 |	Importante para o ajax
 | -------------------------------------------------------------------
 */
@@ -222,9 +234,29 @@ $SessTimeLeft = ($SessExpTime - ($CurrTime - $arrLastActivity[0]["last_activity"
 	            </div>
             </div>
             <!-- Fim do Topo -->
+
+            <!--  Logo -->
+            <div class="row">
+	        
+	                <div class="col-md-6 col-lg-6 visible-md visible-lg" style="height: 75px;">
+
+	               	 <a href="<?php echo site_url('/documento/index'); ?>" title="Lista">
+	               	 	<i id="emblema" class="fa fa-file-text-o fa-4x" style="padding-top: 7px; padding-left: 57px; color: #4e8079;"></i>
+	               	 </a>
+
+	               <!-- logo normal
+	                	<img src="<?php echo $CI->config->item('base_url');?>images/bg_logo_left_<?php echo $CI->config->item('orgao');?>.png"> 	
+	                	 -->
+	                </div>
+	                
+	                <div class="col-sm-12 col-md-6 col-lg-6 text-right" id="logo_right" style="padding-right: 25px;">
+	                	<div ><?php echo $CI->config->item('title_short');?></div>
+	                </div>
+	          
+            </div>
+            <!-- Fim do Logo -->
             
-              <!--  Menu -->
-             
+            <!--  Menu -->             
             <div class="row"> 
 	             <nav class="navbar navbar-default" role="navigation">
 				  <div class="container-fluid">
@@ -318,26 +350,9 @@ $SessTimeLeft = ($SessExpTime - ($CurrTime - $arrLastActivity[0]["last_activity"
         	</div>
             <!--  Fim do Menu -->
             
-            <!--  Logo -->
-            <div class="row" style="margin-bottom: 5px; border-bottom: 1px solid #CCC;">
-	        
-	                <div class="col-md-6 col-lg-6 visible-md visible-lg" style="height: 75px;">
-
-	               	 <a href="<?php echo site_url('/documento/index'); ?>" title="Lista">
-	               	 	<i id="emblema" class="fa fa-file-text-o fa-4x" style="padding-top: 7px; padding-left: 57px; color: #4e8079;"></i>
-	               	 </a>
-
-	               <!-- logo normal
-	                	<img src="<?php echo $CI->config->item('base_url');?>images/bg_logo_left_<?php echo $CI->config->item('orgao');?>.png"> 	
-	                	 -->
-	                </div>
-	                
-	                <div class="col-sm-12 col-md-6 col-lg-6 text-right" id="logo_right" style="padding-right: 25px;">
-	                	<div ><?php echo $CI->config->item('title_short');?></div>
-	                </div>
-	          
-            </div>
-            <!-- Fim do Logo -->
+            
+            
+            
 
             {TPL_content}	
             

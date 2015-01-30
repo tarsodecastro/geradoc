@@ -1,0 +1,8 @@
+@CHARSET "UTF-8";
+
+body {
+   	font-family: \'Times New Roman\', Times, serif;
+	color: #000;
+	font-size: 15pt;
+	text-align: justify;
+}

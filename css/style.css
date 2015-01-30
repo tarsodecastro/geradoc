@@ -14,7 +14,7 @@
 
 /*-------TOPO---------*/
 #topo{
-	height:35px;	
+	height:45px;	
 	/*
 	background-image: url(../images/bg_top_geradox.jpg); 
 	background-repeat:repeat-x;
@@ -35,7 +35,7 @@
 
 
 #topo_center{
-	margin: 10px 0 10px 0px;
+	margin: 15px 0 15px 0px;
 	font-size: 12px;
 	color:#FFFFFF;
 	/*
@@ -123,7 +123,7 @@
 
 
 .areaimage{
-	top: -79px; 
+	top: -109px; 
 	position: relative;
 	margin: 0 auto;
 	width: 300px;
