@@ -71,12 +71,13 @@ $_SESSION['rodape_documento'] = $CI->config->item('rodape_documento');
 
 $area = $this->uri->segment(1);
 
-$menu_documento = '';
-$menu_modelos = '';
-$menu_organograma = '';
-$menu_pessoas = '';
-$menu_ferramentas = '';
-$menu_perfil = '';
+$menu_documento 	= '';
+$menu_repositorio 	= '';
+$menu_modelos 		= '';
+$menu_organograma 	= '';
+$menu_pessoas 		= '';
+$menu_ferramentas 	= '';
+$menu_perfil 		= '';
 
 if($this->uri->segment(2) == 'cadastro' or $this->uri->segment(2) == 'altsenha'){
 	$area = $this->uri->segment(2);
@@ -86,6 +87,10 @@ switch ($area){
 	
 	case 'documento':
 		$menu_documento =  'active';
+	break;
+	
+	case 'repositorio':
+		$menu_repositorio =  'active';
 	break;
 	
 	case 'coluna':
@@ -284,32 +289,26 @@ $SessTimeLeft = ($SessExpTime - ($CurrTime - $arrLastActivity[0]["last_activity"
 					            <li><a href="<?php echo site_url('/workflow'); ?>" title="Entrada"><i class="fa fa-inbox"></i> Entrada</a></li>
 					        </ul>
 				        </li>
+				        
+				        
+				        <li class="<?php echo $menu_repositorio;?>">
+				        	<a href="<?php echo site_url('/repositorio/index'); ?>" title="Respositório"><i class="fa fa-folder fa-lg"></i> Repositório</a>
+				       </li>
+				        
+				       
 				           
 				        <?php if ($nivel_id == 1){ //apenas para administradores?>
 				        
 					        <li class="dropdown <?php echo $menu_modelos;?>">
-					          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-file-code-o fa-lg"></i> Modelos <span class="caret"></span></a>
+					          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-cog fa-lg"></i> Administração <span class="caret"></span></a>
 					          <ul class="dropdown-menu" role="menu">
 					            <li><a href="<?php echo site_url('/coluna/index'); ?>" title="Campos"><i class="fa fa-database"></i> Campos</a></li>
 					            <li><a href="<?php echo site_url('/tipo/index'); ?>" title="Tipos"><i class="fa fa-files-o"></i> Tipos de Documentos</a></li>
-					          </ul>
-					        </li>
-					        
-					        <li class="dropdown <?php echo $menu_organograma;?>">
-					          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bank fa-lg"></i> Organograma <span class="caret"></span></a>
-					          <ul class="dropdown-menu" role="menu">
 					            <li><a href="<?php echo site_url('/orgao/index'); ?>" title="Órgãos"><i class="fa fa-building-o"></i> Órgãos</a></li>
 					            <li><a href="<?php echo site_url('/setor/index'); ?>" title="Setores"><i class="fa fa-sitemap"></i> Setores</a></li>
-					          </ul>
-					        </li>
-					        
-					        <li class="dropdown <?php echo $menu_pessoas;?>">
-					          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-users fa-lg"></i> Pessoas <span class="caret"></span></a>
-					          <ul class="dropdown-menu" role="menu">
 					            <li><a href="<?php echo site_url('/cargo/index'); ?>" title="Cargos"><i class="fa fa-suitcase"></i> Cargos</a></li>
 					            <li><a href="<?php echo site_url('/contato/index'); ?>" title="Contatos"><i class="fa fa-pencil"></i> Remetentes</a></li>
 					            <li><a href="<?php echo site_url('/usuario/index'); ?>" title="Usuários"><i class="fa fa-keyboard-o"></i> Usuários</a></li>
-					            
 					          </ul>
 					        </li>
 					        
