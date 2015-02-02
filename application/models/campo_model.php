@@ -147,7 +147,7 @@ class Campo_model extends CI_Model {
      * Campos dos formularios
      */    
     
-function orgao($indice) {
+	function orgao($indice) {
         $campo = array(
          
 	            'campoNome' => array(
@@ -801,6 +801,38 @@ function orgao($indice) {
     		),
     			
     			
+    	);
+    
+    	return $campo[$indice];
+    }
+    
+    function repositorio($indice) {
+    	$campo = array(
+    			 
+    			'campoNome' => array(
+    					'name' => 'campoNome',
+    					'id' => 'campoNome',
+    					'type'=>'text',
+    					'placeholder'=> 'Nome',
+    					'value' => mb_convert_case($this->input->post('campoNome'), MB_CASE_UPPER, "ISO-8859-1"),
+    					'maxlength' => '90',
+    					'size' => '71',
+    					'class' => 'form-control  text-uppercase',
+    					'required' => 'required',
+    			),
+
+    			'campoDescricao' => array(
+    					'name' => 'campoDescricao',
+    					'id' => 'campoDescricao',
+    					'type'=>'text',
+    					'placeholder'=> 'Descrição',
+    					'value' => mb_convert_case($this->input->post('campoDescricao'), MB_CASE_UPPER, "ISO-8859-1"),
+    					'cols'  => '70',
+    					'rows'  =>  '2',
+    					'class' => 'form-control  text-uppercase',
+    					'required' => 'required',
+    			),
+    			 
     	);
     
     	return $campo[$indice];

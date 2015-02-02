@@ -59,23 +59,18 @@
 				echo'<div class="alert alert-danger text-center" role="alert">'.$erro['erro'].'</div>';
 			}
 			
+			if(validation_errors() != ''){
+				echo '<div class="form-group">';
+				echo form_error('campoNome');
+				echo form_error('campoDescricao');
+				echo '</div>';
+			}
+			
 			?>
 			
-			<form action="<?php echo site_url()."/repositorio"?>" class="form-inline" method="post" accept-charset="utf-8" enctype="multipart/form-data">			
+			<a href="#modalFileUpload" id="fale" data-toggle="modal" class="btn btn-success" ><i class="fa fa-cloud-upload fa-lg"></i> Adicionar arquivo</a>
 			
 			
-			<div class="form-group">
-			
-			<label for="userfile">Adicionar arquivo</label>
-			<input type="file" name="userfile" id="userfile" size="20" class="form-control" />
-	
-			</div>
-			
-			<button type="submit" class="btn btn-success">Enviar</button>
-			
-			</form>
-			
-	
 		
 		<div class="table-responsive">
 				<?php echo $table;?>
@@ -84,26 +79,48 @@
 	</div>
 	<div class="col-md-1"></div>
 	
-	
-	<div class="modal fade" id="modalImagem" tabindex="-1" role="dialog" aria-labelledby="modalImagem" aria-hidden="true">
-		  <div class="modal-dialog">
-		    <div class="modal-content">
-		      <div class="modal-header">
-		        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Fechar</span></button>
-		        <h4 class="modal-title" id="exampleModalLabel">
-		        Preview
-		        </h4>
-		      </div>
-		      <div class="modal-body text-center">
-		        <img src="" id="imagepreview" style="width: 400px; height: 264px;" >
-		      </div>
-		      <div class="modal-footer">
-		        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-		      </div>
-		    </div>
-		  </div>
-		</div>
-	</div>
+
+	<div class="modal fade" id="modalFileUpload" tabindex="-1" role="dialog" aria-labelledby="modalFileUpload" aria-hidden="true">
+			  <div class="modal-dialog">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Fechar</span></button>
+			        <h4 class="modal-title" id="exampleModalLabel">Adicionar arquivo</h4>
+			      </div>
+			      
+			      <form role="form" action="<?php echo site_url()."/repositorio"?>" method="post" accept-charset="utf-8" enctype="multipart/form-data">
+			      <div class="modal-body">
+			      <p class="text-muted text-justify"> Utilize o formulário abaixo para enviar o arquivo.</p>
+			      
+			      
+			      	 <div class="form-group <?php echo (form_error('campoNome') != '')? 'has-error':''; ?>">
+					    <label for="campoNome" class="control-label"><span style="color: red;">*</span> Nome</label>
+					      	<?php echo form_input($campoNome); ?> 
+					  </div>
+					  
+					  <div class="form-group <?php echo (form_error('campoDescricao') != '')? 'has-error':''; ?>">
+					    <label for="campoDescricao" class="control-label"><span style="color: red;">*</span> Descrição</label>
+					    	<?php echo form_textarea($campoDescricao); ?>
+					  </div>
+					  
+					  <div class="form-group">
+					    <label for="campoArquivo" class="control-label"><span style="color: red;">*</span> Arquivo</label>
+					    	<input type="file" name="userfile" id="userfile" size="20" class="form-control" />
+					  </div>
+			      		
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+			        <button type="submit" class="btn btn-primary">Enviar</button>
+			        
+			      </div>
+			      
+			      </form>
+			      
+			      
+			    </div>
+			  </div>
+			</div>
 
 <script>
 $("#pop").on("click", function() {

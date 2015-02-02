@@ -12,6 +12,18 @@ class Repositorio extends CI_Controller {
 	*
 	*/
 	
+	//$SIZE_LIMIT = 5368709120; // 5 GB // em bytes
+	//$SIZE_LIMIT = 1073741824; // 1 GB // em bytes
+	//$SIZE_LIMIT = 104857600; // 100 MB // em bytes
+	//$SIZE_LIMIT = 10485760; // 10 MB
+	
+	
+	//$config['max_size']	= '5120'; // 5 MB em Kb
+	//$config['max_size']	= '1024'; // 1 MB em Kb
+	
+	public $size_limit = 10485760; // sem aspas e em bytes
+	public $upload_limit = '5120'; // com aspas e em KB
+	
 	public $layout = 'default';
 	public $css = array('style');
 	public $js = array('jquery-1.11.1.min','jquery.dataTables.min','jquery.blockUI','about');
@@ -25,6 +37,7 @@ class Repositorio extends CI_Controller {
 		$this->load->helper('url');
 		$this->load->helper('file');
 		$this->load->helper('directory');
+		$this->load->model('Repositorio_model','',TRUE);
         $this->load->model('Grid_model','',TRUE);
         $this->load->model('Campo_model','',TRUE);
         $this->modal = $this->load->view('about_modal', '', TRUE);
@@ -110,6 +123,15 @@ class Repositorio extends CI_Controller {
 		return substr( $size, 0, $endIndex).' '.$units[$i];
 	}
 	
+	public function getUsuario ($id_usuario){
+	
+		$this->load->model('Usuario_model', '', TRUE);
+		
+		$usuario =  $this->Usuario_model->get_by_id($id_usuario)->row();
+	
+		return $usuario;
+	}
+	
 
 	function index(){
 			
@@ -117,6 +139,11 @@ class Repositorio extends CI_Controller {
 		$data['titulo']     = 'Repositório';
 		$data['link_add']   = $this->Campo_model->make_link($this->area, 'add');
 		
+		//constroe os campos que serao mostrados no formulario
+		$this->load->model('Campo_model','',TRUE);
+		$data['campoNome'] = $this->Campo_model->repositorio('campoNome');
+		$data['campoDescricao'] = $this->Campo_model->repositorio('campoDescricao');
+
 		$setor = $this->session->userdata('setor');
 		
 		$data['repositorio'] = './files/'.$setor;
@@ -126,28 +153,12 @@ class Repositorio extends CI_Controller {
 			copy('./files/index.html', $data['repositorio'].'/index.html');
 		}
 		
-		//tamanho do repositorio
-// 		$f = $data['repositorio'];
-// 		$io = popen ( '/usr/bin/du -sk ' . $f, 'r' );
-// 		$size = fgets ( $io, 4096);
-// 		$size = substr ( $size, 0, strpos ( $size, "\t" ) );
-// 		pclose ( $io );
-		//echo 'Directory: ' . $f . ' => Size: ' . $size;
-		
-		//$units = explode(' ', 'B KB MB GB TB PB'); // em bytes
-		//$SIZE_LIMIT = 5368709120; // 5 GB // em bytes
-		//$SIZE_LIMIT = 1073741824; // 1 GB // em bytes
-		//$SIZE_LIMIT = 104857600; // 100 MB // em bytes
-		//$SIZE_LIMIT = 10485760; // 10 MB
-		$SIZE_LIMIT = 10485760; // 10 MB
-		
+		$SIZE_LIMIT = $this->size_limit; // 10 MB
 		$disk_used = $this->foldersize($data['repositorio']);
 		$disk_remaining = $SIZE_LIMIT - $disk_used;
 
 		$data['porcentagem_ocupada'] = (($disk_used / $SIZE_LIMIT) * 100);
 		$data['porcentagem_ocupada'] = round($data['porcentagem_ocupada'], 2);
-		// fim
-	
 		$data['cota'] = $this->format_size($SIZE_LIMIT);
 		$data['cota_usada'] = $this->format_size($disk_used);
 		$data['cota_restante'] = $this->format_size($disk_remaining);
@@ -157,9 +168,7 @@ class Repositorio extends CI_Controller {
 		$config['upload_path'] = $data['repositorio'];
 		$config['allowed_types'] = 'gif|jpg|jpeg|png|zip|rar|doc|docx|xls|xlsx|ppt|pptx|csv|ods|odt|odp|pdf|rtf|txt';
 		$config['remove_spaces']	= TRUE;
-		//$config['max_size']	= '5120'; // 5 MB em Kb
-		//$config['max_size']	= '1024'; // 1 MB em Kb
-		$config['max_size']	= '5120';
+		$config['max_size']	= $this->upload_limit;
 		if($disk_used >= $SIZE_LIMIT){
 			$data['erro'] = array('erro' => 'Você atingiu o limite de sua cota! Não é possível adicionar arquivos.');
 			$config['max_size']	= '1';
@@ -181,75 +190,107 @@ class Repositorio extends CI_Controller {
 			$this->upload->initialize($config);
 			
 			if ( ! $this->upload->do_upload()){
-	
 				$data['erro'] = array('erro' => $this->upload->display_errors());
-		
 			}else{
 				
 				$data['upload'] = array('upload_data' => $this->upload->data());
-
+				
+				//print_r($data['upload']);
+				
+				//echo $data['upload']['upload_data']['file_name'];
+				
+				//cria o objeto com os dados passados via post
+				$objeto_do_form = array(
+						'id_setor' => $setor,
+						'id_usuario' => $this->session->userdata('id_usuario'),
+						'arquivo' => $data['repositorio'].'/'.$data['upload']['upload_data']['file_name'],
+						'nome' => mb_convert_case($this->input->post('campoNome'), MB_CASE_UPPER, "UTF-8"),
+						'descricao' => mb_convert_case($this->input->post('campoDescricao'), MB_CASE_UPPER, "UTF-8"),
+						'data_criacao' =>  date('Y-m-d H:i:s'),
+				);
+				
+				//print_r($objeto_do_form);
+				// Salva o registro
+				$this->Repositorio_model->save($objeto_do_form);
+				
 			}
 		}
 		
+		//--- Listagem dos arquivos ---//
+		
 		$map = directory_map($data['repositorio'], 1);
+		
+		$objetos = $this->Repositorio_model->list_by_setor($setor)->result();
+		
+		//print_r($objetos);
 		
 		$this->load->library('table');
 		$this->table->set_empty("&nbsp;");
-		$this->table->set_heading('Nome', 'Tamanho', 'Ações');
+		$this->table->set_heading('Arquivo','Tamanho','Nome', 'Descrição', 'Responsável', 'Ações');
 		
 		if($map != FALSE){
 			
 			$map = array_diff($map, array('index.html')); // esconde o arquivo index.html para que o usuario nao delete.
 			
-			foreach ($map as $map_item){
+			//print_r($map);
+			
+			foreach ($objetos as $map_item){
 				
-				$repositorio = str_replace("./", "", $data['repositorio']);
+				//$repositorio = str_replace("./", "", $data['repositorio']);
 				
-				$caminho_completo = base_url().$repositorio.'/'.$map_item;
+				$arquivo = $map_item->arquivo;
+				$file_size = filesize($arquivo);
+				$caminho_completo = base_url().'./'.$arquivo;
 				
-				$file_size = filesize($data['repositorio'].'/'.$map_item);
+				$array_arquivo = explode('/', $arquivo);
 				
-				$array_map_item = explode('.', $map_item);
+				$arquivo = end($array_arquivo);
+
+				$array_map_item = explode('.', $arquivo);
 				
 				$extensao = strtolower(end($array_map_item));
 
-				$link = '<i class="cus-page"></i> <a href="'.$caminho_completo.'" target="_blank">'.$map_item.'</a>';
+				$link = '<i class="cus-page"></i> <a href="'.$caminho_completo.'" target="_blank">'.$arquivo.'</a>';
 				
 				if($extensao == 'png' || $extensao == 'jpg' || $extensao == 'gif'){
-					$link = '<i class="cus-picture"></i> <a href="#" id="pop" data-toggle="modal" data-img-url="'.$caminho_completo.'">'.$map_item.'</a>';
+					//$link = '<i class="cus-picture"></i> <a href="#" id="pop" data-toggle="modal" data-img-url="'.$caminho_completo.'">'.$map_item.'</a>';
+					$link = '<i class="cus-picture"></i> <a href="'.$caminho_completo.'" target="_blank">'.$arquivo.'</a>';
 				}
 				
 				if($extensao == 'pdf'){
-					$link = '<i class="cus-page_white_acrobat"></i> <a href="'.$caminho_completo.'" target="_blank">'.$map_item.'</a>';
+					$link = '<i class="cus-page_white_acrobat"></i> <a href="'.$caminho_completo.'" target="_blank">'.$arquivo.'</a>';
 				}
 				
 				if($extensao == 'txt'){
-					$link = '<i class="cus-page_white_text"></i> <a href="'.$caminho_completo.'" target="_blank">'.$map_item.'</a>';
+					$link = '<i class="cus-page_white_text"></i> <a href="'.$caminho_completo.'" target="_blank">'.$arquivo.'</a>';
 				}
 				
 				if($extensao == 'doc' || $extensao == 'docx'){
-					$link = '<i class="cus-page_word"></i> <a href="'.$caminho_completo.'">'.$map_item.'</a>';
+					$link = '<i class="cus-page_word"></i> <a href="'.$caminho_completo.'">'.$arquivo.'</a>';
 				}
 
 				if($extensao == 'xls' || $extensao == 'xlsx'){
-					$link = '<i class="cus-page_excel"></i> <a href="'.$caminho_completo.'">'.$map_item.'</a>';
+					$link = '<i class="cus-page_excel"></i> <a href="'.$caminho_completo.'">'.$arquivo.'</a>';
 				}
 				
 				if($extensao == 'ppt' || $extensao == 'pptx'){
-					$link = '<i class="cus-page_white_powerpoint"></i> <a href="'.$caminho_completo.'">'.$map_item.'</a>';
+					$link = '<i class="cus-page_white_powerpoint"></i> <a href="'.$caminho_completo.'">'.$arquivo.'</a>';
 				} 
 				
 				if($extensao == 'zip' || $extensao == 'rar'){
-					$link = '<i class="cus-compress"></i> <a href="'.$caminho_completo.'">'.$map_item.'</a>';
+					$link = '<i class="cus-compress"></i> <a href="'.$caminho_completo.'">'.$arquivo.'</a>';
 				}
 				
+				$nome_usuario = $this->getUsuario($map_item->id_usuario)->nome;
+
 				$this->table->add_row(
-						
 						$link,
-						
 						$this->format_size($file_size),
+						$map_item->nome,
+						$map_item->descricao,
+						$nome_usuario,
 						'<div class="btn-group">
-							'. anchor($this->area.'/delete/'.$map_item,'<i class="cus-cancel"></i> Deletar', array('class'=>'btn btn-default btn-sm')) .'
+							'. anchor($this->area.'/delete/'.$map_item->id,'<i class="cus-cancel"></i> Deletar', array('class'=>'btn btn-default btn-sm')) .'
 						</div>'
 				);
 			}
@@ -260,17 +301,26 @@ class Repositorio extends CI_Controller {
 		$this->table->set_template($tmpl);
 		
 		$data['table'] = $this->table->generate();
+		//--- Fim da listagem dos arquivos ---//
 		
 		$this->load->view($this->area.'/'.$this->area.'_list', $data);
 	}
 	
-	function delete($arquivo){
+	function delete($id){
 		
-		$setor = $this->session->userdata('setor');
+		$obj = $this->Repositorio_model->get_by_id($id)->row();
 		
-		$data['repositorio'] = './files/'.$setor;
+		//echo $obj->arquivo;
 		
-		unlink($data['repositorio'] . '/' . $arquivo);
+// 		$setor = $this->session->userdata('setor');
+		
+// 		$data['repositorio'] = './files/'.$setor;
+		
+// 		unlink($data['repositorio'] . '/' . $arquivo);
+
+		unlink($obj->arquivo);
+		
+		$this->Repositorio_model->delete($id);
 
 		redirect($this->area);
 	}
