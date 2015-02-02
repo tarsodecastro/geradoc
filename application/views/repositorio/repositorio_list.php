@@ -10,9 +10,19 @@
 
 <div id="view_content">
 
+	
+	
 	<div class="col-md-1"></div>
 	<div class="col-md-10">
-	
+			<div class="row">
+				<div class="col-md-2"></div>
+				<div class="col-md-8 alert alert-warning text-justify" role="alert"><strong>Atenção!</strong><br> 
+																	O <strong>repositório</strong> é um espaço virtual de armazenamento de arquivos do seu setor. <br>
+																	Este espaço é compartilhado com os demais usuários do setor e é destinado ao armazenamento de arquivos essencias para o trabalho.
+																	Os arquivos aqui armazenados podem ser referenciados nos documentos criados, com o objetivo de evitar o excesso de impressões.
+				</div>
+				<div class="col-md-2"></div>
+			</div>
 			<div class="row">
 				<div class="col-md-6">
 					
@@ -68,7 +78,9 @@
 			
 			?>
 			
-			<a href="#modalFileUpload" id="fale" data-toggle="modal" class="btn btn-success" ><i class="fa fa-cloud-upload fa-lg"></i> Adicionar arquivo</a>
+			<a href="#modalFileUpload" id="fale" data-toggle="modal" class="btn btn-success" ><i class="fa fa-cloud-upload fa-lg"></i> Enviar arquivo</a>
+			
+			<a href="#modalFolder" id="fale" data-toggle="modal" class="btn btn-default" ><i class="fa fa-folder-open fa-lg"></i> Criar pasta</a>
 			
 			
 		
@@ -116,11 +128,46 @@
 			      </div>
 			      
 			      </form>
+
+		    </div>
+		  </div>
+	</div>
+	
+	<div class="modal fade" id="modalFolder" tabindex="-1" role="dialog" aria-labelledby="modalFolder" aria-hidden="true">
+			  <div class="modal-dialog">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Fechar</span></button>
+			        <h4 class="modal-title" id="exampleModalLabel">Adicionar pasta</h4>
+			      </div>
+			      
+			      <form role="form" action="<?php echo site_url()."/repositorio/folder_add"?>" method="post" accept-charset="utf-8" enctype="multipart/form-data">
+			      <div class="modal-body">
+			      <p class="text-muted text-justify"> Utilize o formulário abaixo para criar uma pasta.</p>
 			      
 			      
-			    </div>
-			  </div>
-			</div>
+			      	 <div class="form-group <?php echo (form_error('campoNome') != '')? 'has-error':''; ?>">
+					    <label for="campoNome" class="control-label"><span style="color: red;">*</span> Nome da nova pasta</label>
+					      	<?php echo form_input($campoNome); ?> 
+					  </div>
+					  
+					  <div class="form-group <?php echo (form_error('campoDescricao') != '')? 'has-error':''; ?>">
+					    <label for="campoDescricao" class="control-label"><span style="color: red;">*</span> Descrição</label>
+					    	<?php echo form_textarea($campoDescricao); ?>
+					  </div>
+
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+			        <button type="submit" class="btn btn-primary">Enviar</button>
+			        
+			      </div>
+			      
+			      </form>
+
+		    </div>
+		  </div>
+	</div>
 
 <script>
 $("#pop").on("click", function() {

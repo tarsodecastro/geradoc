@@ -90,21 +90,22 @@ class Repositorio extends CI_Controller {
 		$total_size = 0;
 		$files = scandir($path);
 		$cleanPath = rtrim($path, '/'). '/';
-	
+		
 		foreach($files as $t) {
+			
 			if ($t<>"." && $t<>"..") {
 				$currentFile = $cleanPath . $t;
 				if (is_dir($currentFile)) {
-					$size = foldersize($currentFile);
+					$size = $this->foldersize($currentFile);
 					$total_size += $size;
-				}
-				else {
+				}else {
 					$size = filesize($currentFile);
 					$total_size += $size;
 				}
 			}
+			
 		}
-	
+		
 		return $total_size;
 	}
 	
@@ -156,7 +157,7 @@ class Repositorio extends CI_Controller {
 		$SIZE_LIMIT = $this->size_limit; // 10 MB
 		$disk_used = $this->foldersize($data['repositorio']);
 		$disk_remaining = $SIZE_LIMIT - $disk_used;
-
+	
 		$data['porcentagem_ocupada'] = (($disk_used / $SIZE_LIMIT) * 100);
 		$data['porcentagem_ocupada'] = round($data['porcentagem_ocupada'], 2);
 		$data['cota'] = $this->format_size($SIZE_LIMIT);
@@ -173,6 +174,8 @@ class Repositorio extends CI_Controller {
 			$data['erro'] = array('erro' => 'Você atingiu o limite de sua cota! Não é possível adicionar arquivos.');
 			$config['max_size']	= '1';
 		}
+		
+		
 		
 		if(!empty($_FILES)){
 
@@ -251,6 +254,11 @@ class Repositorio extends CI_Controller {
 				$extensao = strtolower(end($array_map_item));
 
 				$link = '<i class="cus-page"></i> <a href="'.$caminho_completo.'" target="_blank">'.$arquivo.'</a>';
+
+				if($extensao == $arquivo){
+					//$link = '<i class="cus-picture"></i> <a href="#" id="pop" data-toggle="modal" data-img-url="'.$caminho_completo.'">'.$map_item.'</a>';
+					$link = '<i class="cus-folder"></i> <a href="'.$caminho_completo.'" target="_self">'.$arquivo.'</a>';
+				}
 				
 				if($extensao == 'png' || $extensao == 'jpg' || $extensao == 'gif'){
 					//$link = '<i class="cus-picture"></i> <a href="#" id="pop" data-toggle="modal" data-img-url="'.$caminho_completo.'">'.$map_item.'</a>';
@@ -290,6 +298,7 @@ class Repositorio extends CI_Controller {
 						$map_item->descricao,
 						$nome_usuario,
 						'<div class="btn-group">
+							'. anchor($this->area.'/update/'.$map_item->id,'<i class="cus-pencil"></i> Alterar', array('class'=>'btn btn-default btn-sm')) .'
 							'. anchor($this->area.'/delete/'.$map_item->id,'<i class="cus-cancel"></i> Deletar', array('class'=>'btn btn-default btn-sm')) .'
 						</div>'
 				);
@@ -318,11 +327,48 @@ class Repositorio extends CI_Controller {
 		
 // 		unlink($data['repositorio'] . '/' . $arquivo);
 
-		unlink($obj->arquivo);
+		if (is_dir($obj->arquivo) === true){
+			
+			rmdir($obj->arquivo); // para pastas
+			
+		}else if (is_file($obj->arquivo) === true){
+			
+        	unlink($obj->arquivo); // para arquivos
+        
+    	}
 		
 		$this->Repositorio_model->delete($id);
 
 		redirect($this->area);
+	}
+	
+	
+	function folder_add(){
+		
+		$setor = $this->session->userdata('setor');
+		
+		$repositorio = './files/'.$setor;
+	
+		$nova_pasta = $repositorio.'/'.$this->input->post('campoNome');
+		
+		$objeto_do_form = array(
+				'id_setor' => $setor,
+				'id_usuario' => $this->session->userdata('id_usuario'),
+				'arquivo' => $nova_pasta,
+				'nome' => mb_convert_case($this->input->post('campoNome'), MB_CASE_UPPER, "UTF-8"),
+				'descricao' => mb_convert_case($this->input->post('campoDescricao'), MB_CASE_UPPER, "UTF-8"),
+				'data_criacao' =>  date('Y-m-d H:i:s'),
+		);
+		
+		$this->Repositorio_model->save($objeto_do_form);
+		
+		if (!file_exists($nova_pasta)) {
+			mkdir($nova_pasta, 0700);
+			copy('./files/index.html', $nova_pasta.'/index.html');
+		}
+		
+		redirect($this->area);
+
 	}
 	
 	
