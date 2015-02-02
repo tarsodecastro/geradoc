@@ -255,7 +255,7 @@ class Repositorio extends CI_Controller {
 
 				$link = '<i class="cus-page"></i> <a href="'.$caminho_completo.'" target="_blank">'.$arquivo.'</a>';
 
-				if($extensao == $arquivo){
+				if($extensao == strtolower($arquivo)){
 					//$link = '<i class="cus-picture"></i> <a href="#" id="pop" data-toggle="modal" data-img-url="'.$caminho_completo.'">'.$map_item.'</a>';
 					$link = '<i class="cus-folder"></i> <a href="'.$caminho_completo.'" target="_self">'.$arquivo.'</a>';
 				}
@@ -327,13 +327,28 @@ class Repositorio extends CI_Controller {
 		
 // 		unlink($data['repositorio'] . '/' . $arquivo);
 
-		if (is_dir($obj->arquivo) === true){
+		$path = $obj->arquivo; // arquivo ou pasta
+		
+		if (is_dir($path) === true){
 			
-			rmdir($obj->arquivo); // para pastas
 			
-		}else if (is_file($obj->arquivo) === true){
+			foreach(scandir($path) as $file) {
+				if ('.' === $file || '..' === $file) continue;
+				if (is_dir("$path/$file")) rmdir_recursive("$path/$file");
+				else unlink("$path/$file");
+			}
 			
-        	unlink($obj->arquivo); // para arquivos
+// 			$files = array_diff(scandir($path), array('.', '..'));
+			
+// 			foreach ($files as $file){
+// 				Delete(realpath($path) . '/' . $file);
+// 			}
+			
+			rmdir($path); // para pastas
+			
+		}else if (is_file($path) === true){
+			
+        	unlink($path); // para arquivos
         
     	}
 		
@@ -349,7 +364,7 @@ class Repositorio extends CI_Controller {
 		
 		$repositorio = './files/'.$setor;
 	
-		$nova_pasta = $repositorio.'/'.$this->input->post('campoNome');
+		$nova_pasta = $repositorio.'/'.mb_convert_case($this->input->post('campoNome'), MB_CASE_UPPER, "UTF-8");
 		
 		$objeto_do_form = array(
 				'id_setor' => $setor,
