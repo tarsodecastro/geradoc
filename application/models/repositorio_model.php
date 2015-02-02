@@ -24,6 +24,13 @@ class Repositorio_model extends CI_Model {
 		return $this->db->get($this->tabela);
 	}
 	
+	function list_by_setor_folder($setor, $pasta){
+		$this->db->where('id_setor', $setor);
+		$this->db->like('arquivo', $pasta);
+		$this->db->order_by('nome','asc');
+		return $this->db->get($this->tabela);
+	}
+	
 	function count_all(){
 		return $this->db->count_all($this->tabela);
 	}

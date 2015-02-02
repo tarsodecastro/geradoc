@@ -134,7 +134,7 @@ class Repositorio extends CI_Controller {
 	}
 	
 
-	function index(){
+	function index($folder = null){
 			
 		$this->js[] = 'repositorio';
 		$data['titulo']     = 'Repositório';
@@ -145,14 +145,19 @@ class Repositorio extends CI_Controller {
 		$data['campoNome'] = $this->Campo_model->repositorio('campoNome');
 		$data['campoDescricao'] = $this->Campo_model->repositorio('campoDescricao');
 
-		$setor = $this->session->userdata('setor');
+		$setor = $this->session->userdata('setor');		
 		
-		$data['repositorio'] = './files/'.$setor;
+		//$data['repositorio'] = ($folder ==  null) ? './files/'.$setor : './files/'.$setor.'/'.$folder;
+		$data['repositorio'] =  './files/'.$setor;
 		
 		if (!file_exists($data['repositorio'])) {
 			mkdir($data['repositorio'], 0700);
 			copy('./files/index.html', $data['repositorio'].'/index.html');
 		}
+		
+		//---------------------------------------------------------------------//
+		//--- DEFINICAO DOS PARAMETROS
+		//---------------------------------------------------------------------//
 		
 		$SIZE_LIMIT = $this->size_limit; // 10 MB
 		$disk_used = $this->foldersize($data['repositorio']);
@@ -166,7 +171,8 @@ class Repositorio extends CI_Controller {
 		
 		$data['erro'] = '';
 		
-		$config['upload_path'] = $data['repositorio'];
+		$config['upload_path'] = ($folder == null) ? $data['repositorio'] : $data['repositorio'] . '/' . $folder;
+		echo $config['upload_path'];
 		$config['allowed_types'] = 'gif|jpg|jpeg|png|zip|rar|doc|docx|xls|xlsx|ppt|pptx|csv|ods|odt|odp|pdf|rtf|txt';
 		$config['remove_spaces']	= TRUE;
 		$config['max_size']	= $this->upload_limit;
@@ -174,8 +180,11 @@ class Repositorio extends CI_Controller {
 			$data['erro'] = array('erro' => 'Você atingiu o limite de sua cota! Não é possível adicionar arquivos.');
 			$config['max_size']	= '1';
 		}
+
 		
-		
+		//---------------------------------------------------------------------//
+		//--- UPLOAD DOS ARQUIVOS
+		//---------------------------------------------------------------------//
 		
 		if(!empty($_FILES)){
 
@@ -219,11 +228,21 @@ class Repositorio extends CI_Controller {
 			}
 		}
 		
-		//--- Listagem dos arquivos ---//
+		
+		//---------------------------------------------------------------------//
+		//--- LISTAGEM DOS ARQUIVOS
+		//---------------------------------------------------------------------//
 		
 		$map = directory_map($data['repositorio'], 1);
 		
-		$objetos = $this->Repositorio_model->list_by_setor($setor)->result();
+		//$data['repositorio'] = ($folder ==  null) ? './files/'.$setor : './files/'.$setor.'/'.$folder;
+		
+		if($folder ==  null){
+			$objetos = $this->Repositorio_model->list_by_setor($setor)->result();
+		}else{
+			$folder = $data['repositorio'].'/'.$folder;
+			$objetos = $this->Repositorio_model->list_by_setor_folder($setor, $folder)->result();
+		}
 		
 		//print_r($objetos);
 		
@@ -257,7 +276,7 @@ class Repositorio extends CI_Controller {
 
 				if($extensao == strtolower($arquivo)){
 					//$link = '<i class="cus-picture"></i> <a href="#" id="pop" data-toggle="modal" data-img-url="'.$caminho_completo.'">'.$map_item.'</a>';
-					$link = '<i class="cus-folder"></i> <a href="'.$caminho_completo.'" target="_self">'.$arquivo.'</a>';
+					$link = '<i class="cus-folder"></i> <a href="'.$this->area.'/'.$map_item->id.'" target="_self">'.$arquivo.'</a>';
 				}
 				
 				if($extensao == 'png' || $extensao == 'jpg' || $extensao == 'gif'){
