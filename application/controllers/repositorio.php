@@ -223,17 +223,21 @@ class Repositorio extends CI_Controller {
 					$link = '<i class="cus-page_white_acrobat"></i> <a href="'.$caminho_completo.'" target="_blank">'.$map_item.'</a>';
 				}
 				
+				if($extensao == 'txt'){
+					$link = '<i class="cus-page_white_text"></i> <a href="'.$caminho_completo.'" target="_blank">'.$map_item.'</a>';
+				}
+				
 				if($extensao == 'doc' || $extensao == 'docx'){
 					$link = '<i class="cus-page_word"></i> <a href="'.$caminho_completo.'">'.$map_item.'</a>';
 				}
-				
+
 				if($extensao == 'xls' || $extensao == 'xlsx'){
 					$link = '<i class="cus-page_excel"></i> <a href="'.$caminho_completo.'">'.$map_item.'</a>';
 				}
 				
 				if($extensao == 'ppt' || $extensao == 'pptx'){
-					$link = '<i class="cus-picture"></i> <a href="'.$caminho_completo.'">'.$map_item.'</a>';
-				}
+					$link = '<i class="cus-page_white_powerpoint"></i> <a href="'.$caminho_completo.'">'.$map_item.'</a>';
+				} 
 				
 				if($extensao == 'zip' || $extensao == 'rar'){
 					$link = '<i class="cus-compress"></i> <a href="'.$caminho_completo.'">'.$map_item.'</a>';
