@@ -13,6 +13,46 @@
 	<div class="col-md-1"></div>
 	<div class="col-md-10">
 	
+			<div class="row">
+				<div class="col-md-6">
+					
+					<?php  
+					
+						$progress_bar_class = "progress-bar";
+						
+						if($porcentagem_ocupada < 25){
+							$progress_bar_class = "progress-bar progress-bar-success";
+						}
+						
+						if($porcentagem_ocupada > 75 and $porcentagem_ocupada < 90){
+							$progress_bar_class = "progress-bar progress-bar-warning";
+						}
+						
+						if($porcentagem_ocupada > 90){
+							$progress_bar_class = "progress-bar progress-bar-danger";
+						}
+
+					?>
+					
+					<div class="progress">
+						  <div class="<?php echo $progress_bar_class;?>" role="progressbar" aria-valuenow="<?php echo $porcentagem_ocupada;?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $porcentagem_ocupada;?>%;">
+						    <?php echo $porcentagem_ocupada;?>%
+						  </div>
+						</div>
+					
+				</div>
+				
+				<div class="col-md-6">
+			
+					Cota total: <?php echo $cota;?>, utilizada: <?php echo $cota_usada;?>, restante: <?php echo $cota_restante;?>
+				
+						
+		
+				</div>
+			</div>
+			
+			
+
 			<?php 
 
 			if($erro){

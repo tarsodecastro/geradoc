@@ -292,7 +292,7 @@ $SessTimeLeft = ($SessExpTime - ($CurrTime - $arrLastActivity[0]["last_activity"
 				        
 				        
 				        <li class="<?php echo $menu_repositorio;?>">
-				        	<a href="<?php echo site_url('/repositorio/index'); ?>" title="Respositório"><i class="fa fa-folder fa-lg"></i> Repositório</a>
+				        	<a href="<?php echo site_url('/repositorio/index'); ?>" title="Respositório"><i class="fa fa-archive fa-lg"></i> Repositório</a>
 				       </li>
 				        
 				       

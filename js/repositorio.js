@@ -9,10 +9,6 @@
          "bFilter": true,
          "bLengthChange": false,
          "bInfo": true,
-         "aoColumns": [
-       				{"sWidth":"30px", "sClass": "text-left"},				
-       				{"sWidth":"400px", "sClass": "text-left"} 								 	
-       			],
        			"oLanguage": {
       			  "sEmptyTable": "Nenhum registro encontrado",
       			    "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",

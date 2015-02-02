@@ -98,7 +98,14 @@ $mimes = array(	'hqx'	=>	'application/mac-binhex40',
 				'word'	=>	array('application/msword', 'application/octet-stream'),
 				'xl'	=>	'application/excel',
 				'eml'	=>	'message/rfc822',
-				'json' => array('application/json', 'text/json')
+				'json' => array('application/json', 'text/json'),	
+				// open office
+				'odt' => 'application/vnd.oasis.opendocument.text',
+				'ods' => 'application/vnd.oasis.opendocument.spreadsheet',
+		
+				// archives
+				'zip'  =>  array('application/x-zip', 'application/zip', 'application/x-zip-compressed','application/force-download','application/octet-stream'),
+				'rar'  =>  array('application/x-rar', 'application/rar','application/x-rar-compressed','application/force-download','application/octet-stream'),
 			);
 
 
