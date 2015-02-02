@@ -276,7 +276,7 @@ class Repositorio extends CI_Controller {
 
 				if($extensao == strtolower($arquivo)){
 					//$link = '<i class="cus-picture"></i> <a href="#" id="pop" data-toggle="modal" data-img-url="'.$caminho_completo.'">'.$map_item.'</a>';
-					$link = '<i class="cus-folder"></i> <a href="'.$this->area.'/'.$map_item->id.'" target="_self">'.$arquivo.'</a>';
+					$link = '<i class="cus-folder"></i> <a href="'.site_url().'/'.$this->area.'/index/'.$arquivo.'" target="_self">'.$arquivo.'</a>';
 				}
 				
 				if($extensao == 'png' || $extensao == 'jpg' || $extensao == 'gif'){
