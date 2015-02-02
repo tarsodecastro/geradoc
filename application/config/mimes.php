@@ -99,6 +99,9 @@ $mimes = array(	'hqx'	=>	'application/mac-binhex40',
 				'xl'	=>	'application/excel',
 				'eml'	=>	'message/rfc822',
 				'json' => array('application/json', 'text/json'),	
+
+				'xls'   =>  array('application/excel', 'application/vnd.ms-excel', 'application/octet-stream'),
+		
 				// open office
 				'odt' => 'application/vnd.oasis.opendocument.text',
 				'ods' => 'application/vnd.oasis.opendocument.spreadsheet',
