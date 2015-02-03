@@ -84,7 +84,13 @@
 			
 			
 		
+		
 		<div class="table-responsive">
+		
+		
+				
+				
+				<?php echo $breadcrumb;?>
 				<?php echo $table;?>
 		</div>
 
@@ -100,7 +106,7 @@
 			        <h4 class="modal-title" id="exampleModalLabel">Adicionar arquivo</h4>
 			      </div>
 			      
-			      <form role="form" action="<?php echo site_url()."/repositorio"?>" method="post" accept-charset="utf-8" enctype="multipart/form-data">
+			      <form role="form" action="<?php echo $form_action;?>" method="post" accept-charset="utf-8" enctype="multipart/form-data">
 			      <div class="modal-body">
 			      <p class="text-muted text-justify"> Utilize o formulário abaixo para enviar o arquivo.</p>
 			      
@@ -141,7 +147,7 @@
 			        <h4 class="modal-title" id="exampleModalLabel">Adicionar pasta</h4>
 			      </div>
 			      
-			      <form role="form" action="<?php echo site_url()."/repositorio/folder_add"?>" method="post" accept-charset="utf-8" enctype="multipart/form-data">
+			      <form role="form" action="<?php echo $form_action_folder;?>" method="post" accept-charset="utf-8" enctype="multipart/form-data">
 			      <div class="modal-body">
 			      <p class="text-muted text-justify"> Utilize o formulário abaixo para criar uma pasta.</p>
 			      

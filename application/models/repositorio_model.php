@@ -24,9 +24,9 @@ class Repositorio_model extends CI_Model {
 		return $this->db->get($this->tabela);
 	}
 	
-	function list_by_setor_folder($setor, $pasta){
+	function list_by_setor_folder($setor, $id_pasta){
 		$this->db->where('id_setor', $setor);
-		$this->db->like('arquivo', $pasta);
+		$this->db->where('id_pasta', $id_pasta);
 		$this->db->order_by('nome','asc');
 		return $this->db->get($this->tabela);
 	}
@@ -68,6 +68,7 @@ class Repositorio_model extends CI_Model {
 	
 	function delete($id){
 		$this->db->where('id', $id);
+		$this->db->or_where('id_pasta', $id);
 		$this->db->delete($this->tabela);
 	}
 

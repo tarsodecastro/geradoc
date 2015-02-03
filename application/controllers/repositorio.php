@@ -134,7 +134,17 @@ class Repositorio extends CI_Controller {
 	}
 	
 
-	function index($folder = null){
+	function index($id_pasta = 0){
+		
+		$folder = null;
+		
+		if($id_pasta != 0){
+			$pasta = $this->Repositorio_model->get_by_id($id_pasta)->row();
+			if($pasta){
+				$folder = $pasta->arquivo;
+			}
+		}
+		
 			
 		$this->js[] = 'repositorio';
 		$data['titulo']     = 'Repositório';
@@ -147,20 +157,21 @@ class Repositorio extends CI_Controller {
 
 		$setor = $this->session->userdata('setor');		
 		
-		//$data['repositorio'] = ($folder ==  null) ? './files/'.$setor : './files/'.$setor.'/'.$folder;
-		$data['repositorio'] =  './files/'.$setor;
-		
-		if (!file_exists($data['repositorio'])) {
-			mkdir($data['repositorio'], 0700);
-			copy('./files/index.html', $data['repositorio'].'/index.html');
+		$raiz_do_setor =  './files/'.$setor;
+
+		if (!file_exists($raiz_do_setor)) {
+			mkdir($raiz_do_setor, 0700);
+			copy('./files/index.html', $raiz_do_setor.'/index.html');
 		}
+		
+		$data['repositorio'] = ($folder ==  null) ? $raiz_do_setor : $folder;
 		
 		//---------------------------------------------------------------------//
 		//--- DEFINICAO DOS PARAMETROS
 		//---------------------------------------------------------------------//
 		
 		$SIZE_LIMIT = $this->size_limit; // 10 MB
-		$disk_used = $this->foldersize($data['repositorio']);
+		$disk_used = $this->foldersize($raiz_do_setor);
 		$disk_remaining = $SIZE_LIMIT - $disk_used;
 	
 		$data['porcentagem_ocupada'] = (($disk_used / $SIZE_LIMIT) * 100);
@@ -171,8 +182,8 @@ class Repositorio extends CI_Controller {
 		
 		$data['erro'] = '';
 		
-		$config['upload_path'] = ($folder == null) ? $data['repositorio'] : $data['repositorio'] . '/' . $folder;
-		echo $config['upload_path'];
+		$config['upload_path'] = $data['repositorio'];
+		
 		$config['allowed_types'] = 'gif|jpg|jpeg|png|zip|rar|doc|docx|xls|xlsx|ppt|pptx|csv|ods|odt|odp|pdf|rtf|txt';
 		$config['remove_spaces']	= TRUE;
 		$config['max_size']	= $this->upload_limit;
@@ -212,9 +223,11 @@ class Repositorio extends CI_Controller {
 				//echo $data['upload']['upload_data']['file_name'];
 				
 				//cria o objeto com os dados passados via post
+				
 				$objeto_do_form = array(
 						'id_setor' => $setor,
 						'id_usuario' => $this->session->userdata('id_usuario'),
+						'id_pasta' => $id_pasta,
 						'arquivo' => $data['repositorio'].'/'.$data['upload']['upload_data']['file_name'],
 						'nome' => mb_convert_case($this->input->post('campoNome'), MB_CASE_UPPER, "UTF-8"),
 						'descricao' => mb_convert_case($this->input->post('campoDescricao'), MB_CASE_UPPER, "UTF-8"),
@@ -233,16 +246,20 @@ class Repositorio extends CI_Controller {
 		//--- LISTAGEM DOS ARQUIVOS
 		//---------------------------------------------------------------------//
 		
-		$map = directory_map($data['repositorio'], 1);
+		$map = directory_map($raiz_do_setor, 1);
 		
 		//$data['repositorio'] = ($folder ==  null) ? './files/'.$setor : './files/'.$setor.'/'.$folder;
 		
-		if($folder ==  null){
-			$objetos = $this->Repositorio_model->list_by_setor($setor)->result();
-		}else{
-			$folder = $data['repositorio'].'/'.$folder;
-			$objetos = $this->Repositorio_model->list_by_setor_folder($setor, $folder)->result();
-		}
+		$objetos = $this->Repositorio_model->list_by_setor_folder($setor, $id_pasta)->result();
+		
+// 		if($folder ==  null){
+// 			//$objetos = $this->Repositorio_model->list_by_setor($setor)->result();
+// 			$objetos = $this->Repositorio_model->list_by_setor_folder($setor, $folder)->result();
+// 		}else{
+// 			//$folder = $data['repositorio'].'/'.$folder;
+// 		//	echo $folder;
+// 			$objetos = $this->Repositorio_model->list_by_setor_folder($setor, $folder)->result();
+// 		}
 		
 		//print_r($objetos);
 		
@@ -261,6 +278,7 @@ class Repositorio extends CI_Controller {
 				//$repositorio = str_replace("./", "", $data['repositorio']);
 				
 				$arquivo = $map_item->arquivo;
+
 				$file_size = filesize($arquivo);
 				$caminho_completo = base_url().'./'.$arquivo;
 				
@@ -276,7 +294,7 @@ class Repositorio extends CI_Controller {
 
 				if($extensao == strtolower($arquivo)){
 					//$link = '<i class="cus-picture"></i> <a href="#" id="pop" data-toggle="modal" data-img-url="'.$caminho_completo.'">'.$map_item.'</a>';
-					$link = '<i class="cus-folder"></i> <a href="'.site_url().'/'.$this->area.'/index/'.$arquivo.'" target="_self">'.$arquivo.'</a>';
+					$link = '<i class="cus-folder"></i> <a href="'.site_url().'/'.$this->area.'/index/'.$map_item->id.'" target="_self">'.$arquivo.'</a>';
 				}
 				
 				if($extensao == 'png' || $extensao == 'jpg' || $extensao == 'gif'){
@@ -331,63 +349,168 @@ class Repositorio extends CI_Controller {
 		$data['table'] = $this->table->generate();
 		//--- Fim da listagem dos arquivos ---//
 		
+		
+		$id_pasta = $this->uri->segment(3);
+		$data['form_action'] = ($folder ==  null) ? site_url()."/repositorio" : site_url()."/repositorio".'/index/'.$id_pasta;
+		
+		$data['form_action_folder'] = ($folder ==  null) ? site_url()."/repositorio/folder_add" : site_url()."/repositorio".'/folder_add/'.$id_pasta;
+		
+		//echo "<br>";
+		//echo $data['form_action'];
+		
+		
+		//--- breadcrumb ---//
+		
+		
+		$data['breadcrumb'] = '<ol class="breadcrumb">
+								  <li><a href="'.site_url().'/repositorio"><i class="cus-house"></i> Home</a></li>';
+		
+		
+		if($id_pasta != 0){
+			
+			$pasta = $this->Repositorio_model->get_by_id($id_pasta)->row();
+			
+			$caminho = $pasta->arquivo;
+			
+			$caminho = str_replace($raiz_do_setor, "", $pasta->arquivo);
+			
+			$array_caminho = explode('/', $caminho);
+			
+			$array_caminho = array_filter($array_caminho);
+
+			foreach ($array_caminho as $item){
+				
+				$pasta = $this->Repositorio_model->get_by_nome($item)->row();
+				
+				$data['breadcrumb'] .= '<li><a href="'.site_url().'/repositorio/index/'.$pasta->id.'" class="active">'.$pasta->nome.'</a></li>';
+				
+			}
+			
+		}
+		
+		$data['breadcrumb'] .= '</ol>';
+		
 		$this->load->view($this->area.'/'.$this->area.'_list', $data);
 	}
 	
 	function delete($id){
 		
 		$obj = $this->Repositorio_model->get_by_id($id)->row();
-		
-		//echo $obj->arquivo;
-		
-// 		$setor = $this->session->userdata('setor');
-		
-// 		$data['repositorio'] = './files/'.$setor;
-		
-// 		unlink($data['repositorio'] . '/' . $arquivo);
-
+	
 		$path = $obj->arquivo; // arquivo ou pasta
 		
 		if (is_dir($path) === true){
-			
-			
+				
+
 			foreach(scandir($path) as $file) {
-				if ('.' === $file || '..' === $file) continue;
-				if (is_dir("$path/$file")) rmdir_recursive("$path/$file");
-				else unlink("$path/$file");
+					
+				if(count(scandir($path)) == 3 and $file == 'index.html') {
+					unlink("$path/$file");
+				}
+				
 			}
 			
-// 			$files = array_diff(scandir($path), array('.', '..'));
+			if (!rmdir($path)){
+					
+				$mensagem =  "Erro ao deletar $path";
+					
+			}else{
 			
-// 			foreach ($files as $file){
-// 				Delete(realpath($path) . '/' . $file);
-// 			}
+				$this->Repositorio_model->delete($id);
+					
+				$mensagem =  "Pasta deletada";
+				
+			}
 			
-			rmdir($path); // para pastas
+			/*
+				$erro = false;
+				
+				foreach(scandir($path) as $file) {
+					
+					if ('.' === $file || '..' === $file) continue;
+					
+					if (is_dir("$path/$file")){
+						
+						$erro = true;
+	
+					}else {
+						unlink("$path/$file");
+					}
+				}
+				
+				if($erro == true){
+					
+					echo "A pasta selecionada possui pelo menos outra pasta.";
+					
+					exit;
+					
+				}else{
+				
+	 				if (!rmdir($path)){
+					
+						echo "Erro ao deletar $path";
+					
+					}else{
+						
+						$this->Repositorio_model->delete($id);
+					
+						echo "Pasta deletada";
+					
+	 				}
+				}
+				*/
 			
 		}else if (is_file($path) === true){
 			
-        	unlink($path); // para arquivos
-        
-    	}
-		
-		$this->Repositorio_model->delete($id);
+        	if (!unlink($path)){
+        	
+        		$mensagem = "Erro ao deletar $path";
+        	
+        	}else{
+        			
+        		$this->Repositorio_model->delete($id);
+        	
+        		$mensagem = "Arquivo deletado";
+        	
+        	}
 
-		redirect($this->area);
+    	}
+    	
+    	///$_SESSION['mensagem'] = $mensagem;
+
+    	//redirect($this->area.'/index/'.$obj->id_pasta);
 	}
 	
 	
-	function folder_add(){
+	function folder_add($id_pasta = 0){
 		
+		$folder = '';
+		if($id_pasta != 0){
+			$pasta = $this->Repositorio_model->get_by_id($id_pasta)->row();
+			if($pasta){
+				$folder = $pasta->arquivo;
+			}
+		}
+		
+		//echo "folder = $folder";
+		
+		//exit;
+		
+
 		$setor = $this->session->userdata('setor');
 		
-		$repositorio = './files/'.$setor;
+		if($id_pasta == 0){
+			$repositorio = './files/'.$setor;
+		}else{
+			$repositorio = $folder;
+		}
 	
 		$nova_pasta = $repositorio.'/'.mb_convert_case($this->input->post('campoNome'), MB_CASE_UPPER, "UTF-8");
 		
 		$objeto_do_form = array(
 				'id_setor' => $setor,
 				'id_usuario' => $this->session->userdata('id_usuario'),
+				'id_pasta' => $id_pasta,
 				'arquivo' => $nova_pasta,
 				'nome' => mb_convert_case($this->input->post('campoNome'), MB_CASE_UPPER, "UTF-8"),
 				'descricao' => mb_convert_case($this->input->post('campoDescricao'), MB_CASE_UPPER, "UTF-8"),
@@ -401,7 +524,7 @@ class Repositorio extends CI_Controller {
 			copy('./files/index.html', $nova_pasta.'/index.html');
 		}
 		
-		redirect($this->area);
+		redirect($this->area.'/index/'.$id_pasta);
 
 	}
 	
