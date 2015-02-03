@@ -399,6 +399,8 @@ class Repositorio extends CI_Controller {
 	
 		$path = $obj->arquivo; // arquivo ou pasta
 		
+		$erro = '';
+		
 		if (is_dir($path) === true){
 				
 
@@ -410,75 +412,50 @@ class Repositorio extends CI_Controller {
 				
 			}
 			
-			if (!rmdir($path)){
-					
-				$mensagem =  "Erro ao deletar $path";
-					
-			}else{
+			if(count(scandir($path)) < 4 ){
 			
-				$this->Repositorio_model->delete($id);
-					
-				$mensagem =  "Pasta deletada";
-				
-			}
-			
-			/*
-				$erro = false;
-				
-				foreach(scandir($path) as $file) {
-					
-					if ('.' === $file || '..' === $file) continue;
-					
-					if (is_dir("$path/$file")){
+				if (!rmdir($path)){
 						
-						$erro = true;
-	
-					}else {
-						unlink("$path/$file");
-					}
-				}
-				
-				if($erro == true){
-					
-					echo "A pasta selecionada possui pelo menos outra pasta.";
-					
-					exit;
-					
+					$erro =  "Erro ao deletar a pasta $obj->nome, verifique se ela está vazia";
+						
 				}else{
 				
-	 				if (!rmdir($path)){
+					$this->Repositorio_model->delete($id);
 					
-						echo "Erro ao deletar $path";
-					
-					}else{
-						
-						$this->Repositorio_model->delete($id);
-					
-						echo "Pasta deletada";
-					
-	 				}
 				}
-				*/
-			
+				
+			}else{
+				
+				$erro =  "Erro ao deletar a pasta $obj->nome, verifique se ela está vazia";
+				
+			}
+
 		}else if (is_file($path) === true){
 			
         	if (!unlink($path)){
         	
-        		$mensagem = "Erro ao deletar $path";
+        		$erro = "Erro ao deletar $path";
         	
         	}else{
         			
         		$this->Repositorio_model->delete($id);
         	
-        		$mensagem = "Arquivo deletado";
-        	
         	}
 
     	}
     	
-    	///$_SESSION['mensagem'] = $mensagem;
-
-    	//redirect($this->area.'/index/'.$obj->id_pasta);
+    	
+    	if($erro != ''){
+    		
+	    	$data['titulo'] = 'Repositório';
+	    	$data['message'] = $erro;
+	    	$this->load->view('erro', $data);
+    	
+    	}else{
+    		
+    		redirect($this->area.'/index/'.$obj->id_pasta);
+    		
+    	}
 	}
 	
 	
