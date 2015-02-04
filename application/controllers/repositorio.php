@@ -547,6 +547,8 @@ class Repositorio extends CI_Controller {
 		
 		$input['nome'] = mb_convert_case($this->input->post('campoNome'), MB_CASE_UPPER, "UTF-8");
 		
+		$input['nome'] = str_replace(' ', '_', $input['nome']);
+		
 		$checa_existencia = $this->Repositorio_model->checa_existencia($id_pasta, $input['nome'])->row();
 		
 		if($checa_existencia){
@@ -565,7 +567,7 @@ class Repositorio extends CI_Controller {
 					'id_usuario' => $this->session->userdata('id_usuario'),
 					'id_pasta' => $id_pasta,
 					'arquivo' => $nova_pasta,
-					'nome' => mb_convert_case($this->input->post('campoNome'), MB_CASE_UPPER, "UTF-8"),
+					'nome' => $input['nome'],
 					'descricao' => mb_convert_case($this->input->post('campoDescricao'), MB_CASE_UPPER, "UTF-8"),
 					'data_criacao' =>  date('Y-m-d H:i:s'),
 			);
