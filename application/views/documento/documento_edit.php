@@ -184,6 +184,23 @@ $.blockUI({ message: '<h1><img src="<?php echo base_url(); ?>scripts/images/ui-a
 							<?php echo form_input($campoAssunto);?> 
 						</div>
 					</div>
+					
+					<div class="form-group <?php echo (form_error('campoAnexo') != '')? 'has-error':''; ?>">
+						<label for="campoAnexo" class="col-sm-2 control-label"><span style="color: red;">*</span> Anexos</label>
+						<div class="col-md-8">
+							<?php 
+							
+								$jsAnexo = 'class="form-control selectpicker" multiple data-style="btn-default" data-live-search="true" title="SELECIONE"';
+								
+								echo form_dropdown('campoAnexo[]', $anexosDisponiveis, $anexoSelecionado, $jsAnexo);
+		
+							?> 
+							
+							<script>
+							
+							</script>
+						</div>
+					</div>
 						
 								<?php 
 						

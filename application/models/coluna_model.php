@@ -16,7 +16,7 @@ class Coluna_model extends CI_Model {
 		natsort($fields);
 		
 		$fields = array_diff($fields, array('id', 'tipo', 'numero', 'setor', 'cidade', 'data', 'data_criacao', 'destinatario',
-											'assunto', 'remetente', 'dono', 'dono_cpf',
+											'assunto', 'anexos', 'remetente', 'dono', 'dono_cpf',
 											'cadeado', 'oculto', 'cancelado', 'carimbo', 'carimbo_via', 'carimbo_urgente', 'carimbo_confidencial'));
 		return $fields;
 	}

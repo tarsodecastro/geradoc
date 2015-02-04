@@ -448,11 +448,21 @@ class Repositorio extends CI_Controller {
 	
 	function delete($id){
 		
+		$erro = '';
+		
+		$anexo = $this->Repositorio_model->testa_se_eh_anexo($id)->row();
+		
+		if($anexo){
+			
+			$erro =  "Erro ao deletar o arquivo, ele é anexo de um documento.";
+			
+		}else{
+		
 		$obj = $this->Repositorio_model->get_by_id($id)->row();
 	
 		$path = $obj->arquivo; // arquivo ou pasta
 		
-		$erro = '';
+		
 		
 		if (is_dir($path) === true){
 				
@@ -497,6 +507,8 @@ class Repositorio extends CI_Controller {
 
     	}
     	
+		}
+    	
     	
     	if($erro != ''){
     		
@@ -510,6 +522,9 @@ class Repositorio extends CI_Controller {
     		redirect($this->area.'/index/'.$obj->id_pasta);
     		
     	}
+    	
+		
+		
 	}
 	
 	

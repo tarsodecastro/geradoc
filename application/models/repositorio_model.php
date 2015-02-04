@@ -15,7 +15,7 @@ class Repositorio_model extends CI_Model {
 	
 	function list_all(){
 		$this->db->order_by('nome','asc');
-		return $this->db->get($tabela);
+		return $this->db->get($this->tabela);
 	}
 	
 	function list_by_setor($setor){
@@ -43,6 +43,12 @@ class Repositorio_model extends CI_Model {
 	function get_by_id($id){
 		$this->db->where('id', $id);
 		return $this->db->get($this->tabela);
+	}
+	
+	function testa_se_eh_anexo($id){
+		$this->db->select('anexos');
+		$this->db->like('anexos', ','.$id.',');
+		return $this->db->get('documento');
 	}
         
 	function get_by_nome($nome){
