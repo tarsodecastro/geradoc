@@ -174,11 +174,7 @@ class Repositorio extends CI_Controller {
 		$disk_used = $this->foldersize($raiz_do_setor);
 		$disk_remaining = $SIZE_LIMIT - $disk_used;
 	
-		$data['porcentagem_ocupada'] = (($disk_used / $SIZE_LIMIT) * 100);
-		$data['porcentagem_ocupada'] = round($data['porcentagem_ocupada'], 2);
-		$data['cota'] = $this->format_size($SIZE_LIMIT);
-		$data['cota_usada'] = $this->format_size($disk_used);
-		$data['cota_restante'] = $this->format_size($disk_remaining);
+		
 		
 		$data['erro'] = '';
 		
@@ -207,7 +203,6 @@ class Repositorio extends CI_Controller {
 			$file_name = preg_replace("/[^a-zA-Z0-9.]/", "", $file_name);
 			
 			$config['file_name'] = $file_name;
-			//$config['overwrite'] = false;
 			
 			$this->load->library('upload', $config);
 			$this->upload->initialize($config);
@@ -217,13 +212,7 @@ class Repositorio extends CI_Controller {
 			}else{
 				
 				$data['upload'] = array('upload_data' => $this->upload->data());
-				
-				//print_r($data['upload']);
-				
-				//echo $data['upload']['upload_data']['file_name'];
-				
-				//cria o objeto com os dados passados via post
-				
+
 				$objeto_do_form = array(
 						'id_setor' => $setor,
 						'id_usuario' => $this->session->userdata('id_usuario'),
@@ -233,9 +222,7 @@ class Repositorio extends CI_Controller {
 						'descricao' => mb_convert_case($this->input->post('campoDescricao'), MB_CASE_UPPER, "UTF-8"),
 						'data_criacao' =>  date('Y-m-d H:i:s'),
 				);
-				
-				//print_r($objeto_do_form);
-				// Salva o registro
+
 				$this->Repositorio_model->save($objeto_do_form);
 				
 			}
@@ -248,21 +235,8 @@ class Repositorio extends CI_Controller {
 		
 		$map = directory_map($raiz_do_setor, 1);
 		
-		//$data['repositorio'] = ($folder ==  null) ? './files/'.$setor : './files/'.$setor.'/'.$folder;
-		
 		$objetos = $this->Repositorio_model->list_by_setor_folder($setor, $id_pasta)->result();
-		
-// 		if($folder ==  null){
-// 			//$objetos = $this->Repositorio_model->list_by_setor($setor)->result();
-// 			$objetos = $this->Repositorio_model->list_by_setor_folder($setor, $folder)->result();
-// 		}else{
-// 			//$folder = $data['repositorio'].'/'.$folder;
-// 		//	echo $folder;
-// 			$objetos = $this->Repositorio_model->list_by_setor_folder($setor, $folder)->result();
-// 		}
-		
-		//print_r($objetos);
-		
+
 		$this->load->library('table');
 		$this->table->set_empty("&nbsp;");
 		$this->table->set_heading('Arquivo','Tamanho','Nome', 'Descrição', 'Responsável', 'Ações');
@@ -363,7 +337,7 @@ class Repositorio extends CI_Controller {
 		
 		
 		$data['breadcrumb'] = '<ol class="breadcrumb">
-								  <li><a href="'.site_url().'/repositorio"><i class="cus-house"></i> Home</a></li>';
+								  <li><a href="'.site_url().'/repositorio"><i class="cus-house"></i> INÍCIO</a></li>';
 		
 		
 		if($id_pasta != 0){
@@ -390,7 +364,86 @@ class Repositorio extends CI_Controller {
 		
 		$data['breadcrumb'] .= '</ol>';
 		
+		
+		// atualiza a cota usada e a cota restante depois do upload
+		$disk_used = $this->foldersize($raiz_do_setor);
+		$disk_remaining = $SIZE_LIMIT - $disk_used;
+		
+		$data['porcentagem_ocupada'] = (($disk_used / $SIZE_LIMIT) * 100);
+		$data['porcentagem_ocupada'] = round($data['porcentagem_ocupada'], 2);
+		$data['cota'] = $this->format_size($SIZE_LIMIT);
+		$data['cota_usada'] = $this->format_size($disk_used);
+		$data['cota_restante'] = $this->format_size($disk_remaining);
+		
 		$this->load->view($this->area.'/'.$this->area.'_list', $data);
+	}
+	
+	
+	function update($id){
+		
+		
+		$this->load->library('form_validation');
+		$this->form_validation->set_error_delimiters('<div class="error_field"> <img class="img_align" src="{TPL_images}/error.png" alt="! " /> ', '</div>');
+			
+		// define as variaveis comuns
+		$data['titulo'] = "Alteração de arquivo";
+		$data['message'] = '';
+		$data['link_back'] 		= '<a href="javascript: window.history.go(-1)" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-arrow-left"></span> Voltar</a>';
+		$data['link_cancelar'] 	= '';
+		$data['link_salvar']	= $this->Campo_model->make_link($this->area, 'salvar');
+		$data['form_action'] 	= site_url($this->area.'/update/'.$id);
+		
+	
+		$obj = $this->Repositorio_model->get_by_id($id)->row();
+		
+		//constroe os campos que serao mostrados no formulario
+		$this->load->model('Campo_model','',TRUE);
+		$data['campoNome'] = $this->Campo_model->repositorio('campoNome');
+		$data['campoDescricao'] = $this->Campo_model->repositorio('campoDescricao');
+		
+		//Popula os campos com os dados do objeto
+		$data['campoNome']['value'] = $obj->nome;
+		$data['campoDescricao']['value'] = $obj->descricao;
+		
+		
+		
+		if ($this->form_validation->run($this->area."/update") == FALSE) {
+		
+			$this->load->view($this->area.'/'.$this->area.'_edit', $data);
+		
+		}else{
+		
+			$objeto_do_form = array(
+							'id_usuario' => $this->session->userdata('id_usuario'),
+							'nome' => mb_convert_case($this->input->post('campoNome'), MB_CASE_UPPER, "UTF-8"),
+							'descricao' => mb_convert_case($this->input->post('campoDescricao'), MB_CASE_UPPER, "UTF-8"),
+					);
+			
+			
+			// Atualiza o cadastro
+			$this->Repositorio_model->update($id, $objeto_do_form);
+			
+			$this->js_custom = 'var sSecs = 4;
+	                                function getSecs(){
+	                                    sSecs--;
+	                                    if(sSecs<0){ sSecs=59; sMins--; }
+	                                    $("#clock1").html(sSecs+" segundos...");
+	                                    setTimeout("getSecs()",1000);
+	                                    var s =  $("#clock1").html();
+	                                    if (s == "1 segundos..."){
+	                                        window.location.href = "' . site_url($this->area.'/index/'.$obj->id_pasta) . '";
+	                                    }
+	                                }
+	                                ';
+			
+			$data['mensagem'] = "<br /><br />Redirecionando em... ";
+			$data['mensagem'] .= '<span id="clock1"> ' . "<script>setTimeout('getSecs()',1000);</script> </span>";
+			$data['link1'] = '';
+			$data['link2'] = '';
+			
+			$this->load->view('success', $data);
+		}
+	
 	}
 	
 	function delete($id){
@@ -449,6 +502,7 @@ class Repositorio extends CI_Controller {
     		
 	    	$data['titulo'] = 'Repositório';
 	    	$data['message'] = $erro;
+	    	$data['message'] .= '<p><a href="javascript: window.history.go(-1)" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-arrow-left"></span> Voltar</a></p>';
 	    	$this->load->view('erro', $data);
     	
     	}else{
@@ -461,50 +515,58 @@ class Repositorio extends CI_Controller {
 	
 	function folder_add($id_pasta = 0){
 		
+		$setor = $this->session->userdata('setor');
+		
 		$folder = '';
+		
 		if($id_pasta != 0){
 			$pasta = $this->Repositorio_model->get_by_id($id_pasta)->row();
 			if($pasta){
 				$folder = $pasta->arquivo;
 			}
-		}
-		
-		//echo "folder = $folder";
-		
-		//exit;
-		
-
-		$setor = $this->session->userdata('setor');
-		
-		if($id_pasta == 0){
-			$repositorio = './files/'.$setor;
-		}else{
+			
 			$repositorio = $folder;
-		}
-	
-		$nova_pasta = $repositorio.'/'.mb_convert_case($this->input->post('campoNome'), MB_CASE_UPPER, "UTF-8");
-		
-		$objeto_do_form = array(
-				'id_setor' => $setor,
-				'id_usuario' => $this->session->userdata('id_usuario'),
-				'id_pasta' => $id_pasta,
-				'arquivo' => $nova_pasta,
-				'nome' => mb_convert_case($this->input->post('campoNome'), MB_CASE_UPPER, "UTF-8"),
-				'descricao' => mb_convert_case($this->input->post('campoDescricao'), MB_CASE_UPPER, "UTF-8"),
-				'data_criacao' =>  date('Y-m-d H:i:s'),
-		);
-		
-		$this->Repositorio_model->save($objeto_do_form);
-		
-		if (!file_exists($nova_pasta)) {
-			mkdir($nova_pasta, 0700);
-			copy('./files/index.html', $nova_pasta.'/index.html');
+		}else{
+			$repositorio = './files/'.$setor;
 		}
 		
-		redirect($this->area.'/index/'.$id_pasta);
+		$input['nome'] = mb_convert_case($this->input->post('campoNome'), MB_CASE_UPPER, "UTF-8");
+		
+		$checa_existencia = $this->Repositorio_model->checa_existencia($id_pasta, $input['nome'])->row();
+		
+		if($checa_existencia){
+			$data['titulo'] = 'Repositório';
+	    	$data['message'] = "Já existe uma pasta com o nome ".$input['nome']." neste diretório. Forneça outro nome.";
+	    	$data['message'] .= '<p><a href="javascript: window.history.go(-1)" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-arrow-left"></span> Voltar</a></p>';
+	    	
+	    	$this->load->view('erro', $data);
+	    	
+		}else{
+			
+			$nova_pasta = $repositorio.'/'.$input['nome'];
+		
+			$objeto_do_form = array(
+					'id_setor' => $setor,
+					'id_usuario' => $this->session->userdata('id_usuario'),
+					'id_pasta' => $id_pasta,
+					'arquivo' => $nova_pasta,
+					'nome' => mb_convert_case($this->input->post('campoNome'), MB_CASE_UPPER, "UTF-8"),
+					'descricao' => mb_convert_case($this->input->post('campoDescricao'), MB_CASE_UPPER, "UTF-8"),
+					'data_criacao' =>  date('Y-m-d H:i:s'),
+			);
+			
+			$this->Repositorio_model->save($objeto_do_form);
+			
+			if (!file_exists($nova_pasta)) {
+				mkdir($nova_pasta, 0700);
+				copy('./files/index.html', $nova_pasta.'/index.html');
+			}
+			
+			redirect($this->area.'/index/'.$id_pasta);
+			
+		}
 
 	}
-	
 	
 }
 ?>

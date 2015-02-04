@@ -117,3 +117,7 @@ body {
     border-right: 0px;
     background-color: @input-bg;
 }
+
+.breadcrumb {
+font-size: 12pt;
+}

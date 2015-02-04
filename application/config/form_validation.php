@@ -521,8 +521,22 @@ $config = array(
 				),
 				*/
 				
-		)
-
+		),
+		
+		'repositorio/update' => array(
+				array(
+						'field' => 'campoNome',
+						'label' => 'nome',
+						'rules' => 'required|trim'
+				),
+				array(
+						'field' => 'campoDescricao',
+						'label' => 'descricao',
+						'rules' => 'required|trim'
+				),
+					
+		),
+		
 		 
 );
 

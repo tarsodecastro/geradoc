@@ -1,6 +1,6 @@
 <div class="areaimage">
 	<center>
-		<img src="{TPL_images}harddisk-icon.png" />
+		<img src="{TPL_images}archive-icon.png" style="height: 65px;"/>
 	</center>
 </div>
 
@@ -86,10 +86,6 @@
 		
 		
 		<div class="table-responsive">
-		
-		
-				
-				
 				<?php echo $breadcrumb;?>
 				<?php echo $table;?>
 		</div>
@@ -174,6 +170,8 @@
 		    </div>
 		  </div>
 	</div>
+	
+</div>
 
 <script>
 $("#pop").on("click", function() {

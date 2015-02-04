@@ -27,7 +27,7 @@ class Repositorio_model extends CI_Model {
 	function list_by_setor_folder($setor, $id_pasta){
 		$this->db->where('id_setor', $setor);
 		$this->db->where('id_pasta', $id_pasta);
-		$this->db->order_by('nome','asc');
+		$this->db->order_by('arquivo','asc');
 		return $this->db->get($this->tabela);
 	}
 	
@@ -47,6 +47,12 @@ class Repositorio_model extends CI_Model {
         
 	function get_by_nome($nome){
 		$this->db->where('nome', $nome);
+		return $this->db->get($this->tabela);
+	}
+	
+	function checa_existencia($id_pasta, $nome){
+		$this->db->where('nome', $nome);
+		$this->db->where('id_pasta', $id_pasta);
 		return $this->db->get($this->tabela);
 	}
 
