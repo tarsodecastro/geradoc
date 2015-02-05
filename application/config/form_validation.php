@@ -299,6 +299,11 @@ $config = array(
 						'label' => 'sigla',
 						'rules' => 'required|trim'
 				),
+				array(
+						'field' => 'campoTamanhoRepositorio',
+						'label' => 'Tamanho do repositório',
+						'rules' => 'required|greater_than[0]|trim|numeric'
+				),
 				/*
 				array(
 						'field' => 'campoEndereco',

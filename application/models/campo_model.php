@@ -562,7 +562,15 @@ class Campo_model extends CI_Model {
     					'class' => 'form-control  text-uppercase',
     			),
     			
-    			
+    			'campoTamanhoRepositorio' => array(
+    					'name' => 'campoTamanhoRepositorio',
+    					'id' => 'campoTamanhoRepositorio',
+    					'type'=>'text',
+    					'value' => mb_convert_case($this->input->post('campoTamanhoRepositorio'), MB_CASE_UPPER, "ISO-8859-1"),
+    					'maxlength' => '10',
+    					'size' => '15',
+    					'class' => 'form-control text-uppercase',
+    			),
     			
     			
     			

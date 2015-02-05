@@ -85,6 +85,12 @@ class Repositorio extends CI_Controller {
 	}
 	*/
 	
+	function get_repo_size($id_setor) {
+		
+		$obj = $this->Repositorio_model->get_repo_size($id_setor)->row();
+		
+		return $obj->repositorio;
+	}
 	
 	function foldersize($path) {
 		$total_size = 0;
@@ -110,18 +116,25 @@ class Repositorio extends CI_Controller {
 	}
 	
 	
-	function format_size($size) {
-		$units = explode(' ', 'B KB MB GB TB PB');
+// 	function format_size($size) {
+// 		$units = explode(' ', 'B KB MB GB TB PB');
 	
-		$mod = 1024;
+// 		$mod = 1024;
 	
-		for ($i = 0; $size > $mod; $i++) {
-			$size /= $mod;
-		}
+// 		for ($i = 0; $size > $mod; $i++) {
+// 			$size /= $mod;
+// 		}
 	
-		$endIndex = strpos($size, ".")+3;
+// 		$endIndex = strpos($size, ".")+4;
 	
-		return substr( $size, 0, $endIndex).' '.$units[$i];
+// 		return substr( $size, 0, $endIndex).' '.$units[$i];
+// 	}
+	
+	
+	function format_size($bytes, $decimals = 2) {
+		$sz = 'BKMGTP';
+		$factor = floor((strlen($bytes) - 1) / 3);
+		return sprintf("%.{$decimals}f", $bytes / pow(1024, $factor)) . ' ' . @$sz[$factor] . "B";
 	}
 	
 	public function getUsuario ($id_usuario){
@@ -170,12 +183,11 @@ class Repositorio extends CI_Controller {
 		//--- DEFINICAO DOS PARAMETROS
 		//---------------------------------------------------------------------//
 		
-		$SIZE_LIMIT = $this->size_limit; // 10 MB
+		$tamanho_repositorio_setor = $this->get_repo_size($setor);
+		$SIZE_LIMIT = ($tamanho_repositorio_setor) ? $tamanho_repositorio_setor : $this->size_limit; // 10 MB
 		$disk_used = $this->foldersize($raiz_do_setor);
 		$disk_remaining = $SIZE_LIMIT - $disk_used;
 	
-		
-		
 		$data['erro'] = '';
 		
 		$config['upload_path'] = $data['repositorio'];

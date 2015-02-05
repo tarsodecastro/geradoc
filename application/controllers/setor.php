@@ -123,6 +123,7 @@ class Setor extends CI_Controller {
 		$data['campoSigla'] = $this->Campo_model->setor('campoSigla');
 		$data['campoEndereco'] = $this->Campo_model->setor('campoEndereco');
 		$data['campoArtigo'] = $this->Campo_model->setor('campoArtigo');
+		$data['campoTamanhoRepositorio'] = $this->Campo_model->setor('campoTamanhoRepositorio');
 		$data['artigosDisponiveis'] = $this->Campo_model->setor('arrayArtigos');
 		$data['artigoSelecionado']  = 'A';
 		
@@ -201,6 +202,7 @@ class Setor extends CI_Controller {
 					'artigo' => $this->input->post('campoArtigo'),
 					'restricao' => $this->input->post('campoRestricao'),
 					'dono' => $this->input->post('campoResponsavel'),
+					'repositorio' => $this->input->post('campoTamanhoRepositorio'),
 			);
 			
 			//OBS: se a tabela setor estiver vazia:
@@ -298,6 +300,7 @@ public function update($id, $disabled = null) {
 		$data['linkBack'] 				= 	$this->Campo_model->setor('campoNome');
 		$data['campoNome'] 				= 	$this->Campo_model->setor('campoNome');
 		$data['campoSigla'] 			= 	$this->Campo_model->setor('campoSigla');
+		$data['campoTamanhoRepositorio'] = 	$this->Campo_model->setor('campoTamanhoRepositorio');
 		$data['campoEndereco'] 			= 	$this->Campo_model->setor('campoEndereco');
 		$data['artigosDisponiveis'] 	=  	$this->Campo_model->setor('arrayArtigos');
 		$data['artigoSelecionado']   	= 	$obj->artigo;
@@ -356,6 +359,7 @@ public function update($id, $disabled = null) {
 		$data['campoNome']['value'] = $obj->nome;
 		$data['campoSigla']['value'] = $obj->sigla;
 		$data['campoEndereco']['value'] = $obj->endereco;
+		$data['campoTamanhoRepositorio']['value'] = $obj->repositorio;
 
 		if ($this->form_validation->run($this->area."/add") == FALSE) {
 
@@ -369,6 +373,7 @@ public function update($id, $disabled = null) {
 					'setorPai' => $this->input->post('campoSetorPai'),
                		'nome' => mb_convert_case($this->input->post('campoNome'), MB_CASE_UPPER, "UTF-8"),
 					'sigla' => mb_convert_case($this->input->post('campoSigla'), MB_CASE_UPPER, "UTF-8"),
+					'repositorio' => $this->input->post('campoTamanhoRepositorio'),
 					'artigo' => mb_convert_case($this->input->post('campoArtigo'), MB_CASE_UPPER, "UTF-8"),
 					'restricao' => mb_convert_case($this->input->post('campoRestricao'), MB_CASE_UPPER, "UTF-8"),
 					'endereco' => mb_convert_case($this->input->post('campoEndereco'), MB_CASE_UPPER, "UTF-8"),

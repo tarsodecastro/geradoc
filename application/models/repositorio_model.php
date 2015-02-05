@@ -45,6 +45,12 @@ class Repositorio_model extends CI_Model {
 		return $this->db->get($this->tabela);
 	}
 	
+	function get_repo_size($id_setor){
+		$this->db->select('repositorio');
+		$this->db->where('id', $id_setor);
+		return $this->db->get('setor');
+	}
+	
 	function testa_se_eh_anexo($id){
 		$this->db->select('anexos');
 		$this->db->like('anexos', ','.$id.',');

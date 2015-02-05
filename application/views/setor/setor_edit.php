@@ -79,6 +79,16 @@
 					    </div>
 					  </div>
 					  
+					   <div class="form-group <?php echo (form_error('campoTamanhoRepositorio') != '')? 'has-error':''; ?>">
+					    <label for="campoTamanhoRepositorio" class="col-sm-3 control-label"><span style="color: red;">*</span> Tamanho do respositório</label>
+					    <div class="col-md-3">
+					    	<?php echo form_input($campoTamanhoRepositorio); ?>
+					    </div>
+					     <div class="col-md-6">
+					    	em bytes. Ex.: o padrão é <strong>104857600</strong> bytes = 100 MB
+					    </div>
+					  </div>
+					  
 					  
 					  <div class="form-group <?php echo (form_error('campoArtigo') != '')? 'has-error':''; ?>">
 					    <label for="campoArtigo" class="col-sm-3 control-label"> Artigo</label>
