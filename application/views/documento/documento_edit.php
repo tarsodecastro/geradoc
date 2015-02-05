@@ -200,6 +200,12 @@ $.blockUI({ message: '<h1><img src="<?php echo base_url(); ?>scripts/images/ui-a
 							
 							</script>
 						</div>
+						
+						<div class="col-md-2 text-left">
+							<a href="#" class="btn" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="top" data-html="true" title='<strong>Anexos</strong> <i class="fa fa-question-circle fa-lg" style="color: #428bca;"></i>' data-content="<div class='text-justify'>São os documentos que compõem o documento. Você pode selecionar arquivos que foram armazenados no <strong>respositório</strong> do seu setor e eles estarão visíveis durante a visualização do documento, evitando a necessidade de imprimí-los.</div>">
+								<i class="fa fa-question-circle fa-lg" style="color: #428bca;"></i>
+							</a>	
+						</div>
 					</div>
 						
 								<?php 
