@@ -123,7 +123,10 @@ class Setor extends CI_Controller {
 		$data['campoSigla'] = $this->Campo_model->setor('campoSigla');
 		$data['campoEndereco'] = $this->Campo_model->setor('campoEndereco');
 		$data['campoArtigo'] = $this->Campo_model->setor('campoArtigo');
+		
 		$data['campoTamanhoRepositorio'] = $this->Campo_model->setor('campoTamanhoRepositorio');
+		$data['campoTamanhoRepositorio']['value'] = 104857600; // 104857600 = 100 MB
+		
 		$data['artigosDisponiveis'] = $this->Campo_model->setor('arrayArtigos');
 		$data['artigoSelecionado']  = 'A';
 		

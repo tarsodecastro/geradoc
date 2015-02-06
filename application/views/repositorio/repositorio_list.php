@@ -11,21 +11,19 @@
 <div id="view_content">
 
 	
-	
-	<div class="col-md-1"></div>
-	<div class="col-md-10">
+	<div class="col-md-10 col-md-offset-1">
 			<div class="row">
 				<div class="col-md-6 alert alert-warning text-justify" role="alert">
 																	<i class="fa fa-exclamation-circle fa-lg"> <strong>Atenção:</strong></i>
 																	<br> 
 																	O <strong>repositório</strong> é um espaço virtual de armazenamento de arquivos do seu setor. 
-																	Este espaço <strong>é compartilhado com os funcionários do seu setor</strong> e é destinado ao armazenamento de <strong>arquivos essencias para o trabalho</strong>.
+																	Este espaço <strong>é compartilhado com os funcionários do setor</strong> e é destinado ao armazenamento de <strong>arquivos essencias para o trabalho</strong>.
 				</div>
 				<div class="col-md-1"></div>
 				<div class="col-md-5 alert alert-info text-justify" role="alert">
 																	<i class="fa fa-bullhorn fa-lg"> <strong>Observação:</strong></i>
 																	<br> 
-																	Os arquivos aqui armazenados podem ser <strong>anexados nos documentos</strong> criados e ficam disponíveis durante a visualização. <strong>O objetivo é evitar as impressões dos anexos</strong>.
+																	Estes arquivos podem ser <strong>anexados aos documentos</strong> criados e ficam disponíveis durante a visualização deles. <strong>O objetivo é evitar as impressões dos anexos</strong>.
 				</div>
 			</div>
 			<div class="row">
@@ -96,7 +94,7 @@
 		</div>
 
 	</div>
-	<div class="col-md-1"></div>
+
 	
 
 	<div class="modal fade" id="modalFileUpload" tabindex="-1" role="dialog" aria-labelledby="modalFileUpload" aria-hidden="true">

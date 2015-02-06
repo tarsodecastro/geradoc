@@ -85,7 +85,7 @@
 					    	<?php echo form_input($campoTamanhoRepositorio); ?>
 					    </div>
 					     <div class="col-md-6">
-					    	em bytes. Ex.: o padrão é <strong>104857600</strong> bytes = 100 MB
+					    	Em bytes. Ex.: o padrão é <strong>104857600</strong> bytes = 100 MB
 					    </div>
 					  </div>
 					  

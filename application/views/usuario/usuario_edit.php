@@ -54,6 +54,7 @@
 				    		echo form_error('campoSenha');
 				    		echo form_error('campoConfSenha');
 				    		echo form_error('campoNivel');
+				    		echo form_error('campoTamanhoUpload');
 				    		echo '</div>';
 				    	}
 			    	?>
@@ -134,6 +135,16 @@
 				      	<?php echo form_dropdown('campoNivel', $niveisDisponiveis, $nivelSelecionado, 'class="form-control"'); ?> 
 				     </div>
 				</div>
+				
+				<div class="form-group <?php echo (form_error('campoTamanhoUpload') != '')? 'has-error':''; ?>">
+				    <label for="campoTamanhoUpload" class="col-md-3 control-label"><span style="color: red;">*</span> Máximo de upload</label>
+				    <div class="col-md-2">
+				    	<?php echo form_input($campoTamanhoUpload); ?>
+				    </div>
+				     <div class="col-md-5"> <span id="helpBlock" class="help-block">em Kbytes. Ex.: o padrão é <strong>2048</strong> bytes = 2 MB.</span>
+				    	
+				    </div>
+				  </div>
 				
 	
 			</div>
