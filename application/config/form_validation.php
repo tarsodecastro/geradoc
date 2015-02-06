@@ -417,7 +417,13 @@ $config = array(
 						'field' => 'campoConfSenha',
 						'label' => 'confirmação da nova senha',
 						'rules' => 'trim|required|matches[campoSenha]'
-				)
+				),
+				
+				array(
+						'field' => 'campoTamanhoUpload',
+						'label' => 'Tamanho máximo de upload',
+						'rules' => 'trim|required|max_length[10]|numeric'
+				),
 		
 		),
 
@@ -457,7 +463,12 @@ $config = array(
 						'field' => 'campoConfSenha',
 						'label' => 'confirmação da nova senha',
 						'rules' => 'trim|required|matches[campoSenha]'
-				)
+				),
+				array(
+						'field' => 'campoTamanhoUpload',
+						'label' => 'Tamanho máximo de upload',
+						'rules' => 'trim|required|max_length[10]|numeric'
+				),
 
 		),
 
