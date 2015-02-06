@@ -15,13 +15,18 @@
 	<div class="col-md-1"></div>
 	<div class="col-md-10">
 			<div class="row">
-				<div class="col-md-2"></div>
-				<div class="col-md-8 alert alert-warning text-justify" role="alert"><strong>Atenção!</strong><br> 
-																	O <strong>repositório</strong> é um espaço virtual de armazenamento de arquivos do seu setor. <br>
-																	Este espaço é compartilhado com os demais usuários do setor e é destinado ao armazenamento de arquivos essencias para o trabalho.
-																	Os arquivos aqui armazenados podem ser referenciados nos documentos criados, com o objetivo de evitar o excesso de impressões.
+				<div class="col-md-6 alert alert-warning text-justify" role="alert">
+																	<i class="fa fa-exclamation-circle fa-lg"> <strong>Atenção:</strong></i>
+																	<br> 
+																	O <strong>repositório</strong> é um espaço virtual de armazenamento de arquivos do seu setor. 
+																	Este espaço <strong>é compartilhado com os funcionários do seu setor</strong> e é destinado ao armazenamento de <strong>arquivos essencias para o trabalho</strong>.
 				</div>
-				<div class="col-md-2"></div>
+				<div class="col-md-1"></div>
+				<div class="col-md-5 alert alert-info text-justify" role="alert">
+																	<i class="fa fa-bullhorn fa-lg"> <strong>Observação:</strong></i>
+																	<br> 
+																	Os arquivos aqui armazenados podem ser <strong>anexados nos documentos</strong> criados e ficam disponíveis durante a visualização. <strong>O objetivo é evitar as impressões dos anexos</strong>.
+				</div>
 			</div>
 			<div class="row">
 				<div class="col-md-6">
@@ -54,7 +59,7 @@
 				
 				<div class="col-md-6">
 			
-					Cota total: <?php echo $cota;?>, utilizada: <?php echo $cota_usada;?>, restante: <?php echo $cota_restante;?>
+					Espaço total: <?php echo $cota;?>, utilizado: <?php echo $cota_usada;?>, restante: <strong><?php echo $cota_restante;?></strong>;
 				
 						
 		

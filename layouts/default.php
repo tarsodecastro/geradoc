@@ -78,7 +78,8 @@ $menu_organograma 	= '';
 $menu_pessoas 		= '';
 $menu_ferramentas 	= '';
 $menu_perfil 		= '';
-
+$menu_admin			= '';
+		
 if($this->uri->segment(2) == 'cadastro' or $this->uri->segment(2) == 'altsenha'){
 	$area = $this->uri->segment(2);
 }
@@ -94,31 +95,31 @@ switch ($area){
 	break;
 	
 	case 'coluna':
-		$menu_modelos =  'active';
+		$menu_admin =  'active';
 	break;
 	
 	case 'tipo':
-		$menu_modelos =  'active';
+		$menu_admin =  'active';
 		break;
 		
 	case 'orgao':
-		$menu_organograma =  'active';
+		$menu_admin =  'active';
 	break;
 	
 	case 'setor':
-		$menu_organograma = 'active';
+		$menu_admin = 'active';
 	break;
 	
 	case 'cargo':
-		$menu_pessoas = 'active';
+		$menu_admin = 'active';
 	break;
 	
 	case 'contato':
-		$menu_pessoas = 'active';
+		$menu_admin = 'active';
 		break;
 		
 	case 'usuario':
-		$menu_pessoas = 'active';
+		$menu_admin = 'active';
 	break;
 	
 	case 'cadastro':
@@ -299,7 +300,7 @@ $SessTimeLeft = ($SessExpTime - ($CurrTime - $arrLastActivity[0]["last_activity"
 				           
 				        <?php if ($nivel_id == 1){ //apenas para administradores?>
 				        
-					        <li class="dropdown <?php echo $menu_modelos;?>">
+					        <li class="dropdown <?php echo $menu_admin;?>">
 					          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-cog fa-lg"></i> Administração <span class="caret"></span></a>
 					          <ul class="dropdown-menu" role="menu">
 					            <li><a href="<?php echo site_url('/coluna/index'); ?>" title="Campos"><i class="fa fa-database"></i> Campos</a></li>
