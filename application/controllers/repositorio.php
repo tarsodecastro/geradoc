@@ -265,7 +265,15 @@ class Repositorio extends CI_Controller {
 				
 				$arquivo = $map_item->arquivo;
 
-				$file_size = filesize($arquivo);
+				if(is_file($map_item->arquivo)){
+					$file_size = filesize($arquivo);
+					
+				}else{
+					$file_size = 0;
+					$map_item->descricao = '<span style="color: red;"> ARQUIVO NÃO EXISTE!</span>';
+				}
+				
+				
 				$caminho_completo = base_url().'./'.$arquivo;
 				
 				$array_arquivo = explode('/', $arquivo);
