@@ -23,11 +23,8 @@ switch ($nivel_id){
 | -------------------------------------------------------------------
 */
 
-//$_SESSION['id_usuario'] = $id_usuario;
-
-
-$_SESSION['upload_path'] = "uploads/".$id_usuario;
-
+$_SESSION['base_url'] = base_url();
+$_SESSION['upload_path'] = "./uploads/".$id_usuario;
 
 /*
 | -------------------------------------------------------------------

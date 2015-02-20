@@ -186,7 +186,7 @@ $.blockUI({ message: '<h1><img src="<?php echo base_url(); ?>scripts/images/ui-a
 					</div>
 					
 					<div class="form-group <?php echo (form_error('campoAnexo') != '')? 'has-error':''; ?>">
-						<label for="campoAnexo" class="col-sm-2 control-label"><span style="color: red;">*</span> Anexos</label>
+						<label for="campoAnexo" class="col-sm-2 control-label">Anexos</label>
 						<div class="col-md-8">
 							<?php 
 							
@@ -371,7 +371,7 @@ $.blockUI({ message: '<h1><img src="<?php echo base_url(); ?>scripts/images/ui-a
 
 								contentsCss: '<?php echo base_url();?>/css/ckeditor_styles.css',
 								language: 'pt-BR',
-
+								enterMode: CKEDITOR.ENTER_BR,
 								height: '150',
 
 								filebrowserBrowseUrl: 		'<?php echo base_url();?>js/kcfinder/browse.php?opener=ckeditor&type=files',
@@ -381,17 +381,22 @@ $.blockUI({ message: '<h1><img src="<?php echo base_url(); ?>scripts/images/ui-a
 								filebrowserImageUploadUrl:	'<?php echo base_url();?>js/kcfinder/upload.php?opener=ckeditor&type=images',
 								filebrowserFlashUploadUrl: 	'<?php echo base_url();?>js/kcfinder/upload.php?opener=ckeditor&type=flash',
 							   
-							    
-							    removeButtons: 'Source,Preview,Templates,'+
-							    			   'Cut,Copy,Paste,PasteText,PasteFromWord,Undo,Redo,Scayt,'+
-							    			   'NumberedList,BulletedList,Outdent,Indent,'+
-							    			   'Link,Unlink,Anchor,'+
-							    			   'Table,SpecialChar,'+
-							    			   'Font,'+
-							    			   'Maximize,ShowBlocks,'+
-							    			   'Save,NewPage,Print,Find,Replace,SelectAll,Form,Checkbox,Radio,' +
-								    		   'TextField,Textarea,Select,Button,ImageButton,HiddenField,Blockquote,CreateDiv,BidiLtr,BidiRtl,Language,Anchor,'+
-								    		   'Flash,HorizontalRule,Smiley,PageBreak,Iframe,Styles,Format,About'
+								toolbar: [
+								  		{ name: 'document', items: [ 'Source', '-', 'Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat'] },	// Defines toolbar group with name (used to create voice label) and items in 3 subgroups.
+								  		[ 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock' ],			// Defines toolbar group without name.
+								  		
+								  	]
+							  	
+// 							    removeButtons: 'Source,Preview,Templates,'+
+// 							    			   'Cut,Copy,Paste,PasteText,PasteFromWord,Undo,Redo,Scayt,'+
+// 							    			   'NumberedList,BulletedList,Outdent,Indent,'+
+// 							    			   'Link,Unlink,Anchor,'+
+// 							    			   'Table,SpecialChar,'+
+// 							    			   'Font,'+
+// 							    			   'Maximize,ShowBlocks,'+
+// 							    			   'Save,NewPage,Print,Find,Replace,SelectAll,Form,Checkbox,Radio,' +
+// 								    		   'TextField,Textarea,Select,Button,ImageButton,HiddenField,Blockquote,CreateDiv,BidiLtr,BidiRtl,Language,Anchor,'+
+// 								    		   'Image,Flash,HorizontalRule,Smiley,PageBreak,Iframe,Styles,Format,About'
 							
 							});
 							 
@@ -582,16 +587,37 @@ $.blockUI({ message: '<h1><img src="<?php echo base_url(); ?>scripts/images/ui-a
 															filebrowserImageUploadUrl:	\''.base_url().'js/kcfinder/upload.php?opener=ckeditor&type=images\',
 															filebrowserFlashUploadUrl: 	\''.base_url().'js/kcfinder/upload.php?opener=ckeditor&type=flash\',
 														   
+															toolbar: [
+							
+																		[\'Source\'],
+						
+																		[\'Cut\', \'Copy\', \'Paste\', \'PasteText\', \'PasteFromWord\'],
+							
+															  			[\'Bold\', \'Italic\', \'Underline\', \'Strike\', \'Subscript\', \'Superscript\', \'-\', \'RemoveFormat\'],	// Defines toolbar group with name (used to create voice label) and items in 3 subgroups.
+															  		
+																		[\'JustifyLeft\', \'JustifyCenter\', \'JustifyRight\', \'JustifyBlock\', \'-\', \'Outdent\', \'Indent\', \'-\', \'NumberedList\', \'BulletedList\'],
+																		
+																		[\'Image\', \'Table\'],
+							
+																		\'/\',
+							
+																		[\'FontSize\'],
+							
+																		[\'TextColor\', \'BGColor\'],
+							
+																		[\'Scayt\'],
+																  		
+																  	]
 														    
-														    removeButtons: \'Templates,\'+
-														    			   \'Cut,Copy,\'+
-														    			   \'Link,Unlink,Anchor,\'+
-														    			   \'SpecialChar,\'+
-														    			   \'Font,\'+
-														    			   \'Maximize,ShowBlocks,\'+
-														    			   \'Save,NewPage,Print,Find,Replace,SelectAll,Form,Checkbox,Radio,\' +
-															    		   \'TextField,Textarea,Select,Button,ImageButton,HiddenField,Blockquote,CreateDiv,BidiLtr,BidiRtl,Language,Anchor,\'+
-															    		   \'Flash,HorizontalRule,Smiley,PageBreak,Iframe,Styles,Format,About\'
+// 														    removeButtons: \'Templates,\'+
+// 														    			   \'Cut,Copy,\'+
+// 														    			   \'Link,Unlink,Anchor,\'+
+// 														    			   \'SpecialChar,\'+
+// 														    			   \'Font,\'+
+// 														    			   \'Maximize,ShowBlocks,\'+
+// 														    			   \'Save,NewPage,Print,Find,Replace,SelectAll,Form,Checkbox,Radio,\' +
+// 															    		   \'TextField,Textarea,Select,Button,ImageButton,HiddenField,Blockquote,CreateDiv,BidiLtr,BidiRtl,Language,Anchor,\'+
+// 															    		   \'Flash,HorizontalRule,Smiley,PageBreak,Iframe,Styles,Format,About\'
 
 														});
 		    										});
