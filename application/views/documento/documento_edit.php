@@ -195,10 +195,6 @@ $.blockUI({ message: '<h1><img src="<?php echo base_url(); ?>scripts/images/ui-a
 								echo form_dropdown('campoAnexo[]', $anexosDisponiveis, $anexoSelecionado, $jsAnexo);
 		
 							?> 
-							
-							<script>
-							
-							</script>
 						</div>
 						
 						<div class="col-md-2 text-left">

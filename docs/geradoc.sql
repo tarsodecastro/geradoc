@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tempo de Geração: 24/10/2014 às 11:15
--- Versão do servidor: 5.5.40-0ubuntu0.14.04.1
--- Versão do PHP: 5.5.9-1ubuntu4.4
+-- Tempo de Geração: 19/02/2015 às 12:52
+-- Versão do servidor: 5.5.41-0ubuntu0.14.04.1
+-- Versão do PHP: 5.5.9-1ubuntu4.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -116,6 +116,7 @@ CREATE TABLE IF NOT EXISTS `documento` (
   `data_criacao` date DEFAULT NULL,
   `destinatario` int(11) DEFAULT NULL,
   `assunto` varchar(200) COLLATE latin1_general_ci DEFAULT NULL,
+  `anexos` varchar(200) COLLATE latin1_general_ci DEFAULT NULL,
   `referencia` varchar(200) COLLATE latin1_general_ci DEFAULT NULL,
   `redacao` longtext COLLATE latin1_general_ci,
   `remetente` int(11) DEFAULT NULL,
@@ -126,6 +127,9 @@ CREATE TABLE IF NOT EXISTS `documento` (
   `oculto` char(1) COLLATE latin1_general_ci NOT NULL DEFAULT 'N',
   `cancelado` char(1) COLLATE latin1_general_ci NOT NULL DEFAULT 'N',
   `carimbo` char(1) COLLATE latin1_general_ci DEFAULT 'N',
+  `carimbo_confidencial` char(1) COLLATE latin1_general_ci DEFAULT NULL,
+  `carimbo_urgente` char(1) COLLATE latin1_general_ci DEFAULT NULL,
+  `carimbo_via` char(1) COLLATE latin1_general_ci DEFAULT NULL,
   `objetivo` text COLLATE latin1_general_ci,
   `documentacao` text COLLATE latin1_general_ci,
   `conclusao` text COLLATE latin1_general_ci,
@@ -166,6 +170,24 @@ CREATE TABLE IF NOT EXISTS `orgao` (
 -- --------------------------------------------------------
 
 --
+-- Estrutura para tabela `repositorio`
+--
+
+CREATE TABLE IF NOT EXISTS `repositorio` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_setor` int(11) NOT NULL,
+  `id_usuario` int(11) NOT NULL,
+  `id_pasta` int(11) NOT NULL,
+  `arquivo` varchar(200) COLLATE latin1_general_ci NOT NULL,
+  `nome` varchar(100) COLLATE latin1_general_ci NOT NULL,
+  `descricao` varchar(200) COLLATE latin1_general_ci NOT NULL,
+  `data_criacao` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura para tabela `setor`
 --
 
@@ -180,6 +202,7 @@ CREATE TABLE IF NOT EXISTS `setor` (
   `dono` int(11) DEFAULT NULL,
   `funcionarios` text COLLATE latin1_general_ci,
   `restricao` varchar(1) COLLATE latin1_general_ci DEFAULT NULL,
+  `repositorio` varchar(100) COLLATE latin1_general_ci NOT NULL DEFAULT '104857600',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
 
@@ -257,6 +280,7 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `setores` varchar(200) COLLATE latin1_general_ci DEFAULT NULL,
   `nivel` int(11) DEFAULT '2',
   `email` varchar(200) COLLATE latin1_general_ci DEFAULT NULL,
+  `upload` varchar(10) COLLATE latin1_general_ci DEFAULT '2048',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
 
@@ -277,9 +301,7 @@ CREATE TABLE IF NOT EXISTS `workflow` (
   PRIMARY KEY (`id_workflow`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
 
-
 INSERT INTO `usuario` VALUES(1, '11111111111', 'Administrador', 'Administrador', '21232f297a57a5a743894a0e4a801fc3', '21232f297a57a5a743894a0e4a801fc3', 1, NULL, 1, 'admin@geradox.com.br');
-
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
