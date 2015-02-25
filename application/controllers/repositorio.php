@@ -270,7 +270,7 @@ class Repositorio extends CI_Controller {
 					
 				}else{
 					$file_size = 0;
-					$map_item->descricao = '<span style="color: red;"> ARQUIVO NÃO EXISTE!</span>';
+					
 				}
 				
 				
@@ -321,6 +321,10 @@ class Repositorio extends CI_Controller {
 				}
 				
 				$nome_usuario = $this->getUsuario($map_item->id_usuario)->nome;
+				
+				if($file_size == 0 and $extensao != strtolower($arquivo)){
+					$map_item->descricao = '<span style="color: red;"> ARQUIVO NÃO EXISTE!</span>';
+				}
 
 				$this->table->add_row(
 						$link,
