@@ -87,6 +87,17 @@ class Login_model extends CI_Model {
                     r.id_nivel > 1";
     	return $this->db->query($sql)->row();
 	}
+	
+	
+	function delete_config($id_usuario){
+		
+// 		echo $id_usuario;
+		
+// 		exit;
+		
+		$this->db->where('id_usuario', $id_usuario);
+		$this->db->delete('config');
+	}
 
 }
 ?>

@@ -1,19 +1,13 @@
 <div class="areaimage">
 	<center>
-		<img src="{TPL_images}Actions-document-edit-icon.png" height="72px" />
-	</center>
+		<h4 class="text-mutted"><img src="{TPL_images}Actions-document-edit-icon.png" height="62px" /> Permissão negada</h4>
+	</cente>
 </div>
 
 <div id="msg" style="display:none;"><img src="{TPL_images}loader.gif" alt="Enviando" />Aguarde carregando...</div> 
 
 
 <div id="view_content">	
-
-    <div class="row">
-		<div class="col-md-12">
-			<p class="bg-success lead text-center">Permissão negada</p>
-		</div>
-	</div>
 
 	<div class="row">
     

@@ -1,52 +1,45 @@
 <div class="areaimage">
 	<center>
-		<img src="{TPL_images}user-group-icon.png" height="72px"/>
-	</center>
+		<h4 class="text-mutted"><img src="{TPL_images}user-group-icon.png" height="62px" /><?php echo $titulo;?></h4>
+	</cente>
 </div>
 
 <div id="msg" style="display:none;"><img src="{TPL_images}loader.gif" alt="Enviando" />Aguarde carregando...</div> 
 
 <div id="view_content">	
 
-	<div class="row">
-		<div class="col-md-12">
-			<p class="bg-success lead text-center">Usuário</p>
-		</div>
-	</div>
-
-    <div class="row">
-    
-	    <div class="col-md-12">
-	    	<div class="btn-group">
-		    <?php
-
-		    echo $link_back;
-
-		    $readonly = '';
-		    $painel = 'panel-primary';
-		    if ($disabled != null){
-		    	$readonly  = 'readonly : 1,';
-		    	$painel = 'panel-default';
-		    	echo $link_update_sm;
-		    }
-		    ?>
-		  	</div>  
-	    </div>
-
-    </div>
-    
-    
 	<div class="formulario">	
+	
+		<div class="row">
+		 	<div class="col-md-12 text-left">
+		    	<div class="btn-group">
+			   		<?php  
+			   		
+			   		echo $link_back; 
+			   		
+			   		$readonly = '';
+			   		$painel = 'panel-primary';
+			   		if ($disabled != null){
+			   			$readonly  = 'readonly : 1,';
+			   			$painel = 'panel-default';
+			   			echo $link_update_sm;
+			   		}
+
+			   		?>
+			  	</div>  
+		    </div>
+	    </div>
 	
 		<!-- Mensagens e alertas -->
 		<div class="row">
 	   		<div class="col-md-12">
 	    	
 			    	<?php 
+
 			    		echo "<center>".$mensagem."</center>"; 
 			    	
 				    	if(validation_errors() != ''){
-				    		echo '<div class="alert alert-danger" role="alert">';
+				    		echo '<div class="alert alert-danger" role="alert" style="margin-top: 10px;">';
 				    		echo form_error('campoCPF');
 				    		echo form_error('campoNome');
 				    		echo form_error('campoMail1');
@@ -57,6 +50,8 @@
 				    		echo form_error('campoTamanhoUpload');
 				    		echo '</div>';
 				    	}
+				    	
+				    	
 			    	?>
 		  	 
 	    	</div>	
@@ -72,7 +67,7 @@
 		<div class="panel <?php echo $painel; ?>">
 		
 			<div class="panel-heading">
-				  <h3 class="panel-title"><?php echo $titulo; ?></h3>
+				  <h3 class="panel-title"><strong>Informações</strong></h3>
 			</div>
 			
 			<div class="panel-body">

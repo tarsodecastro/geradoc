@@ -123,17 +123,11 @@
 
 
 .areaimage{
-	top: -109px; 
-	position: relative;
-	margin: 0 auto;
-	width: 300px;
-	height: 0px;
-	font-family: 'Times New Roman',Times,serif;
-	font-size: 15pt;
-}
-
-#emblema{ 
-	z-index: 9;
+	top: 41px; 
+	position: absolute; 
+	width: 95%; 
+	margin: 0px auto; 
+	z-index: 1;
 }
 
 

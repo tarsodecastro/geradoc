@@ -126,6 +126,32 @@
 			$dataBR = $a[1].'/'.$a[0];
 			return $dataBR;
 		}
+		
+		public function trataHoraBancoForm($inteiro){ // recebe 730 e retorna 07:30
+		
+			$hora = $inteiro;
+			
+			if(strlen($hora) == 1){
+				$hora =  "00".$hora;
+			}
+		
+			if(strlen($hora) == 2){
+				$hora =  "00".$hora;
+			}
+		
+			if(strlen($hora) == 3){
+				$hora =  "0".$hora;
+			}
+		
+			return $hora = substr($hora,0,2).":".substr($hora,2,2);
+		}
+		
+		public function trataHoraFormBanco($hora){ // recebe 7:30 e retorna 0730
+		
+			$hora = str_replace(":", '', $hora);
+		
+			return $hora;
+		}
 
 	}
 ?>

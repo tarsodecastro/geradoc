@@ -57,7 +57,7 @@ class Workflow extends CI_Controller {
 		
 		$this->js[] = 'tramitacao';
 		
-		$data['titulo']     = 'Recebimento de Documentos';
+		$data['titulo']     = 'Caixa de entrada';
 		$data['link_back'] = $this->Campo_model->make_link('', 'history_back');
 		$data['form_action'] = site_url($this->area.'/search');
 		

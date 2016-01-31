@@ -21,8 +21,8 @@
 
 <div class="areaimage">
 	<center>
-		<img src="{TPL_images}Actions-document-edit-icon.png" height="72px" />
-	</center>
+		<h4 class="text-mutted"><img src="{TPL_images}Actions-document-edit-icon.png" height="62px" /> <?php echo $titulo;?></h4>
+	</cente>
 </div>
 
 <style>
@@ -49,9 +49,6 @@ div.ui-datepicker{
 $.blockUI({ message: '<h1><img src="<?php echo base_url(); ?>scripts/images/ui-anim_basic_16x16.gif" /> Aguarde...</h1>' });
 //--- Fim ---//
 </script>
-
-
-<p class="bg-success lead text-center">Documento</p>
 
 <div id="view_content">
 
@@ -103,7 +100,7 @@ $.blockUI({ message: '<h1><img src="<?php echo base_url(); ?>scripts/images/ui-a
 			<div class="panel <?php echo $painel; ?>">
 			
 				<div class="panel-heading">
-					<h3 class="panel-title"><?php echo $titulo; ?></h3>
+					<h3 class="panel-title"><strong>Informações do documento</strong></h3>
 				</div>
 			
 
@@ -123,7 +120,7 @@ $.blockUI({ message: '<h1><img src="<?php echo base_url(); ?>scripts/images/ui-a
 						</div>
 					
 						<div class="col-md-2 text-left">
-							<a href="#" class="btn" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="top" data-html="true" title='<strong>Remetente</strong> <i class="fa fa-question-circle fa-lg" style="color: #428bca;"></i>' data-content="<div class='text-justify'>É quem assina o documento. <br> O remetente está associado a um setor. É possível criar um documento para que outra pessoa o assine. Uma vez que o documento é salvo não se pode alterar o remente.</div>">
+							<a href="#" class="btn" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="top" data-html="true" title="Remetente" data-content="É quem assina o documento. <br> O remetente está associado a um setor. É possível criar um documento para que outra pessoa o assine. Uma vez que o documento é salvo não se pode alterar o remente.">
 								<i class="fa fa-question-circle fa-lg" style="color: #428bca;"></i>
 							</a>	
 						</div>
@@ -139,9 +136,17 @@ $.blockUI({ message: '<h1><img src="<?php echo base_url(); ?>scripts/images/ui-a
 						</div>
 						
 						<div class="col-md-2 text-left">
-							<a href="#" class="btn" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="top" data-html="true" title='<strong>Setor</strong> <i class="fa fa-question-circle fa-lg" style="color: #428bca;"></i>' data-content="<div class='text-justify'>É a unidade adiministrativa a qual pertence o rementente do documento. <br> Não é possível alterar diretamento o setor, mas durante a criação do documento é possível mudar o remetente.</div>">
+							<a href="#" class="btn" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="top" data-html="true" title="Setor" data-content="É a unidade adiministrativa a qual pertence o rementente do documento. <br> Não é possível alterar diretamento o setor, mas durante a criação do documento é possível mudar o remetente.">
 								<i class="fa fa-question-circle fa-lg" style="color: #428bca;"></i>
 							</a>	
+						</div>
+					</div>
+					
+					
+					<div class="form-group <?php echo (form_error('campoAssinatura') != '')? 'has-error':''; ?>">
+						<label for="campoSetor" class="col-sm-2 control-label">Assinatura</label>
+						<div class="col-md-8">
+							<div class="alert alert-info" style="margin-bottom: 0px; padding: 7px;"><strong><?php echo $campoAssinatura['value']; ?></strong>&nbsp;</div>
 						</div>
 					</div>
 					
@@ -198,7 +203,7 @@ $.blockUI({ message: '<h1><img src="<?php echo base_url(); ?>scripts/images/ui-a
 						</div>
 						
 						<div class="col-md-2 text-left">
-							<a href="#" class="btn" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="top" data-html="true" title='<strong>Anexos</strong> <i class="fa fa-question-circle fa-lg" style="color: #428bca;"></i>' data-content="<div class='text-justify'>São os documentos que compõem o documento. Você pode selecionar arquivos que foram armazenados no <strong>respositório</strong> do seu setor e eles estarão visíveis durante a visualização do documento, evitando a necessidade de imprimí-los.</div>">
+							<a href="#" class="btn" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="top" data-html="true" title="Anexos" data-content="São os documentos que compõem o documento. Você pode selecionar arquivos que foram armazenados no respositório do seu setor e eles estarão visíveis durante a visualização do documento, evitando a necessidade de imprimí-los.">
 								<i class="fa fa-question-circle fa-lg" style="color: #428bca;"></i>
 							</a>	
 						</div>
@@ -570,12 +575,19 @@ $.blockUI({ message: '<h1><img src="<?php echo base_url(); ?>scripts/images/ui-a
 													<script type="text/javascript">
 		    										$().ready(function() {
 		    		
+		    		
+		    		
 		    											CKEDITOR.replace( \'campo_'.$nome_campo.'\', {
 
+		  													//customConfig: \''.base_url().'js/ckeditor/config.js\',
 															contentsCss: \''.base_url().'css/ckeditor_styles.css\',
 															language: \'pt-BR\',
 		  													height: \'350\',
-							
+    														enterMode: CKEDITOR.ENTER_BR,
+				
+															scayt_autoStartup: true,
+	   														scayt_sLang: \'pt_BR\',
+
 															filebrowserBrowseUrl: 		\''.base_url().'js/kcfinder/browse.php?opener=ckeditor&type=files\',
 															filebrowserImageBrowseUrl: 	\''.base_url().'js/kcfinder/browse.php?opener=ckeditor&type=images\',
 															filebrowserFlashBrowseUrl: 	\''.base_url().'js/kcfinder/browse.php?opener=ckeditor&type=flash\',

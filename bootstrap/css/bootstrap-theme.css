@@ -223,7 +223,7 @@
   border-radius: 4px;
   -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, .15), 0 1px 5px rgba(0, 0, 0, .075);
           box-shadow: inset 0 1px 0 rgba(255, 255, 255, .15), 0 1px 5px rgba(0, 0, 0, .075);
-          border-width: 0px;
+          border-width: 1px;
 }
 
 
@@ -232,8 +232,9 @@
 
 .navbar {
 	min-height:30px !important; 
-	margin-bottom: 2px;
+	margin-bottom: 5px;
 }
+
 
 /*
 .navbar-default {

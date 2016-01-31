@@ -1,17 +1,11 @@
 <div class="areaimage">
 	<center>
-		<img src="{TPL_images}secrecy-icon.png" height="72px"/>
-	</center>
+		<h4 class="text-mutted"><img src="{TPL_images}secrecy-icon.png" height="62px" /> <?php echo $titulo;?></h4>
+	</cente>
 </div>
 
 <div id="view_content">	
 
-		<div class="row">
-			<div class="col-md-12">
-				<p class="bg-success lead text-center">Usuário</p>
-			</div>
-		</div>
-		
 		<div class="formulario">
 		
 			<!-- Mensagens e alertas -->
@@ -42,48 +36,53 @@
 			<div class="panel panel-primary">
 			
 				<div class="panel-heading">
-				  	<h3 class="panel-title"><?php echo $titulo; ?></h3>
+				  	<h3 class="panel-title"><strong>Informações</strong></h3>
 				</div>
 			
 				<div class="panel-body">
 				
 					<div class="form-group <?php echo (form_error('campoCPF') != '')? 'has-error':''; ?>"">
-					    <label for="campoCPF" class="col-sm-3 control-label"><span style="color: red;">*</span> CPF</label>
+					    <label for="campoCPF" class="col-sm-3 control-label"><span style="color: red;">*</span> CPF:</label>
 					    <div class="col-md-3">
 					      	<?php echo form_input($campoCPF); ?> 
 					    </div>
 					</div>
 					
 					<div class="form-group <?php echo (form_error('campoNome') != '')? 'has-error':''; ?>"">
-					    <label for="campoNome" class="col-sm-3 control-label"><span style="color: red;">*</span> Nome</label>
+					    <label for="campoNome" class="col-sm-3 control-label"><span style="color: red;">*</span> Nome:</label>
 					    <div class="col-md-7">
 					      	<?php echo form_textarea($campoNome); ?> 
 					     </div>
 					</div>
 					
 					<div class="form-group <?php echo (form_error('campoMail1') != '')? 'has-error':''; ?>"">
-					    <label for="campoMail1" class="col-sm-3 control-label"><span style="color: red;">*</span> E-mail</label>
+					    <label for="campoMail1" class="col-sm-3 control-label"><span style="color: red;">*</span> E-mail:</label>
 					    <div class="col-md-7">
 					      	<?php echo form_input($campoMail1); ?> 
 					     </div>
 					</div>
 					
 					<div class="form-group <?php echo (form_error('campoMail2') != '')? 'has-error':''; ?>"">
-					    <label for="campoMail2" class="col-sm-3 control-label"><span style="color: red;">*</span> Confirmação do e-mail</label>
+					    <label for="campoMail2" class="col-sm-3 control-label"><span style="color: red;">*</span> Confirmação do e-mail:</label>
 					    <div class="col-md-7">
 					      	<?php echo form_input($campoMail2); ?> 
 					     </div>
 					</div>
+	
+				</div>
 				
+				<div class="panel-footer">
+					<div class="btn-group">
+						<button type="button" class="btn btn-default" onclick="javascript:window.history.back();"><span class="glyphicon glyphicon-arrow-left"></span> Voltar</button>
+				   		<?php
+						    echo $link_salvar;
+					    ?>
+					</div>
 				</div>
 				
 			</div>
 			
-			<div class="btn-group">
-		   		<?php
-				    echo $link_salvar;
-			    ?>
-			</div>
+			
 					
 			</form>
 		</div>

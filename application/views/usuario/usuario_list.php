@@ -1,10 +1,8 @@
 <div class="areaimage">
 	<center>
-		<img src="{TPL_images}user-group-icon.png" height="72px"/>
-	</center>
+		<h4 class="text-mutted"><img src="{TPL_images}user-group-icon.png" height="62px" /><?php echo $titulo;?></h4>
+	</cente>
 </div>
-
-<p class="bg-success lead text-center"><?php echo $titulo;?></p>
 
 <div id="msg" style="display: none;">
 	<img src="{TPL_images}loader.gif" class="img_aling2" alt="Carregando" />Aguarde

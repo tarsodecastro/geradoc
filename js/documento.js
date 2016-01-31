@@ -64,9 +64,10 @@
         setTimeout($.unblockUI); 
     });
     
-    $('#setores').change(function() { 
-    	$.blockUI({ message: '<h1>Aguarde...</h1>' });
-    });
+//    $('#setores').change(function() { 
+//    	//$.blockUI({ message: '<h1>Aguarde...</h1>' });
+//    	$('#modal_loading').modal('toggle');
+//    });
 
 			
  });	

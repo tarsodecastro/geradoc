@@ -41,6 +41,22 @@ body {
 }
 
 
+.panel-default-origin {
+  border-color: #DDD;
+}
+.panel-default-origin > .panel-heading {
+  color: #333;
+  background-color: #f5f5f5;
+  border-color: #DDD;
+}
+.panel-default-origin > .panel-heading + .panel-collapse .panel-body {
+  border-top-color: #DDD;
+}
+.panel-default-origin > .panel-footer + .panel-collapse .panel-body {
+  border-bottom-color: #DDD;
+}
+
+
 .pagination > .active > a{
 	background-color: #06ab5f;
 	border-color: #658b6f;
@@ -120,4 +136,14 @@ body {
 
 .breadcrumb {
 font-size: 12pt;
+}
+
+div.banner {
+  width: 200px;
+  margin: 0;
+  position: fixed;
+  top: 9.2em;
+  left: auto;
+  right: 2em;
+  z-index: 999;
 }

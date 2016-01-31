@@ -1,8 +1,9 @@
 <div class="areaimage">
 	<center>
-		<img src="{TPL_images}secrecy-icon.png" height="72px"/>
-	</center>
+		<h4 class="text-mutted"><img src="{TPL_images}secrecy-icon.png" height="62px" /><?php echo $titulo;?></h4>
+	</cente>
 </div>
+
 <?php echo $mensagem; ?>
 			
 <div class="formulario">	
@@ -21,33 +22,33 @@
 		   	</div>
 	<!-- Fim das mensagens e alertas -->
 	
+	<form class="form-horizontal" role="form" id="frm1" name="frm1" action="<?php echo $form_action; ?>" method="post">
+	
 	<div class="panel panel-primary">
 
 		  <div class="panel-heading">
-		    <h3 class="panel-title">Solicitação de nova senha</h3>
+		    <h3 class="panel-title"><strong>Informe os dados abaixo:</strong></h3>
 		  </div>
 		  
 		  
 		  <div class="panel-body">
-		   	
-			<form class="form-horizontal" role="form" id="frm1" name="frm1" action="<?php echo $form_action; ?>" method="post">
-			
-			
+
 				<div class="form-group <?php echo (form_error('txtCPF') != '')? 'has-error':''; ?>"">
 				    <label for="txtSenhaAtual" class="col-sm-4 control-label"><span style="color: red;">*</span> CPF</label>
 				    <div class="col-sm-4">
 				      <input type="text" class="form-control" name="txtCPF" id="txtCPF" placeholder="informe o CPF" value="<?php echo set_value('txtCPF')?>" >
 				    </div>
 				</div>
-			
-				<div class="form-group">
-				    <div class="col-sm-offset-4 col-sm-4">
-				    	<button type="button" class="btn btn-default" onclick="javascript:window.history.back();">Voltar</button>
-				      	<button type="submit" class="btn btn-success">Enviar</button>
-				    </div>
-				</div>
-		
-			</form>
+
 		</div>
+		
+		<div class="panel-footer">
+	
+			    	<button type="button" class="btn btn-default" onclick="javascript:window.history.back();"><span class="glyphicon glyphicon-arrow-left"></span> Voltar</button>
+			      	<button type="submit" class="btn btn-success"><span class="glyphicon glyphicon glyphicon-ok"></span> Enviar</button>
+
+		 </div>
+		  
 	</div>
+	</form>
 </div>
