@@ -301,8 +301,7 @@ CREATE TABLE IF NOT EXISTS `workflow` (
   PRIMARY KEY (`id_workflow`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
 
-INSERT INTO `usuario` VALUES(1, '11111111111', 'Administrador', 'Administrador', '21232f297a57a5a743894a0e4a801fc3', '21232f297a57a5a743894a0e4a801fc3', 1, NULL, 1, 'admin@geradox.com.br');
-
+INSERT INTO `geradoc_git`.`usuario` (`id`, `cpf`, `nome`, `sobrenome`, `senha`, `confsenha`, `setor`, `setores`, `nivel`, `email`, `upload`) VALUES (NULL, '11111111111', 'Usuário', 'Administrador', '21232f297a57a5a743894a0e4a801fc3', '21232f297a57a5a743894a0e4a801fc3', '1', '1', '1', 'admin@geradox.com.br', '2048');
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
