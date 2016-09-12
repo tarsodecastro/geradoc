@@ -84,6 +84,17 @@ CREATE TABLE IF NOT EXISTS `contato` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
 
+
+
+
+CREATE TABLE `config` (
+  `id_config` int(11) NOT NULL,
+  `id_usuario` int(11) NOT NULL,
+  `data_inicial` date NOT NULL,
+  `data_final` date NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+
 -- --------------------------------------------------------
 
 --
