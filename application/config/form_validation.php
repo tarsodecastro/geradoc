@@ -553,26 +553,6 @@ $config = array(
 					
 		),
 		
-		
-		'alerta/update' => array(
-				array(
-						'field' => 'campoDataAlerta',
-						'label' => 'Data',
-						'rules' => 'required|trim'
-				),
-				array(
-						'field' => 'campoHoraMinutoAlerta',
-						'label' => 'Hora',
-						'rules' => 'required|trim'
-				),
-				array(
-						'field' => 'campoMotivoAlerta',
-						'label' => 'Motivo',
-						'rules' => 'required|trim'
-				),
-					
-		),
-		
 		 
 );
 
