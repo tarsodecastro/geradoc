@@ -270,7 +270,7 @@ class Repositorio extends CI_Controller {
 					
 				}else{
 					$file_size = 0;
-					
+					$map_item->descricao = '<span style="color: red;"> ARQUIVO NÃO EXISTE!</span>';
 				}
 				
 				
@@ -321,10 +321,6 @@ class Repositorio extends CI_Controller {
 				}
 				
 				$nome_usuario = $this->getUsuario($map_item->id_usuario)->nome;
-				
-				if($file_size == 0 and $extensao != strtolower($arquivo)){
-					$map_item->descricao = '<span style="color: red;"> ARQUIVO NÃO EXISTE!</span>';
-				}
 
 				$this->table->add_row(
 						$link,
@@ -362,7 +358,8 @@ class Repositorio extends CI_Controller {
 		
 		$data['breadcrumb'] = '<ol class="breadcrumb">
 								  <li><a href="'.site_url().'/repositorio"><i class="cus-house"></i> INÍCIO</a></li>';
-			
+		
+		
 		if($id_pasta != 0){
 			
 			$pasta = $this->Repositorio_model->get_by_id($id_pasta)->row();
@@ -374,17 +371,13 @@ class Repositorio extends CI_Controller {
 			$array_caminho = explode('/', $caminho);
 			
 			$array_caminho = array_filter($array_caminho);
-			
-			$path = $raiz_do_setor;
-			
+
 			foreach ($array_caminho as $item){
-
-				$path .=  "/" . $item;
 				
-				$pasta = $this->Repositorio_model->get_by_path($path)->row();
+				$pasta = $this->Repositorio_model->get_by_nome($item)->row();
 				
-				$data['breadcrumb'] .= '<li><a href="'.site_url().'/repositorio/index/'.$pasta->id.'" class="active">'.$item.'</a></li>';
-
+				$data['breadcrumb'] .= '<li><a href="'.site_url().'/repositorio/index/'.$pasta->id.'" class="active">'.$pasta->nome.'</a></li>';
+				
 			}
 			
 		}
