@@ -74,10 +74,6 @@ class Campo_model extends CI_Model {
 			case 'alterar_sm':
 				$link = anchor($area.'/update/'.$id,'<i class="cus-pencil"></i> Alterar', array('class'=>'btn btn-default btn-sm'));
 			break;
-			
-			case 'deletar_sm':
-				$link = anchor($area.'/delete/'.$id,'<i class="cus-cross"></i> Deletar', array('class'=>'btn btn-default btn-sm'));
-			break;
 				
 			case 'alterar':
 				$link = anchor($area.'/update/'.$id,'<span class="glyphicon glyphicon-pencil"></span> Alterar', array('class'=>'btn btn-warning'));
@@ -104,7 +100,7 @@ class Campo_model extends CI_Model {
 			break;
 				
 			case 'salvar':
-				$link = '<button type="submit" class="btn btn-success">Salvar <span class="glyphicon glyphicon glyphicon-ok"></span></button>';
+				$link = '<button type="submit" class="btn btn-success"><span class="glyphicon glyphicon glyphicon-ok"></span> Salvar</button>';
 			break;
 				
 			case 'search_cancel':
@@ -859,116 +855,6 @@ class Campo_model extends CI_Model {
     
     	return $campo[$indice];
     }
-    
-    
-    function alerta($indice) {
-    	$campo = array(
-    
-    			
-    			'campoDataAlerta' => array(
-    					'name' => 'campoDataAlerta',
-    					'id' => 'campoDataAlerta',
-    					'value' => mb_convert_case($this->input->post('campoDataAlerta'), MB_CASE_UPPER, "ISO-8859-1"),
-    					'class' => 'form-control text-uppercase',
-    			),
-    			
-    			
-    			'campoHoraAlerta' => array(
-    					'name' => 'campoHoraAlerta',
-    					'id' => 'campoHoraAlerta',
-    					'value' => mb_convert_case($this->input->post('campoHoraAlerta'), MB_CASE_UPPER, "ISO-8859-1"),
-    					'class' => 'form-control text-uppercase',
-    			),
-    
-    			'campoMinutoAlerta' => array(
-    					'name' => 'campoMinutoAlerta',
-    					'id' => 'campoMinutoAlerta',
-    					'value' => mb_convert_case($this->input->post('campoMinutoAlerta'), MB_CASE_UPPER, "ISO-8859-1"),
-    					'class' => 'form-control text-uppercase',
-    			),
-    			
-    			'campoHoraMinutoAlerta' => array(
-    					'name' => 'campoHoraMinutoAlerta',
-    					'id' => 'campoHoraMinutoAlerta',
-    					'value' => mb_convert_case($this->input->post('campoHoraMinutoAlerta'), MB_CASE_UPPER, "ISO-8859-1"),
-    					'class' => 'form-control text-uppercase text-left',
-    			),
-    			
-    			'campoMotivoAlerta' => array(
-    					'name' => 'campoMotivoAlerta',
-    					'id' => 'campoMotivoAlerta',
-    					'type'=>'text',
-    					'placeholder'=> '',
-    					'value' => mb_convert_case($this->input->post('campoMotivoAlerta'), MB_CASE_UPPER, "ISO-8859-1"),
-    					'cols'  => '70',
-    					'rows'  =>  '2',
-    					'class' => 'form-control text-uppercase',
-    			),
-    			
-    			'campoConclusaoAlerta' => array(
-    					'name' => 'campoConclusaoAlerta',
-    					'id' => 'campoConclusaoAlerta',
-    					'type'=>'text',
-    					'placeholder'=> '',
-    					'value' => mb_convert_case($this->input->post('campoConclusaoAlerta'), MB_CASE_UPPER, "ISO-8859-1"),
-    					'cols'  => '70',
-    					'rows'  =>  '2',
-    					'class' => 'form-control text-uppercase',
-    			),
-    			
-    			'arrayHoras' => array(
-    					'0'  => '00',
-    					'1'  => '01',
-    					'2'  => '02',
-    					'3'  => '03',
-    					'4'  => '04',
-    					'5'  => '05',
-    					'6'  => '06',
-    					'7'  => '07',
-    					'8'  => '08',
-    					'9'  => '09',
-    					'10'  => '10',
-    					'11'  => '11',
-    					'12'  => '12',
-    					'13'  => '13',
-    					'14'  => '14',
-    					'15'  => '15',
-    					'16'  => '16',
-    					'17'  => '17',
-    					'18'  => '18',
-    					'19'  => '19',
-    					'20'  => '20',
-    					'21'  => '21',
-    					'22'  => '22',
-    					'23'  => '23',
-    			),
-    			 
-    			'arrayMinutos' => array(
-    					'0'  => '00',
-    					'5'  => '05',
-    					'10'  => '10',
-    					'15'  => '15',
-    					'20'  => '20',
-    					'25'  => '25',
-    					'30'  => '30',
-    					'35'  => '35',
-    					'40'  => '40',
-    					'45'  => '45',
-    					'50'  => '50',
-    					'55'  => '55',
-    			),
-    
-    	);
-    
-    	return $campo[$indice];
-    }
-    
-    
-    
-    
-    
-    
-    
     
   
 

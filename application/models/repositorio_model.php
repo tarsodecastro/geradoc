@@ -62,11 +62,6 @@ class Repositorio_model extends CI_Model {
 		return $this->db->get($this->tabela);
 	}
 	
-	function get_by_path($path){
-		$this->db->where('arquivo', $path);
-		return $this->db->get($this->tabela);
-	}
-	
 	function checa_existencia($id_pasta, $nome){
 		$this->db->where('nome', $nome);
 		$this->db->where('id_pasta', $id_pasta);

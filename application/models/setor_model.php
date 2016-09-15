@@ -83,11 +83,9 @@ class Setor_model extends CI_Model {
         	WHERE s1.id = $id and o.id = s1.orgao and s2.id = s1.setorPai
         	GROUP BY s1.id";
         	*/
-
-        	//$this->db->select('s1.*, s2.id, s2.nome as setorPaiNome, s2.sigla as setorPaiSigla, o.sigla as orgaoSigla');
         	
-        	$this->db->select('s1.*, s2.nome as setorPaiNome, s2.sigla as setorPaiSigla, o.sigla as orgaoSigla');
         	
+        	$this->db->select('s1.*, s2.id, s2.nome as setorPaiNome, s2.sigla as setorPaiSigla, o.sigla as orgaoSigla');
         	$this->db->where('s1.id', $id);
         	$this->db->where('o.id = s1.orgao');
         	$this->db->where('s2.id = s1.setorPai');
@@ -98,7 +96,7 @@ class Setor_model extends CI_Model {
         	
         	$query = $this->db->get();
         	
-        	//echo $this->db->last_query();
+        //	echo $this->db->last_query();
         	
 
         	//return $this->db->query($sql);
