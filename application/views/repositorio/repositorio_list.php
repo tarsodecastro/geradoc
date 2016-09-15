@@ -1,8 +1,12 @@
 <div class="areaimage">
 	<center>
-		<h4 class="text-mutted"><img src="{TPL_images}archive-icon.png" height="62px" /><?php echo $titulo;?></h4>
-	</cente>
+		<img src="{TPL_images}archive-icon.png" style="height: 65px;"/>
+	</center>
 </div>
+
+<p class="bg-success lead text-center">
+	<?php echo $titulo;?>
+</p>
 
 <div id="view_content">
 

@@ -2,9 +2,11 @@
 
 <div class="areaimage">
 	<center>
-		<h4 class="text-mutted"><img src="{TPL_images}document-icon.png" height="62px" /><?php echo $titulo;?></h4>
-	</cente>
+		<img src="{TPL_images}document-icon.png" height="72px" />
+	</center>
 </div>
+
+<p class="bg-success lead text-center">Entrada de documentos</p>
 
 <div id="msg" style="display: none;">
 	<img src="{TPL_images}loader.gif" alt="Enviando" />Aguarde

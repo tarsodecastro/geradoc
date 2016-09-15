@@ -7,15 +7,17 @@
 
 <div class="areaimage">
 	<center>
-		<h4 class="text-mutted"><img src="{TPL_images}statistics_64.png" height="62px" /> <?php echo $titulo;?></h4>
-	</cente>
-</div>
+		<img src="{TPL_images}statistics_64.png" />
+	</center>
+</div>	
 
 <div id="msg" style="display: none; padding: 13px;">
 
 	 <h4><img src="{TPL_images}loader.gif" class="img_aling2" alt="Carregando" height="21px"/> &nbsp; Aguarde, processando informações... </h4>
 	
 </div>
+
+<p class="bg-success lead text-center"><?php echo $titulo;?></p>
 
 <div id="view_content">	
 
@@ -67,9 +69,7 @@
 
 					<div class="form-group">
 						<div class="col-sm-12 text-center">
-							<button type="submit" class="btn btn-primary" id="btn_consultar" aria-label="Consultar">
-							  <strong>Consultar</strong> <i class="fa fa-search fa-lg fa-flip-horizontal"></i>
-							</button>
+						<input type="submit" id="btn_consultar" class="btn btn-primary" value="Consultar" title="Consultar" />
 						</div>
 					</div>
 				 </div>

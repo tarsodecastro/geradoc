@@ -1,4 +1,5 @@
-<div id="Layer1" style="position: relative; width:100%; height:300px; overflow: auto; text-align: justify; padding-left: 3px; padding-right: 10px;">
+
+<div id="Layer1" style="position: relative; width:100%; height:200px; overflow: auto; text-align: justify; padding-left: 3px; padding-right: 10px;">
 	<br>
 	O GeraDoc é um sistema de Gerenciamento de Conteúdo Corporativo (ECM - Enterprise Content Management).
 	<br><br>
@@ -7,72 +8,6 @@
 	pareceres jurídicos, atos administrativos e notas de instrução nos diversos setores de instituições governamentais, mantendo as formas, 
 	controlando numerações, preservando as informações, controlando acessos e permissões, bem como possibilitando pesquisas textuais nos conteúdos dos documentos produzidos.
 
-
-
-<br><br><b>Benefícios:</b>
-
-	<ul style="padding: 10px;">
-		<li>
-			<p><strong>Padronização</strong> dos formatos dos documentos, como cabeçalhos, rodapés, posicionamentos de destinatários, assuntos, datas, referências, assinaturas, famílias e tamanhos de fontes;</p>
-		</li>
-		
-		<li>
-			<p><strong>Controle da numeração</strong> dos documentos produzidos em cada setor;</p>
-		</li>
-		
-		<li>
-			<p><strong>Maior praticidade</strong>, uma vez que os documentos são armazenados em nuvem e o usuário pode gerenciá-los a partir de qualquer computador conectado à internet ou rede interna;</p>
-		</li>
-	
-		<li>
-			<p><strong>Controle de acesso e de alteração</strong>;</p>
-		</li>
-	
-		<li>
-			<p><strong>Agilidade</strong> na obtenção das informações através das consultas textuais no universo de documentos produzidos nos setores de um mesmo órgão;</p>
-		</li>
-		
-		<li>
-			<p><strong>Facilidade de acompanhamento</strong> dos trabalhos desenvolvidos nos setores, através da visualização dos documentos gerados;</p>
-		</li>
-	
-		<li>
-			<p><strong>Rapidez na elaboração</strong> de um documento, uma vez que o usuário não se preocupa com as características da forma do tipo de documento, focando sua atenção e criatividade no conteúdo;</p>
-		</li>
-	
-		<li>
-			<p><strong>Possibilidade de colaboração</strong> entre os membros de um mesmo setor durante a criação de um documento antes de imprimi-lo;</p>
-		</li>
-	
-		<li>
-			<p><strong>Armazenamento seguro</strong>, uma vez que os registros são gravados em nuvem, com rotinas de backup, e não nos computadores dos usuários;</p>
-		</li>
-		
-		<li>
-			<p><strong>Workflow</strong>, controle do fluxo de trabalho e registro das tramitações dos documentos nos setores da instituição;</p>
-		</li>
-	
-		<li>
-			<p><strong>Repositório</strong>, possibilidade de armazenar os anexos dos documentos de cada setor, evitando a necessidade de impressões desses arquivos.</p>
-		</li>
-		
-		<li>
-			<p><strong>Follow up</strong>, cadastros de alertas nos documentos criados, com a finalidade de lembrar o usuário de realizar acompanhamento.</p>
-		</li>
-	</ul>
-
-	<b>VERSÃO 2.7:</b><br>
-	
-		- alertas; <br>
-		- corretor ortográfico ativado por padrão; <br>
-		- definições de períodos para a listagem dos documentos; <br>
-		- aprimoramentos nas pesquias de acordo com o período, tipo de documento e setor; <br>
-
-	<br><br><b>VERSÃO 2.6:</b><br>
-	
-		- repositório de arquivos; <br>
-		- anexos nos documentos; <br>
-		
 	<br><br><b>VERSÃO 2.5:</b><br>
 	
 		- campos dinâmicos para os tipos de documentos; <br>
@@ -114,12 +49,58 @@
 		- estatísticas.<br>
 	<br>
 	
-	<br><br>
+	<?php 
+	$CI = & get_instance();
+	$CI->load->library(array('session', 'datas'));
+	if ($CI->session->userdata('nivelId') == 1){?>
+	<b>VERSÃO 2.0:</b> <br>
+	
+	<br><b>ATUALIZAÇÕES NO BANCO:</b> <br>
+	
+	- criado o campo ano(int(4)) na tabela de tipo de documentos;  <br>
+	- criado o campo funcionarios(text) na tabela setor; <br>
+	- criado o campo status(char(1)) na tabela contato; <br>
+	- na tabela contato, os campos mail1 e mail2 agora sao varchar(60); <br>
+	- na tabela usuario, o campo nome foi alterado de varchar(45) para varchar(100); <br>
+	- criada uma tabela chamada setor_func_per, com os campos id(INT), setor(INT), usuario(INT), permissao(INT); <br>
+	- criada uma tabela chamada tipo_ano, com os campos id(INT), tipo(INT), ano(INT(4)), inicio(INT) para controlar o início da numeração dos documentos; <br>
+	- na tabela tipo, foi criado um flag de nome ativo char(1) de valor padrão = "N"; <br>
+	- criada uma tabela chamada auditoria, com os campos: id(INT), usuario(INT), usuario_nome(VARCHAR(60)), data(DATETIME), URL(TEXT); <br>
+	
+	<br><b>ATUALIZAÇÕES NO CÓDIGO:</b> <br>
+	
+	- aplicação migrada para o CI 2.1.3; <br>
+	- criado novo layout; <br>
+	- criado um CRUD para os Tipos de Documentos (a tabela já existia e era utilizada); <br>
+	- o CKeditor foi substituído pelo Tinymce para uma maior compatibilidade com tabelas; <br>
+	- incluído um sistema de upload de fotos no Tinymce e seu arquivo de configração fica dentro da pasta js/tinymce/pugins/filemanager; <br>
+	- acrescentados os ícones de cada área no topo da aplicacao e uma nova classe css chamada imagearea foi criada; <br>
+	- a tela inicial de documentos lista os registros de acordo com o setor selecionado; <br>
+	- efetuada correção na assinatura do parecer jurídico; <br>
+	- implementado o controle de permissões por funcionário do setor com três níveis: 1 = Leitura (default), 2 = Escrita e 3 = Total (pode ocultar e cancelar o documento). Os chefes dos setores têm permissão total; <br>
+	- estatísticas implementadas com filtros; <br>
+	- auditoria implementada; <br>
+	
+	<br><b>A FAZER:</b><br>
+	
+	- ata de reunião;<br>
+	- prazos nos despachos;<br>
+	- tela de alerta dos prazos;<br>
+	- tela de gerenciamento dos prazos;<br>
+	- exportar em odt ou rtf;<br>
+	- incluir a numeração do documento a partir da segunda página nos cabeçalhos dos documentos com mais de uma página;<br>
+	
+	<br><b>OUTRAS INFORMAÇÕES:</b><br>
+	
+	- a aplicação não está integrada ao SSO; <br>
+
+	<?php } ?>
+	<br><br><br><br>
 </div>
 
 <div style="text-align: right; position: relative; top:4px; z-index: 9; padding-top: 8px; color:#888">
 		Criado por Tarso de Castro<br>
-		<a href="http://www.geradox.com.br/" target="_blank">http://www.geradox.com.br/</a>
+		<a href="https://github.com/tarsodecastro" target="_blank">https://github.com/tarsodecastro</a>
 </div>
 	
 

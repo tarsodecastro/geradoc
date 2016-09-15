@@ -8,9 +8,11 @@
 
 <div class="areaimage">
 	<center>
-		<h4 class="text-mutted"><img src="{TPL_images}paper-plane.png" height="62px" /><?php echo $titulo;?></h4>
-	</cente>
+		<img src="{TPL_images}Actions-document-edit-icon.png" height="72px" />
+	</center>
 </div>
+
+<p class="bg-success lead text-center">Tramitação do documento</p>
 
 <div id="msg" style="display: none;">
 	<img src="{TPL_images}loader.gif" alt="Enviando" />Aguarde
@@ -19,14 +21,9 @@
 
 <div id="view_content">
 
-	
-
-
-	<div class="formulario">
-	
 	<div class="row">
     
-	    <div class="col-md-12 text-left">
+	    <div class="col-md-12 text-center">
 	    	<div class="btn-group">
 		    <?php
 		    	
@@ -36,6 +33,9 @@
 	    </div>
 
     </div>
+
+
+	<div class="formulario">
 	
 	<!-- Mensagens e alertas -->
 		<div class="row">

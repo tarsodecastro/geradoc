@@ -1,10 +1,12 @@
-<div class="areaimage">
+<div class="areaimage" >
 	<center>
-		<h4 class="text-mutted"><img src="{TPL_images}archive-icon.png" height="62px" /><?php echo $titulo;?></h4>
-	</cente>
+		<img src="{TPL_images}archive-icon.png" style="height: 65px;"/>
+	</center>
 </div>
 	
 <div id="msg" style="display:none;"><img src="{TPL_images}loader.gif" alt="Enviando" />Aguarde carregando...</div> 
+
+<p class="bg-success lead text-center">Repositório</p>
 
 <div id="view_content">	
 
@@ -20,7 +22,7 @@
 		<div class="panel panel-primary">
 	
 			  <div class="panel-heading">
-			    <h3 class="panel-title"><strong>Informações do arquivo</strong></h3>
+			    <h3 class="panel-title"><?php echo $titulo; ?></h3>
 			  </div>
 			  	  
 			  <div class="panel-body">
