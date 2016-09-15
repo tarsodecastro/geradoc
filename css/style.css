@@ -123,11 +123,17 @@
 
 
 .areaimage{
-	top: 41px; 
-	position: absolute; 
-	width: 95%; 
-	margin: 0px auto; 
-	z-index: 1;
+	top: -109px; 
+	position: relative;
+	margin: 0 auto;
+	width: 300px;
+	height: 0px;
+	font-family: 'Times New Roman',Times,serif;
+	font-size: 15pt;
+}
+
+#emblema{ 
+	z-index: 9;
 }
 
 
@@ -702,14 +708,13 @@ section.section {
 }
 
 section#footer {
-	background: #242424;
+	background: #eee;
 	margin: 0;
 }
 
 section#footer .copyright {
 	text-align: center;
 	color: #777;
-	background: #242424;
 }
 
 /* footer social icons */
