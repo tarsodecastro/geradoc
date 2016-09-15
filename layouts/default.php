@@ -162,12 +162,13 @@ $SessTimeLeft = ($SessExpTime - ($CurrTime - $arrLastActivity[0]["last_activity"
     <meta http-equiv="content-language" content="pt-br" />
     <meta http-equiv="refresh" content="<?php echo $CI->config->item('sess_expiration');?>" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="author" content="Tarso de Castro">
+    
+   	<meta name="author" content="Tarso de Castro">
 	<meta name="reply-to" content="tarsodecastro@gmail.com">
-	<meta name="revised" content="Tarso de Castro, 12/09/2013" />
-	<meta name="description" content="GeraDoc - Sistema desenvolvido para facilitar a criação de documentos oficiais padronizados nos setores da Academia Estadual de Segurança Pública do Estado do Ceará.">
-	<meta name="abstract" content="GeraDoc - AESP-CE">
-	<meta name="keywords" content="aluno on-line, fale conosco, aesp, geradoc, documento, oficio, comunicacao interna, memorando, despacho, portaria, php, software livre, corpo de bombeiros">
+	<meta name="revised" content="Tarso de Castro, 14/09/2016" />
+	<meta name="description" content="GeraDoc - Gerenciamento de documentos oficiais padronizados com facilidade. Mais informações em http://www.geradox.com.br/">
+	<meta name="abstract" content="GeraDoc">
+	<meta name="keywords" content="gerenciador de conteúdo corporativo, ecm, enterprise content management, aesp, geradoc, geradox, documento, oficio, ofício, comunicacao interna, comunicação interna, memorando, despacho, portaria, corpo de bombeiros, cbmce">
 	<meta name="ROBOT" content="Index,Follow">
 	
 	<link rel="shortcut icon" href="{TPL_images}file-text-o_4e8079_128.ico" type="image/x-icon" />
@@ -202,24 +203,6 @@ $SessTimeLeft = ($SessExpTime - ($CurrTime - $arrLastActivity[0]["last_activity"
     <![endif]-->
     </head>
     <body>
-    
-    
-    <div class="modal" id="modal_loading" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-         <h3 class="modal-title" id="myModalLabel"><span class="label label-primary">Aguarde</span></h3>
-      </div>
-      <div class="modal-body">
-      		<div class="text-center" style="padding-top: 50px; padding-bottom: 50px;">
-      			<h4>Processando informações...</h4>
-				<img src="{TPL_images}preloader_3.gif">
-			</div>
-      </div>
-    </div>
-  </div>
-</div>
 
             <div class="container">
             
@@ -303,7 +286,6 @@ $SessTimeLeft = ($SessExpTime - ($CurrTime - $arrLastActivity[0]["last_activity"
 					            <li><a href="<?php echo site_url('/documento/index'); ?>" title="Lista"><i class="fa fa-list"></i> Lista</a></li>
 					            <li><a href="<?php echo site_url('/documento/add'); ?>" title="Novo"><i class="fa fa-plus"></i> Novo</a></li>
 					            <li><a href="<?php echo site_url('/workflow'); ?>" title="Entrada"><i class="fa fa-inbox"></i> Entrada</a></li>
-					            <li><a href="<?php echo site_url('/alerta'); ?>" title="Alertas"><i class="fa fa-bell-o"></i> Alertas</a></li>
 					        </ul>
 				        </li>
 				        
@@ -396,7 +378,7 @@ $SessTimeLeft = ($SessExpTime - ($CurrTime - $arrLastActivity[0]["last_activity"
 				</div>
 	
 				<div class="row align-center copyright">
-						<div class="col-sm-12"><p>Copyright &copy; 2014 GeraDox - by <a href="http://www.geradox.com.br" target="_blank">GeraDox</a></p></div>
+						<div class="col-sm-12"><p><?php echo $CI->config->item('rodape_sistema');?></p></div>
 				</div>
 			</div>
 
@@ -419,7 +401,7 @@ $SessTimeLeft = ($SessExpTime - ($CurrTime - $arrLastActivity[0]["last_activity"
 			</div> 
 			
 			<div class="modal fade" id="modalSobre" tabindex="-1" role="dialog" aria-labelledby="modalSobre" aria-hidden="true">
-			  <div class="modal-dialog modal-lg">
+			  <div class="modal-dialog">
 			    <div class="modal-content">
 			      <div class="modal-header">
 			        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Fechar</span></button>
@@ -455,7 +437,7 @@ $SessTimeLeft = ($SessExpTime - ($CurrTime - $arrLastActivity[0]["last_activity"
 			      
 			      <form id="contactForm" role="form" action="<?php echo $action_fale_conosco;?>" method="post">
 			      <div class="modal-body">
-			      <p class="text-justify"> Utilize o formulário abaixo para enviar suas crítias, dúvidas ou sugestões. Sua opinião é importante para nós.</p>
+			      <p class="text-muted text-justify"> Utilize o formulário abaixo para enviar suas crítias, dúvidas ou sugestões. Sua opinião é importante para nós.</p>
 			      
 				  	  <div class="form-group">
 			            <label for="recipient-name" class="control-label">Seu nome:</label>
@@ -479,22 +461,8 @@ $SessTimeLeft = ($SessExpTime - ($CurrTime - $arrLastActivity[0]["last_activity"
 			        
 			      </div>
 			      <div class="modal-footer">
-			      
-			      	<div class="col-md-7 text-center">
-				        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-				        <button type="submit" class="btn btn-primary">Enviar</button>
-			        </div>
-			        
-			        
-			        <div class="col-md-5 text-right text-muted ">
-							Criado por Tarso de Castro<br>
-							
-							<a href="https://github.com/tarsodecastro/geradoc" target="_blank">https://github.com/tarsodecastro</a>
-							 
-							 <!-- 
-							<a href="http://www.geradox.com.br/" target="_blank">http://www.geradox.com.br/</a>
-							-->
-					</div>
+			        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+			        <button type="submit" class="btn btn-primary">Enviar</button>
 			        
 			      </div>
 			      
@@ -517,7 +485,7 @@ $SessTimeLeft = ($SessExpTime - ($CurrTime - $arrLastActivity[0]["last_activity"
 			      </div>
 			      
 			      <div class="modal-body">
-			     		<p>Enviando...</p>
+			     		<p> Enviando... </p>
 			        	<div class="progress">
 			        		
 			        		 
@@ -531,41 +499,16 @@ $SessTimeLeft = ($SessExpTime - ($CurrTime - $arrLastActivity[0]["last_activity"
 			    </div>
 			  </div>
 			</div>
-			
-			
-
-			<div id="bannerTemAlerta" class="banner" style="visibility: hidden;" >
-			
-				<div class="panel panel-info">
-				  <div class="panel-heading text-center"><i class="cus-bell"></i> <strong>Aviso de alerta</strong></div>
-				  <div class="panel-body" style="overflow-y: auto; height: 150px;">
-				  <p class="text-center"> Você tem alertas aguardando sua ação.</p>
-				  <p class="text-center">
-			     	 <a href="<?php echo base_url();?>index.php/documento" class="btn btn-primary" id="btnVerificarAlerta"><strong>Verificar alertas</strong></a>
-				  </p>
-				  </div>
-				</div>
-				
-			</div>
-					
-			
-			<div class="popover" role="tooltip"><div class="arrow"></div><h3 class="popover-title"></h3><div class="popover-content"></div></div>
-			       
+      
 	         <script src="<?php echo base_url();?>bootstrap/js/bootstrap.min.js"></script>
 	         <script src="<?php echo base_url();?>bootstrap/js/datatables.bootstrap.js"></script>
 	         <script src="<?php echo base_url();?>bootstrap/js/bootstrap-select.min.js"></script>
 	         
 	         <script src="<?php echo base_url(); ?>js/countdown/jquery.countdown.js"></script>
 			 <script src="<?php echo base_url(); ?>js/countdown/jquery.countdown-pt-BR.js"></script>
-			 
-			 <script src="<?php echo base_url(); ?>js/jquery.playSound.js"></script>
 		
 	         <script type="text/javascript">
-
-		         $('#btnVerificarAlerta').click(function () {
-		    		 $("#modal_loading").modal('show');
-		    	});
-
+	        
 		         $('span.countdown').countdown({until: <?php echo $SessTimeLeft;?>, compact: true, 
 								        	    layout: '{hnn}h{sep}{mnn}m{sep}{snn}s',
 								        	    expiryUrl: "<?php echo base_url();?>"
@@ -608,71 +551,7 @@ $SessTimeLeft = ($SessExpTime - ($CurrTime - $arrLastActivity[0]["last_activity"
 	        	    return true;
 	        	});
 				 //--- Fim do Fale conosco ---//	
-				 
-				 
-				//--- Alertas ---//
-				$( document ).ready( function() {
-
-	        		 var temAlerta = <?php 
-     				
-					     				if(isset($_SESSION['tem_alerta'])){
-					     					echo $_SESSION['tem_alerta'];
-					     				}else{
-					     					echo 0;
-					     				}
-
-     								 ?>;
-
-
-					<?php 
-					
-						if($_SESSION['tem_alerta'] == 1){
-							
-							echo ' $("#bannerTemAlerta").css("visibility", "visible");';
-							
-							
-							echo '$("#bannerTemAlerta").toggleClass("animated tada");';
-							
-							echo '$.playSound("'.base_url().'files/notification");';
-							
-						}else{
-							
-							echo ' $("#bannerTemAlerta").css("visibility", "hidden");';
-							
-						}
-
-					?>
-
-					var ajax_call = function() {
-
-							var url = "<?php echo base_url() . "index.php/alerta/consulta";?>"
-		
-							$.get( url, function( data ) {
-		
-								  if(data == 1 || temAlerta == 1 ){
-		
-										$("#bannerTemAlerta").css('visibility', 'visible');
-
-										$("#bannerTemAlerta").toggleClass('animated tada');
-										
-								  }else{
-		
-									  	$("#bannerTemAlerta").css('visibility', 'hidden');
-									  
-								  }
-								  
-							 });
-				
-				 	};
-				
-					var interval = 1000 * 60 * 0.7; // where X is your every X minutes
-
-			 		setInterval(ajax_call, interval);
-		
-				 });
-				 //--- Fim dos alertas ---/
-				 
 	         </script>
-
+         
     </body>
 </html>
