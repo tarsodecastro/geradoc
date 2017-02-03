@@ -171,6 +171,14 @@ $SessTimeLeft = ($SessExpTime - ($CurrTime - $arrLastActivity[0]["last_activity"
 	<meta name="keywords" content="gerenciador de conteúdo corporativo, ecm, enterprise content management, aesp, geradoc, geradox, documento, oficio, ofício, comunicacao interna, comunicação interna, memorando, despacho, portaria, corpo de bombeiros, cbmce">
 	<meta name="ROBOT" content="Index,Follow">
 	
+	<meta name="author" content="GeraDox">
+	<meta name="reply-to" content="tarsodecastro@gmail.com">
+	<meta name="revised" content="GeraDox, 14/09/2016" />
+	<meta name="abstract" content="GeraDox - Documentos padronizados com facilidade">
+	<meta name="keywords" content="geradoc, geradox, documento, oficio, comunicacao interna, memorando, despacho, portaria, software livre">
+	<meta name="ROBOT" content="Index,Follow">
+	
+	
 	<link rel="shortcut icon" href="{TPL_images}file-text-o_4e8079_128.ico" type="image/x-icon" />
 	<link rel="icon" href="{TPL_images}file-text-o_4e8079_128.ico" />
     
