@@ -162,14 +162,6 @@ $SessTimeLeft = ($SessExpTime - ($CurrTime - $arrLastActivity[0]["last_activity"
     <meta http-equiv="content-language" content="pt-br" />
     <meta http-equiv="refresh" content="<?php echo $CI->config->item('sess_expiration');?>" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
-   	<meta name="author" content="Tarso de Castro">
-	<meta name="reply-to" content="tarsodecastro@gmail.com">
-	<meta name="revised" content="Tarso de Castro, 14/09/2016" />
-	<meta name="description" content="GeraDoc - Gerenciamento de documentos oficiais padronizados com facilidade. Mais informações em http://www.geradox.com.br/">
-	<meta name="abstract" content="GeraDoc">
-	<meta name="keywords" content="gerenciador de conteúdo corporativo, ecm, enterprise content management, aesp, geradoc, geradox, documento, oficio, ofício, comunicacao interna, comunicação interna, memorando, despacho, portaria, corpo de bombeiros, cbmce">
-	<meta name="ROBOT" content="Index,Follow">
 	
 	<meta name="author" content="GeraDox">
 	<meta name="reply-to" content="tarsodecastro@gmail.com">
@@ -177,7 +169,6 @@ $SessTimeLeft = ($SessExpTime - ($CurrTime - $arrLastActivity[0]["last_activity"
 	<meta name="abstract" content="GeraDox - Documentos padronizados com facilidade">
 	<meta name="keywords" content="geradoc, geradox, documento, oficio, comunicacao interna, memorando, despacho, portaria, software livre">
 	<meta name="ROBOT" content="Index,Follow">
-	
 	
 	<link rel="shortcut icon" href="{TPL_images}file-text-o_4e8079_128.ico" type="image/x-icon" />
 	<link rel="icon" href="{TPL_images}file-text-o_4e8079_128.ico" />
