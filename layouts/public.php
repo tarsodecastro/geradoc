@@ -22,7 +22,7 @@ $_SESSION['base_url_upload'] = $base_url_upload;
     <meta http-equiv="content-language" content="pt-br" />
     <meta http-equiv="refresh" content="<?php echo $CI->config->item('sess_expiration');?>" />
    
-	<meta name="author" content="GeraDox">
+	<meta name="author" content="GeraDox"> 
 	<meta name="reply-to" content="tarsodecastro@gmail.com">
 	<meta name="revised" content="GeraDox, 14/09/2016" />
 	<meta name="abstract" content="GeraDox - Documentos padronizados com facilidade">
