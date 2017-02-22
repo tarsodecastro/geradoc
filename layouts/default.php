@@ -41,8 +41,6 @@ $_SESSION['CI_ROOT'] = site_url();
 | -------------------------------------------------------------------
 */
 
-//$base_url_upload = str_replace('http://geradoc', '', base_url()); //AESP
-
 //echo $_SERVER['SERVER_NAME'];
 
 $base_url_upload = str_replace('http://'.$_SERVER['SERVER_NAME'], '', base_url()); //localhost

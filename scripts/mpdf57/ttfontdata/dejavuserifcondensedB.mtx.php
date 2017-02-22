@@ -13,7 +13,7 @@ $desc=array (
 );
 $up=-63;
 $ut=44;
-$ttffile='/var/www/aesp/intranet/geradoc/scripts/mpdf57/ttfonts/DejaVuSerifCondensed-Bold.ttf';
+$ttffile='../ttfonts/DejaVuSerifCondensed-Bold.ttf';
 $TTCfontID='0';
 $originalsize=283140;
 $sip=false;
