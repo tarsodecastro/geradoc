@@ -10,23 +10,35 @@
 |
 |	http://example.com/
 |
-| If this is not set then CodeIgniter will guess the protocol, domain and
-| path to your installation.
+| WARNING: You MUST set this value!
+|
+| If it is not set, then CodeIgniter will try guess the protocol and path
+| your installation, but due to security concerns the hostname will be set
+| to $_SERVER['SERVER_ADDR'] if available, or localhost otherwise.
+| The auto-detection mechanism exists only for convenience during
+| development and MUST NOT be used in production!
+|
+| If you need to allow multiple domains, remember that this file is still
+| a PHP script and you can easily do that on your own.
 |
 */
+
+
+$root=(isset($_SERVER['HTTPS']) ? "https://" : "http://").$_SERVER['HTTP_HOST'];
+$root.= str_replace(basename($_SERVER['SCRIPT_NAME']), '', $_SERVER['SCRIPT_NAME']);
+
+$config['base_url']	= $root;
 
 $config['orgao'] = 'localhost';
 
 $config['title']	= "GeraDox";
 
-$config['title_short']	= "GeraDox <br><div style='font-size:10pt; text-align:right; margin-right:30px;'>Versão 2.6</div>";
+$config['title_short']	= "GeraDox <br><div style='font-size:10pt; text-align:right; margin-right:30px;'>Versão 2.7</div>";
 
-$config['base_url']	= '';
-
-$config['rodape_sistema']  = 'Copyright © 2013-2016 GeraDox - by GeraDoc. Todos os direitos reservados. ';
+$config['rodape_sistema']  = 'Copyright © 2013-2017 GeraDox - by GeraDoc. Todos os direitos reservados. ';
 $config['rodape_sistema'] .= '<a href="http://www.geradox.com.br" target="_blank"style="color:#037E45; text-decoration: none; font-weight:bold;">www.geradox.com.br</a>';
 
-$config['rodape_documento']  = '<strong>Copyright © 2013-2016 GeraDox - by GeraDoc. Todos os direitos reservados.</strong><br>';
+$config['rodape_documento']  = '<strong>Copyright © 2013-2017 GeraDox - by GeraDoc. Todos os direitos reservados.</strong><br>';
 $config['rodape_documento'] .= 'www.geradox.com.br';
 
 
@@ -87,6 +99,8 @@ $config['url_suffix'] = '';
 //$config['language']	= 'english';
 
 $config['language']	= 'ptBR';
+
+$config['stricton']	= 'false';
 
 /*
 |--------------------------------------------------------------------------
