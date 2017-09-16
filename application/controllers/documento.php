@@ -931,6 +931,53 @@ class Documento extends CI_Controller {
 	
 	}
 	
+	
+	
+	function lista_comentarios($id_doc){
+		
+		$this->load->model('Comentario_model','',TRUE);
+		
+		
+		$comentarios = $this->Comentario_model->lista_comentarios_por_documento($id_doc)->result();
+		
+		/*
+		echo "<pre>";
+		print_r ($comentarios);
+		echo "</pre>";
+		*/
+		
+		$texto = '';
+
+		if(count($comentarios) > 0){
+			
+			foreach ($comentarios as $item){
+				
+				$usuario = $this->getUsuario($item->id_usuario);
+				
+				$nome_usuario = $usuario->nome;
+				
+				$texto .=  '<div class="col-md-12" style="border-bottom: 1px solid #CCC; margin-bottom: 9px;">';
+				
+				$texto .=  '<small class="text-muted">'.$this->datas->datetimeToBR($item->data). '</small>';
+				
+				$texto .=  '<p><small class="text-muted"><strong>'.$nome_usuario.'</strong></small>: ';
+				
+				$texto .=  $item->texto;
+				
+				$texto .= '</p>';
+				$texto .=  '</div>';
+				
+			}
+
+			
+			
+		}
+		
+		return $texto;
+		
+	}
+	
+	
 	function view($id){
 		
 		//--- VARIAVEIS COMUNS ---//	
@@ -938,9 +985,13 @@ class Documento extends CI_Controller {
 		$data['message']        = '';
 		$data['acao']          	= "update";
 		
-		$data['link_back'] = $this->Campo_model->make_link($_SESSION['homepage'].'#d'.$id, 'history_back');
-		
-		$data['link_cancelar'] = $this->Campo_model->make_link($_SESSION['homepage'], 'cancelar_doc');
+		$data['link_back'] = $this->Campo_model->make_link('', 'history_back');
+		$data['link_cancelar'] = '';
+		if(isset($_SESSION['homepage'])){ // para que os botoes "Voltar" apontem para a pagina que chamou esta view
+			$data['link_back'] = $this->Campo_model->make_link($_SESSION['homepage'].'#d'.$id, 'voltar_doc');
+			$data['link_cancelar'] = $this->Campo_model->make_link($_SESSION['homepage'], 'cancelar_doc');
+		}
+
 		$data['link_update'] = $this->Campo_model->make_link($this->area, 'alterar', $id);
 		$data['link_update_sm'] = $this->Campo_model->make_link($this->area, 'alterar_doc', $id);
 		$data['link_export'] = $this->Campo_model->make_link($this->area, 'exportar_doc', $id);
@@ -951,7 +1002,10 @@ class Documento extends CI_Controller {
 
 		$data['objeto'] = $this->Documento_model->get_by_id($id)->row();
 
+		$comentarios = $this->lista_comentarios($id);
 		
+		$data['comentarios'] = $comentarios;
+
 		//--- Carimbos ---//
 		$data['carimbo_pagina'] = '<a href="'.site_url($this->area.'/carimbo_pagina_on/'.$id).'">De página</a>';
 		

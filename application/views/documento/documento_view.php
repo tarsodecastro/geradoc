@@ -40,14 +40,85 @@
 			  </ul>
 			</div> 
 			<?php }?>
+			<button type="button" class="btn btn-default btn-sm" id="btnComentarios"><i class="cus-comments"></i> Comentários</button>
+			
 		  	</div> 
 		  	
 	    </div>
 
     </div>
-
-
+    
 	<div class="formulario">
+
+	<?php 
+	
+	if($comentarios != ''){
+		
+		$display_comentarios = 'yes';
+		
+	}else{
+		
+		$display_comentarios = 'none';
+		
+	}
+	
+	?>
+	<div class="row" style="display: <?php echo $display_comentarios;?>;" id="painelComentarios">
+			
+			
+		 <form class="form-horizontal" role="form" id="frm1" name="frm1" action="<?php echo site_url('comentario/add/' . $objeto->id); ?>" method="post">
+		 
+		<div class="panel panel-info">
+		  <div class="panel-heading text-center"><i class="cus-comments"></i> <strong>Comentários</strong></div>
+		  
+		  
+		  <div class="panel-body" style="padding-bottom: 10px;">
+		  
+			  <div style="overflow-y: auto; height: 125px; line-height: 90%;" class="text-justify">
+			   <?php echo $comentarios;?>
+			  
+			  </div>
+			  
+			  <?php 				    		
+		    		if(isset($_SESSION['mensagem']) and $_SESSION['mensagem'] != ''){	
+		    					
+		    			echo $_SESSION['mensagem'];
+		    			
+		    			unset($_SESSION['mensagem']);
+		    						
+		    		}
+			  ?>
+			  
+			  <div class="row" style="padding-top: 10px;">
+			  	<div class="col-md-11 text-center">
+			  		<textarea class="form-control" name="campoComentario" id="campoComentario" rows="2" style="width: 100%;" maxlength="100"></textarea>
+			  	</div>
+			  	<div class="help-block text-left small"><span id="caracteresRestantes" class="text-danger"></span></div>
+			  </div>
+			  
+		  </div>
+		  
+		  <div class="panel-footer">
+		  
+		  <div class="row">
+		  	<div class="col-md-6 text-center">
+		  		<button type="button" class="btn btn-default btn-sm" id="btnComentariosClose"><span class="glyphicon glyphicon glyphicon-remove"></span> Fechar</button>
+		  	</div>
+		  	
+		  	<div class="col-md-6 text-center">
+		  		<button type="submit" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon glyphicon-ok"></span> Comentar</button>
+		  	</div>
+		  
+		  </div>
+		  
+		  </div>
+		  
+		  
+		  
+		</div>
+		
+		  </form>
+	</div>
 	
 	
 	<div class="pagina">
@@ -154,3 +225,37 @@
 	
 </div>
 <!-- fim da div  view_content -->
+
+
+
+
+
+ <script type="text/javascript">
+
+ $(document).ready(function(){
+	    $("#btnComentarios").click(function(){
+	        $("#painelComentarios").toggle();
+	    });
+
+	    $("#btnComentariosClose").click(function(){
+	        $("#painelComentarios").toggle();
+	    });
+
+
+	    $("#caracteresRestantes").text((100 - $('#campoComentario').val().length));
+
+        $("#caracteresRestantes").hide();
+	 		
+		$("#campoComentario").focusin(function() {
+		    $("#caracteresRestantes").show();
+		}).focusout(function () {
+		    $("#caracteresRestantes").fadeOut("medium");
+		});
+
+		$('#campoComentario').on('keyup',function(){
+			   var charCount = $(this).val().length;
+			   var restante = 100 - charCount;
+				$("#caracteresRestantes").text(restante);
+		});
+	});
+ </script>

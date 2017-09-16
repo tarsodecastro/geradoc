@@ -121,3 +121,12 @@ body {
 .breadcrumb {
 font-size: 12pt;
 }
+
+div.banner {
+  margin: 0;
+  position: fixed;
+  top: 14em;
+  left: auto;
+  right: 1.1em;
+  z-index: 999;
+}

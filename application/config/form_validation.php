@@ -553,6 +553,16 @@ $config = array(
 					
 		),
 		
+		
+		'comentario/add' => array(
+				array(
+						'field' => 'campoComentario',
+						'label' => 'texto',
+						'rules' => 'required|trim'
+				),
+					
+		),
+		
 		 
 );
 
