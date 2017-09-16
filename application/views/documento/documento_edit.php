@@ -271,7 +271,8 @@ $.blockUI({ message: '<h1><img src="<?php echo base_url(); ?>scripts/images/ui-a
 											$coluna = $this->Coluna_model->get_by_nome($nome_campo);
 											
 											$erro = '';
-											if($campo[0] == 'S' and $coluna['tipo'] == 'string'){
+// 											if($campo[0] == 'S' and $coluna['tipo'] == 'string'){
+											if($campo[0] == 'S' and ($coluna['tipo'] == 'string' or $coluna['tipo'] == 'varchar')){
 
 
 												if(form_error('campo_'.$nome_campo) != ''){
@@ -552,7 +553,9 @@ $.blockUI({ message: '<h1><img src="<?php echo base_url(); ?>scripts/images/ui-a
 									$coluna = $this->Coluna_model->get_by_nome($nome_campo);
 									
 									$erro = '';
-									if($campo[0] == 'S' and $coluna['tipo'] == 'blob'){
+									if($campo[0] == 'S') {
+										
+										if($nome_campo != 'para' and ($coluna['tipo'] == 'blob' or $coluna['tipo'] == 'text' or $coluna['tipo'] == 'longtext')){
 
 										if(form_error('campo_'.$nome_campo) != ''){
 											$erro = 'has-error';
@@ -628,6 +631,8 @@ $.blockUI({ message: '<h1><img src="<?php echo base_url(); ?>scripts/images/ui-a
 										';	
 
 									}	
+									
+								}
 						
 								}	
 					
