@@ -35,10 +35,10 @@ $config['title']	= "GeraDox";
 
 $config['title_short']	= "GeraDox <br><div style='font-size:10pt; text-align:right; margin-right:30px;'>Versão 2.7</div>";
 
-$config['rodape_sistema']  = 'Copyright © 2013-2017 GeraDox - by GeraDoc. Todos os direitos reservados. ';
+$config['rodape_sistema']  = 'Copyright © 2013-'.date("Y").' GeraDox - by GeraDoc. Todos os direitos reservados. ';
 $config['rodape_sistema'] .= '<a href="http://www.geradox.com.br" target="_blank"style="color:#037E45; text-decoration: none; font-weight:bold;">www.geradox.com.br</a>';
 
-$config['rodape_documento']  = '<strong>Copyright © 2013-2017 GeraDox - by GeraDoc. Todos os direitos reservados.</strong><br>';
+$config['rodape_documento']  = '<strong>Copyright © 2013-'.date("Y").' GeraDox - by GeraDoc. Todos os direitos reservados.</strong><br>';
 $config['rodape_documento'] .= 'www.geradox.com.br';
 
 
