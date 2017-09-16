@@ -407,7 +407,7 @@ class Documento extends CI_Controller {
 					}
 					
 					
-					if($coluna['tipo'] == 'blob'){
+					if($coluna['tipo'] == 'blob' or $coluna['tipo'] == 'text' or $coluna['tipo'] == 'longtext'){
 						$data['input_campo'][$nome_campo] = form_textarea(array(
 								'name' 	=> 'campo_'.$nome_campo,
 								'id'	=> 'campo_'.$nome_campo,
@@ -796,7 +796,7 @@ class Documento extends CI_Controller {
 							));
 					}
 
-					if($coluna['tipo'] == 'blob'){
+					if($coluna['tipo'] == 'blob' or $coluna['tipo'] == 'text' or $coluna['tipo'] == 'longtext'){
 						$data['input_campo'][$nome_campo] = form_textarea(array(
 								'name' 	=> 'campo_'.$nome_campo,
 								'id'	=> 'campo_'.$nome_campo,
@@ -1696,6 +1696,63 @@ class Documento extends CI_Controller {
 		}
 	
 	}
+	
+	function _get_ano_documento ($data_criacao){
+
+		$array_ano = explode('-', $data_criacao);
+		
+		return $array_ano[0];
+		
+	}
+	
+	
+	
+	function _get_icone_tramitacao ($id_doc){
+		
+		$this->load->model('Workflow_model','',TRUE);
+		
+		$tramitacoes = $this->Workflow_model->list_workflow($id_doc)->result();
+		
+// 		print_r($tramitacoes);
+			
+		$iconeTramitacao = '';
+			
+		if(count($tramitacoes) > 0){
+		
+			$setor_destino = $this->getSetor(end($tramitacoes)->id_setor_destino);
+		
+			$linkTramitacao = '<i class=\'fa fa-paper-plane-o\' style=\'color: #999;\'></i> <a href='.site_url('/workflow/update/' . $id_doc).'><strong>'.$this->datas->datetimeToBR(end($tramitacoes)->data_envio) . '</strong> - '. $setor_destino->nome.'</a><br>';
+		
+			//$iconeTramitacao = '<a href="'.site_url('/workflow/update/' . $documento->id).'">';
+		
+			$iconeTramitacao = '<a role="button" tabindex="0" aria-hidden="true" data-container="body" data-toggle="popover" data-trigger="focus" data-placement="top" data-html="true" title="<strong>Tramitação</strong>" data-content="'.$linkTramitacao.'">';
+		
+			if(end($tramitacoes)->data_recebimento == null){
+					
+				if(end($tramitacoes)->data_recusa != null){
+						
+					$iconeTramitacao .= '<i class="fa fa-paper-plane-o" style="color: #e60000; cursor: pointer;"></i>';
+						
+				}else{
+		
+					$iconeTramitacao .= '<i class="fa fa-paper-plane-o" style="color: #1D9C73; cursor: pointer;"></i>';
+		
+				}
+		
+			}else{
+					
+				$iconeTramitacao .= '<i class="fa fa-paper-plane" style="color: #1D9C73; cursor: pointer;"></i>';
+			}
+		
+		
+			$iconeTramitacao .= '</a>';
+		
+		}
+		
+		return $iconeTramitacao;
+		
+		
+	}
 
 	function _monta_linha($documentos){
 		
@@ -1706,7 +1763,12 @@ class Documento extends CI_Controller {
 			$tipoNome = $this->Documento_model->get_tipo($documento->tipo)->row();
 
 			$obj = $this->Documento_model->get_by_id($documento->id)->row();
-			 
+			
+			$iconeTramitacao = $this->_get_icone_tramitacao($documento->id);
+			
+			
+			$ano_documento = $this->_get_ano_documento($documento->data_criacao);
+				
 			if($documento->oculto == "N" or $documento->cadeado == null){
 				//$link_hide = anchor('#doc_'.$documento->id,'');
 				$link_hide = anchor('documento/hide/'.$documento->id.'#d'.$documento->id,'<i class="cus-world"></i> Público', array('class'=>'btn btn-default btn-sm', 
@@ -1767,7 +1829,8 @@ class Documento extends CI_Controller {
 				
 			$linha = $this->table->add_row(
 					'<a name="d'.$documento->id.'" id="d'.$documento->id.'"></a>' .
-					"$tipoNome->abreviacao Nº $documento->numero <br> $setorRemetente",
+// 					"$tipoNome->abreviacao Nº $documento->numero <br> $setorRemetente",
+					"$tipoNome->abreviacao $documento->numero/$ano_documento <span class='pull-right' style='padding-right:5px;'>$iconeTramitacao</span><br> $setorRemetente",
 					$this->_monta_assunto($documento->assunto),
 					$obj->dono,
 					$this->_trata_dataDoBancoParaForm($documento->data_criacao),

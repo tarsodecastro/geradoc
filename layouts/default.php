@@ -505,6 +505,8 @@ $SessTimeLeft = ($SessExpTime - ($CurrTime - $arrLastActivity[0]["last_activity"
 			 <script src="<?php echo base_url(); ?>js/countdown/jquery.countdown-pt-BR.js"></script>
 		
 	         <script type="text/javascript">
+
+	         	 $('[data-toggle="popover"]').popover();
 	        
 		         $('span.countdown').countdown({until: <?php echo $SessTimeLeft;?>, compact: true, 
 								        	    layout: '{hnn}h{sep}{mnn}m{sep}{snn}s',
