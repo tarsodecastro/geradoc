@@ -1754,6 +1754,25 @@ class Documento extends CI_Controller {
 		
 	}
 
+	function _get_icone_comentario ($id_doc){
+	
+		$this->load->model('Comentario_model','',TRUE);
+	
+		$comentarios = $this->Comentario_model->lista_comentarios_por_documento($id_doc)->result();
+			
+		$icone = '';
+			
+		if(count($comentarios) > 0){
+
+			$icone = '<a href='.site_url('/documento/view/' . $id_doc).'><i class=\'fa fa-comments-o fa-lg\' style=\'color: #3399ff;\'></i></a>';
+
+		}
+	
+		return $icone;
+	
+	}
+	
+	
 	function _monta_linha($documentos){
 		
 		$linha = null;
@@ -1765,6 +1784,8 @@ class Documento extends CI_Controller {
 			$obj = $this->Documento_model->get_by_id($documento->id)->row();
 			
 			$iconeTramitacao = $this->_get_icone_tramitacao($documento->id);
+			
+			$iconeComentario = $this->_get_icone_comentario($documento->id);
 			
 			
 			$ano_documento = $this->_get_ano_documento($documento->data_criacao);
@@ -1830,7 +1851,7 @@ class Documento extends CI_Controller {
 			$linha = $this->table->add_row(
 					'<a name="d'.$documento->id.'" id="d'.$documento->id.'"></a>' .
 // 					"$tipoNome->abreviacao Nº $documento->numero <br> $setorRemetente",
-					"$tipoNome->abreviacao $documento->numero/$ano_documento <span class='pull-right' style='padding-right:5px;'>$iconeTramitacao</span><br> $setorRemetente",
+					"$tipoNome->abreviacao $documento->numero/$ano_documento <span class='pull-right' style='padding-right:5px;'>$iconeTramitacao $iconeComentario</span><br> $setorRemetente",
 					$this->_monta_assunto($documento->assunto),
 					$obj->dono,
 					$this->_trata_dataDoBancoParaForm($documento->data_criacao),
