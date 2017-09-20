@@ -936,21 +936,23 @@ class Documento extends CI_Controller {
 	function lista_comentarios($id_doc){
 		
 		$this->load->model('Comentario_model','',TRUE);
-		
-		
+
 		$comentarios = $this->Comentario_model->lista_comentarios_por_documento($id_doc)->result();
-		
-		/*
-		echo "<pre>";
-		print_r ($comentarios);
-		echo "</pre>";
-		*/
-		
+
 		$texto = '';
 
 		if(count($comentarios) > 0){
 			
-			foreach ($comentarios as $item){
+			foreach ($comentarios as $key => $item){
+				
+				
+				if($key == 0){
+					
+					$obj = array('id_comentario' => $item->id, 'id_usuario' => $this->session->userdata('id_usuario'));
+					
+					$this->Comentario_model->save_comentario_visto($obj);
+					
+				}
 				
 				$usuario = $this->getUsuario($item->id_usuario);
 				
@@ -1092,6 +1094,8 @@ class Documento extends CI_Controller {
 		$this->load->view($this->area.'/documento_view', $data);
 		
 		$this->audita();
+		
+		
 		
 	}
 	
@@ -1763,8 +1767,17 @@ class Documento extends CI_Controller {
 		$icone = '';
 			
 		if(count($comentarios) > 0){
+			
+			$checa = $this->Comentario_model->checa_comentario_visto($comentarios[0]->id, $this->session->userdata('id_usuario'))->result();
 
-			$icone = '<a href='.site_url('/documento/view/' . $id_doc).'><i class=\'fa fa-comments-o fa-lg\' style=\'color: #3399ff;\'></i></a>';
+			if(count($checa) > 0){
+			
+				$icone = '<a href='.site_url('/documento/view/' . $id_doc).'><i class=\'fa fa-comments-o fa-lg\' style=\'color: #b3cccc;\'></i></a>';
+			
+			}else{
+					
+				$icone = '<a href='.site_url('/documento/view/' . $id_doc).'><i class=\'fa fa-comments-o fa-lg\' style=\'color: #3399ff;\'></i></a>';
+			}
 
 		}
 	

@@ -45,6 +45,25 @@ class Comentario_model extends CI_Model {
 		$this->db->where('id', $id);
 		$this->db->delete($this->tabela);
 	}
+	
+	
+	function checa_comentario_visto($id_comentario, $id_usuario){
+		$this->db->where('id_comentario', $id_comentario);
+		$this->db->where('id_usuario', $id_usuario);
+		
+		return $this->db->get('rel_comentario_usuario');
+	}
+	
+	
+	function save_comentario_visto($objeto){
+		
+		$checa = self::checa_comentario_visto($objeto['id_comentario'], $objeto['id_usuario'])->result();
+
+ 		if(count($checa) == 0){
+			$this->db->insert('rel_comentario_usuario', $objeto);
+ 		}
+
+	}
 
 
 }
