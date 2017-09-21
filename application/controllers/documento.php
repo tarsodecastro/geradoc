@@ -1758,35 +1758,9 @@ class Documento extends CI_Controller {
 		
 	}
 
-	function _get_icone_comentario ($id_doc){
-	
-		$this->load->model('Comentario_model','',TRUE);
-	
-		$comentarios = $this->Comentario_model->lista_comentarios_por_documento($id_doc)->result();
-			
-		$icone = '';
-			
-		if(count($comentarios) > 0){
-			
-			$checa = $this->Comentario_model->checa_comentario_visto($comentarios[0]->id, $this->session->userdata('id_usuario'))->result();
-
-			if(count($checa) > 0){
-			
-				$icone = '<a href='.site_url('/documento/view/' . $id_doc).'><i class=\'fa fa-comments-o fa-lg\' style=\'color: #b3cccc;\'></i></a>';
-			
-			}else{
-					
-				$icone = '<a href='.site_url('/documento/view/' . $id_doc).'><i class=\'fa fa-comments-o fa-lg\' style=\'color: #3399ff;\'></i></a>';
-			}
-
-		}
-	
-		return $icone;
-	
-	}
-	
-	
 	function _monta_linha($documentos){
+		
+		$this->load->library('utilities');
 		
 		$linha = null;
 
@@ -1797,9 +1771,8 @@ class Documento extends CI_Controller {
 			$obj = $this->Documento_model->get_by_id($documento->id)->row();
 			
 			$iconeTramitacao = $this->_get_icone_tramitacao($documento->id);
-			
-			$iconeComentario = $this->_get_icone_comentario($documento->id);
-			
+
+			$iconeComentario = $this->utilities->get_icone_comentario($documento->id);
 			
 			$ano_documento = $this->_get_ano_documento($documento->data_criacao);
 				

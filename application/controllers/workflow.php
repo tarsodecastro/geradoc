@@ -98,6 +98,8 @@ class Workflow extends CI_Controller {
         
         $this->load->model('Documento_model','',TRUE);
         
+        $this->load->library('utilities');
+        
 		foreach ($objetos as $objeto){
 			
 			$doc = $this->Documento_model->get_by_id($objeto->id_documento)->row();
@@ -128,11 +130,12 @@ class Workflow extends CI_Controller {
 				$doc->para = ''; 
 			}
 			
+			$iconeComentario = $this->utilities->get_icone_comentario($objeto->id_documento);
 			
 			$this->table->add_row(
 									'<span class="'.$cor_texto.'">'.$objeto->id_workflow.'</span>', 
 									'<span class="'.$cor_texto.'">'.$this->datas->datetimeToBR($objeto->data_envio).'</span>', 
-									'<span class="'.$cor_texto.'">'."$tipoNome->abreviacao Nº $doc->numero <br> $setorRemetente".'</span>',
+									'<span class="'.$cor_texto.'">'."$tipoNome->abreviacao Nº $doc->numero <span class='pull-right' style='padding-right:5px;'>$iconeComentario</span><br>$setorRemetente".'</span>',
 									'<span class="'.$cor_texto.'">'.$doc->para.'</span>',
 									'<span class="'.$cor_texto.'">'.$doc->assunto.'</span>',
 									'<div class="btn-group">'.$botoes.'</div>'

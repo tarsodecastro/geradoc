@@ -12,7 +12,7 @@
          "aoColumns": [
        				{"sWidth":"30px", "sClass": "text-center"},
        				{"sWidth":"100px", "sClass": "text-center"},
-       				{"sWidth":"150px", "sClass": "text-center"},
+       				{"sWidth":"150px", "sClass": "text-left"},
        				{"sClass": "text-left"},
        				{"sClass": "text-left"},
        				{"sWidth":"400px", "sClass": "text-left"} 								 	
