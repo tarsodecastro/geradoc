@@ -173,7 +173,7 @@ class Repositorio extends CI_Controller {
 		$raiz_do_setor =  './files/'.$setor;
 
 		if (!file_exists($raiz_do_setor)) {
-			mkdir($raiz_do_setor, 0700);
+			mkdir($raiz_do_setor, 0755);
 			copy('./files/index.html', $raiz_do_setor.'/index.html');
 		}
 		
@@ -595,7 +595,7 @@ class Repositorio extends CI_Controller {
 			$this->Repositorio_model->save($objeto_do_form);
 			
 			if (!file_exists($nova_pasta)) {
-				mkdir($nova_pasta, 0700);
+				mkdir($nova_pasta, 0755);
 				copy('./files/index.html', $nova_pasta.'/index.html');
 			}
 			
