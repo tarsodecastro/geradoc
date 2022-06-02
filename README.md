@@ -1,3 +1,6 @@
+PROJETO DESCONTINUADO
+===========================================
+
 GeraDoc - Sistema Gerenciador de Documentos
 ===========================================
 
